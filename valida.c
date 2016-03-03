@@ -1,34 +1,21 @@
 #include "valida.h"
 
 // Conta quantas linhas do ficheiro com os clientes são válidas.
-int valClients(FILE *file){
-	
+int valFile(FILE *file){
 	int validated=0; 
-	char letter;
-	int number;
+	char buffer[TAM_C],*line;
+	//FALTA A ESTRUTURA DO ARRAY
 
-	while(fscanf(file,"%c%d\n",&letter,&number)!=EOF)
-		if(isupper(letter) && (number>=1000) && (number<=5000)) 
-			validated++; 
+	while(fgets(buffer,TAM_C,file)!=NULL){
+	 	line=strtok(buffer,"\r\n");
+	 	
+	 	validated++;
 
+	 	    }
+	 	
 	return validated;
 }
 
-// Conta quantas linhas do ficheiro com os produtos são válidas.
-int valProducts(FILE *file){
-
-	int validated=0;
-	char firstLetter,secondLetter;
-	int number;
-	char letters[2]; // Futuramente temos de juntar os dois caracteres numa string, provavelmente.
-
-
-	while(fscanf(file,"%c%c%d\n",&firstLetter,&secondLetter,&number)!=EOF)
-		if(isupper(firstLetter) && isupper(secondLetter) && (number>=1000) && (number<=1999)) 
-			validated++;
-
-	return validated;
-}
 
 // Conta quantas linhas do ficheiro com as vendas são válidas.
 int valSales(FILE *file){
@@ -51,9 +38,9 @@ int valSales(FILE *file){
 /*************************************************/
 // A cena do Atoi nao sei se da, mas penso que sim
 int testProduct (char* prod){
-   int num = atoi(prod+LetrasP),i,r=0;
+   int num = atoi(prod+LETRAS_P),i,r=0;
 
-   for(i=0;i<2;i++)
+   for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod[i]))) return 0;
 
    /* OU o for ou esta merda xD
@@ -66,8 +53,8 @@ int testProduct (char* prod){
 }
 
  int testClient(char* client){
-    int num = atoi(client+LetrasC),r=0;
-    
+    int num = atoi(client+LETRAS_C),r=0;
+
     if(isupper(client[0]) && (num>=1000) && (num<=5000))r++;
 
     return r;
