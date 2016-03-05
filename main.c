@@ -3,37 +3,62 @@
 #include <ctype.h>
 
 #include "valida.h"
+#include "testes.h"
 
-void getFile(char*);
+#define MAX_CLIENTS 20000
+#define MAX_PRODUCTS 200000
+#define MAX_SALES 1
+
+void getFile(char**,char**,char**);
 
 
 
 // Main
 int main(){
-	char buffer[100];
-	char doc_type[10];
 
-	printf("Insere o nome do ficheiro:\n");
-	scanf("%s",buffer);
-	getFile(buffer);
+	char* clients[MAX_CLIENTS];
+	char* products[MAX_PRODUCTS];
+	char* sales[MAX_SALES];
+
+
+	getFile(clients,products,sales);
+
 	return 0;
 }
 
 
-// Recebe o nome do ficheiro e o tipo dele (ex: Clientes, Produtos, Vendas).
-void getFile(char* filename){
+// Abre os 3 ficheiros : Clientes.txt | Produtos.txt | Vendas.txt 
+void getFile(char** clients, char** products, char** sales){
 	
-	FILE *read_file;	
-	int validated=0;
+	FILE *fileClients,*fileProducts,*fileSales;	
+	int validatedClients = 0;
+	int validatedProducts = 0;
+	int validatedSales = 0;
 
-	read_file = fopen(filename,"r");
-	if (read_file == NULL) printf("Não é possível ler o ficheiro %s.\n",filename);
+	fileClients = fopen("Clientes.txt","r");
+	fileProducts = fopen("Produtos.txt","r");
+	fileSales = fopen("Vendas.txt","r");
+
+	if (fileSales == NULL || fileProducts == NULL || fileClients == NULL) printf("Não é possível ler os ficheiros.\n");
 	else {
-		if(!strcmp("Clientes.txt",filename)) validated = valFile(read_file);
-		else if(!strcmp("Produtos.txt",filename)) validated = valFile(read_file);
-		else if(!strcmp("Vendas.txt",filename)) validated = valSales(read_file);
-		else printf("Esse documento não existe!\n");	
+		validatedClients = valClients(fileClients,clients);
+		validatedProducts = valProducts(fileProducts,products);
+		validatedSales = valSales(fileSales);
+			
 	}
-	fclose(read_file);
-	printf("Foram validadas %d linhas.\n",validated);
+
+	fclose(fileClients);
+	fclose(fileProducts);
+	fclose(fileSales);
+
+	printf("CLIENTES: Foram validadas %d linhas.\n",validatedClients);
+	printf("PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
+	printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
 }
+
+//1. Não será melhor pedir o nome dos ficheiros que vamos ler??? 
+//2. Quando dá erro a abrir um ficheiro não diz qual deles é.
+//3. Não sei até que ponto este código está bonito.
+//4. Corrijam erros de inglês.
+//5. Se arranjarem melhores nomes para variáveis, avisem-me ou mudem. 
+// :)
