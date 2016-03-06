@@ -19,6 +19,6 @@
 
 int testProduct (char *);
 int testClient(char* );
-int testSales(char *, float, int, char, char *, int, int);
+int testSales(float, int, char, int, int);
 
 #endif

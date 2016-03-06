@@ -9,7 +9,7 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1
 
-void getFile(char**,char**,char**);
+void getFile(char**,char**);
 
 
 
@@ -18,17 +18,15 @@ int main(){
 
 	char* clients[MAX_CLIENTS];
 	char* products[MAX_PRODUCTS];
-	char* sales[MAX_SALES];
 
-
-	getFile(clients,products,sales);
+	getFile(clients,products);
 
 	return 0;
 }
 
 
 // Abre os 3 ficheiros : Clientes.txt | Produtos.txt | Vendas.txt 
-void getFile(char** clients, char** products, char** sales){
+void getFile(char** clients, char** products){
 	
 	FILE *fileClients,*fileProducts,*fileSales;	
 	int validatedClients = 0;
@@ -39,12 +37,13 @@ void getFile(char** clients, char** products, char** sales){
 	fileProducts = fopen("Produtos.txt","r");
 	fileSales = fopen("Vendas.txt","r");
 
-	if (fileSales == NULL || fileProducts == NULL || fileClients == NULL) printf("Não é possível ler os ficheiros.\n");
-	else {
+	if (fileSales == NULL || fileProducts == NULL || fileClients == NULL) 
+		   printf("Não é possível ler os ficheiros.\n");
+	else 
+	{
 		validatedClients = valClients(fileClients,clients);
 		validatedProducts = valProducts(fileProducts,products);
-		validatedSales = valSales(fileSales);
-			
+		validatedSales = valSales(fileSales,clients,products);		
 	}
 
 	fclose(fileClients);

@@ -29,14 +29,12 @@ int testProduct (char* prod){
 // Código do cliente bem estruturado;
 // Mês (1 a 12);
 // Filial (1 a 3);
-int testSales(char* product, float price, int quantity, char infoPromo, char *client, int month, int filial){
+int testSales(float price, int quantity, char infoPromo, int month, int filial){
 
 	// falta testar o código do produto e o código do cliente.
-	if(!(testProduct(product))) return 0;
-	else if(price < 0 || price > 999.99) return 0;
+    if(price < 0 || price > 999.99) return 0;
 	else if(quantity < 1 || quantity > 200) return 0;
 	else if(infoPromo != 'P' && infoPromo != 'N') return 0;
-	else if(!(testClient(client))) return 0;
 	else if(month < 1 || month > 12) return 0;
 	else if(filial < 1 || filial > 3) return 0;
 	else return 1;

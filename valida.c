@@ -42,23 +42,65 @@ int valProducts(FILE *file, char** array){
 	return validated;
 }
 
+int exist (char * prod, char * client, char** clients, char** products){
+    int i,vc=0,vp=0;
 
+    for(i=0;i<171008;i++){
+         if(i<16384 && !vc){
+         	if(strcmp(client,clients[i])==0) vc=1;
+
+         }
+         if(strcmp(prod,products[i])==0) vp=1;
+
+
+         if(vc && vp) break;
+    }
+
+    return (vc && vp);
+}
+
+int repartirVerificar (char* line, char** clients,char** products){
+    int r=0;
+    char *clie,*prod,*token;
+    int mes,filial,quant;
+    float preco;
+    char infoP;
+   
+    token = strtok(line, " ");
+   
+   for(int i=0;token != NULL;i++) 
+   {
+   	  switch(i){
+        case 0: prod=token;
+        case 1: preco=atof(token);
+        case 2: quant=atoi(token); 
+        case 3: infoP=token[0];
+        case 4: clie=token;
+        case 5: mes = atoi(token);
+        case 6: filial = atoi (token);
+   	  }
+      token = strtok(NULL, " ");
+   }
+    //testSales(preco, quant, infoP, mes, filial) && 
+    if(exist(prod,clie,clients,products) ) r=1;
+    return r;
+}
 
 // Conta quantas linhas do ficheiro com as vendas são válidas.
-int valSales(FILE *file){
+int valSales(FILE *file,char** clients,char** products){
 
-	int validated=0,quantity, month;
-	int filial; // Filial ou Branch????? 
-	char prod[6], client[5];
-	float price;
-	char infoPromo;
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated,r;
 
-	// Código do Produto | Preço | Quantidade | Normal ou Promoção | Código do Cliente | Mês da Compra | Filial // 
-	while(fscanf(file,"%s %f %d %c %s %d %d", prod, &price, &quantity, &infoPromo, client, &month, &filial)!=EOF){
+	 
+	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
 		
-		//if(testSales(prod,price,quantity,infoPromo,client,month,filial)) 
-			validated++;
+		line=strtok(buffer,"\r\n");
+		r=repartirVerificar(line,clients,products);
+		validated+=r;
+		printf("%d\n",validated);
     }
+
 	return validated;
 }
 
