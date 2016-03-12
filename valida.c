@@ -1,7 +1,7 @@
 #include "valida.h"
 
 // Conta quantas linhas do ficheiro com os clientes são válidas, e aloca num array.
-int valClients(FILE *file, char** array){
+int valClientsP(FILE *file, char** array){
 	
 	int validated=0; 
 	char buffer[SIZE_BUFFER],*line;
@@ -12,7 +12,7 @@ int valClients(FILE *file, char** array){
 	 	//strtoken 
 	 	line=strtok(buffer,"\r\n");
 
-	 	//alocar espaço para a string e copia-la para o array
+	 	//alocar espaço para a string e copia-la para o array(VER O SIZE)
 	 	array[validated] = (char*)malloc(SIZE_CLIENTS * sizeof(char));
 	 	strcpy(array[validated],line);
 	 	validated++;
@@ -21,27 +21,7 @@ int valClients(FILE *file, char** array){
 	return validated;
 }
 
-// Conta quantas linhas do ficheiro com os produtos são válidas, e aloca num array.
-int valProducts(FILE *file, char** array){
-	
-	int validated=0; 
-	char buffer[SIZE_BUFFER],*line;
-
-
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-
-	 	//strtoken 
-	 	line=strtok(buffer,"\r\n");
-
-	 	//alocar espaço para a string e copia-la para o array
-	 	array[validated] = (char*)malloc(SIZE_PRODUCTS * sizeof(char));
-	 	strcpy(array[validated],line);
-	 	validated++;
-	 }
-	 	
-	return validated;
-}
-
+//Função auxiliar que verifica se um dado produto e cliente existem.
 int exist (char * prod, char * client, char** clients, char** products){
     int i,vc=0,vp=0;
 
@@ -59,6 +39,8 @@ int exist (char * prod, char * client, char** clients, char** products){
     return (vc && vp);
 }
 
+//Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
+//e se os outros parametros estao corretos. 
 int repartirVerificar (char* line, char** clients,char** products){
     int r=0;
     char *clie,*prod,*token;
@@ -82,13 +64,12 @@ int repartirVerificar (char* line, char** clients,char** products){
       token = strtok(NULL, " ");
    }
 
-    //testSales(preco, quant, infoP, mes, filial) && 
-    if(exist(prod,clie,clients,products) ) r=1;
+    if(exist(prod,clie,clients,products) && testSales(preco, quant, infoP, mes, filial)) r=1;
     return r;
 }
 
 // Conta quantas linhas do ficheiro com as vendas são válidas.
-int valSales(FILE *file,char** clients,char** products){
+int valSales(FILE *file,char** clients,char** products,char** sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated,r;
@@ -98,8 +79,11 @@ int valSales(FILE *file,char** clients,char** products){
 		
 		line=strtok(buffer,"\r\n");
 		r=repartirVerificar(line,clients,products);
+        if(r){
+            sales[validated] = (char*)malloc(SIZE_VENDAS * sizeof(char*));
+            strcpy(sales[validated],line);
+            }
 		validated+=r;
-		printf("%d\n",validated);
     }
 
 	return validated;

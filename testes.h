@@ -9,7 +9,7 @@
 
 #define MAX_CLIENTS 20000
 #define MAX_PRODUCTS 200000
-#define MAX_SALES 1
+#define MAX_SALES 1000000
 
 #include <stdio.h>
 #include <string.h>

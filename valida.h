@@ -8,12 +8,11 @@
 
 #define SIZE_CLIENTS 6 //CONTAR COM O /0
 #define SIZE_PRODUCTS 7 // CONTAR COM O /0
+#define SIZE_VENDAS 29// 
 
 #define MAX_CLIENTS 20000
 #define MAX_PRODUCTS 200000
-#define MAX_SALES 1
-
-#define MES 12
+#define MAX_SALES 1000000
 
 #include <stdio.h>
 #include <string.h>
@@ -29,12 +28,10 @@ typedef struct vendas{
    char infoPromo;
    int filial;
    struct vendas *esq,*dir;
-}*Sales[MES];
+}Vendas[MAX_SALES];
 
-
-int valClients(FILE *,char**);
-int valProducts(FILE *,char**);
-int valSales(FILE *,char** ,char** );
+int valClientsP(FILE *,char**);
+int valSales(FILE *,char** ,char**,char** );
 
 
 #endif
