@@ -12,6 +12,7 @@
 
 #define SIZE_CLIENTS 6 //CONTAR COM O /0
 #define SIZE_PRODUCTS 7 // CONTAR COM O /0
+<<<<<<< HEAD
 
 #define MAX_CLIENTS 20000
 #define MAX_PRODUCTS 200000
@@ -19,12 +20,20 @@
 
 #define MES 12
 >>>>>>> master
+=======
+#define SIZE_VENDAS 29// 
+
+#define MAX_CLIENTS 20000
+#define MAX_PRODUCTS 200000
+#define MAX_SALES 1000000
+>>>>>>> 33
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int testProduct (char *);
@@ -51,5 +60,21 @@ int valProducts(FILE *,char**);
 int valSales(FILE *,char** ,char** );
 
 >>>>>>> master
+=======
+#include "testes.h"
+
+typedef struct vendas{
+   char* client,product;
+   float price;
+   int quantity;
+   char infoPromo;
+   int filial;
+   struct vendas *esq,*dir;
+}Vendas[MAX_SALES];
+
+int valClientsP(FILE *,char**);
+int valSales(FILE *,char** ,char**,char** );
+
+>>>>>>> 33
 
 #endif
