@@ -32,7 +32,11 @@ int testProduct (char* prod){
 int testSales(float price, int quantity, char infoPromo, int month, int filial){
 
 	// falta testar o código do produto e o código do cliente.
+<<<<<<< HEAD
     if(price < 0 || price > 999.99) return 0;
+=======
+  if(price < 0 || price > 999.99) return 0;
+>>>>>>> 33
 	else if(quantity < 1 || quantity > 200) return 0;
 	else if(infoPromo != 'P' && infoPromo != 'N') return 0;
 	else if(month < 1 || month > 12) return 0;
