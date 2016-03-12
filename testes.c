@@ -21,17 +21,14 @@ int testProduct (char* prod){
     return r;
  }
 
+
 // Testa as diferentes cenas das Vendas.
-// Código do produto bem estruturado;
 // Preço de 0 a 999.99;
 // Quantidade de 0 a 200;
 // Caracter a informar se o preço é normal(N) ou em promoção(P);
-// Código do cliente bem estruturado;
 // Mês (1 a 12);
 // Filial (1 a 3);
 int testSales(float price, int quantity, char infoPromo, int month, int filial){
-
-	// falta testar o código do produto e o código do cliente.
 
   if(price < 0 || price > 999.99) return 0;
 	else if(quantity < 1 || quantity > 200) return 0;
