@@ -42,6 +42,8 @@ int valProducts(FILE *file, char** array){
 	return validated;
 }
 
+
+// 
 int exist (char * prod, char * client, char** clients, char** products){
     int i,vc=0,vp=0;
 
@@ -52,15 +54,16 @@ int exist (char * prod, char * client, char** clients, char** products){
          }
          if(strcmp(prod,products[i])==0) vp=1;
 
-
+         // temos de mudar isto
          if(vc && vp) break;
     }
 
     return (vc && vp);
 }
 
+// 
 int repartirVerificar (char* line, char** clients,char** products){
-    int r=0;
+    int r=0,i;
     char *clie,*prod,*token;
     int mes,filial,quant;
     float preco;
@@ -68,7 +71,7 @@ int repartirVerificar (char* line, char** clients,char** products){
    
     token = strtok(line, " ");
    
-   for(int i=0;token != NULL;i++) 
+   for(i=0;token != NULL;i++) 
    {
    	  switch(i){
         case 0: prod=token;

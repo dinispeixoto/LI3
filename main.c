@@ -18,6 +18,7 @@ int main(){
 
 	char* clients[MAX_CLIENTS];
 	char* products[MAX_PRODUCTS];
+	//estrutura  das vendas;
 
 	getFile(clients,products);
 
