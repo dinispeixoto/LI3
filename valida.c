@@ -101,12 +101,11 @@ int valSales(FILE *file,char** clients,char** products){
 		line=strtok(buffer,"\r\n");
 		r=repartirVerificar(line,clients,products);
 		validated+=r;
-		printf("%d\n",validated);
+		// printf("%d\n",validated); 
     }
 
 	return validated;
 }
 
 // 1. APAGAR OS DEFINES QUE NÃO SÃO UTILIZADOS
-// 2. A valSales não está feita, faz um bocado da estrutura dela ou assim que eu depois faço o resto se quiseres.
-// 3. As funções valProducts e valClients são praticamente iguais, só muda o espaço que usamos para alocar strings, se quiseres junta numa só.
+// 2. As funções valProducts e valClients são praticamente iguais, só muda o espaço que usamos para alocar strings, se quiseres junta numa só.

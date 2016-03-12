@@ -56,9 +56,8 @@ void getFile(char** clients, char** products){
 	printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
 }
 
-//1. Não será melhor pedir o nome dos ficheiros que vamos ler??? 
-//2. Quando dá erro a abrir um ficheiro não diz qual deles é.
-//3. Não sei até que ponto este código está bonito.
-//4. Corrijam erros de inglês.
-//5. Se arranjarem melhores nomes para variáveis, avisem-me ou mudem. 
+//1. Quando dá erro a abrir um ficheiro não diz qual deles é.
+//2. Não sei até que ponto este código está bonito.
+//3. Corrijam erros de inglês.
+//4. Se arranjarem melhores nomes para variáveis, avisem-me ou mudem. 
 // :)
