@@ -11,7 +11,15 @@
 
 void getFile(char**,char**,Vendas*,int,char**);
 
+/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;
 // Main
 int main(int argc, char ** argv){
 

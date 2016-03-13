@@ -20,8 +20,29 @@ int valCliProd(FILE *file, char** array,int size){
 	}
 		
 	return validated;
-}
+}rvevdqedscqdsfcqwefcdw sacx
 
+/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+	char buffer[SIZE_BUF_SALES],*line;
+	int validated=0,r;
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
 int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 

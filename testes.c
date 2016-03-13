@@ -21,7 +21,19 @@ int testProduct (char* prod){
     return r;
  }
 
+/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 
+  char buffer[SIZE_BUF_SALES],*line;
+  int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+  char buffer[SIZE_BUF_SALES],*line;
+  int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+
+  char buffer[SIZE_BUF_SALES],*line;
+  int validated=0,r;
 // Testa as diferentes cenas das Vendas.
 // Preço de 0 a 999.99;
 // Quantidade de 0 a 200;
