@@ -11,6 +11,7 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
