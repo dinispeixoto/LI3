@@ -20,18 +20,19 @@
 
 
 typedef struct vendas{
-   char* client,product;
+   char client[SIZE_CLIENTS];
+   char product[SIZE_PRODUCTS];
    float price;
    int quantity;
    char infoPromo;
    int filial;
-   struct vendas *esq,*dir;
-}Vendas[MAX_SALES];
+   int mes;
+}*Vendas;
 
 int valCliProd(FILE *,char**,int);
-int valSales(FILE *,char**,char**,char** );
+int valSales(FILE *,char**,char**,Vendas* );
 int exist(char*, char*, char**,char**);
-int partCheck(char*, char**,char**);
+int partCheck(char*, char**,char**,char** ,char** ,int *,int *,int *,float *,char *);
 int sizeArray(char**);
 
 #endif

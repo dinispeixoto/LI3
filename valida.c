@@ -23,25 +23,33 @@ int valCliProd(FILE *file, char** array,int size){
 }
 
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,char** sales){
+int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
-
+    char *clie[SIZE_CLIENTS],*prod[SIZE_PRODUCTS];
+    int mes,filial,quant;
+    float preco;
+    char infoP;
 
 	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
 		
 		line = strtok(buffer,"\r\n");
 
 		// verificar, em caso positivo alocar espaço para a string e copia-la para o array.
-		r = partCheck(line,clients,products);
+		r = partCheck(line,clients,products,clie,prod,&mes,&filial,&quant,&preco,&infoP);
 		if(r){
-			sales[validated] = (char*)malloc(SIZE_SALES * sizeof(char*));
-			strcpy(sales[validated],line);
+			sales[validated] = malloc(sizeof(struct vendas));
+			strcpy(sales[validated]->client,*clie);
+			strcpy(sales[validated]->product,*prod);
+			sales[validated]->price=preco;
+			sales[validated]->quantity=quant;
+			sales[validated]->infoPromo=infoP;
+			sales[validated]->filial=filial;
+			sales[validated]->mes=mes;
+			validated+=r;
 		}
-		validated+=r;
-    }
-	
+	}
 	return validated;
 }
 
@@ -71,29 +79,26 @@ int exist(char* prod, char* client, char** clients, char** products){
 
 //Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 //e se os outros parametros estao corretos. 
-int partCheck(char* line, char** clients,char** products){
-    
-
-	char *cli,*prod,*token;
-	int month,filial,quant,i,r=0;
-	float price;
-	char infoP;
+int partCheck(char* line, char** clients,char** products,char** clie,char** prod,int *month,int *filial,int *quant,float *price,char *infoP){
+	char *token;
+	int r=0, i;
 			
 	token = strtok(line, " ");
    
 	for(i=0;token != NULL;i++){
 		switch(i){
-			case 0: prod = token; break;
-			case 1: price = atof(token); break;
-			case 2: quant = atoi(token); break;
-			case 3: infoP = token[0]; break;
-			case 4: cli = token; break;
-			case 5: month = atoi(token); break;
-			case 6: filial = atoi(token); break;}
+			case 0: *prod = token; break;
+			case 1: *price = atof(token); break;
+			case 2: *quant = atoi(token); break;
+			case 3: *infoP = token[0]; break;
+			case 4: *clie = token; break;
+			case 5: *month = atoi(token); break;
+			case 6: *filial = atoi(token); break;
+		}
 			token = strtok(NULL, " ");
 	}
 
-	if(exist(prod,cli,clients,products) && testSales(price, quant, infoP, month, filial)) r=1;
+	if(exist(*prod,*clie,clients,products) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
 	return r;
 }
 
