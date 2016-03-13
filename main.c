@@ -10,20 +10,8 @@
 #define MAX_SALES 1000000
 
 void getFile(char**,char**,Vendas*,int,char**);
-<<<<<<< HEAD
-=======
 
->>>>>>> 7c9efc798723f643ba551f22a4817e8d9fe420f4
 
-/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;
 // Main
 int main(int argc, char ** argv){
 
@@ -78,7 +66,6 @@ void getFile(char** clients, char** products,Vendas* sales,int argc, char** argv
 				else if(strcmp(argv[n],"Produtos.txt")==0) 
 					fileProducts = fopen("Produtos.txt","r");
 				n++;
-<<<<<<< HEAD
 
 				if(strcmp(argv[n],"Vendas.txt")==0)
 					fileSales = fopen("Vendas.txt","r");
@@ -88,17 +75,6 @@ void getFile(char** clients, char** products,Vendas* sales,int argc, char** argv
 					fileProducts = fopen("Produtos.txt","r");
 				break;
 
-=======
-
-				if(strcmp(argv[n],"Vendas.txt")==0)
-					fileSales = fopen("Vendas.txt","r");
-				else if(strcmp(argv[n],"Clientes.txt")==0)
-					fileClients = fopen("Clientes.txt","r");
-				else if(strcmp(argv[n],"Produtos.txt")==0) 
-					fileProducts = fopen("Produtos.txt","r");
-				break;
-
->>>>>>> 7c9efc798723f643ba551f22a4817e8d9fe420f4
 		default:fileClients = fopen("Clientes.txt","r");
 				fileProducts = fopen("Produtos.txt","r");
 				fileSales = fopen("Vendas.txt","r");

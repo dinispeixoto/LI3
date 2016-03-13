@@ -20,41 +20,6 @@ int valCliProd(FILE *file, char** array,int size){
 	}
 		
 	return validated;
-<<<<<<< HEAD
-}rvevdqedscqdsfcqwefcdw sacx
-
-/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;/ Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;
-// Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
-
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;
-    char *clie[SIZE_CLIENTS],*prod[SIZE_PRODUCTS];
-    int mes,filial,quant;
-    float preco;
-    char infoP;
-
-=======
 }
 
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
@@ -67,7 +32,6 @@ int valSales(FILE *file,char** clients,char** products,Vendas* sales){
     float preco;
     char infoP;
 
->>>>>>> 7c9efc798723f643ba551f22a4817e8d9fe420f4
 	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
 		
 		line = strtok(buffer,"\r\n");
@@ -89,11 +53,7 @@ int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 	return validated;
 }
 
-<<<<<<< HEAD
 // ############################################## FUNÇÕES AUXILIARES ################################################################################################################
-=======
-// ############################################ FUNÇÕES AUXILIARES ################################################################################################################
->>>>>>> 7c9efc798723f643ba551f22a4817e8d9fe420f4
 
 
 //Função auxiliar que verifica se um dado produto e cliente existem.
@@ -148,8 +108,4 @@ int sizeArray(char** array){
 
 	for(size=0;array[size]!=NULL;size++);
 	return size;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7c9efc798723f643ba551f22a4817e8d9fe420f4
