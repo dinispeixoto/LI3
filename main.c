@@ -13,19 +13,50 @@
 void getFile(Avl*,Avl*,Vendas*,int,char**);
 
 
+//verifca products e clients
+int verifica (Avl products,Vendas* sales){
+    int i,r=0;
+    if(products!=NULL){
+    for(i=0;sales[i]!=NULL;i++){
+    if(strcmp(products->code,sales[i]->client)==0){ 
+    	r++; break;
+    }
+    
+  }
+    r+=verifica(products->left,sales);
+    r+=verifica(products->right,sales);
+
+    }
+    return r;
+}
+
 // Main
 int main(int argc, char ** argv){
 
-	int i;
-
+	int contador1 = 0,contador2 = 0;
+	double contador3 = 0;
+    int i;
 	Avl clients=NULL;
 	Avl products=NULL;
 	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
 
 	getFile(&clients,&products,sales,argc,argv);
-	
+
+	for(i=0;sales[i]!=NULL;i++){
+       if(strcmp("F2916",sales[i]->client)==0){
+        contador1++;
+        contador2+=sales[i]->quantity;
+        contador3+=(sales[i]->quantity*sales[i]->price);
+       }
+
+	}
+ 
+	printf("Fact: %d | %d | %f \n", contador1,contador2,contador3);
 	return 0;
 }
+
+
+
 
 // Abrir ficheiros dados como argumentos... 
 void getFile(Avl* clients, Avl* products,Vendas* sales,int argc, char** argv){

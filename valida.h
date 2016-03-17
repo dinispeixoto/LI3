@@ -24,7 +24,7 @@
 typedef struct vendas{
    char client[SIZE_CLIENTS];
    char product[SIZE_PRODUCTS];
-   float price;
+   double price;
    int quantity;
    char infoPromo;
    int filial;
@@ -34,7 +34,7 @@ typedef struct vendas{
 Avl valCliProd(FILE *,Avl,int,int*);
 int valSales(FILE *,Avl,Avl,Vendas* );
 int exist(char*, Avl);
-int partCheck(char*, Avl,Avl,char** ,char** ,int *,int *,int *,float *,char *);
+int partCheck(char*, Avl,Avl,char** ,char** ,int *,int *,int *,double *,char *);
 int sizeArray(char**);
 
 #endif

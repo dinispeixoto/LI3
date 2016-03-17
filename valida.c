@@ -33,7 +33,7 @@ int valSales(FILE *file,Avl clients,Avl products,Vendas* sales){
 	int validated=0,r;
     char *clie[SIZE_CLIENTS],*prod[SIZE_PRODUCTS];
     int mes,filial,quant;
-    float preco;
+    double preco;
     char infoP;
 
 	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
@@ -79,7 +79,7 @@ int exist(char* line, Avl estrutura){
 
 //Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 //e se os outros parametros estao corretos. 
-int partCheck(char* line, Avl clients,Avl products,char** clie,char** prod,int *month,int *filial,int *quant,float *price,char *infoP){
+int partCheck(char* line, Avl clients,Avl products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
 			

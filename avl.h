@@ -17,6 +17,10 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
+#define LEFT -1
+#define BAL   0
+#define RIGHT 1
+
 
 struct avl {
     char code[SIZE_CLIENTS];

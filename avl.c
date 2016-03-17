@@ -15,50 +15,46 @@ int maior (int a, int b){
 int altura (Avl a){
 
     if(a==NULL) return 0;
-    else return (a->height);
+    else return a->height;
 }
 
+Avl actualizarAltura(Avl a, Avl b){
 
-Avl rightRotate(Avl a) {
-
-    Avl x = a->left;
-    Avl T2 = x->right;
- 
-    x->right = a;
-    a->left = T2;
- 
     a->height = maior(altura(a->left), altura(a->right))+1;
-    x->height = maior(altura(x->left), altura(x->right))+1;
- 
-    return x;
+    b->height = maior(altura(b->left), altura(b->right))+1;
+
+    return b;
 }
 
 
-Avl leftRotate(Avl a) {
+Avl rotateRight(Avl a) {
+    Avl aux;
+    
+    aux = a->left;
+    a->left=aux->right;
+    aux->right=a;
 
-    Avl x = a->right;
-    Avl T2 = x->left;
- 
-    // Perform rotation
-    x->left = a;
-    a->right = T2;
- 
-    //  Update heights
-    a->height = maior(altura(a->left), altura(a->right))+1;
-    x->height = maior(altura(x->left), altura(x->right))+1;
- 
-    // Return new root
-    return x;
-}
-
-int getBalance(Avl a){
-   if(a==0)return 0;
-   else return(altura(a->left)-altura(a->right));
+    aux=actualizarAltura(a,aux);
+    
+    return aux;
 }
 
 
-//inserir numa Avl
+Avl rotateLeft(Avl a) {
+    Avl aux;
+    
+    aux = a->right;
+    a->right=aux->left;
+    aux->left=a;
+
+    aux=actualizarAltura(a,aux);
+    
+    return aux;
+}
+
+//Inserir numa Avl
 Avl insert(Avl estrutura, char* line) {
+    int ls,rs,bal,HL,HR;
 
      if(estrutura == NULL){
      	estrutura= (Avl)malloc(sizeof(struct avl));
@@ -67,44 +63,76 @@ Avl insert(Avl estrutura, char* line) {
         estrutura->right=NULL;
         estrutura->height=0;
      }
-     else 
-     {
-     if(strcmp(estrutura->code,line) >= 0)
-                estrutura->left=insert(estrutura->left,line);
-            else estrutura->right=insert(estrutura->right,line);
-    }
+     else {
+        if(strcmp(estrutura->code,line) >= 0)
+            estrutura->left=insert(estrutura->left,line);
+        else 
+            estrutura->right=insert(estrutura->right,line);
+        }
+    
+    HL=altura(estrutura->left);
+    HR=altura(estrutura->right);
 
-    /* Atualiza os pesos */
-    estrutura->height = maior(altura(estrutura->left), altura(estrutura->right)) + 1;
- 
-    /* Varifica o balanceamento */
-    int balance = getBalance(estrutura);
- 
-    // Caso esteja não balanceada, aplica o caso correspondente.
- 
-    // Left Left Case
-    if (balance > 1 && strcmp(line,estrutura->left->code) < 0)
-        return rightRotate(estrutura);
- 
-    // Right Right Case
-    if (balance < -1 && strcmp(line,estrutura->right->code) > 0)
-        return leftRotate(estrutura);
- 
-    // Left Right Case
-    if (balance > 1 && strcmp(line,estrutura->left->code) > 0)
-    {
-        estrutura->left =  leftRotate(estrutura->left);
-        return rightRotate(estrutura);
+    estrutura->height = maior(HL,HR)+1;
+    
+    bal = HL - HR;
+
+    
+    //OPCAO 1
+    if(bal>1) bal=2;
+    if(bal<-1) bal=-2;
+    
+    switch (bal){
+        
+        case 2: if((ls=strcmp(line,estrutura->left->code)) < 0)
+                    return rotateRight(estrutura);
+                else if (ls>0){
+                        estrutura->left =  rotateLeft(estrutura->left);
+                        return rotateRight(estrutura);
+                }
+                break;
+
+        case -2: if((rs=strcmp(line,estrutura->right->code)) > 0)
+                    return rotateLeft(estrutura);
+                 else if (rs<0){
+                        estrutura->right = rotateRight(estrutura->right);
+                        return rotateLeft(estrutura);
+                 }
+                 break;
     }
-     // Right Left Case
-    if (balance < -1 && strcmp(line, estrutura->right->code) < 0)
-    {
-        estrutura->right = rightRotate(estrutura->right);
-        return leftRotate(estrutura);
-    }
+   
+    /*
+
+    //OPCAO 2
+    // Rotacao Simples a esquerda
+    if (bal > 1 && (ls=strcmp(line,estrutura->left->code)) < 0)
+        return rotateRight(estrutura);
+    
+    // Rotacao dulpa (diretia->esquerda)
+    else {if(bal > 1 && ls>0){
+            estrutura->left =  rotateLeft(estrutura->left);
+            return rotateRight(estrutura);
+            }
+          }  
  
+    // Rotacao Simples a direita
+    if (bal < -1 && (rs=strcmp(line,estrutura->right->code)) > 0)
+        return rotateLeft(estrutura);
+
+    // Rotacao dupla (esquerda->direita)
+    else {if(bal < -1 && rs<0){
+            estrutura->right = rotateRight(estrutura->right);
+            return rotateLeft(estrutura);
+            }
+         }
+    */
+
+    // duas opcoes de implementar aquilo em cima... escolhe o que achares mais bonito, bem programado, 
+    // e assim, e tb ve os tempos de execucao de cada um.. acho que o switch demora mais... ou vai dar ao mesmo...
+
     return estrutura;
 }
+
 
 
 
