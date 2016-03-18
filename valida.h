@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+
+#include "avl.h"
 #include "testes.h"
 
 #define SIZE_BUFFER 64
@@ -29,10 +31,10 @@ typedef struct vendas{
    int mes;
 }*Vendas;
 
-int valCliProd(FILE *,char**,int);
-int valSales(FILE *,char**,char**,Vendas* );
-int exist(char*, char*, char**,char**);
-int partCheck(char*, char**,char**,char** ,char** ,int *,int *,int *,float *,char *);
+Avl valCliProd(FILE *,Avl,int,int*);
+int valSales(FILE *,Avl,Avl,Vendas* );
+int exist(char*, Avl);
+int partCheck(char*, Avl, Avl, char** ,char** ,int *,int *,int *,float *,char *);
 int sizeArray(char**);
 
 #endif

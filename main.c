@@ -2,6 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "avl.h"
 #include "valida.h"
 #include "testes.h"
 
@@ -9,37 +10,24 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
-void getFile(char**,char**,Vendas*,int,char**);
+void getFile(Avl*,Avl*,Vendas*,int,char**);
 
 
 // Main
 int main(int argc, char ** argv){
 
 	int i;
-	char* clients[MAX_CLIENTS];
-	char* products[MAX_PRODUCTS];
+	Avl clients=NULL;
+	Avl products=NULL;
 	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
 
-	getFile(clients,products,sales,argc,argv);
-
-	//Verificar o array de struct's
-	for(i=0;i<5;i++){
-	printf("Client: %s\n",sales[i]->client);
-	printf("Product: %s\n",sales[i]->product);
-	printf("Price: %f\n",sales[i]->price);
-	printf("Quantity: %d\n",sales[i]->quantity);
-	printf("Filial: %d\n",sales[i]->filial);
-	printf("Mes: %d\n",sales[i]->mes);
-	printf("infoP: %c\n",sales[i]->infoPromo);
-	printf("----------------\n");
-    }
-    //-----------------------------------
+	getFile(&clients,&products,sales,argc,argv);
 
 	return 0;
 }
 
 // Abrir ficheiros dados como argumentos... 
-void getFile(char** clients, char** products,Vendas* sales,int argc, char** argv){
+void getFile(Avl* clients, Avl* products,Vendas* sales,int argc, char** argv){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
@@ -86,16 +74,16 @@ void getFile(char** clients, char** products,Vendas* sales,int argc, char** argv
 				
 	else{
 		if(fileClients!=NULL){
-			validatedClients = valCliProd(fileClients,clients,SIZE_CLIENTS);
+			*clients = valCliProd(fileClients,*clients,SIZE_CLIENTS,&validatedClients);
 			printf("CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 		}
 	
 		if(fileProducts!=NULL){
-			validatedProducts = valCliProd(fileProducts,products,SIZE_PRODUCTS);
+			*products = valCliProd(fileProducts,*products,SIZE_PRODUCTS,&validatedProducts);
 			printf("PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
 		}
 		if(fileSales!=NULL){
-			validatedSales = valSales(fileSales,clients,products,sales);
+			validatedSales = valSales(fileSales,*clients,*products,sales);
 			printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
 		}		
 	}

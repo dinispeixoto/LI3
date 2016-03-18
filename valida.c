@@ -1,12 +1,13 @@
+#include "testes.h"
+#include "avl.h"
 #include "valida.h"
 
 // Conta quantas linhas dos ficheiros (Clientes e Produtos) são válidas, e aloca num array.
 // Vamos reservar um array em que as strings têm diferente tamanho:
 // Array de Clientes : tamanho = SIZE_CLIENTS
 // Array de Produtos : tamanho = SIZE_PRODUCTS
-int valCliProd(FILE *file, char** array,int size){
+Avl valCliProd(FILE *file, Avl estrutura ,int size, int *validated){
 
-	int validated=0; 
 	char buffer[SIZE_BUFFER],*line;
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
@@ -14,16 +15,15 @@ int valCliProd(FILE *file, char** array,int size){
 		line=strtok(buffer,"\r\n");
 
 		//alocar espaço para a string e copia-la para o array.
-		array[validated] = (char*)malloc(size * sizeof(char));
-		strcpy(array[validated],line);
-		validated++;
+		estrutura=insert(estrutura,line);
+		(*validated)++;
 	}
 		
-	return validated;
+	return estrutura;
 }
 
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,char** clients,char** products,Vendas* sales){
+int valSales(FILE *file,Avl clients,Avl products,Vendas* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -57,29 +57,25 @@ int valSales(FILE *file,char** clients,char** products,Vendas* sales){
 
 
 //Função auxiliar que verifica se um dado produto e cliente existem.
-int exist(char* prod, char* client, char** clients, char** products){
-    int i,vc=0,vp=0;
+int exist(char* line,Avl estrutura){
+    Avl aux=estrutura;
+    int r=0;
+    int s=strcmp(aux->code,line); 
 
-    int sizeClients = sizeArray(clients); // 16384
-    int sizeProducts = sizeArray(products); // 171008
-
-    for(i=0;i<sizeProducts; i++){
-         if(i<sizeClients && !vc){
-         	if(!vc && strcmp(client,clients[i])==0) vc=1;
-
-         }
-         if(!vp && strcmp(prod,products[i])==0) vp=1;
-
-
-         if(vc && vp) break;
+    if(s==0){
+    	return 1;
     }
+    else if(s>0 && aux->left!=NULL)
+    		r=exist(line,aux->left);
+    	 else if (aux->right != NULL) 
+    	 		  r=exist(line,aux->right);
 
-    return (vc && vp);
+    return r;
 }
 
 //Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 //e se os outros parametros estao corretos. 
-int partCheck(char* line, char** clients,char** products,char** clie,char** prod,int *month,int *filial,int *quant,float *price,char *infoP){
+int partCheck(char* line, Avl clients,Avl products,char** clie,char** prod,int *month,int *filial,int *quant,float *price,char *infoP){
 	char *token;
 	int r=0, i;
 			
@@ -98,14 +94,6 @@ int partCheck(char* line, char** clients,char** products,char** clie,char** prod
 			token = strtok(NULL, " ");
 	}
 
-	if(exist(*prod,*clie,clients,products) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
+	if(exist(*prod,products) && exist(*clie,clients) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
 	return r;
-}
-
-// Calcula o comprimentos dos Arrays de Clientes de Produtos.
-int sizeArray(char** array){
-	int size;
-
-	for(size=0;array[size]!=NULL;size++);
-	return size;
 }
