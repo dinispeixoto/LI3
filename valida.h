@@ -20,7 +20,7 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
-
+// O NOME DESTA MERDA NÃO DEVIA SER SALES??? 
 typedef struct vendas{
    char client[SIZE_CLIENTS];
    char product[SIZE_PRODUCTS];
@@ -28,13 +28,13 @@ typedef struct vendas{
    int quantity;
    char infoPromo;
    int filial;
-   int mes;
+   int month;
 }*Vendas;
 
-Avl valCliProd(FILE *,Avl,int,int*);
-int valSales(FILE *,Avl,Avl,Vendas* );
+Avl* valCliProd(FILE *,Avl*,int*);
+int valSales(FILE *,Avl*,Avl*,Vendas* );
 int exist(char*, Avl);
-int partCheck(char*, Avl,Avl,char** ,char** ,int *,int *,int *,double *,char *);
+int partCheck(char*, Avl*,Avl*,char** ,char** ,int *,int *,int *,double *,char *);
 int sizeArray(char**);
 
 #endif

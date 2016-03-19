@@ -13,24 +13,23 @@
 #define SIZE_PRODUCTS 7 // CONTAR COM O /0
 #define SIZE_SALES 29 // 
 
-#define MAX_CLIENTS 20000
-#define MAX_PRODUCTS 200000
-#define MAX_SALES 1000000
-
-#define LEFT -1
-#define BAL   0
-#define RIGHT 1
+#define LEFT -2
+#define RIGHT 2
 
 
 struct avl {
-    char code[SIZE_CLIENTS];
-    int height;
-    struct avl *left, *right;
+	char code[SIZE_CLIENTS];
+	int height;
+	struct avl *left, *right;
 };
 
 typedef struct avl *Avl;
 
-
-Avl insert(Avl , char*) ;
+int maior (int a, int b);
+int heightAvl(Avl);
+Avl actualizarAltura(Avl,Avl);
+Avl rotateRight(Avl);
+Avl rotateLeft(Avl);
+Avl insert(Avl,char*);
 
 #endif
