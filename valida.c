@@ -6,21 +6,22 @@
 // Vamos reservar um array em que as strings têm diferente tamanho:
 // Array de Clientes : tamanho = SIZE_CLIENTS
 // Array de Produtos : tamanho = SIZE_PRODUCTS
-Avl* valCliProd(FILE *file, Avl* estrutura,int *validated){
+/* Avl* valCliProd(FILE *file, Avl* estrutura,int *validated){
  
-	char buffer[SIZE_BUFFER],*line;
+	char buffer[SIZE_BUFFER];
+	char* line;
 	
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 
 		line=strtok(buffer,"\r\n");
 
 		// muda isto para processar um array 
-		//*estrutura=insert(*estrutura,line);
+		// *estrutura=insert(*estrutura,line);
 		//(*validated)++;
 	}
 
 	return estrutura;
-}
+} */
 
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
 int valSales(FILE *file,Avl* clients,Avl* products,Vendas* sales){

@@ -93,9 +93,9 @@ Avl insert(Avl estrutura, char* line) {
 					break;
 		}
 
-		return estrutura;
-
 	}
+
+	return estrutura;
 
 }
 

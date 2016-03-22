@@ -2,7 +2,7 @@
 
 // Testa os produtos 
 int testProduct (char* prod){
-   int num = atoi(prod+LETRAS_P),i,r=0;
+   int num = atoi(prod+LETRAS_P),i;
 
    for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod[i]))) return 0;

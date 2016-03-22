@@ -16,9 +16,8 @@ void getFile(Avl*,Avl*,Vendas*);
 
 
 // Main -> Gerar estruturas que vão armazenar os dados em memória
-int main(int argc, char ** argv){
-
-	int i;
+int main(){
+	
 	Avl* CatClients = initClients();
 	Avl* products= initClients();
 	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
