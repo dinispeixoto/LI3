@@ -8,6 +8,8 @@
 
 #include "testes.h"
 #include "avl.h"
+#include "CatClients.h"
+#include "CatProducts.h"
 
 #define SIZE_BUFFER 64
 #define SIZE_BUF_SALES 128
@@ -32,9 +34,9 @@ typedef struct vendas{
 }*Vendas;
 
 Avl* valCliProd(FILE *,Avl*,int*);
-int valSales(FILE *,Avl*,Avl*,Vendas* );
+int valSales(FILE *,CATOLOG_CLIENTS,CATOLOG_PRODUCTS,Vendas* );
 int exist(char*, Avl);
-int partCheck(char*, Avl*,Avl*,char** ,char** ,int *,int *,int *,double *,char *);
+int partCheck(char*, CATOLOG_CLIENTS,CATOLOG_PRODUCTS,char** ,char** ,int *,int *,int *,double *,char *);
 int sizeArray(char**);
 
 #endif

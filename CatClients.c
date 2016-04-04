@@ -1,26 +1,41 @@
 #include "CatClients.h"
 #include "avl.h"
 
-Avl* initClients(){
+struct client {
+     Avl cat[SIZE_ABC];
+}; 
+
+CATOLOG_CLIENTS initClients(){
 
 	int i;
-
-	Avl* CatClients = malloc (sizeof(struct Avl*)*SIZE_ABC);
-	for(i=0;i<SIZE_ABC;i++)	CatClients[i]=NULL;
-	return CatClients;
+    CATOLOG_CLIENTS catCli = malloc (sizeof(struct client));
+	for(i=0;i<SIZE_ABC;i++)	(catCli->cat[i])=NULL;
+	return catCli;
 }
 
-void printCatClients(Avl estrutura){
 
-	if(estrutura==NULL) printf("NULL\n");
-	else{
-        printCatClients(estrutura->left);        
-		printf("%s\n",estrutura->code);
-		printCatClients(estrutura->right);
-	}
+
+int printCatClients(CATOLOG_CLIENTS estrutura){
+
+    char* array[171008];
+    char* buf;
+    int i,a=0;
+    buf=malloc(2);
+
+    for(i=0;i<SIZE_ABC;i++){
+	insereArray(array,estrutura->cat[i],&a);
+    }
+    
+    for(i=0;i<20;i++){
+        printf("%s\n",array[i]);    
+    }
+
+	return 0;
 }
 
-Avl* valCli(FILE *file, Avl* estrutura ,int *validated){
+
+
+CATOLOG_CLIENTS valCli(FILE *file, CATOLOG_CLIENTS estrutura ,int *validated){
 
 	char buffer[SIZE_BUFFER],*line;
 	int index;
@@ -30,9 +45,15 @@ Avl* valCli(FILE *file, Avl* estrutura ,int *validated){
 		line=strtok(buffer,"\r\n");
 
 		index = line[0] - 'A';
-		estrutura[index] = insert(estrutura[index],line);
+		estrutura->cat[index] = insert(estrutura->cat[index],line);
 		(*validated)++;
 	}
 		
 	return estrutura;
+}
+
+
+Avl getC (CATOLOG_CLIENTS c, int x){
+
+    return c->cat[x];
 }

@@ -18,12 +18,14 @@
 
 
 struct avl {
-	char code[SIZE_CLIENTS];
+	char code[SIZE_PRODUCTS];
 	int height;
 	struct avl *left, *right;
 };
 
 typedef struct avl *Avl;
+
+
 
 int maior (int a, int b);
 int heightAvl(Avl);
@@ -31,5 +33,6 @@ Avl actualizarAltura(Avl,Avl);
 Avl rotateRight(Avl);
 Avl rotateLeft(Avl);
 Avl insert(Avl,char*);
+void insereArray(char**,Avl,int*);
 
 #endif

@@ -1,6 +1,8 @@
 #include "testes.h"
 #include "avl.h"
 #include "valida.h"
+#include "CatClients.h"
+#include "CatProducts.h"
 
 // Conta quantas linhas dos ficheiros (Clientes e Produtos) são válidas, e aloca num array.
 // Vamos reservar um array em que as strings têm diferente tamanho:
@@ -23,7 +25,7 @@ Avl* valCliProd(FILE *file, Avl* estrutura,int *validated){
 }
 
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,Avl* clients,Avl* products,Vendas* sales){
+int valSales(FILE *file,CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,Vendas* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -75,7 +77,7 @@ int exist(char* line, Avl estrutura){
 
 //Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 //e se os outros parametros estao corretos. 
-int partCheck(char* line, Avl* clients,Avl* products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
+int partCheck(char* line, CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
 
@@ -96,13 +98,13 @@ int partCheck(char* line, Avl* clients,Avl* products,char** clie,char** prod,int
 			token = strtok(NULL, " ");
 	}
 
-	int indexClient = *clie[0]-'A';
+	int indexClient =  *clie[0]-'A';
 	int indexProduct = *prod[0]-'A';
-	Avl auxClient = clients[indexClient];
-	Avl auxProduct = products[indexProduct];
+    Avl auxClient = getC(clients,indexClient);
+	Avl auxProduct = getP(products,indexProduct);
 
 
-	if(exist(*prod,auxProduct) && exist(*clie,auxClient) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
+	if(exist(*prod,auxProduct) && exist(*clie, auxClient) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
 	return r;
 }
 

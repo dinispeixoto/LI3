@@ -99,6 +99,26 @@ Avl insert(Avl estrutura, char* line) {
 
 }
 
+void insereArray (char** array,Avl estrutura,int *a){
+	
+	
+	if(estrutura->left==NULL && estrutura->right==NULL){
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+	else if(estrutura->left==NULL){ 
+		    insereArray(array,estrutura->right,a);
+			array[*a]=estrutura->code;
+			(*a)++;
+		}
+         else { 
+         	insereArray(array,estrutura->left,a);
+			array[*a]=estrutura->code;
+			(*a)++;
+			if(estrutura->right!=NULL)insereArray(array,estrutura->right,a);
+         }
+}
+
 
 
 

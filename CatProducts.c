@@ -1,26 +1,38 @@
 #include "CatProducts.h"
 #include "avl.h"
 
-Avl* initProducts(){
+struct catp {
+    Avl cat[SIZE_ABC];
+};
+
+CATOLOG_PRODUCTS initProducts(){
 
 	int i;
-
-	Avl* CatProducts = malloc (sizeof(struct Avl*)*SIZE_ABC);
-	for(i=0;i<SIZE_ABC;i++)	CatProducts[i]=NULL;
-	return CatProducts;
+	CATOLOG_PRODUCTS CatPro = malloc (sizeof(struct catp));
+	for(i=0;i<SIZE_ABC;i++)	(CatPro->cat[i])=NULL;
+	return CatPro;
 }
 
-void printCatProducts(Avl estrutura){
 
-	if(estrutura==NULL) printf("NULL\n");
-	else{
-        printCatProducts(estrutura->left);        
-		printf("%s\n",estrutura->code);
-		printCatProducts(estrutura->right);
-	}
+int printCatProducts(CATOLOG_PRODUCTS estrutura){
+
+    char* array[171008];
+    char* buf;
+    int i,a=0;
+    buf=malloc(2);
+
+    for(i=0;i<SIZE_ABC;i++){
+	insereArray(array,estrutura->cat[i],&a);
+    }
+
+    for(i=0;i<20;i++){
+        printf("%s\n",array[i]);
+    }
+
+	return 0;
 }
 
-Avl* valProd(FILE *file, Avl* estrutura ,int *validated){
+CATOLOG_PRODUCTS valProd(FILE *file, CATOLOG_PRODUCTS estrutura ,int *validated){
 
 	char buffer[SIZE_BUFFER],*line;
 	int index;
@@ -28,11 +40,17 @@ Avl* valProd(FILE *file, Avl* estrutura ,int *validated){
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 
 		line=strtok(buffer,"\r\n");
-
+		
 		index = line[0] - 'A';
-		estrutura[index] = insert(estrutura[index],line);
+		estrutura->cat[index] = insert(estrutura->cat[index],line);
 		(*validated)++;
 	}
 		
 	return estrutura;
 }
+
+Avl getP (CATOLOG_PRODUCTS c, int x){
+
+    return c->cat[x];
+}
+
