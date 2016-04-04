@@ -33,8 +33,10 @@ Avl actualizarAltura(Avl,Avl);
 Avl rotateRight(Avl);
 Avl rotateLeft(Avl);
 Avl insert(Avl,char*);
-void insereArray(char**,Avl,int*);
+void insertArray(char**,Avl,int*);
 int existAvl(Avl, char*);
 void removeAvl(Avl);
+void printAVL(Avl);
+int totalElements(Avl);
 
 #endif

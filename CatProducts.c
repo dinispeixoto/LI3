@@ -55,10 +55,7 @@ int totalProducts(CATALOG_PRODUCTS Catalog){
 
 int printCatProducts(CATALOG_PRODUCTS Catalog){
 
-	char* array[171008];
-	char* buf;
-	int i,a=0;
-	buf=malloc(2); // o que é isto??? 
+	int i;
 
 	if(Catalog == NULL) printf("piça\n");
 	else 
@@ -81,7 +78,6 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
 	Product line = malloc(sizeof(struct product));
-	int index;
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 		line->string = strtok(buffer,"\r\n");

@@ -88,7 +88,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char
 
 // Testa os produtos 
 int testProduct (char* prod){
-   int num = atoi(prod+LETRAS_P),i,r=0;
+   int num = atoi(prod+LETRAS_P),i;
 
    for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod[i]))) return 0;

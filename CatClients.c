@@ -57,10 +57,7 @@ int totalClients(CATALOG_CLIENTS Catalog){
 
 int printCatClients(CATALOG_CLIENTS Catalog){
 
-	char* array[171008];
-	char* buf;
-	int i,a=0;
-	buf=malloc(2);
+	int i;
 
 	if(Catalog == NULL) printf("piça\n");
 	else 
@@ -84,7 +81,6 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
 	Client line = malloc(sizeof(struct client));
-	int index;
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 		line->string = strtok(buffer,"\r\n");

@@ -15,11 +15,10 @@ void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Vendas*);
 
 
 // Main -> Gerar estruturas que vão armazenar os dados em memória
-int main(int argc, char ** argv){
+int main(){
 
 	//Têm de compilar com -ansi
-
-	int i;
+	
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
