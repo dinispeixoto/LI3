@@ -107,4 +107,78 @@ int partCheck(char* line, Avl* clients,Avl* products,char** clie,char** prod,int
 	return r;
 }
 
-// Calcula o comprimentos dos Arrays de Clientes de Produtos.
+// TESTES 
+int priceZero(Vendas* sales){
+	int i,contador=0;
+	for(i=0;sales[i]!=NULL;i++)
+		if(sales[i]->price == 0) contador++;
+	return contador;
+}
+
+double factTotal(Vendas* sales){
+	int i;
+	double facturado=0;
+	for(i=0;sales[i]!=NULL;i++)
+		facturado+=sales[i]->price*sales[i]->quantity;
+	return facturado;
+}
+
+int unitSold(Vendas* sales){
+	int i, quantity=0;
+	for(i=0;sales[i]!=NULL;i++)
+		quantity+=sales[i]->quantity;
+	return quantity;
+}
+
+int salesFilial(Vendas* sales, int filial){
+	int i, quantity=0;
+	for(i=0;sales[i]!=NULL;i++)
+		if(sales[i]->filial == filial) quantity++;
+	return quantity;
+}
+
+void purchasesClient(char* client, Vendas* sales){
+	int jan=0;
+	int feb=0;
+	int mar=0;
+	int apr=0;
+	int may=0;
+	int jun=0;
+	int jul=0;
+	int aug=0;
+	int sep=0;
+	int oct=0;
+	int nov=0;
+	int dec=0;
+	int i;
+
+	for(i=0;sales[i]!=NULL;i++)
+		if(strcmp(sales[i]->client,client)==0)
+			switch(sales[i]->month){
+				case 1: jan++; break;
+				case 2: feb++; break;
+				case 3: mar++; break;
+				case 4: apr++; break;
+				case 5: may++; break;
+				case 6: jun++; break;
+				case 7: jul++; break;
+				case 8: aug++; break;
+				case 9: sep++; break;
+				case 10: oct++; break;
+				case 11: nov++; break;
+				case 12: dec++; break;
+			}
+
+	printf("Mês 1: %d.\n",jan);			
+	printf("Mês 2: %d.\n",feb);	
+	printf("Mês 3: %d.\n",mar);	
+	printf("Mês 4: %d.\n",apr);	
+	printf("Mês 5: %d.\n",may);	
+	printf("Mês 6: %d.\n",jun);	
+	printf("Mês 7: %d.\n",jul);	
+	printf("Mês 8: %d.\n",aug);	
+	printf("Mês 9: %d.\n",sep);	
+	printf("Mês 10: %d.\n",oct);	
+	printf("Mês 11: %d.\n",nov);	
+	printf("Mês 12: %d.\n",dec);
+}

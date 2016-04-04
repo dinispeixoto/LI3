@@ -37,4 +37,11 @@ int exist(char*, Avl);
 int partCheck(char*, Avl*,Avl*,char** ,char** ,int *,int *,int *,double *,char *);
 int sizeArray(char**);
 
+
+int priceZero(Vendas*);
+double factTotal(Vendas*);
+int unitSold(Vendas*);
+int salesFilial(Vendas*,int);
+void purchasesClient(char*, Vendas*);
+
 #endif

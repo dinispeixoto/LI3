@@ -1,4 +1,5 @@
 #include "testes.h"
+#include "valida.h"
 
 // Testa os produtos 
 int testProduct (char* prod){
@@ -37,3 +38,4 @@ int testSales(float price, int quantity, char infoPromo, int month, int filial){
   else if(filial < 1 || filial > 3) return 0;
   else return 1;
 }
+
