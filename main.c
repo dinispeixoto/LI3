@@ -17,12 +17,13 @@ void getFile(Avl*,Avl*,Vendas*);
 
 // Main -> Gerar estruturas que vão armazenar os dados em memória
 int main(){
-	
+	/*
 	int contador;
 	double facturado;
 	int quantidade;
 	int quantidadeFilial;
 	int filial = 3;
+	*/
 
 	Avl* CatClients = initClients();
 	Avl* products= initClients();
@@ -31,6 +32,7 @@ int main(){
 	getFile(CatClients,products,sales);
 	
 	// testes // 
+	/*
 	contador = priceZero(sales);
 	facturado = factTotal(sales);
 	quantidade = unitSold(sales);
@@ -45,7 +47,7 @@ int main(){
 	printf("Foram vendidas %d unidades.\n",quantidade);
 	printf("Foram feitas %d vendas no %dº filial.\n",quantidadeFilial,filial);
 	purchasesClient("Z5000",sales);
-
+	*/
 	return 0;
 }
 
