@@ -1,59 +1,101 @@
 #include "CatClients.h"
 #include "avl.h"
 
-struct client {
-     Avl cat[SIZE_ABC];
-}; 
+struct catc {
+	Avl CatClients[SIZE_ABC];
+};
 
-CATOLOG_CLIENTS initClients(){
+struct conjClie{
+	Client* GroupClie;
+};
+
+struct client {
+	char* string;
+};
+
+
+CATALOG_CLIENTS initClients(){
 
 	int i;
-    CATOLOG_CLIENTS catCli = malloc (sizeof(struct client));
-	for(i=0;i<SIZE_ABC;i++)	(catCli->cat[i])=NULL;
-	return catCli;
+    CATALOG_CLIENTS Catalog = malloc (sizeof(struct catc));
+	for(i=0;i<SIZE_ABC;i++)	Catalog->CatClients[i] = initAvl();
+	return Catalog;
 }
 
 
+CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, Client clie){
 
-int printCatClients(CATOLOG_CLIENTS estrutura){
+	int index = clie->string[0]-'A';
+	Catalog->CatClients[index] = insert(Catalog->CatClients[index],clie->string);
+	return Catalog;
+}
 
-    char* array[171008];
-    char* buf;
-    int i,a=0;
-    buf=malloc(2);
 
-    for(i=0;i<SIZE_ABC;i++){
-	insereArray(array,estrutura->cat[i],&a);
-    }
-    
-    for(i=0;i<20;i++){
-        printf("%s\n",array[i]);    
-    }
+int existClient(CATALOG_CLIENTS Catalog, Client clie){
 
+	int exist;
+	int index = clie->string[0]-'A';
+	exist = existAvl(Catalog->CatClients[index],clie->string);
+	return exist;
+}
+
+
+int totalClientsLetter(CATALOG_CLIENTS Catalog,char letter){
+	int index = letter - 'A';
+	return totalElements(Catalog->CatClients[index]);
+} 
+
+
+int totalClients(CATALOG_CLIENTS Catalog){
+
+	char letter; int total;
+	for(letter = 'A'; letter <= 'Z';letter++)
+		total+=totalClientsLetter(Catalog,letter);
+	return total;
+}
+
+
+int printCatClients(CATALOG_CLIENTS Catalog){
+
+	char* array[171008];
+	char* buf;
+	int i,a=0;
+	buf=malloc(2);
+
+	if(Catalog == NULL) printf("piça\n");
+	else 
+		for(i=0;i<SIZE_ABC;i++){
+			printf("LETRA %c=====\n", 'A'+i); 
+			printAVL(Catalog->CatClients[i]); 
+		}
 	return 0;
 }
 
-
-
-CATOLOG_CLIENTS valCli(FILE *file, CATOLOG_CLIENTS estrutura ,int *validated){
-
-	char buffer[SIZE_BUFFER],*line;
-	int index;
-
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-
-		line=strtok(buffer,"\r\n");
-
-		index = line[0] - 'A';
-		estrutura->cat[index] = insert(estrutura->cat[index],line);
-		(*validated)++;
+void removeCatClients(CATALOG_CLIENTS Catalog){
+	int i;
+	for(i=0;i<SIZE_ABC;i++) {
+		removeAvl(Catalog->CatClients[i]);
+		Catalog->CatClients[i] = NULL;
 	}
-		
-	return estrutura;
 }
 
 
-Avl getC (CATOLOG_CLIENTS c, int x){
+CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
-    return c->cat[x];
+	char buffer[SIZE_BUFFER];
+	Client line = malloc(sizeof(struct client));
+	int index;
+
+	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
+		line->string = strtok(buffer,"\r\n");
+		Catalog = insertClient(Catalog,line);
+		(*validated)++;
+	}
+		
+	return Catalog;
+}
+
+
+Avl getC (CATALOG_CLIENTS Catalog, int x){
+	return Catalog->CatClients[x];
 }

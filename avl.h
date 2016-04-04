@@ -26,7 +26,7 @@ struct avl {
 typedef struct avl *Avl;
 
 
-
+Avl initAvl();
 int maior (int a, int b);
 int heightAvl(Avl);
 Avl actualizarAltura(Avl,Avl);
@@ -34,5 +34,7 @@ Avl rotateRight(Avl);
 Avl rotateLeft(Avl);
 Avl insert(Avl,char*);
 void insereArray(char**,Avl,int*);
+int existAvl(Avl, char*);
+void removeAvl(Avl);
 
 #endif

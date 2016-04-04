@@ -4,7 +4,6 @@
 
 #include "avl.h"
 #include "valida.h"
-#include "testes.h"
 #include "CatClients.h"
 #include "CatProducts.h"
 
@@ -12,29 +11,29 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
-void getFile(CATOLOG_CLIENTS,CATOLOG_PRODUCTS,Vendas*);
+void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Vendas*);
 
 
 // Main -> Gerar estruturas que vão armazenar os dados em memória
 int main(int argc, char ** argv){
 
+	//Têm de compilar com -ansi
+
 	int i;
-	CATOLOG_CLIENTS CatClients = initClients();
-	CATOLOG_PRODUCTS CatProducts= initProducts();
+	CATALOG_CLIENTS CatClients = initClients();
+	CATALOG_PRODUCTS CatProducts = initProducts();
 	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
 
 	getFile(CatClients,CatProducts,sales);
 
-	//printCatClients(CatClients);
-
-	//printCatProducts(products);
+	//printCatProducts(CatProducts);
 	//printCatClients(CatClients);
 
 	return 0;
 }
 
 // Abrir ficheiros 
-void getFile(CATOLOG_CLIENTS clients, CATOLOG_PRODUCTS products,Vendas* sales){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Vendas* sales){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	

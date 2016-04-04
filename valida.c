@@ -1,31 +1,9 @@
-#include "testes.h"
-#include "avl.h"
 #include "valida.h"
 #include "CatClients.h"
 #include "CatProducts.h"
 
-// Conta quantas linhas dos ficheiros (Clientes e Produtos) são válidas, e aloca num array.
-// Vamos reservar um array em que as strings têm diferente tamanho:
-// Array de Clientes : tamanho = SIZE_CLIENTS
-// Array de Produtos : tamanho = SIZE_PRODUCTS
-Avl* valCliProd(FILE *file, Avl* estrutura,int *validated){
- 
-	char buffer[SIZE_BUFFER],*line;
-	
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-
-		line=strtok(buffer,"\r\n");
-
-		// muda isto para processar um array 
-		//*estrutura=insert(*estrutura,line);
-		//(*validated)++;
-	}
-
-	return estrutura;
-}
-
 // Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,Vendas* sales){
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,Vendas* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -59,7 +37,7 @@ int valSales(FILE *file,CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,Venda
 
 
 //Função auxiliar que verifica se um dado produto e cliente existem.
-int exist(char* line, Avl estrutura){
+/*int exist(char* line, Avl estrutura){
 
 	int r=0;
 
@@ -73,11 +51,11 @@ int exist(char* line, Avl estrutura){
 		r=exist(line,estrutura->right);
 
     return r;
-}
+}*/
 
 //Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 //e se os outros parametros estao corretos. 
-int partCheck(char* line, CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
+int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
 
@@ -104,8 +82,44 @@ int partCheck(char* line, CATOLOG_CLIENTS clients,CATOLOG_PRODUCTS  products,cha
 	Avl auxProduct = getP(products,indexProduct);
 
 
-	if(exist(*prod,auxProduct) && exist(*clie, auxClient) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
+	if(existAvl(auxProduct,*prod) && existAvl(auxClient,*clie) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
 	return r;
 }
 
-// Calcula o comprimentos dos Arrays de Clientes de Produtos.
+// Testa os produtos 
+int testProduct (char* prod){
+   int num = atoi(prod+LETRAS_P),i,r=0;
+
+   for(i=0;i<LETRAS_P;i++)
+       if(!(isupper(prod[i]))) return 0;
+
+   if(!((num>=1000) && (num<=1999))) return 0;
+  
+   return 1;
+}
+
+// Testa os Clientes
+ int testClient(char* client){
+    int num = atoi(client+LETRAS_C),r=0;
+
+    if(isupper(client[0]) && (num>=1000) && (num<=5000))r++;
+
+    return r;
+ }
+
+
+// Testa as diferentes cenas das Vendas.
+// Preço de 0 a 999.99;
+// Quantidade de 0 a 200;
+// Caracter a informar se o preço é normal(N) ou em promoção(P);
+// Mês (1 a 12);
+// Filial (1 a 3);
+int testSales(float price, int quantity, char infoPromo, int month, int filial){
+
+  if(price < 0 || price > 999.99) return 0;
+  else if(quantity < 1 || quantity > 200) return 0;
+  else if(infoPromo != 'P' && infoPromo != 'N') return 0;
+  else if(month < 1 || month > 12) return 0;
+  else if(filial < 1 || filial > 3) return 0;
+  else return 1;
+}

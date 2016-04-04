@@ -7,11 +7,17 @@
 #include <fcntl.h>
 #include "avl.h"
 
-typedef struct catp *CATOLOG_PRODUCTS;
+typedef struct product *Product;
+typedef struct catp *CATALOG_PRODUCTS;
+typedef struct conjProds *GROUP_PRODUCTS;
 
-CATOLOG_PRODUCTS initProducts();
-int printCatProducts(CATOLOG_PRODUCTS);
-CATOLOG_PRODUCTS valProd(FILE *, CATOLOG_PRODUCTS ,int *);
-Avl getP(CATOLOG_PRODUCTS  , int );
+CATALOG_PRODUCTS initProducts();
+CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS, Product);
+CATALOG_PRODUCTS valProd(FILE *,CATALOG_PRODUCTS,int *);
+int printCatProducts(CATALOG_PRODUCTS);
+int existProduct(CATALOG_PRODUCTS, Product);
+int totalProductsLetter(CATALOG_PRODUCTS,char);
+int totalProducts(CATALOG_PRODUCTS);
+Avl getP(CATALOG_PRODUCTS  , int );
 
 #endif

@@ -1,7 +1,8 @@
 #include "avl.h"
-#include "valida.h"
-#include "testes.h"
 
+Avl initAvl(){
+	return NULL;
+}
 
 int maior(int a, int b){
 	if(a>b)return a;
@@ -101,7 +102,6 @@ Avl insert(Avl estrutura, char* line) {
 
 void insereArray (char** array,Avl estrutura,int *a){
 	
-	
 	if(estrutura->left==NULL && estrutura->right==NULL){
 		array[*a]=estrutura->code;
 		(*a)++;
@@ -119,9 +119,44 @@ void insereArray (char** array,Avl estrutura,int *a){
          }
 }
 
+void printAVL(Avl estrutura) {
 
+	if (!estrutura) printf("*\n");
+	else {
+		printAVL(estrutura->left);
+		printf("%s\n", estrutura->code);
+		printAVL(estrutura->right);
+	}
+}
 
+int existAvl(Avl estrutura, char* line){
 
+	int r=0;
+    int s=strcmp(estrutura->code,line);
+    
+    if(s==0) return 1;
+	else if(s>0 && estrutura->left!=NULL)
+		r=existAvl(estrutura->left,line);
+	else if (estrutura->right!=NULL)
+		r=existAvl(estrutura->right,line);
+    return r;
+}
 
+int totalElements(Avl estrutura){
 
+	int total = 0;
+	if(estrutura!=NULL) total++;
+	total+=totalElements(estrutura->right);
+	total+=totalElements(estrutura->left);
+	return total;
+}
+
+void removeAvl(Avl estrutura){
+
+	if(estrutura != NULL){
+		removeAvl(estrutura->right);
+		removeAvl(estrutura->left);
+		free(estrutura);
+	}
+}
 

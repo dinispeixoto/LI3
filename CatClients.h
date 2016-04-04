@@ -7,11 +7,17 @@
 #include <fcntl.h>
 #include "avl.h"
 
-typedef struct client *CATOLOG_CLIENTS; 
+typedef struct client *Client;
+typedef struct catc *CATALOG_CLIENTS; 
+typedef struct conjClie *GROUP_CLIENTS;
 
-CATOLOG_CLIENTS initClients();
-int printCatClients(CATOLOG_CLIENTS);
-CATOLOG_CLIENTS valCli(FILE *, CATOLOG_CLIENTS ,int *);
-Avl getC(CATOLOG_CLIENTS , int );
+CATALOG_CLIENTS initClients();
+CATALOG_CLIENTS insertClient(CATALOG_CLIENTS, Client);
+CATALOG_CLIENTS valCli(FILE *,CATALOG_CLIENTS,int *);
+int printCatClients(CATALOG_CLIENTS);
+int existClient(CATALOG_CLIENTS, Client);
+int totalClientsLetter(CATALOG_CLIENTS,char);
+int totalClients(CATALOG_CLIENTS);
+Avl getC(CATALOG_CLIENTS , int );
 
 #endif
