@@ -48,7 +48,7 @@ int totalProductsLetter(CATALOG_PRODUCTS Catalog,char letter){
 
 int totalProducts(CATALOG_PRODUCTS Catalog){
 
-	char letter; int total;
+	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalProductsLetter(Catalog,letter);
 	return total;

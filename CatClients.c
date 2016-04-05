@@ -49,7 +49,7 @@ int totalClientsLetter(CATALOG_CLIENTS Catalog,char letter){
 
 int totalClients(CATALOG_CLIENTS Catalog){
 
-	char letter; int total;
+	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalClientsLetter(Catalog,letter);
 	return total;
