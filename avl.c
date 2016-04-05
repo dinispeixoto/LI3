@@ -1,6 +1,26 @@
 #include "avl.h"
-#include "valida.h"
-#include "testes.h"
+
+#define SIZE_CODE 7
+#define LEFT -2
+#define RIGHT 2
+
+struct avl {
+	char code[SIZE_CODE];
+	int height;
+	struct avl *left, *right;
+};
+
+/* Estes prototypes não são para estar no .h porque são auxiliares */
+Avl rotateRight(Avl);
+Avl rotateLeft(Avl);
+int maior (int a, int b);
+Avl actualizarAltura(Avl,Avl);
+void insertArray(char**,Avl,int*);
+
+
+Avl initAvl(){
+	return NULL;
+}
 
 int maior(int a, int b){
 	if(a>b)return a;
@@ -47,7 +67,7 @@ Avl rotateLeft(Avl a) {
 	return aux;
 }
 
-//Inserir numa Avl
+/* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line) {
 	int ls,rs,bal,HL,HR;
 
@@ -69,8 +89,6 @@ Avl insert(Avl estrutura, char* line) {
     
 		bal = HL - HR;
 
-    
-    	//OPCAO 1
 		if(bal>1) bal=RIGHT;
 		if(bal<-1) bal=LEFT;
     
@@ -94,14 +112,69 @@ Avl insert(Avl estrutura, char* line) {
 		}
 
 	}
-
 	return estrutura;
 
 }
 
+void insertArray (char** array,Avl estrutura,int *a){
+	
+	if(estrutura->left==NULL && estrutura->right==NULL){
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
 
+	else if(estrutura->left==NULL){ 
+		insertArray(array,estrutura->right,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
 
+	else { 
+		insertArray(array,estrutura->left,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
+	}
+}
 
+void printAVL(Avl estrutura) {
 
+	if (!estrutura) printf("*\n");
+	else {
+		printAVL(estrutura->left);
+		printf("%s\n", estrutura->code);
+		printAVL(estrutura->right);
+	}
+}
 
+int existAvl(Avl estrutura, char* line){
+
+	int r=0;
+    int s=strcmp(estrutura->code,line);
+    
+    if(s==0) return 1;
+	else if(s>0 && estrutura->left!=NULL)
+		r=existAvl(estrutura->left,line);
+	else if (estrutura->right!=NULL)
+		r=existAvl(estrutura->right,line);
+    return r;
+}
+
+int totalElements(Avl estrutura){
+
+	int total = 0;
+	if(estrutura!=NULL) total++;
+	total+=totalElements(estrutura->right);
+	total+=totalElements(estrutura->left);
+	return total;
+}
+
+void removeAvl(Avl estrutura){
+
+	if(estrutura != NULL){
+		removeAvl(estrutura->right);
+		removeAvl(estrutura->left);
+		free(estrutura);
+	}
+}
 

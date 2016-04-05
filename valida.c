@@ -1,30 +1,19 @@
-#include "testes.h"
-#include "avl.h"
 #include "valida.h"
+#include "CatClients.h"
+#include "CatProducts.h"					
 
-// Conta quantas linhas dos ficheiros (Clientes e Produtos) são válidas, e aloca num array.
-// Vamos reservar um array em que as strings têm diferente tamanho:
-// Array de Clientes : tamanho = SIZE_CLIENTS
-// Array de Produtos : tamanho = SIZE_PRODUCTS
-/* Avl* valCliProd(FILE *file, Avl* estrutura,int *validated){
- 
-	char buffer[SIZE_BUFFER];
-	char* line;
-	
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
+struct sales{
+   char client[SIZE_CLIENTS];
+   char product[SIZE_PRODUCTS];
+   double price;
+   int quantity;
+   char infoPromo;
+   int filial;
+   int month;
+};
 
-		line=strtok(buffer,"\r\n");
-
-		// muda isto para processar um array 
-		// *estrutura=insert(*estrutura,line);
-		//(*validated)++;
-	}
-
-	return estrutura;
-} */
-
-// Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,Avl* clients,Avl* products,Vendas* sales){
+/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -37,10 +26,10 @@ int valSales(FILE *file,Avl* clients,Avl* products,Vendas* sales){
 		
 		line = strtok(buffer,"\r\n");
 
-		// verificar, em caso positivo alocar espaço para a string e copia-la para o array.
+		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales[validated] = malloc(sizeof(struct vendas));
+			sales[validated] = malloc(sizeof(struct sales));
 			strcpy(sales[validated]->client,*clie);
 			strcpy(sales[validated]->product,*prod);
 			sales[validated]->price=price;
@@ -54,36 +43,14 @@ int valSales(FILE *file,Avl* clients,Avl* products,Vendas* sales){
 	return validated;
 }
 
-// ############################################## FUNÇÕES AUXILIARES ################################################################################################################
-
-
-//Função auxiliar que verifica se um dado produto e cliente existem.
-int exist(char* line, Avl estrutura){
-
-	int r=0;
-
-    int s=strcmp(estrutura->code,line);
-    
-    if(s==0) return 1;
-	else if(s>0 && estrutura->left!=NULL)
-		r=exist(line,estrutura->left);
-
-	else if (estrutura->right!=NULL)
-		r=exist(line,estrutura->right);
-
-    return r;
-}
-
-//Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
-//e se os outros parametros estao corretos. 
-int partCheck(char* line, Avl* clients,Avl* products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
+/*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
+e se os outros parametros estao corretos. */
+int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
-
-
-			
+		
 	token = strtok(line, " ");
-   
+
 	for(i=0;token != NULL;i++){
 		switch(i){
 			case 0: *prod = token; break;
@@ -97,88 +64,53 @@ int partCheck(char* line, Avl* clients,Avl* products,char** clie,char** prod,int
 			token = strtok(NULL, " ");
 	}
 
-	int indexClient = *clie[0]-'A';
+	int indexClient =  *clie[0]-'A';
 	int indexProduct = *prod[0]-'A';
-	Avl auxClient = clients[indexClient];
-	Avl auxProduct = products[indexProduct];
+
+	Avl auxClient = getC(clients,indexClient);
+	Avl auxProduct = getP(products,indexProduct);
 
 
-	if(exist(*prod,auxProduct) && exist(*clie,auxClient) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
+	if(existAvl(auxProduct,*prod) && existAvl(auxClient,*clie) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
 	return r;
 }
 
-// TESTES 
-int priceZero(Vendas* sales){
-	int i,contador=0;
-	for(i=0;sales[i]!=NULL;i++)
-		if(sales[i]->price == 0) contador++;
-	return contador;
+/* Testa os produtos */
+int testProduct (char* prod){
+   int num = atoi(prod+LETRAS_P),i;
+
+   for(i=0;i<LETRAS_P;i++)
+       if(!(isupper(prod[i]))) return 0;
+
+   if(!((num>=1000) && (num<=1999))) return 0;
+  
+   return 1;
 }
 
-double factTotal(Vendas* sales){
-	int i;
-	double facturado=0;
-	for(i=0;sales[i]!=NULL;i++)
-		facturado+=sales[i]->price*sales[i]->quantity;
-	return facturado;
-}
+/* Testa os Clientes */
+ int testClient(char* client){
+    int num = atoi(client+LETRAS_C),r=0;
 
-int unitSold(Vendas* sales){
-	int i, quantity=0;
-	for(i=0;sales[i]!=NULL;i++)
-		quantity+=sales[i]->quantity;
-	return quantity;
-}
+    if(isupper(client[0]) && (num>=1000) && (num<=5000))r++;
 
-int salesFilial(Vendas* sales, int filial){
-	int i, quantity=0;
-	for(i=0;sales[i]!=NULL;i++)
-		if(sales[i]->filial == filial) quantity++;
-	return quantity;
-}
+    return r;
+ }
 
-void purchasesClient(char* client, Vendas* sales){
-	int jan=0;
-	int feb=0;
-	int mar=0;
-	int apr=0;
-	int may=0;
-	int jun=0;
-	int jul=0;
-	int aug=0;
-	int sep=0;
-	int oct=0;
-	int nov=0;
-	int dec=0;
-	int i;
 
-	for(i=0;sales[i]!=NULL;i++)
-		if(strcmp(sales[i]->client,client)==0)
-			switch(sales[i]->month){
-				case 1: jan++; break;
-				case 2: feb++; break;
-				case 3: mar++; break;
-				case 4: apr++; break;
-				case 5: may++; break;
-				case 6: jun++; break;
-				case 7: jul++; break;
-				case 8: aug++; break;
-				case 9: sep++; break;
-				case 10: oct++; break;
-				case 11: nov++; break;
-				case 12: dec++; break;
-			}
+/* Testa as diferentes cenas das Vendas.
+	 Preço de 0 a 999.99;
+	 Quantidade de 0 a 200;
+	 Caracter a informar se o preço é normal(N) ou em promoção(P);
+	 Mês (1 a 12);
+	 Filial (1 a 3);
+*/
 
-	printf("Mês 1: %d.\n",jan);			
-	printf("Mês 2: %d.\n",feb);	
-	printf("Mês 3: %d.\n",mar);	
-	printf("Mês 4: %d.\n",apr);	
-	printf("Mês 5: %d.\n",may);	
-	printf("Mês 6: %d.\n",jun);	
-	printf("Mês 7: %d.\n",jul);	
-	printf("Mês 8: %d.\n",aug);	
-	printf("Mês 9: %d.\n",sep);	
-	printf("Mês 10: %d.\n",oct);	
-	printf("Mês 11: %d.\n",nov);	
-	printf("Mês 12: %d.\n",dec);
+int testSales(float price, int quantity, char infoPromo, int month, int filial){
+
+  if(price < 0 || price > 999.99) return 0;
+  else if(quantity < 1 || quantity > 200) return 0;
+  else if(infoPromo != 'P' && infoPromo != 'N') return 0;
+  else if(month < 1 || month > 12) return 0;
+  else if(filial < 1 || filial > 3) return 0;
+  else return 1;
 }
