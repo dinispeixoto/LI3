@@ -1,5 +1,6 @@
-#include "CatProducts.h"
 #include "avl.h"
+#include "CatProducts.h"
+
 
 struct catp {
 	Avl CatProducts[SIZE_ABC];
@@ -31,7 +32,7 @@ CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, Product prod){
 }
 
 
-// criar um typedef BOOL 
+/* criar um typedef BOOL */
 int existProduct(CATALOG_PRODUCTS Catalog, Product prod){
 
 	int exist;
@@ -88,7 +89,7 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 	return Catalog;
 }
 
-Avl getP (CATALOG_PRODUCTS Catalog, int x){
-	return Catalog->CatProducts[x];
+Avl getP (CATALOG_PRODUCTS Catalog, int index){
+	return Catalog->CatProducts[index];
 }
 

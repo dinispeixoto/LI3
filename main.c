@@ -11,28 +11,23 @@
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
-void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Vendas*);
+void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Sales*);
 
 
-// Main -> Gerar estruturas que vão armazenar os dados em memória
+/* Main -> Gerar estruturas que vão armazenar os dados em memória */
 int main(){
-
-	//Têm de compilar com -ansi
 	
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
+	Sales* sales = malloc (MAX_SALES*sizeof(Sales));
 
 	getFile(CatClients,CatProducts,sales);
-
-	//printCatProducts(CatProducts);
-	//printCatClients(CatClients);
 
 	return 0;
 }
 
-// Abrir ficheiros 
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Vendas* sales){
+/* Abrir ficheiros */
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Sales* sales){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	

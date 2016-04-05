@@ -1,5 +1,6 @@
-#include "CatClients.h"
 #include "avl.h"
+#include "CatClients.h"
+
 
 struct catc {
 	Avl CatClients[SIZE_ABC];
@@ -92,6 +93,6 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 }
 
 
-Avl getC (CATALOG_CLIENTS Catalog, int x){
-	return Catalog->CatClients[x];
+Avl getC (CATALOG_CLIENTS Catalog, int index){
+	return Catalog->CatClients[index];
 }
