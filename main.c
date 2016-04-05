@@ -6,7 +6,7 @@
 #include "valida.h"
 #include "CatClients.h"
 #include "CatProducts.h"
-#include "readInput.h"
+#include "readFiles.h"
 
 #define MAX_SALES 1000000
 

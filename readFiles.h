@@ -1,5 +1,5 @@
-#ifndef __READINPUT_H__
-#define __READINPUT_H__
+#ifndef __READFILES_H__
+#define __READFILES_H__
 
 #include <stdio.h>
 #include <string.h>

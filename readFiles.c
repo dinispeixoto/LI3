@@ -1,4 +1,4 @@
-#include "readInput.h"
+#include "readFiles.h"
 
 void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Sales* sales){
 
