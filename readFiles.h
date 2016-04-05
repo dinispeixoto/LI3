@@ -13,7 +13,7 @@
 #define	PRODUCTS_FILE "Produtos.txt"
 #define SALES_FILE "Vendas.txt"
 
-void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Sales*);
+void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES*);
 
 
 #endif

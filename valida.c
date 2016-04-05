@@ -1,6 +1,6 @@
 #include "valida.h"
 #include "CatClients.h"
-#include "CatProducts.h"
+#include "CatProducts.h"					
 
 struct sales{
    char client[SIZE_CLIENTS];
@@ -13,7 +13,7 @@ struct sales{
 };
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,Sales* sales){
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;

@@ -15,7 +15,7 @@ int main(){
 	
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	Sales* sales = malloc (MAX_SALES*sizeof(Sales));
+	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
 
 	getFile(CatClients,CatProducts,sales);
 
