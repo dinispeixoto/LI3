@@ -5,26 +5,80 @@
 #define RIGHT 2
 
 struct avl {
-	char code[SIZE_CODE];
+	STRING code;
 	int height;
 	struct avl *left, *right;
 };
 
 /* Estes prototypes não são para estar no .h porque são auxiliares */
-Avl rotateRight(Avl);
-Avl rotateLeft(Avl);
-int maior (int a, int b);
-Avl actualizarAltura(Avl,Avl);
-void insertArray(char**,Avl,int*);
+static Avl rotateRight(Avl);
+static Avl rotateLeft(Avl);
+static int maior (int a, int b);
+static Avl actualizarAltura(Avl,Avl);
+/*static void insertArray(char**,Avl,int*);*/
 
+
+static int maior(int a, int b){
+	if(a>b)return a;
+	else return b;
+}
+
+static Avl actualizarAltura(Avl a, Avl b){
+
+	a->height = maior(heightAvl(a->left), heightAvl(a->right))+1;
+	b->height = maior(heightAvl(b->left), heightAvl(b->right))+1;
+
+	return b;
+}
+
+static Avl rotateRight(Avl a) {
+	Avl aux;
+
+	aux = a->left;
+	a->left=aux->right;
+	aux->right=a;
+
+	aux=actualizarAltura(a,aux);
+
+	return aux;
+}
+
+static Avl rotateLeft(Avl a) {
+	Avl aux;
+	
+	aux = a->right;
+	a->right=aux->left;
+	aux->left=a;
+
+	aux=actualizarAltura(a,aux);
+
+	return aux;
+}
+
+/*static void insertArray (char** array,Avl estrutura,int *a){
+	
+	if(estrutura->left==NULL && estrutura->right==NULL){
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else if(estrutura->left==NULL){ 
+		insertArray(array,estrutura->right,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else { 
+		insertArray(array,estrutura->left,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
+	}
+}
+*/
 
 Avl initAvl(){
 	return NULL;
-}
-
-int maior(int a, int b){
-	if(a>b)return a;
-	else return b;
 }
 
 int heightAvl(Avl a){
@@ -33,46 +87,13 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
-Avl actualizarAltura(Avl a, Avl b){
-
-	a->height = maior(heightAvl(a->left), heightAvl(a->right))+1;
-	b->height = maior(heightAvl(b->left), heightAvl(b->right))+1;
-
-	return b;
-}
-
-
-Avl rotateRight(Avl a) {
-	Avl aux;
-    
-	aux = a->left;
-	a->left=aux->right;
-	aux->right=a;
-
-	aux=actualizarAltura(a,aux);
-    
-	return aux;
-}
-
-
-Avl rotateLeft(Avl a) {
-	Avl aux;
-    
-	aux = a->right;
-	a->right=aux->left;
-	aux->left=a;
-
-	aux=actualizarAltura(a,aux);
-    
-	return aux;
-}
-
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line) {
 	int ls,rs,bal,HL,HR;
 
 	if(estrutura == NULL){
 		estrutura= (Avl)malloc(sizeof(struct avl));
+		estrutura->code = malloc(SIZE_CODE);
 		strcpy((estrutura)->code,line);
 		estrutura->left=NULL;
 		estrutura->right=NULL;
@@ -114,27 +135,6 @@ Avl insert(Avl estrutura, char* line) {
 	}
 	return estrutura;
 
-}
-
-void insertArray (char** array,Avl estrutura,int *a){
-	
-	if(estrutura->left==NULL && estrutura->right==NULL){
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else if(estrutura->left==NULL){ 
-		insertArray(array,estrutura->right,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else { 
-		insertArray(array,estrutura->left,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
-	}
 }
 
 void printAVL(Avl estrutura) {
