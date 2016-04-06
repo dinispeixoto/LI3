@@ -6,7 +6,7 @@ default:
 	$(CC) $(CFLAGS) $(FILES) -o li3
 
 debug: 
-	gcc $(CFLAGS) -g -o debug
+	gcc $(CFLAGS) $(FILES) -g -o debug
 	gdb debug
 
 clean:

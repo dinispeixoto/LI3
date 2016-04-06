@@ -1,13 +1,12 @@
 #include "avl.h"
 #include "CatClients.h"
 
-
 struct catc {
 	Avl CatClients[SIZE_ABC];
 };
 
 struct conjClie{
-	Client* GroupClie;
+	CLIENT* GroupClie;
 };
 
 struct client {
@@ -24,7 +23,7 @@ CATALOG_CLIENTS initClients(){
 }
 
 
-CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, Client clie){
+CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 
 	int index = clie->string[0]-'A';
 	Catalog->CatClients[index] = insert(Catalog->CatClients[index],clie->string);
@@ -32,8 +31,7 @@ CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, Client clie){
 }
 
 
-int existClient(CATALOG_CLIENTS Catalog, Client clie){
-
+int existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 	int exist;
 	int index = clie->string[0]-'A';
 	exist = existAvl(Catalog->CatClients[index],clie->string);
@@ -81,7 +79,7 @@ void removeCatClients(CATALOG_CLIENTS Catalog){
 CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
-	Client line = malloc(sizeof(struct client));
+	CLIENT line = malloc(sizeof(struct client));
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 		line->string = strtok(buffer,"\r\n");
@@ -92,7 +90,23 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 	return Catalog;
 }
 
+int testClient(CLIENT client){
+	int num = atoi(client->string+LETRAS_C),r=0;
+	if(isupper(client->string[0]) && (num>=1000) && (num<=5000))r++;
+	return r;
+}
 
 Avl getC (CATALOG_CLIENTS Catalog, int index){
 	return Catalog->CatClients[index];
+}
+
+char* getClientString(CLIENT clie){
+	return clie->string;
+}
+
+CLIENT setClientString(char* string){
+	CLIENT client = malloc(sizeof(struct client));
+	client->string = malloc(SIZE_CLIENTS);
+	strcpy(client->string,string);
+	return client;
 }

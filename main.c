@@ -3,7 +3,7 @@
 #include <ctype.h>
 
 #include "avl.h"
-#include "valida.h"
+#include "Sales.h"
 #include "CatClients.h"
 #include "CatProducts.h"
 #include "readFiles.h"

@@ -7,7 +7,7 @@ struct catp {
 };
 
 struct conjProds{
-	Product* GroupProd;
+	PRODUCT* GroupProd;
 };
 
 struct product {
@@ -24,7 +24,7 @@ CATALOG_PRODUCTS initProducts(){
 }
 
 
-CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, Product prod){
+CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 	int index = prod->string[0]-'A';
 	Catalog->CatProducts[index] = insert(Catalog->CatProducts[index],prod->string);
@@ -33,7 +33,7 @@ CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, Product prod){
 
 
 /* criar um typedef BOOL */
-int existProduct(CATALOG_PRODUCTS Catalog, Product prod){
+int existProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 	int exist;
 	int index = prod->string[0]-'A';
@@ -78,7 +78,7 @@ void removeCatProds(CATALOG_PRODUCTS Catalog){
 CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
-	Product line = malloc(sizeof(struct product));
+	PRODUCT line = malloc(sizeof(struct product));
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
 		line->string = strtok(buffer,"\r\n");
@@ -89,7 +89,29 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 	return Catalog;
 }
 
+/* Testa os produtos */
+int testProduct (PRODUCT prod){
+   int num = atoi(prod->string+LETRAS_P),i;
+
+   for(i=0;i<LETRAS_P;i++)
+       if(!(isupper(prod->string[i]))) return 0;
+
+   if(!((num>=1000) && (num<=1999))) return 0;
+  
+   return 1;
+}
+
 Avl getP (CATALOG_PRODUCTS Catalog, int index){
 	return Catalog->CatProducts[index];
 }
 
+char* getProductString(PRODUCT prod){
+	return prod->string;
+}
+
+PRODUCT setProductString(char* string){
+	PRODUCT prod = malloc(sizeof(struct product));
+	prod->string = malloc(SIZE_PRODUCTS);
+	strcpy(prod->string,string);
+	return prod;
+}

@@ -7,13 +7,12 @@
 
 #include "CatClients.h"
 #include "CatProducts.h"
-#include "valida.h"			
+#include "Sales.h"			
 
 #define CLIENTS_FILE "Clientes.txt"
 #define	PRODUCTS_FILE "Produtos.txt"
 #define SALES_FILE "Vendas.txt"
 
 void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES*);
-
 
 #endif

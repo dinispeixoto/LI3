@@ -163,11 +163,14 @@ int existAvl(Avl estrutura, char* line){
 int totalElements(Avl estrutura){
 
 	int total = 0;
-	if(estrutura!=NULL) total++;
-	total+=totalElements(estrutura->right);
-	total+=totalElements(estrutura->left);
+	if(estrutura!=NULL){
+		total++;
+		total+=totalElements(estrutura->right);
+		total+=totalElements(estrutura->left);
+	}
 	return total;
 }
+
 
 void removeAvl(Avl estrutura){
 
