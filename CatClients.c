@@ -58,7 +58,7 @@ int printCatClients(CATALOG_CLIENTS Catalog){
 
 	int i;
 
-	if(Catalog == NULL) printf("piça\n");
+	if(Catalog == NULL) printf("*\n");
 	else 
 		for(i=0;i<SIZE_ABC;i++){
 			printf("LETRA %c=====\n", 'A'+i); 

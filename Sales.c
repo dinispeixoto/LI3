@@ -2,6 +2,8 @@
 #include "CatClients.h"
 #include "CatProducts.h"					
 
+#define MAX_SALES 1000000
+
 struct sales{
 	CLIENT client;
 	PRODUCT product;
@@ -11,6 +13,11 @@ struct sales{
 	int filial;
 	int month;
 };
+
+SALES* initSales(){
+	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
+	return sales;
+}
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
 int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES* sales){
@@ -33,11 +40,12 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES
 			sales[validated] = malloc(sizeof(struct sales));
 			sales[validated]->client = clie;
 			sales[validated]->product = prod;
-			sales[validated]->price=price;
-			sales[validated]->quantity=quant;
-			sales[validated]->infoPromo=infoP;
-			sales[validated]->filial=filial;
-			sales[validated]->month=month;
+			sales[validated]->price = price;
+			sales[validated]->quantity = quant;
+			sales[validated]->infoPromo = infoP;
+			sales[validated]->filial = filial;
+			sales[validated]->month = month;
+			printf("%d\n",sales[validated]->quantity);
 			validated+=r;
 		}
 	}

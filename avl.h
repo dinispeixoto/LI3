@@ -9,8 +9,6 @@
 typedef struct avl *Avl;
 typedef char* STRING;
 
-
-
 Avl initAvl();
 int heightAvl(Avl);
 Avl insert(Avl,char*);

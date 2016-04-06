@@ -8,14 +8,13 @@
 #include "CatProducts.h"
 #include "readFiles.h"
 
-#define MAX_SALES 1000000
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
-int main(){
-	
+int main(){	
+
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
+	SALES* sales = initSales();
 
 	getFile(CatClients,CatProducts,sales);
 
