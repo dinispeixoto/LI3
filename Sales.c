@@ -14,6 +14,9 @@ struct sales{
 	int month;
 };
 
+static int partCheck(char*,CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT,PRODUCT,int*,int*,int*,double*,char*);
+static int testSales(CLIENT,PRODUCT,float,int,char,int,int);
+
 SALES* initSales(){
 	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
 	return sales;
@@ -45,7 +48,6 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES
 			sales[validated]->infoPromo = infoP;
 			sales[validated]->filial = filial;
 			sales[validated]->month = month;
-			printf("%d\n",sales[validated]->quantity);
 			validated+=r;
 		}
 	}
@@ -54,9 +56,10 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES
 
 /*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 e se os outros parametros estao corretos. */
-int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT clie,PRODUCT prod,int *month,int *filial,int *quant,double *price,char *infoP){
+static int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT clie,PRODUCT prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
+
 		
 	token = strtok(line, " ");
 
@@ -80,7 +83,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIE
 	Avl auxProduct = getP(products,indexProduct);*/
 
 
-	if(existClient(clients,clie) && existProduct(products,prod) && testSales(*price, *quant, *infoP, *month, *filial)) r=1;
+	if(/*testSales(clie,prod,*price,*quant,*infoP,*month,*filial) &&*/ existClient(clients,clie) && existProduct(products,prod)) r=1;
 	return r;
 }
 
@@ -92,9 +95,11 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIE
 	 Filial (1 a 3);
 */
 
-int testSales(float price, int quantity, char infoPromo, int month, int filial){
+static int testSales(CLIENT clie, PRODUCT prod,float price, int quantity, char infoPromo, int month, int filial){
 
   if(price < 0 || price > 999.99) return 0;
+  else if(!testClient(clie)) return 0;
+  else if(!testProduct(prod)) return 0;
   else if(quantity < 1 || quantity > 200) return 0;
   else if(infoPromo != 'P' && infoPromo != 'N') return 0;
   else if(month < 1 || month > 12) return 0;

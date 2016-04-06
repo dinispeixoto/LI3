@@ -74,8 +74,8 @@ static Avl rotateLeft(Avl a) {
 		(*a)++;
 		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
 	}
-}
-*/
+}*/
+
 
 Avl initAvl(){
 	return NULL;

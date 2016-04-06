@@ -17,7 +17,5 @@ typedef struct sales *SALES;
 
 SALES* initSales();
 int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES*);
-int partCheck(char*, CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT,PRODUCT,int *,int *,int *,double *,char *);
-int testSales(float, int, char, int, int);
 
 #endif

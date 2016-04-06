@@ -1,5 +1,5 @@
 CC = gcc 
-CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi
+CFLAGS = -Wunreachable-code -Wunused-parameter -ansi -O2
 FILES = $(wildcard *.h *.c)
 
 default:
