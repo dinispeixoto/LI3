@@ -1,9 +1,16 @@
-#include "valida.h"
-#include "CatClients.h"
-#include "CatProducts.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
 
-// Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,Vendas* sales){
+#include "CatClients.h"
+#include "valida.h"
+#include "facturacao.h"
+
+
+
+/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.*/
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,FACTURACAO f,Sales* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -16,10 +23,10 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,Venda
 		
 		line = strtok(buffer,"\r\n");
 
-		// verificar, em caso positivo alocar espaço para a string e copia-la para o array.
+		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array.*/
 		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales[validated] = malloc(sizeof(struct vendas));
+			sales[validated] = malloc(sizeof(struct sales));
 			strcpy(sales[validated]->client,*clie);
 			strcpy(sales[validated]->product,*prod);
 			sales[validated]->price=price;
@@ -27,34 +34,18 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,Venda
 			sales[validated]->infoPromo=infoP;
 			sales[validated]->filial=filial;
 			sales[validated]->month=month;
+			f=insereFact(f,sales[validated]);
 			validated+=r;
 		}
 	}
 	return validated;
 }
 
-// ############################################## FUNÇÕES AUXILIARES ################################################################################################################
+/* ############################################## FUNÇÕES AUXILIARES ################################################################################################################
+*/
 
-
-//Função auxiliar que verifica se um dado produto e cliente existem.
-/*int exist(char* line, Avl estrutura){
-
-	int r=0;
-
-    int s=strcmp(estrutura->code,line);
-    
-    if(s==0) return 1;
-	else if(s>0 && estrutura->left!=NULL)
-		r=exist(line,estrutura->left);
-
-	else if (estrutura->right!=NULL)
-		r=exist(line,estrutura->right);
-
-    return r;
-}*/
-
-//Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
-//e se os outros parametros estao corretos. 
+/*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
+e se os outros parametros estao corretos. */
 int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
@@ -86,7 +77,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char
 	return r;
 }
 
-// Testa os produtos 
+
 int testProduct (char* prod){
    int num = atoi(prod+LETRAS_P),i;
 
@@ -98,7 +89,7 @@ int testProduct (char* prod){
    return 1;
 }
 
-// Testa os Clientes
+
  int testClient(char* client){
     int num = atoi(client+LETRAS_C),r=0;
 
@@ -108,12 +99,6 @@ int testProduct (char* prod){
  }
 
 
-// Testa as diferentes cenas das Vendas.
-// Preço de 0 a 999.99;
-// Quantidade de 0 a 200;
-// Caracter a informar se o preço é normal(N) ou em promoção(P);
-// Mês (1 a 12);
-// Filial (1 a 3);
 int testSales(float price, int quantity, char infoPromo, int month, int filial){
 
   if(price < 0 || price > 999.99) return 0;

@@ -6,37 +6,20 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define SIZE_BUFFER 64
-#define SIZE_BUF_SALES 128
-
-#define SIZE_CLIENTS 6 //CONTAR COM O /0
-#define SIZE_PRODUCTS 7 // CONTAR COM O /0
-#define SIZE_SALES 29 // 
-
+#define SIZE_CODE 7 
 #define LEFT -2
 #define RIGHT 2
 
-
-struct avl {
-	char code[SIZE_PRODUCTS];
-	int height;
-	struct avl *left, *right;
-};
-
 typedef struct avl *Avl;
 
-
 Avl initAvl();
-int maior (int a, int b);
 int heightAvl(Avl);
-Avl actualizarAltura(Avl,Avl);
-Avl rotateRight(Avl);
-Avl rotateLeft(Avl);
-Avl insert(Avl,char*);
-void insertArray(char**,Avl,int*);
+Avl insert(Avl,char*,void*);
 int existAvl(Avl, char*);
 void removeAvl(Avl);
 void printAVL(Avl);
 int totalElements(Avl);
-
+Avl cloneAvl(Avl);
+void* getInfo(Avl );
+char* getCode(Avl );
 #endif

@@ -1,7 +1,8 @@
 #ifndef __CATCLIENTS_H__
 #define __CATCLIENTS_H__
 
-#define SIZE_ABC 26 // abecedário 
+#define SIZE_BUFFER 64
+#define SIZE_ABC 26
 
 #include <unistd.h>
 #include <fcntl.h>

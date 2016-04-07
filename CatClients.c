@@ -26,7 +26,7 @@ CATALOG_CLIENTS initClients(){
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, Client clie){
 
 	int index = clie->string[0]-'A';
-	Catalog->CatClients[index] = insert(Catalog->CatClients[index],clie->string);
+	Catalog->CatClients[index] = insert(Catalog->CatClients[index],clie->string,NULL);
 	return Catalog;
 }
 
@@ -48,7 +48,7 @@ int totalClientsLetter(CATALOG_CLIENTS Catalog,char letter){
 
 int totalClients(CATALOG_CLIENTS Catalog){
 
-	char letter; int total;
+	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalClientsLetter(Catalog,letter);
 	return total;
@@ -92,6 +92,6 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 }
 
 
-Avl getC (CATALOG_CLIENTS Catalog, int x){
-	return Catalog->CatClients[x];
+Avl getC (CATALOG_CLIENTS Catalog, int index){
+	return Catalog->CatClients[index];
 }

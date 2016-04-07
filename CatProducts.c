@@ -26,12 +26,12 @@ CATALOG_PRODUCTS initProducts(){
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, Product prod){
 
 	int index = prod->string[0]-'A';
-	Catalog->CatProducts[index] = insert(Catalog->CatProducts[index],prod->string);
+	Catalog->CatProducts[index] = insert(Catalog->CatProducts[index],prod->string,NULL);
 	return Catalog;
 }
 
 
-// criar um typedef BOOL 
+
 int existProduct(CATALOG_PRODUCTS Catalog, Product prod){
 
 	int exist;
@@ -47,7 +47,7 @@ int totalProductsLetter(CATALOG_PRODUCTS Catalog,char letter){
 
 int totalProducts(CATALOG_PRODUCTS Catalog){
 
-	char letter; int total;
+	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalProductsLetter(Catalog,letter);
 	return total;
@@ -90,5 +90,9 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 Avl getP (CATALOG_PRODUCTS Catalog, int x){
 	return Catalog->CatProducts[x];
+}
+
+Avl * get2 (CATALOG_PRODUCTS Catalog){
+	return Catalog->CatProducts;
 }
 

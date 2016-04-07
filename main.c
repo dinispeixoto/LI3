@@ -6,33 +6,33 @@
 #include "valida.h"
 #include "CatClients.h"
 #include "CatProducts.h"
+#include "facturacao.h"
 
 #define MAX_CLIENTS 20000
 #define MAX_PRODUCTS 200000
 #define MAX_SALES 1000000
 
-void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,Vendas*);
+void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,FACTURACAO*,Sales*);
 
-
-// Main -> Gerar estruturas que vão armazenar os dados em memória
 int main(){
-
-	//Têm de compilar com -ansi
 	
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	Vendas* sales = malloc (MAX_SALES*sizeof(struct vendas));
+	FACTURACAO f=NULL;
+	Sales* sales = malloc (MAX_SALES*sizeof(struct sales));
 
-	getFile(CatClients,CatProducts,sales);
-
-	//printCatProducts(CatProducts);
-	//printCatClients(CatClients);
-
+	getFile(CatClients,CatProducts,&f,sales);
+	
+	/*-------------------------------------------*/
+	
+    INFO c = ((INFO)getInfo(f->prod[0]));
+    printf("%s\n",getCode(f->prod[0]));
+	printf("%f\n",(c->F[0][5]->totalprice)); //VER MELHOR!!!!
+	
 	return 0;
 }
 
-// Abrir ficheiros 
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Vendas* sales){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FACTURACAO* f,Sales* sales){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
@@ -56,7 +56,8 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,Vendas* sales){
 	}
 	
 	if(fileSales!=NULL){
-		validatedSales = valSales(fileSales,clients,products,sales);
+		*f = initFact(get2(products));
+		validatedSales = valSales(fileSales,clients,products,*f,sales);
 		printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
 	}
 
