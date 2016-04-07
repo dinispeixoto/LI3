@@ -76,14 +76,7 @@ static int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS produc
 			token = strtok(NULL, " ");
 	}
 
-	/*int indexClient =  *clie[0]-'A';
-	int indexProduct = *prod[0]-'A';
-
-	Avl auxClient = getC(clients,indexClient);
-	Avl auxProduct = getP(products,indexProduct);*/
-
-
-	if(/*testSales(clie,prod,*price,*quant,*infoP,*month,*filial) &&*/ existClient(clients,clie) && existProduct(products,prod)) r=1;
+	if(testSales(clie,prod,*price,*quant,*infoP,*month,*filial) && existClient(clients,clie) && existProduct(products,prod)) r=1;
 	return r;
 }
 

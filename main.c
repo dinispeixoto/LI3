@@ -16,7 +16,7 @@ int main(){
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	SALES* sales = initSales();
 
-	getFile(CatClients,CatProducts,sales);
+	getFile(CatClients,CatProducts,sales);	
 
 	return 0;
 }

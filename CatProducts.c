@@ -3,7 +3,7 @@
 
 
 struct catp {
-	Avl CatProducts[SIZE_ABC];
+	MY_AVL CatProducts[SIZE_ABC];
 };
 
 struct conjProds{
@@ -19,7 +19,7 @@ CATALOG_PRODUCTS initProducts(){
 	
 	int i;
 	CATALOG_PRODUCTS Catalog = malloc (sizeof(struct catp));
-	for(i=0;i<SIZE_ABC;i++)	Catalog->CatProducts[i] = initAvl();
+	for(i=0;i<SIZE_ABC;i++)	Catalog->CatProducts[i] = initMyAvl();
 	return Catalog;
 }
 
@@ -27,17 +27,16 @@ CATALOG_PRODUCTS initProducts(){
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 	int index = prod->string[0]-'A';
-	Catalog->CatProducts[index] = insert(Catalog->CatProducts[index],prod->string);
+	Catalog->CatProducts[index] = insertMyAvl(Catalog->CatProducts[index],prod->string);
 	return Catalog;
 }
 
 
 /* criar um typedef BOOL */
 int existProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
-
 	int exist;
 	int index = prod->string[0]-'A';
-	exist = existAvl(Catalog->CatProducts[index],prod->string);
+	exist = existMyAvl(Catalog->CatProducts[index],prod->string);
 	return exist;
 }
 
@@ -58,11 +57,10 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 
 	int i;
 
-	if(Catalog == NULL) printf("*\n");
-	else 
+	if(Catalog != NULL)
 		for(i=0;i<SIZE_ABC;i++)  {
 			printf("LETRA %c=====\n", 'A'+i); 
-			printAVL(Catalog->CatProducts[i]); 
+			printMyAvl(Catalog->CatProducts[i]); 
 	}
 	return 0;
 }
@@ -70,7 +68,7 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 void removeCatProds(CATALOG_PRODUCTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
-		removeAvl(Catalog->CatProducts[i]);
+		removeMyAvl(Catalog->CatProducts[i]);
 		Catalog->CatProducts[i] = NULL;
 	}
 }
@@ -101,9 +99,6 @@ int testProduct (PRODUCT prod){
    return 1;
 }
 
-Avl getP (CATALOG_PRODUCTS Catalog, int index){
-	return Catalog->CatProducts[index];
-}
 
 char* getProductString(PRODUCT prod){
 	return prod->string;

@@ -18,7 +18,7 @@ typedef struct conjClie *GROUP_CLIENTS;
 CATALOG_CLIENTS initClients();
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS, CLIENT);
 CATALOG_CLIENTS valCli(FILE *,CATALOG_CLIENTS,int *);
-int printCatClients(CATALOG_CLIENTS);
+//int printCatClients(CATALOG_CLIENTS);
 int existClient(CATALOG_CLIENTS, CLIENT);
 int totalClientsLetter(CATALOG_CLIENTS,char);
 int totalClients(CATALOG_CLIENTS);

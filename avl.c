@@ -10,6 +10,11 @@ struct avl {
 	struct avl *left, *right;
 };
 
+struct myAvl {
+	int total;
+	Avl avl;
+};
+
 /* Estes prototypes não são para estar no .h porque são auxiliares */
 static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
@@ -76,6 +81,13 @@ static Avl rotateLeft(Avl a) {
 	}
 }*/
 
+MY_AVL initMyAvl(){
+	MY_AVL a = malloc(sizeof(struct myAvl));
+	a-> avl = initAvl();
+	a->total = 0;
+	return a;
+}
+
 
 Avl initAvl(){
 	return NULL;
@@ -137,9 +149,21 @@ Avl insert(Avl estrutura, char* line) {
 
 }
 
-void printAVL(Avl estrutura) {
+MY_AVL insertMyAvl(MY_AVL a,char* line){
 
-	if (!estrutura) printf("*\n");
+	if(a == NULL) a = initMyAvl();
+	(a->avl) = insert(a->avl,line);
+	(a->total)++;
+	
+	return a;
+}
+
+void printMyAvl(MY_AVL a){
+	printAVL(a->avl);
+}
+
+void printAVL(Avl estrutura) {	
+	if (!estrutura);
 	else {
 		printAVL(estrutura->left);
 		printf("%s\n", estrutura->code);
@@ -147,33 +171,31 @@ void printAVL(Avl estrutura) {
 	}
 }
 
-int existAvl(Avl estrutura, char* line){
+int existMyAvl(MY_AVL estrutura,char* line){
+	int r = existAvl(estrutura->avl,line);
+	return r;
+}
 
+int existAvl(Avl estrutura, char* line){
 	int r=0;
-    int s=strcmp(estrutura->code,line);
-    
-    if(s==0) return 1;
+	int s=strcmp(estrutura->code,line);
+	if(s==0) return 1;
 	else if(s>0 && estrutura->left!=NULL)
 		r=existAvl(estrutura->left,line);
 	else if (estrutura->right!=NULL)
 		r=existAvl(estrutura->right,line);
-    return r;
+	return r;
 }
 
-int totalElements(Avl estrutura){
-
-	int total = 0;
-	if(estrutura!=NULL){
-		total++;
-		total+=totalElements(estrutura->right);
-		total+=totalElements(estrutura->left);
-	}
-	return total;
+int totalElements(MY_AVL estrutura){
+	return estrutura->total;
 }
 
+void removeMyAvl(MY_AVL estrutura){
+	removeAvl(estrutura->avl);
+}
 
 void removeAvl(Avl estrutura){
-
 	if(estrutura != NULL){
 		removeAvl(estrutura->right);
 		removeAvl(estrutura->left);
@@ -181,3 +203,6 @@ void removeAvl(Avl estrutura){
 	}
 }
 
+Avl getAvl(MY_AVL estrutura){
+	return estrutura->avl;
+}

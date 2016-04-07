@@ -15,7 +15,7 @@ typedef struct conjProds *GROUP_PRODUCTS;
 CATALOG_PRODUCTS initProducts();
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS, PRODUCT);
 CATALOG_PRODUCTS valProd(FILE *,CATALOG_PRODUCTS,int *);
-int printCatProducts(CATALOG_PRODUCTS);
+//int printCatProducts(CATALOG_PRODUCTS);
 int existProduct(CATALOG_PRODUCTS, PRODUCT);
 int totalProductsLetter(CATALOG_PRODUCTS,char);
 int totalProducts(CATALOG_PRODUCTS);
