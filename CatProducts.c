@@ -53,38 +53,12 @@ int totalProducts(CATALOG_PRODUCTS Catalog){
 	return total;
 }
 
-int printCatProducts(CATALOG_PRODUCTS Catalog){
-
-	int i;
-
-	if(Catalog != NULL)
-		for(i=0;i<SIZE_ABC;i++)  {
-			printf("LETRA %c=====\n", 'A'+i); 
-			printMyAvl(Catalog->CatProducts[i]); 
-	}
-	return 0;
-}
-
 void removeCatProds(CATALOG_PRODUCTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
 		removeMyAvl(Catalog->CatProducts[i]);
 		Catalog->CatProducts[i] = NULL;
 	}
-}
-
-CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
-
-	char buffer[SIZE_BUFFER];
-	PRODUCT line = malloc(sizeof(struct product));
-
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-		line->string = strtok(buffer,"\r\n");
-		Catalog = insertProduct(Catalog,line);
-		(*validated)++;
-	}
-		
-	return Catalog;
 }
 
 /* Testa os produtos */
@@ -100,13 +74,28 @@ int testProduct (PRODUCT prod){
 }
 
 
-char* getProductString(PRODUCT prod){
+char* getProduct(PRODUCT prod){
 	return prod->string;
 }
 
-PRODUCT setProductString(char* string){
+PRODUCT setProduct(char* string){
 	PRODUCT prod = malloc(sizeof(struct product));
 	prod->string = malloc(SIZE_PRODUCTS);
 	strcpy(prod->string,string);
 	return prod;
 }
+
+/* ########################################## APAGAR ###########################################
+
+int printCatProducts(CATALOG_PRODUCTS Catalog){
+
+	int i;
+
+	if(Catalog != NULL)
+		for(i=0;i<SIZE_ABC;i++)  {
+			printf("LETRA %c=====\n", 'A'+i); 
+			printMyAvl(Catalog->CatProducts[i]); 
+	}
+	return 0;
+}
+*/

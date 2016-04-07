@@ -60,27 +60,6 @@ static Avl rotateLeft(Avl a) {
 	return aux;
 }
 
-/*static void insertArray (char** array,Avl estrutura,int *a){
-	
-	if(estrutura->left==NULL && estrutura->right==NULL){
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else if(estrutura->left==NULL){ 
-		insertArray(array,estrutura->right,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else { 
-		insertArray(array,estrutura->left,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
-	}
-}*/
-
 MY_AVL initMyAvl(){
 	MY_AVL a = malloc(sizeof(struct myAvl));
 	a-> avl = initAvl();
@@ -158,18 +137,6 @@ MY_AVL insertMyAvl(MY_AVL a,char* line){
 	return a;
 }
 
-void printMyAvl(MY_AVL a){
-	printAVL(a->avl);
-}
-
-void printAVL(Avl estrutura) {	
-	if (!estrutura);
-	else {
-		printAVL(estrutura->left);
-		printf("%s\n", estrutura->code);
-		printAVL(estrutura->right);
-	}
-}
 
 int existMyAvl(MY_AVL estrutura,char* line){
 	int r = existAvl(estrutura->avl,line);
@@ -206,3 +173,39 @@ void removeAvl(Avl estrutura){
 Avl getAvl(MY_AVL estrutura){
 	return estrutura->avl;
 }
+
+/* ############################################################## APAGAR ##########################################################################
+
+void printMyAvl(MY_AVL a){
+	printAVL(a->avl);
+}
+
+void printAVL(Avl estrutura) {	
+	if (!estrutura);
+	else {
+		printAVL(estrutura->left);
+		printf("%s\n", estrutura->code);
+		printAVL(estrutura->right);
+	}
+}
+
+static void insertArray (char** array,Avl estrutura,int *a){
+	
+	if(estrutura->left==NULL && estrutura->right==NULL){
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else if(estrutura->left==NULL){ 
+		insertArray(array,estrutura->right,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else { 
+		insertArray(array,estrutura->left,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
+	}
+}*/

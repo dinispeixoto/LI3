@@ -52,6 +52,32 @@ int totalClients(CATALOG_CLIENTS Catalog){
 	return total;
 }
 
+void removeCatClients(CATALOG_CLIENTS Catalog){
+	int i;
+	for(i=0;i<SIZE_ABC;i++) {
+		removeMyAvl(Catalog->CatClients[i]);
+		Catalog->CatClients[i] = NULL;
+	}
+}
+
+int testClient(CLIENT client){
+	int num = atoi(client->string+LETRAS_C),r=0;
+	if(isupper(client->string[0]) && (num>=1000) && (num<=5000))r++;
+	return r;
+}
+
+char* getClient(CLIENT clie){
+	return clie->string;
+}
+
+CLIENT setClient(char* string){
+	CLIENT client = malloc(sizeof(struct client));
+	client->string = malloc(SIZE_CLIENTS);
+	strcpy(client->string,string);
+	return client;
+}
+
+/* ########################################## APAGAR ###################################################
 
 int printCatClients(CATALOG_CLIENTS Catalog){
 
@@ -65,42 +91,4 @@ int printCatClients(CATALOG_CLIENTS Catalog){
 	return 0;
 }
 
-void removeCatClients(CATALOG_CLIENTS Catalog){
-	int i;
-	for(i=0;i<SIZE_ABC;i++) {
-		removeMyAvl(Catalog->CatClients[i]);
-		Catalog->CatClients[i] = NULL;
-	}
-}
-
-
-CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
-
-	char buffer[SIZE_BUFFER];
-	CLIENT line = malloc(sizeof(struct client));
-
-	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-		line->string = strtok(buffer,"\r\n");
-		Catalog = insertClient(Catalog,line);
-		(*validated)++;
-	}
-		
-	return Catalog;
-}
-
-int testClient(CLIENT client){
-	int num = atoi(client->string+LETRAS_C),r=0;
-	if(isupper(client->string[0]) && (num>=1000) && (num<=5000))r++;
-	return r;
-}
-
-char* getClientString(CLIENT clie){
-	return clie->string;
-}
-
-CLIENT setClientString(char* string){
-	CLIENT client = malloc(sizeof(struct client));
-	client->string = malloc(SIZE_CLIENTS);
-	strcpy(client->string,string);
-	return client;
-}
+*/

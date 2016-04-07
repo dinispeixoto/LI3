@@ -7,14 +7,13 @@
 struct sales{
 	CLIENT client;
 	PRODUCT product;
-	double price;
-	int quantity;
-	char infoPromo;
-	int filial;
-	int month;
+	PRICE price;
+	QUANTITY quantity;
+	INFO_PROMO infoPromo;
+	FILIAL filial;
+	MONTH month;
 };
 
-static int partCheck(char*,CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT,PRODUCT,int*,int*,int*,double*,char*);
 static int testSales(CLIENT,PRODUCT,float,int,char,int,int);
 
 SALES* initSales(){
@@ -22,41 +21,72 @@ SALES* initSales(){
 	return sales;
 }
 
-/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES* sales){
+CLIENT getSalesClient(SALES a){
+	return a->client;
+}
 
-	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;
-	CLIENT clie;
-	PRODUCT prod;
-	int month,filial,quant;
-	double price;
-	char infoP;
+SALES setSalesClient(CLIENT c,SALES a){
+	a->client = c;
+	return a;
+}
 
-	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
-		
-		line = strtok(buffer,"\r\n");
+PRODUCT getSalesProduct(SALES a){
+	return a->product;
+}
 
-		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
-		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
-		if(r){
-			sales[validated] = malloc(sizeof(struct sales));
-			sales[validated]->client = clie;
-			sales[validated]->product = prod;
-			sales[validated]->price = price;
-			sales[validated]->quantity = quant;
-			sales[validated]->infoPromo = infoP;
-			sales[validated]->filial = filial;
-			sales[validated]->month = month;
-			validated+=r;
-		}
-	}
-	return validated;
+SALES setSalesProduct(PRODUCT c,SALES a){
+	a->product = c;
+	return a;
+}
+
+PRICE getSalesPrice(SALES a){
+	return a->price;
+}
+
+SALES setSalesPrice(PRICE c,SALES a){
+	a->price = c;
+	return a;
+}
+
+QUANTITY getSalesQuantity(SALES a){
+	return a->quantity;
+}
+
+SALES setSalesQuantity(QUANTITY c,SALES a){
+	a->quantity = c;
+	return a;
+}
+
+INFO_PROMO getSalesInfoPromo(SALES a){
+	return a->infoPromo;
+}
+
+SALES setSalesInfoPromo(INFO_PROMO c,SALES a){
+	a->infoPromo = c;
+	return a;
+}
+
+FILIAL getSalesFilial(SALES a){
+	return a->filial;
+}
+
+SALES setSalesFilial(FILIAL c,SALES a){
+	a->filial = c;
+	return a;
+}
+
+MONTH getSalesMonth(SALES a){
+	return a->month;
+}
+
+SALES setSalesMonth(MONTH c,SALES a){
+	a->month = c;
+	return a;
 }
 
 /*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 e se os outros parametros estao corretos. */
-static int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT clie,PRODUCT prod,int *month,int *filial,int *quant,double *price,char *infoP){
+int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT clie,PRODUCT prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
 
@@ -65,11 +95,11 @@ static int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS produc
 
 	for(i=0;token != NULL;i++){
 		switch(i){
-			case 0: prod = setProductString(token); break;
+			case 0: prod = setProduct(token); break;
 			case 1: *price = atof(token); break;
 			case 2: *quant = atoi(token); break;
 			case 3: *infoP = token[0]; break;
-			case 4: clie = setClientString(token); break;
+			case 4: clie = setClient(token); break;
 			case 5: *month = atoi(token); break;
 			case 6: *filial = atoi(token); break;
 		}
@@ -99,3 +129,4 @@ static int testSales(CLIENT clie, PRODUCT prod,float price, int quantity, char i
   else if(filial < 1 || filial > 3) return 0;
   else return 1;
 }
+

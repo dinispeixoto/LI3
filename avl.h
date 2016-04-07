@@ -1,7 +1,6 @@
 #ifndef __AVL_H__
 #define __AVL_H__
 
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -19,9 +18,12 @@ int existAvl(Avl, STRING); /*  se calhar aqui é melhor meter o tipo PRODUTO/CLI
 void removeAvl(Avl);
 void removeMyAvl(MY_AVL);
 int existMyAvl(MY_AVL,STRING);
-void printAVL(Avl);
-void printMyAvl(MY_AVL);
 int totalElements(MY_AVL);
 Avl getAvl(MY_AVL);
+
+/* APAGAR 
+void printAVL(Avl);
+void printMyAvl(MY_AVL);
+*/
 
 #endif
