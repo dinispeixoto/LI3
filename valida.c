@@ -1,19 +1,16 @@
-#include "valida.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
 #include "CatClients.h"
-#include "CatProducts.h"					
+#include "valida.h"
+#include "facturacao.h"
 
-struct sales{
-   char client[SIZE_CLIENTS];
-   char product[SIZE_PRODUCTS];
-   double price;
-   int quantity;
-   char infoPromo;
-   int filial;
-   int month;
-};
 
-/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES* sales){
+
+/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array.*/
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,FACTURACAO f,Sales* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int validated=0,r;
@@ -26,7 +23,7 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES
 		
 		line = strtok(buffer,"\r\n");
 
-		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
+		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array.*/
 		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
 			sales[validated] = malloc(sizeof(struct sales));
@@ -37,20 +34,26 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS  products,SALES
 			sales[validated]->infoPromo=infoP;
 			sales[validated]->filial=filial;
 			sales[validated]->month=month;
+			f=insereFact(f,sales[validated]);
 			validated+=r;
 		}
 	}
 	return validated;
 }
 
+/* ############################################## FUNÇÕES AUXILIARES ################################################################################################################
+*/
+
 /*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 e se os outros parametros estao corretos. */
 int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char** clie,char** prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
-		
-	token = strtok(line, " ");
 
+
+			
+	token = strtok(line, " ");
+   
 	for(i=0;token != NULL;i++){
 		switch(i){
 			case 0: *prod = token; break;
@@ -66,8 +69,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char
 
 	int indexClient =  *clie[0]-'A';
 	int indexProduct = *prod[0]-'A';
-
-	Avl auxClient = getC(clients,indexClient);
+    Avl auxClient = getC(clients,indexClient);
 	Avl auxProduct = getP(products,indexProduct);
 
 
@@ -75,7 +77,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,char
 	return r;
 }
 
-/* Testa os produtos */
+
 int testProduct (char* prod){
    int num = atoi(prod+LETRAS_P),i;
 
@@ -87,7 +89,7 @@ int testProduct (char* prod){
    return 1;
 }
 
-/* Testa os Clientes */
+
  int testClient(char* client){
     int num = atoi(client+LETRAS_C),r=0;
 
@@ -96,14 +98,6 @@ int testProduct (char* prod){
     return r;
  }
 
-
-/* Testa as diferentes cenas das Vendas.
-	 Preço de 0 a 999.99;
-	 Quantidade de 0 a 200;
-	 Caracter a informar se o preço é normal(N) ou em promoção(P);
-	 Mês (1 a 12);
-	 Filial (1 a 3);
-*/
 
 int testSales(float price, int quantity, char infoPromo, int month, int filial){
 

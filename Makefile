@@ -1,13 +1,13 @@
 CC = gcc 
 CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi
-FILES = $(wildcard *.h *.c)
+FILES = $(wildcard *.c)
 
 default:
-	$(CC) $(CFLAGS) $(FILES) -o li3
+	$(CC) $(CFLAGS) $(FILES) -o gereVendas 
 
 debug: 
 	gcc $(CFLAGS) -g -o debug
 	gdb debug
 
 clean:
-	rm li3 
+	rm gereVendas 

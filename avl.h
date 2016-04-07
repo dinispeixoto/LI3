@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define SIZE_CODE 7
+#define SIZE_CODE 7 
 #define LEFT -2
 #define RIGHT 2
 
@@ -14,10 +14,12 @@ typedef struct avl *Avl;
 
 Avl initAvl();
 int heightAvl(Avl);
-Avl insert(Avl,char*);
+Avl insert(Avl,char*,void*);
 int existAvl(Avl, char*);
 void removeAvl(Avl);
 void printAVL(Avl);
 int totalElements(Avl);
-
+Avl cloneAvl(Avl);
+void* getInfo(Avl );
+char* getCode(Avl );
 #endif

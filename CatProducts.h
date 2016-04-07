@@ -1,8 +1,8 @@
 #ifndef __CATPRODUCTS_H__
 #define __CATPRODUCTS_H__
 
-#define SIZE_ABC 26 /* abecedário */
 #define SIZE_BUFFER 64
+#define SIZE_ABC 26 
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -19,6 +19,7 @@ int printCatProducts(CATALOG_PRODUCTS);
 int existProduct(CATALOG_PRODUCTS, Product);
 int totalProductsLetter(CATALOG_PRODUCTS,char);
 int totalProducts(CATALOG_PRODUCTS);
-Avl getP(CATALOG_PRODUCTS ,int );
+Avl getP(CATALOG_PRODUCTS  , int );
+Avl * get2 (CATALOG_PRODUCTS Catalog);
 
 #endif
