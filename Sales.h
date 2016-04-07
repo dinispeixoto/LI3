@@ -20,6 +20,7 @@ typedef int FILIAL;
 typedef int MONTH;
 
 SALES* initSales();
+SALES initSale();
 CLIENT getSalesClient(SALES);
 PRODUCT getSalesProduct(SALES);
 PRICE getSalesPrice(SALES);

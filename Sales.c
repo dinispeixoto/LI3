@@ -21,6 +21,11 @@ SALES* initSales(){
 	return sales;
 }
 
+SALES initSale(){
+	SALES a = malloc(sizeof(struct sales)); 
+	return a;
+}
+
 CLIENT getSalesClient(SALES a){
 	return a->client;
 }

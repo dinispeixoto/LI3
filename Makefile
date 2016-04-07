@@ -1,6 +1,6 @@
 CC = gcc 
 CFLAGS = -Wunreachable-code -Wunused-parameter -ansi -O2
-FILES = $(wildcard *.h *.c)
+FILES = *.c
 
 default:
 	$(CC) $(CFLAGS) $(FILES) -o li3
