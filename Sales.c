@@ -28,6 +28,12 @@ SALES initSale(){
 	return a;
 }
 
+void freeSale(SALES a){
+	freeClient(a->client);
+	freeProduct(a->product);
+	free(a);
+}
+
 /* GETS E SETS */
 
 CLIENT getSalesClient(SALES a){

@@ -26,6 +26,11 @@ CATALOG_PRODUCTS initProducts(){
 	return Catalog;
 }
 
+void freeProduct(PRODUCT prod){
+	free(prod->string);
+	free(prod);
+}
+
 /* Insere um produto no respectivo catálogo. */
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
@@ -75,6 +80,7 @@ int testProduct (PRODUCT prod){
 }
 
 /* GETS E SETS */
+
 char* getProduct(PRODUCT prod){
 	return prod->string;
 }

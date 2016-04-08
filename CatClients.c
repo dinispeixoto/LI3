@@ -23,6 +23,12 @@ CATALOG_CLIENTS initClients(){
 	return Catalog;
 }
 
+void freeClient(CLIENT clie){
+	free(clie->string);
+	free(clie);
+}
+
+
 /* Insere um cliente no respectivo catálogo. */
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 

@@ -14,6 +14,8 @@ typedef struct catp *CATALOG_PRODUCTS;
 typedef struct conjProds *GROUP_PRODUCTS;
 
 CATALOG_PRODUCTS initProducts();
+void freeProduct(PRODUCT);
+void removeCatProds(CATALOG_PRODUCTS);
 GROUP_PRODUCTS initGroupProducts();
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS, PRODUCT);
 BOOL existProduct(CATALOG_PRODUCTS, PRODUCT);
@@ -22,7 +24,6 @@ int totalProducts(CATALOG_PRODUCTS);
 int testProduct (PRODUCT);
 
 /* GETS & SETS */
-Avl getP(CATALOG_PRODUCTS ,int );
 char* getProduct(PRODUCT prod);
 PRODUCT setProduct(char* string);
 

@@ -17,6 +17,6 @@ int main(){
 	SALES* Sales = initSales();
 
 	getFile(CatClients,CatProducts,Sales);	
-
+	
 	return 0;
 }

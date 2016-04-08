@@ -13,6 +13,8 @@ typedef struct catc *CATALOG_CLIENTS;
 typedef struct conjClie *GROUP_CLIENTS;
 
 CATALOG_CLIENTS initClients();
+void freeClient(CLIENT);
+void removeCatClients(CATALOG_CLIENTS);
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS, CLIENT);
 BOOL existClient(CATALOG_CLIENTS, CLIENT);
 int totalClientsLetter(CATALOG_CLIENTS,char);
@@ -20,7 +22,6 @@ int totalClients(CATALOG_CLIENTS);
 int testClient(CLIENT); /* ESTA TEM DE FICAR AQUI PQ É CHAMADA PELA PARTCHECK, MAS NÃO DEVERIA ESTAR AQUI */
 
 /* GETS & SETS */
-Avl getC(CATALOG_CLIENTS, int);
 char* getClient(CLIENT clie);
 CLIENT setClient(char* string);
 
