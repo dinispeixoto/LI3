@@ -139,3 +139,14 @@ static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char 
   else return 1;
 }
 
+SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAL filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
+	SALES sale = initSale();
+	sale->client = clie;
+	sale->product = prod;
+	sale->month = month;
+	sale->filial = filial;
+	sale->quantity = quant;
+	sale->price = price;
+	sale->infoPromo = infoP;
+	return sale;	
+}

@@ -105,17 +105,11 @@ SALES* valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SAL
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales[*validated] = initSale();
-			setSalesClient(clie,sales[*validated]);
-			setSalesProduct(prod,sales[*validated]);
-			setSalesPrice(price,sales[*validated]);
-			setSalesQuantity(quant,sales[*validated]);
-			setSalesInfoPromo(infoP,sales[*validated]);
-			setSalesFilial(filial,sales[*validated]);
-			setSalesMonth(month,sales[*validated]);	
+			sales[*validated] = updateSales(clie,prod,month,filial,quant,price,infoP);
 			(*validated)++;
 		}
 		else (*invalidated)++;
 	}
 	return sales;
 }
+ 
