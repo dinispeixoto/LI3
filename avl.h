@@ -1,25 +1,39 @@
 #ifndef __AVL_H__
 #define __AVL_H__
 
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
-#define SIZE_CODE 7 
-#define LEFT -2
-#define RIGHT 2
+#define TRUE 1
+#define FALSE 0
 
 typedef struct avl *Avl;
+typedef struct myAvl *MY_AVL;
+typedef char* STRING;
 
+typedef int BOOL;
+
+MY_AVL initMyAvl();
+MY_AVL insertMyAvl(MY_AVL,STRING,void*);
 Avl initAvl();
 int heightAvl(Avl);
-Avl insert(Avl,char*,void*);
-int existAvl(Avl, char*);
+Avl insert(Avl,STRING,void*);
 void removeAvl(Avl);
+void removeMyAvl(MY_AVL);
+BOOL existMyAvl(MY_AVL,STRING);
+BOOL existAvl(Avl, STRING);
+int totalElements(MY_AVL);
+
+/* GETS E SETS */
+Avl getAvl(MY_AVL);
+Avl getAvlLeft(Avl);
+Avl getAvlRight(Avl);
+char* getAvlCode(Avl);
+
+/* APAGAR 
 void printAVL(Avl);
-int totalElements(Avl);
-Avl cloneAvl(Avl);
-void* getInfo(Avl );
-char* getCode(Avl );
+void printMyAvl(MY_AVL);
+*/
+
 #endif

@@ -1,15 +1,11 @@
 #include "facturacao.h"
+#include "Sales.h"
 #include "avl.h"
 
-
-FACTURACAO initFact (Avl* a){
+FACTURACAO initFact (){
 	int i;
-	FACTURACAO f = malloc (sizeof(struct fact));
-	for(i=0;i<26;i++){
-		f->prod[i]=cloneAvl(a[i]);
-	}
-	f->totalElementos=0;
-	f->totalFact=0;
+	FACTURACAO f = malloc(sizeof(struct fact));
+	for(i=0;i<12;i++)	f->prod[i] = initMyAvl();
 	return f;
 }
 
@@ -23,43 +19,41 @@ PQ initPQ(){
 INFO initINFO(){
 	int j,k;
 	INFO i=malloc(sizeof(struct info));
-	for(j=0;j<6;j++){
-		for(k=0;k<12;k++)
+	for(j=0;j<2;j++){
+		for(k=0;k<3;k++)
 			i->F[j][k]=initPQ();
 	}
+	i->totalMes=0;
 	return i;
 }
 
-INFO copia (Sales s, INFO i){
-	if(s->infoPromo == 'P'){
-		i->F[s->filial+2][s->month-1]->totalprice+=(s->price)*(s->quantity);
-		i->F[s->filial+2][s->month-1]->totalquant+=s->quantity;
-	}
-	else {
-		i->F[s->filial-1][s->month-1]->totalprice+=(s->price)*(s->quantity);
-		i->F[s->filial-1][s->month-1]->totalquant+=s->quantity;
-	}
+
+INFO copia (SALES s, INFO i){
+	int p,f;
+	if(getSalesInfoPromo(s)== 'P') p=1;
+	else p=0;
+
+	f=getSalesFilial(s)-1;
+	int total=(getSalesPrice(s))*(getSalesQuantity(s));
+
+	i->F[p][f]->totalprice+=total;
+	i->F[p][f]->totalquant+=getSalesQuantity(s);
+	i->totalMes+=total;
+	
 	return i;
 }
 
-FACTURACAO insereFact(FACTURACAO f,Sales s){
+FACTURACAO insereFact(FACTURACAO f,SALES s){
 
-	void* y=malloc (sizeof(struct info));
 	INFO i=initINFO();
 	
 	i=copia(s,i);
-	
-	int index = s->product[0]-'A';
+	void* y=&i;
+	int month=getSalesMonth(s);
 
-	memcpy(y,i,sizeof(*i));
+	f->prod[month]=insertMyAvl(f->prod[month],getProduct(getSalesProduct(s)),y);
 
-	f->prod[index]=insert(f->prod[index],s->product,y);
-
-	//f->totalFact+=i->price;
-	//f->totalElementos++;
 	return f;
 }
 
-
-	
 
