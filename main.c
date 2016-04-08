@@ -11,7 +11,7 @@
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
 int main(){	
-	
+
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	SALES* Sales = initSales();
