@@ -6,12 +6,17 @@
 #define SIZE_ABC 26 /* abecedário */
 #define SIZE_BUFFER 64
 
+#define TRUE 1
+#define FALSE 0
+
 #include "avl.h"
 #include <stdio.h>
 
 typedef struct product *PRODUCT;
 typedef struct catp *CATALOG_PRODUCTS;
 typedef struct conjProds *GROUP_PRODUCTS;
+
+typedef int BOOL;
 
 CATALOG_PRODUCTS initProducts();
 GROUP_PRODUCTS initGroupProducts();

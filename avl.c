@@ -15,6 +15,8 @@ struct myAvl {
 	Avl avl;
 };
 
+typedef char* STRING;
+
 /* Estes prototypes não são para estar no .h porque são auxiliares */
 static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
@@ -29,34 +31,27 @@ static int maior(int a, int b){
 }
 
 static Avl actualizarAltura(Avl a, Avl b){
-
 	a->height = maior(heightAvl(a->left), heightAvl(a->right))+1;
 	b->height = maior(heightAvl(b->left), heightAvl(b->right))+1;
-
 	return b;
 }
 
 static Avl rotateRight(Avl a) {
 	Avl aux;
-
 	aux = a->left;
 	a->left=aux->right;
 	aux->right=a;
-
 	aux=actualizarAltura(a,aux);
-
 	return aux;
 }
 
 static Avl rotateLeft(Avl a) {
-	Avl aux;
 	
+	Avl aux;
 	aux = a->right;
 	a->right=aux->left;
 	aux->left=a;
-
 	aux=actualizarAltura(a,aux);
-
 	return aux;
 }
 
@@ -67,19 +62,18 @@ MY_AVL initMyAvl(){
 	return a;
 }
 
-
 Avl initAvl(){
 	return NULL;
 }
 
-int heightAvl(Avl a){
-
+int heightAvl(Avl a){	
 	if(a==NULL) return 0;
 	else return a->height;
 }
 
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line) {
+	
 	int ls,rs,bal,HL,HR;
 
 	if(estrutura == NULL){
@@ -133,10 +127,8 @@ MY_AVL insertMyAvl(MY_AVL a,char* line){
 	if(a == NULL) a = initMyAvl();
 	(a->avl) = insert(a->avl,line);
 	(a->total)++;
-	
 	return a;
 }
-
 
 int existMyAvl(MY_AVL estrutura,char* line){
 	int r = existAvl(estrutura->avl,line);
@@ -169,6 +161,8 @@ void removeAvl(Avl estrutura){
 		free(estrutura);
 	}
 }
+
+/* GETS E SETS */ 
 
 Avl getAvl(MY_AVL estrutura){
 	return estrutura->avl;

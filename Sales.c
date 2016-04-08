@@ -16,15 +16,19 @@ struct sales{
 
 static int testSales(CLIENT,PRODUCT,float,int,char,int,int);
 
+/* Inicializa um array de estruturas SALES. */
 SALES* initSales(){
 	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
 	return sales;
 }
 
+/* Inicializa uma estrutura SALES. */
 SALES initSale(){
 	SALES a = malloc(sizeof(struct sales)); 
 	return a;
 }
+
+/* GETS E SETS */
 
 CLIENT getSalesClient(SALES a){
 	return a->client;

@@ -17,7 +17,7 @@ struct product {
 	char* string;
 };
 
-
+/* Inicializa o Catálogo de Produtos. */
 CATALOG_PRODUCTS initProducts(){
 	
 	int i;
@@ -26,7 +26,7 @@ CATALOG_PRODUCTS initProducts(){
 	return Catalog;
 }
 
-
+/* Insere um produto no respectivo catálogo. */
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 	int index = prod->string[0]-'A';
@@ -34,28 +34,29 @@ CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 	return Catalog;
 }
 
-
-/* criar um typedef BOOL */
-int existProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
+/* Verifica se um produto existe no catálogo.*/
+BOOL existProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 	int exist;
 	int index = prod->string[0]-'A';
 	exist = existMyAvl(Catalog->CatProducts[index],prod->string);
 	return exist;
 }
 
+/* Conta quantos produtos existem começados por uma determinada letra no catálogo.*/
 int totalProductsLetter(CATALOG_PRODUCTS Catalog,char letter){
 	int index = letter - 'A';
 	return totalElements(Catalog->CatProducts[index]);
 } 
 
+/* Conta o total de produtos no catálogo. */
 int totalProducts(CATALOG_PRODUCTS Catalog){
-
 	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalProductsLetter(Catalog,letter);
 	return total;
 }
 
+/* Limpa o catálogo de produtos. */
 void removeCatProds(CATALOG_PRODUCTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
@@ -64,19 +65,16 @@ void removeCatProds(CATALOG_PRODUCTS Catalog){
 	}
 }
 
-/* Testa os produtos */
+/* Testa se um produto tem a estrutura correta.*/
 int testProduct (PRODUCT prod){
    int num = atoi(prod->string+LETRAS_P),i;
-
    for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod->string[i]))) return 0;
-
    if(!((num>=1000) && (num<=1999))) return 0;
-  
    return 1;
 }
 
-
+/* GETS E SETS */
 char* getProduct(PRODUCT prod){
 	return prod->string;
 }

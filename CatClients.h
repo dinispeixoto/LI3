@@ -6,18 +6,23 @@
 #define SIZE_ABC 26 /* abecedário */
 #define SIZE_BUFFER 64
 
+#define TRUE 1
+#define FALSE 0
+
 #include "avl.h"
 
 typedef struct client *CLIENT;
 typedef struct catc *CATALOG_CLIENTS; 
 typedef struct conjClie *GROUP_CLIENTS;
 
+typedef int BOOL;
+
 CATALOG_CLIENTS initClients();
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS, CLIENT);
 int existClient(CATALOG_CLIENTS, CLIENT);
 int totalClientsLetter(CATALOG_CLIENTS,char);
 int totalClients(CATALOG_CLIENTS);
-int testClient(CLIENT);
+int testClient(CLIENT); /* ESTA TEM DE FICAR AQUI PQ É CHAMADA PELA PARTCHECK, MAS NÃO DEVERIA ESTAR AQUI */
 
 /* GETS & SETS */
 Avl getC(CATALOG_CLIENTS, int);

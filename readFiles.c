@@ -3,7 +3,8 @@
 #include "CatProducts.h"
 #include "Sales.h"			
 
-
+/* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
+validado em memória, na respectiva estrutura. */
 void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales){
 
 			
@@ -39,6 +40,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales){
 }
 
 
+/* Faz a validação dos clientes. */
 CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
@@ -53,6 +55,7 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 	return Catalog;
 }
 
+/* Faz a validação dos produtos. */
 CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	char buffer[SIZE_BUFFER];
@@ -67,7 +70,7 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 	return Catalog;
 }
 
-/* Conta quantas linhas do ficheiro com as vendas são válidas, e aloca num array. */
+/* Conta quantas linhas do ficheiro com as vendas são válidas. */
 int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES* sales){
 
 	char buffer[SIZE_BUF_SALES],*line;

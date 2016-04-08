@@ -9,6 +9,7 @@
 #include "CatProducts.h"
 #include "Sales.h"			
 
+/* Nomes dos ficheiros DEFAULT. */
 #define CLIENTS_FILE "Clientes.txt"
 #define	PRODUCTS_FILE "Produtos.txt"
 #define SALES_FILE "Vendas.txt"

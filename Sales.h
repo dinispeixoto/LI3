@@ -21,20 +21,24 @@ typedef int MONTH;
 
 SALES* initSales();
 SALES initSale();
+int partCheck(char*,CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT,PRODUCT,MONTH*,FILIAL*,QUANTITY*,PRICE*,INFO_PROMO*); /*NÃO FICA BEM AQUI*/
+
+/* GETS E SETS */
 CLIENT getSalesClient(SALES);
 PRODUCT getSalesProduct(SALES);
 PRICE getSalesPrice(SALES);
 QUANTITY getSalesQuantity(SALES);
 INFO_PROMO getSalesInfoPromo(SALES);
 MONTH getSalesMonth(SALES);
+FILIAL getSalesFilial(SALES);
 SALES setSalesClient(CLIENT,SALES);
 SALES setSalesProduct(PRODUCT,SALES);
 SALES setSalesPrice(PRICE,SALES);
 SALES setSalesQuantity(QUANTITY,SALES);
 SALES setSalesInfoPromo(INFO_PROMO,SALES);
 SALES setSalesMonth(MONTH,SALES);
+SALES setSalesFilial(FILIAL,SALES);
 
-int partCheck(char*,CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT,PRODUCT,MONTH*,FILIAL*,QUANTITY*,PRICE*,INFO_PROMO*); /*NÃO FICA BEM AQUI*/
 
 
 #endif

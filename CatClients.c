@@ -14,6 +14,7 @@ struct client {
 };
 
 
+/* Inicializa o Catálogo de Clientes. */
 CATALOG_CLIENTS initClients(){
 
 	int i;
@@ -22,7 +23,7 @@ CATALOG_CLIENTS initClients(){
 	return Catalog;
 }
 
-
+/* Insere um cliente no respectivo catálogo. */
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 
 	int index = clie->string[0]-'A';
@@ -30,7 +31,7 @@ CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 	return Catalog;
 }
 
-
+/* Verifica se um cliente existe no catálogo.*/
 int existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 	int exist;
 	int index = clie->string[0]-'A';
@@ -38,20 +39,21 @@ int existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 	return exist;
 }
 
+/* Conta quantos clientes existem começados por uma determinada letra no catálogo.*/
 int totalClientsLetter(CATALOG_CLIENTS Catalog,char letter){
 	int index = letter - 'A';
 	return totalElements(Catalog->CatClients[index]);
 } 
 
-
+/* Conta o total de clientes no catálogo. */
 int totalClients(CATALOG_CLIENTS Catalog){
-
 	char letter; int total=0;
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalClientsLetter(Catalog,letter);
 	return total;
 }
 
+/* Limpa o catálogo de clientes. */
 void removeCatClients(CATALOG_CLIENTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
@@ -60,11 +62,14 @@ void removeCatClients(CATALOG_CLIENTS Catalog){
 	}
 }
 
+/* Testa se um cliente tem a estrutura correta.*/
 int testClient(CLIENT client){
 	int num = atoi(client->string+LETRAS_C),r=0;
 	if(isupper(client->string[0]) && (num>=1000) && (num<=5000))r++;
 	return r;
 }
+
+/* GETS E SETS */
 
 char* getClient(CLIENT clie){
 	return clie->string;

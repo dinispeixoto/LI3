@@ -14,11 +14,13 @@ MY_AVL insertMyAvl(MY_AVL,STRING);
 Avl initAvl();
 int heightAvl(Avl);
 Avl insert(Avl,STRING);
-int existAvl(Avl, STRING); /*  se calhar aqui é melhor meter o tipo PRODUTO/CLIENT */
+int existAvl(Avl, STRING);
 void removeAvl(Avl);
 void removeMyAvl(MY_AVL);
 int existMyAvl(MY_AVL,STRING);
 int totalElements(MY_AVL);
+
+/* GETS E SETS */
 Avl getAvl(MY_AVL);
 Avl getAvlLeft(Avl);
 Avl getAvlRight(Avl);
