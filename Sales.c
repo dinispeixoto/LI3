@@ -18,20 +18,24 @@ static int testSales(CLIENT,PRODUCT,double,int,char,int,int);
 
 /* Inicializa um array de estruturas SALES. */
 SALES* initSales(){
+	int i;
 	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
+	for(i=0;i<MAX_SALES;i++) sales[i]=NULL;
 	return sales;
 }
 
 /* Inicializa uma estrutura SALES. */
 SALES initSale(){
-	SALES a = malloc(sizeof(struct sales)); 
+	SALES a = malloc(sizeof(struct sales));
 	return a;
 }
 
 void freeSale(SALES a){
-	freeClient(a->client);
-	freeProduct(a->product);
-	free(a);
+	if(a){
+		freeClient(a->client);
+		freeProduct(a->product);
+		free(a);
+	}	
 }
 
 /* GETS E SETS */
@@ -101,7 +105,7 @@ SALES setSalesMonth(MONTH c,SALES a){
 
 /*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
 e se os outros parametros estao corretos. */
-int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT clie,PRODUCT prod,int *month,int *filial,int *quant,double *price,char *infoP){
+int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIENT* clie,PRODUCT* prod,int *month,int *filial,int *quant,double *price,char *infoP){
 	char *token;
 	int r=0, i;
 
@@ -110,18 +114,18 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIE
 
 	for(i=0;token != NULL;i++){
 		switch(i){
-			case 0: prod = setProduct(token); break;
+			case 0: *prod = setProduct(token); break;
 			case 1: *price = atof(token); break;
 			case 2: *quant = atoi(token); break;
 			case 3: *infoP = token[0]; break;
-			case 4: clie = setClient(token); break;
+			case 4: *clie = setClient(token); break;
 			case 5: *month = atoi(token); break;
 			case 6: *filial = atoi(token); break;
 		}
 			token = strtok(NULL, " ");
 	}
 
-	if(testSales(clie,prod,*price,*quant,*infoP,*month,*filial) && existClient(clients,clie) && existProduct(products,prod)) r=1;
+	if(testSales(*clie,*prod,*price,*quant,*infoP,*month,*filial) && existClient(clients,*clie) && existProduct(products,*prod)) r=1;
 	return r;
 }
 

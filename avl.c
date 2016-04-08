@@ -146,7 +146,8 @@ int existAvl(Avl estrutura, char* line){
 }
 
 int totalElements(MY_AVL estrutura){
-	return estrutura->total;
+	if(estrutura) return estrutura->total;
+	else return 0;
 }
 
 void removeMyAvl(MY_AVL estrutura){

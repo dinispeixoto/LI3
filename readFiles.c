@@ -103,7 +103,7 @@ SALES* valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SAL
 		line = strtok(buffer,"\r\n");
 
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
-		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
+		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
 			sales[*validated] = updateSales(clie,prod,month,filial,quant,price,infoP);
 			(*validated)++;
