@@ -1,5 +1,5 @@
 CC = gcc 
-CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi -O2
+CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi -O2 -Wconversion -Wuninitialized -pedantic
 FILES = *.c
 
 default:

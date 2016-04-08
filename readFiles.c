@@ -12,10 +12,18 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales){
 	int validatedClients = 0;
 	int validatedProducts = 0;
 	int validatedSales = 0;
+	int invalidatedSales = 0;
+	
+	/*
+	fileClients = openFile();	
+	fileProducts = openFile();	
+	fileSales = openFile();	
+	*/
 	
 	fileClients = fopen(CLIENTS_FILE,"r");	
 	fileProducts = fopen(PRODUCTS_FILE,"r");
 	fileSales = fopen(SALES_FILE,"r");
+	
 	
 
 	if(fileClients!=NULL){
@@ -29,14 +37,22 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales){
 	}
 	
 	if(fileSales!=NULL){
-		validatedSales = valSales(fileSales,clients,products,sales);
+		sales = valSales(fileSales,clients,products,sales,&validatedSales,&invalidatedSales);
 		printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
 	}
-
 
 	fclose(fileClients);
 	fclose(fileProducts);
 	fclose(fileSales);	
+}
+
+
+FILE* openFile(){                                /* Isto é o base, tem de ser melhorado conforme necessitarmos quando tivermos o intrepertador. */
+	char fileName[SIZE_FILE_NAME];
+	scanf("%s", fileName);
+	FILE* file = fopen(fileName,"r");
+	if(!file){ printf("Não consegui ler o ficheiro.\n"); file = openFile();}
+	return file;
 }
 
 
@@ -71,12 +87,12 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES* sales){
+SALES* valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES* sales,int *validated, int *invalidated){
 
 	char buffer[SIZE_BUF_SALES],*line;
-	int validated=0,r;
-	CLIENT clie;
-	PRODUCT prod;
+	int r;
+	CLIENT clie = NULL; /* METI ESTA PORCARIA ASSIM PARA NÃO DAR WARNINGS */
+	PRODUCT prod = NULL;
 	int month,filial,quant;
 	double price;
 	char infoP;
@@ -88,16 +104,17 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES*
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,clie,prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales[validated] = initSale();
-			setSalesClient(clie,sales[validated]);
-			setSalesProduct(prod,sales[validated]);
-			setSalesPrice(price,sales[validated]);
-			setSalesQuantity(quant,sales[validated]);
-			setSalesInfoPromo(infoP,sales[validated]);
-			setSalesFilial(filial,sales[validated]);
-			setSalesMonth(month,sales[validated]);	
-			validated++;
+			sales[*validated] = initSale();
+			setSalesClient(clie,sales[*validated]);
+			setSalesProduct(prod,sales[*validated]);
+			setSalesPrice(price,sales[*validated]);
+			setSalesQuantity(quant,sales[*validated]);
+			setSalesInfoPromo(infoP,sales[*validated]);
+			setSalesFilial(filial,sales[*validated]);
+			setSalesMonth(month,sales[*validated]);	
+			(*validated)++;
 		}
+		else (*invalidated)++;
 	}
-	return validated;
+	return sales;
 }

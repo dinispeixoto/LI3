@@ -15,7 +15,6 @@ struct myAvl {
 	Avl avl;
 };
 
-typedef char* STRING;
 
 /* Estes prototypes não são para estar no .h porque são auxiliares */
 static Avl rotateRight(Avl);
