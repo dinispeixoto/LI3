@@ -124,9 +124,10 @@ GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
 }
 
 void travessia(Avl a,int index,GROUP_PRODUCTS array){
+	PRODUCT prod;
 	if(a!=NULL){
 		travessia(getAvlLeft(a),index,array);
-		PRODUCT prod = setProduct(getAvlCode(a));
+		prod = setProduct(getAvlCode(a));
 		array = toGroup(array,prod);
 		index++;
 		travessia(getAvlRight(a),index,array);
@@ -136,7 +137,7 @@ void travessia(Avl a,int index,GROUP_PRODUCTS array){
 GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){	
 	if (array->sp == array->size) {
 		array->size *= 2;
-		array->GroupProd = realloc (array->GroupProd, array->size*sizeof(PRODUCT));
+		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
 	}	
 	array->GroupProd[array->sp] = prod;
 	array->sp++;

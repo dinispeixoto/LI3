@@ -47,10 +47,11 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales){
 }
 
 
-FILE* openFile(){                                /* Isto é o base, tem de ser melhorado conforme necessitarmos quando tivermos o intrepertador. */
+FILE* openFile(){ 
+	FILE* file;                             /* Isto é o base, tem de ser melhorado conforme necessitarmos quando tivermos o intrepertador. */
 	char fileName[SIZE_FILE_NAME];
 	scanf("%s", fileName);
-	FILE* file = fopen(fileName,"r");
+	file = fopen(fileName,"r");
 	if(!file){ printf("Não consegui ler o ficheiro.\n"); file = openFile();}
 	return file;
 }

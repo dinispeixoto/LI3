@@ -14,7 +14,7 @@ struct sales{
 	MONTH month;
 };
 
-static int testSales(CLIENT,PRODUCT,float,int,char,int,int);
+static int testSales(CLIENT,PRODUCT,double,int,char,int,int);
 
 /* Inicializa um array de estruturas SALES. */
 SALES* initSales(){
@@ -127,7 +127,7 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIE
 	 Filial (1 a 3);
 */
 
-static int testSales(CLIENT clie, PRODUCT prod,float price, int quantity, char infoPromo, int month, int filial){
+static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char infoPromo, int month, int filial){
 
   if(price < 0 || price > 999.99) return 0;
   else if(!testClient(clie)) return 0;
