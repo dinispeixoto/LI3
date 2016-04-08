@@ -10,4 +10,5 @@ debug:
 	gdb debug
 
 clean:
-	rm li3 
+	rm -f li3
+	rm -f debug 
