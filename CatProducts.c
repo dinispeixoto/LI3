@@ -1,12 +1,15 @@
 #include "avl.h"
 #include "CatProducts.h"
 
+#define DEFAULT_SIZE 10
 
 struct catp {
 	MY_AVL CatProducts[SIZE_ABC];
 };
 
 struct conjProds{
+	int sp;
+	int size;
 	PRODUCT* GroupProd;
 };
 
@@ -97,5 +100,80 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 			printMyAvl(Catalog->CatProducts[i]); 
 	}
 	return 0;
+}
+*/
+
+/* #################################### QUERIES ######################################################## */
+
+GROUP_PRODUCTS initGroupProducts(){
+	
+	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
+	group->GroupProd = malloc (sizeof(PRODUCT) * DEFAULT_SIZE);
+	group->sp = 0;
+	group->size = DEFAULT_SIZE;
+
+	return group;
+}
+
+GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
+	
+	int index = letter - 'A';
+	GROUP_PRODUCTS group = initGroupProducts();
+	MY_AVL a = Catalog->CatProducts[index];
+	Avl tree = getAvl(a);
+	travessia(tree,0,group);
+	return group;
+}
+
+void travessia(Avl a,int index,GROUP_PRODUCTS array){
+	if(a!=NULL){
+		travessia(getAvlLeft(a),index,array);
+		PRODUCT prod = setProduct(getAvlCode(a));
+		array = toGroup(array,prod);
+		index++;
+		travessia(getAvlRight(a),index,array);
+	}
+}
+
+GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){	
+	if (array->sp == array->size) {
+		array->size *= 2;
+		array->GroupProd = realloc (array->GroupProd, array->size*sizeof(PRODUCT));
+	}	
+	array->GroupProd[array->sp] = prod;
+	array->sp++;
+	return array;
+}
+
+int getGroupProdSize(GROUP_PRODUCTS a){
+	return a->sp;
+}
+
+PRODUCT* getGroupProd(GROUP_PRODUCTS a){
+	return a->GroupProd;
+}
+
+
+
+/*
+void insertArray (char** array,Avl estrutura,int *a){
+	
+	if(estrutura->left==NULL && estrutura->right==NULL){
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else if(estrutura->left==NULL){ 
+		insertArray(array,estrutura->right,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+	}
+
+	else { 
+		insertArray(array,estrutura->left,a);
+		array[*a]=estrutura->code;
+		(*a)++;
+		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
+	}
 }
 */

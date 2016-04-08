@@ -174,6 +174,18 @@ Avl getAvl(MY_AVL estrutura){
 	return estrutura->avl;
 }
 
+Avl getAvlLeft(Avl a){
+	return a->left;
+}
+
+Avl getAvlRight(Avl a){
+	return a->right;
+}
+
+char* getAvlCode(Avl a){
+	return a->code;
+}
+
 /* ############################################################## APAGAR ##########################################################################
 
 void printMyAvl(MY_AVL a){

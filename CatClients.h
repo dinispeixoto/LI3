@@ -7,7 +7,6 @@
 #define SIZE_BUFFER 64
 
 #include "avl.h"
-#include <stdio.h>
 
 typedef struct client *CLIENT;
 typedef struct catc *CATALOG_CLIENTS; 
@@ -19,6 +18,8 @@ int existClient(CATALOG_CLIENTS, CLIENT);
 int totalClientsLetter(CATALOG_CLIENTS,char);
 int totalClients(CATALOG_CLIENTS);
 int testClient(CLIENT);
+
+/* GETS & SETS */
 Avl getC(CATALOG_CLIENTS, int);
 char* getClient(CLIENT clie);
 CLIENT setClient(char* string);

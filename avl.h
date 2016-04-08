@@ -20,6 +20,9 @@ void removeMyAvl(MY_AVL);
 int existMyAvl(MY_AVL,STRING);
 int totalElements(MY_AVL);
 Avl getAvl(MY_AVL);
+Avl getAvlLeft(Avl);
+Avl getAvlRight(Avl);
+char* getAvlCode(Avl);
 
 /* APAGAR 
 void printAVL(Avl);
