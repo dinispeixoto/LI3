@@ -1,5 +1,4 @@
 #include "avl.h"
-#include <stdio.h>
 
 #define SIZE_CODE 7
 #define LEFT -2
@@ -72,10 +71,15 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
+void* up(void* e,void* i){
+	void*y;
+	return y;
+}
+
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line,void* info) {
 	
-	int ls,rs,bal,HL,HR;
+	int ls,rs,bal,HL,HR,cp;
 
 	if(estrutura == NULL){
 		estrutura= (Avl)malloc(sizeof(struct avl));
@@ -87,9 +91,11 @@ Avl insert(Avl estrutura, char* line,void* info) {
 		estrutura->info=info;
 	}
 	else {
-		if(strcmp(estrutura->code,line) >= 0) estrutura->left=insert(estrutura->left,line,info);
-		else estrutura->right=insert(estrutura->right,line,info);
+		if((cp=strcmp(estrutura->code,line)) > 0) estrutura->left=insert(estrutura->left,line,info);
+		else if(cp<0)estrutura->right=insert(estrutura->right,line,info);
+		else estrutura->info=info;
 
+		if(cp){
 		HL = heightAvl(estrutura->left);
 		HR = heightAvl(estrutura->right);
 
@@ -118,6 +124,7 @@ Avl insert(Avl estrutura, char* line,void* info) {
 					}	
 					break;
 		}
+	}
 
 	}
 	return estrutura;

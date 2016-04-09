@@ -4,19 +4,19 @@
 #include "CatProducts.h"
 #include <stdio.h>
 
-/*
-PRO intiPAvl (){
+
+AUX intiAux (){
 	int i;
-	PRO pa = malloc(sizeof(struct pro));
-	for(i=0;i<26;i++)	pa->avl[i] = initMyAvl();
+	AUX pa = malloc(sizeof(struct aux));
+	for(i=0;i<26;i++)	pa->x[i] = initMyAvl();
 	return pa;
 }
-*/
+
 
 FACTURACAO initFact (){
 	int i;
 	FACTURACAO f = malloc(sizeof(struct fact));
-	for(i=0;i<12;i++)	f->prod[i] = initMyAvl();
+	for(i=0;i<12;i++)	f->prod[i] = initAux();
 	return f;
 }
 
@@ -62,11 +62,11 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	i=copia(s,i);
 	void* y=&i;
 	int month=getSalesMonth(s)-1;
-	//int index = getProduct(getSalesProduct(s))[0]-'A';
+	int index = getProduct(getSalesProduct(s))[0]-'A';
 
-	f->prod[month]=insertMyAvl(f->prod[month],getProduct(getSalesProduct(s)),y);
+	f->prod[month]->x[index-1]=insertMyAvl(f->prod[month]->x[index-1],getProduct(getSalesProduct(s)),y);
 
-	printf("%s\n",getProduct(getSalesProduct(s)));
+	
 
 	
 	return f;

@@ -12,11 +12,18 @@
 /*Estruturas para organizar a facturacao em um array de 12, com cada indice um apontador para um array de 26 
 apontadores para uma avl*/
 
+struct aux{
+  MY_AVL x[26];
+};
+
+typedef struct aux *AUX;
+
 struct fact{
-    MY_AVL prod[SIZE_MONTH];
+    AUX prod[SIZE_MONTH];
 };
 
 typedef struct fact *FACTURACAO;
+
 
 /*Estrutura pertencente a um nodo de uma avl, que contem a informacao de um produto*/
 struct pq {
@@ -33,7 +40,7 @@ struct info{
 
 typedef struct info *INFO;
 
-//PRO intiPAvl ();
+AUX intiAux();
 FACTURACAO initFact ();
 FACTURACAO insereFact(FACTURACAO,SALES );
 
