@@ -86,14 +86,14 @@ DADOS passa(INFO f,DADOS d,int promo){
 	return d;
 }
 
-DADOS querie3T(FACTURACAO f,int mes, char* product,int promo){
-	//criar estrutura para isto
+DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
+	
 	DADOS d = initDADOS();
 
 	int index=product[0]-'A';
 	void* x=(INFO)gs(getAvl(f->prod[mes-1][index]),product);
-	if(x)
-		d=passa(x,d,promo);
+	
+	if(x) d=passa(x,d,promo);
 
 	return d;
 

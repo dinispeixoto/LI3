@@ -20,11 +20,12 @@ int main(){
 	getFile(CatClients,CatProducts,Sales,fact);	
 
 	/*##########################TESTES######################################*/
+	getchar();
 	int i;
 	double cont=0;
 	int cont2=0;
 
-	DADOS d=querie3T(fact,6,"NR1091",1);
+	DADOS d=querie3(fact,1,"AF1184",1);
 
 	for(i=0;i<3;i++){
 		printf("Filial %d: Price-> %f | Quant -> %d\n",i,d->totalpriceF[i],d->totalquantF[i]);
@@ -33,7 +34,7 @@ int main(){
 	}
 	printf("TotalpriceMes -> %f\n",cont );
 	printf("TotalquantMes -> %d\n",cont2);
-	
+
 
 	return 0;
 }

@@ -53,6 +53,6 @@ typedef struct dados *DADOS;
 //FAUX initAux();
 FACTURACAO initFact ();
 FACTURACAO insereFact(FACTURACAO,SALES);
-DADOS querie3T(FACTURACAO ,int,char*,int );
+DADOS querie3(FACTURACAO ,int,char*,int );
 
 #endif
