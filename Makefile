@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi -O2 -Wuniniti
 FILES = *.c
 
 default:
-	$(CC) $(CFLAGS) $(FILES) -o li3
+	$(CC) $(CFLAGS) $(FILES) -o gereVendas
 
 debug: 
 	gcc $(CFLAGS) $(FILES) -g -o debug

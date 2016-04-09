@@ -1,8 +1,6 @@
 #include "avl.h"
 #include "CatProducts.h"
 
-#define DEFAULT_SIZE 10
-
 struct catp {
 	MY_AVL CatProducts[SIZE_ABC];
 };
@@ -109,12 +107,12 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 
 /* #################################### QUERIES ######################################################## */
 
-GROUP_PRODUCTS initGroupProducts(){
+GROUP_PRODUCTS initGroupProducts(int size){
 	
 	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
-	group->GroupProd = malloc (sizeof(PRODUCT) * DEFAULT_SIZE);
+	group->GroupProd = malloc (sizeof(PRODUCT) * size);
 	group->sp = 0;
-	group->size = DEFAULT_SIZE;
+	group->size = size;
 
 	return group;
 }
@@ -122,7 +120,7 @@ GROUP_PRODUCTS initGroupProducts(){
 GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
 	
 	int index = letter - 'A';
-	GROUP_PRODUCTS group = initGroupProducts();
+	GROUP_PRODUCTS group = initGroupProducts(totalElements(Catalog->CatProducts[index]));
 	MY_AVL a = Catalog->CatProducts[index];
 	Avl tree = getAvl(a);
 	travessia(tree,0,group);
@@ -141,10 +139,10 @@ void travessia(Avl a,int index,GROUP_PRODUCTS array){
 }
 
 GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){	
-	if (array->sp == array->size) {
+	/*if (array->sp == array->size) {
 		array->size *= 2;
 		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
-	}	
+	} */
 	array->GroupProd[array->sp] = prod;
 	array->sp++;
 	return array;
