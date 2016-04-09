@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 
-AUX intiAux (){
+AUX initAux (){
 	int i;
 	AUX pa = malloc(sizeof(struct aux));
 	for(i=0;i<26;i++)	pa->x[i] = initMyAvl();
@@ -64,10 +64,7 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	int month=getSalesMonth(s)-1;
 	int index = getProduct(getSalesProduct(s))[0]-'A';
 
-	f->prod[month]->x[index-1]=insertMyAvl(f->prod[month]->x[index-1],getProduct(getSalesProduct(s)),y);
-
-	
-
+	f->prod[month]->x[index]=insertMyAvl(f->prod[month]->x[index],getProduct(getSalesProduct(s)),y);
 	
 	return f;
 }

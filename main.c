@@ -19,5 +19,7 @@ int main(){
 
 	getFile(CatClients,CatProducts,Sales,fact);	
 
+	printf("%s\n",getInfo(getAvl(fact->prod[month]->x[index]));
+
 	return 0;
 }

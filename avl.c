@@ -1,4 +1,5 @@
 #include "avl.h"
+#include <stdio.h>
 
 #define SIZE_CODE 7
 #define LEFT -2

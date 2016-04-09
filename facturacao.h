@@ -40,7 +40,7 @@ struct info{
 
 typedef struct info *INFO;
 
-AUX intiAux();
+AUX initAux();
 FACTURACAO initFact ();
 FACTURACAO insereFact(FACTURACAO,SALES );
 
