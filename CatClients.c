@@ -33,7 +33,7 @@ void freeClient(CLIENT clie){
 CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 
 	int index = clie->string[0]-'A';
-	Catalog->CatClients[index] = insertMyAvl(Catalog->CatClients[index],clie->string);
+	Catalog->CatClients[index] = insertMyAvl(Catalog->CatClients[index],clie->string,NULL);
 	return Catalog;
 }
 

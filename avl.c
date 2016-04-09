@@ -7,6 +7,7 @@
 struct avl {
 	STRING code;
 	int height;
+	void* info;
 	struct avl *left, *right;
 };
 
@@ -70,10 +71,11 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
+
 /* Inserir numa Avl */
-Avl insert(Avl estrutura, char* line) {
+Avl insert(Avl estrutura, char* line,void* info) {
 	
-	int ls,rs,bal,HL,HR;
+	int ls,rs,bal,HL,HR,cp;
 
 	if(estrutura == NULL){
 		estrutura= (Avl)malloc(sizeof(struct avl));
@@ -82,23 +84,27 @@ Avl insert(Avl estrutura, char* line) {
 		estrutura->left=NULL;
 		estrutura->right=NULL;
 		estrutura->height=0;
+		estrutura->info=info;
 	}
 	else {
-		if(strcmp(estrutura->code,line) >= 0) estrutura->left=insert(estrutura->left,line);
-		else estrutura->right=insert(estrutura->right,line);
+		if((cp=strcmp(estrutura->code,line)) > 0) estrutura->left=insert(estrutura->left,line,info);
+		else if(cp<0)estrutura->right=insert(estrutura->right,line,info);
+		else estrutura->info=info;
+		
 
+		if(cp){
 		HL = heightAvl(estrutura->left);
 		HR = heightAvl(estrutura->right);
 
 		estrutura->height = maior(HL,HR)+1;
-    
+
 		bal = HL - HR;
 
 		if(bal>1) bal=RIGHT;
 		if(bal<-1) bal=LEFT;
-    
+
 		switch (bal){
-        
+
 			case 2: if((ls=strcmp(line,estrutura->left->code)) < 0)
 						return rotateRight(estrutura);
 					else if (ls>0){
@@ -115,16 +121,17 @@ Avl insert(Avl estrutura, char* line) {
 					}	
 					break;
 		}
+	}
 
 	}
 	return estrutura;
 
 }
 
-MY_AVL insertMyAvl(MY_AVL a,char* line){
+MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
 
 	if(a == NULL) a = initMyAvl();
-	(a->avl) = insert(a->avl,line);
+	(a->avl) = insert(a->avl,line,info);
 	(a->total)++;
 	return a;
 }
@@ -162,6 +169,19 @@ void removeAvl(Avl estrutura){
 	}
 }
 
+void* findInfo (Avl a,STRING line){
+	int cp=0;
+	while(a){
+		if((cp=strcmp(a->code,line)) > 0) a=a->left;
+		else if(cp<0) a=a->right;
+			else break;
+	}
+	if(a) return a->info;
+
+	return NULL;
+}
+
+
 /* GETS E SETS */ 
 
 Avl getAvl(MY_AVL estrutura){
@@ -174,6 +194,14 @@ Avl getAvlLeft(Avl a){
 
 Avl getAvlRight(Avl a){
 	return a->right;
+}
+
+int getSize(MY_AVL a){
+	return a->total;
+}
+
+void* getInfo(Avl a){
+	return a->info;
 }
 
 char* getAvlCode(Avl a){

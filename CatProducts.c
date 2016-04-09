@@ -33,7 +33,7 @@ void freeProduct(PRODUCT prod){
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 	int index = prod->string[0]-'A';
-	Catalog->CatProducts[index] = insertMyAvl(Catalog->CatProducts[index],prod->string);
+	Catalog->CatProducts[index] = insertMyAvl(Catalog->CatProducts[index],prod->string,NULL);
 	return Catalog;
 }
 
