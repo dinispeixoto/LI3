@@ -75,6 +75,10 @@ int testProduct (PRODUCT prod){
 }
 
 /* GETS E SETS */
+MY_AVL getP(CATALOG_PRODUCTS p, int x){
+	return p->CatProducts[x];
+}
+
 char* getProduct(PRODUCT prod){
 	return prod->string;
 }

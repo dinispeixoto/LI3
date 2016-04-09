@@ -14,12 +14,12 @@ int main(){
 
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	FACTURACAO fact = initFact();
+	FACTURACAO fact = initF();
 	SALES Sales = initSales();
 
 	getFile(CatClients,CatProducts,Sales,fact);	
 
-	/*##########################TESTES######################################*/
+	/*##########################TESTES(Querie3)######################################*/
 	getchar();
 	int i;
 	double cont=0;

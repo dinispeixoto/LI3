@@ -35,6 +35,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	if(fileProducts!=NULL){
 		products = valProd(fileProducts,products,&validatedProducts);
 		printf("PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
+		fact=initFact(fact,products);
 	}
 	
 	if(fileSales!=NULL){

@@ -22,7 +22,8 @@ typedef struct info *INFO;
 
 typedef struct dados *DADOS;
 
-FACTURACAO initFact ();
+FACTURACAO initF();
+FACTURACAO initFact (FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 DADOS querie3(FACTURACAO ,int,char*,int );
 double* getDadosP(DADOS d);

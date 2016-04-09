@@ -22,7 +22,7 @@ int totalProducts(CATALOG_PRODUCTS);
 int testProduct (PRODUCT);
 
 /* GETS & SETS */
-Avl getP(CATALOG_PRODUCTS ,int );
+MY_AVL getP(CATALOG_PRODUCTS ,int );
 char* getProduct(PRODUCT prod);
 PRODUCT setProduct(char* string);
 

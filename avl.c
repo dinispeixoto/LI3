@@ -178,8 +178,32 @@ void* gs (Avl a,STRING line){
 			else break;
 	}
 	if(a) return a->info;
-
+	a=aux;
 	return NULL;
+}
+
+Avl cloneAvl (Avl estrutura){
+	Avl aux = malloc (sizeof(struct avl));
+	aux->code = malloc(SIZE_CODE);
+	if(estrutura){
+		strcpy(aux->code,estrutura->code);
+		aux->height=estrutura->height;
+		aux->info=estrutura->info;
+		aux->left=cloneAvl(estrutura->left);
+		aux->right=cloneAvl(estrutura->right);
+	}
+	else aux=NULL;
+	return aux;
+}
+
+MY_AVL cloneMyAvl (MY_AVL estrutura){
+	MY_AVL aux = malloc (sizeof(struct myAvl));
+	if(estrutura){
+		aux->avl=cloneAvl(estrutura->avl);
+		aux->total=estrutura->total;
+	}
+	else aux=NULL;
+	return aux;
 }
 
 

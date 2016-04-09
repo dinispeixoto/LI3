@@ -25,6 +25,8 @@ BOOL existMyAvl(MY_AVL,STRING);
 BOOL existAvl(Avl, STRING);
 int totalElements(MY_AVL);
 void* gs (Avl ,STRING);
+Avl cloneAvl (Avl estrutura);
+MY_AVL cloneMyAvl (MY_AVL estrutura);
 
 /* GETS E SETS */
 Avl getAvl(MY_AVL);
