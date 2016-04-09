@@ -2,16 +2,28 @@
 #include "Sales.h"
 #include "avl.h"
 #include "CatProducts.h"
-#include <stdio.h>
 
-/*
-AUX initAux (){
-	int i;
-	AUX pa = malloc(sizeof(struct aux));
-	for(i=0;i<26;i++)	pa->x[i] = initMyAvl();
-	return pa;
-}
-*/
+struct fact{
+    MY_AVL prod[SIZE_MONTH][26];
+};
+
+struct pq {
+	double totalprice;
+	int totalquant;
+};
+
+struct info{
+  PQ F[2][3];
+  double totalMesP;
+  int totalMesQ;
+};
+
+struct dados{
+  double totalpriceF[3];
+  int totalquantF[3];
+};
+
+
 DADOS initDADOS(){
 	int i;
 	DADOS d = malloc(sizeof(struct dados));
@@ -21,7 +33,6 @@ DADOS initDADOS(){
   	}
   	return d;
 }
-
 
 FACTURACAO initFact (){
 	int i,j;
@@ -99,6 +110,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 
 }
 
+
 FACTURACAO insereFact(FACTURACAO f,SALES s){
 
 	void* y;
@@ -121,13 +133,12 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	return f;
 }
 
-	/*
-	Avl aux = procura(getAvl(f->prod[month][index]),getProduct(getSalesProduct(s)));
-	if(aux){
-		copia(s,(INFO)getInfo(aux));
-	}
-	else{
-		aux=insert(aux,getProduct(getSalesProduct(s)),y);
-	}	
-   */
 
+/*GET & SET*/
+double* getDadosP(DADOS d){
+	return d->totalpriceF;
+}
+
+int* getDadosQ(DADOS d){
+	return d->totalquantF;
+}

@@ -16,14 +16,8 @@ struct sales{
 
 static int testSales(CLIENT,PRODUCT,double,int,char,int,int);
 
-/* Inicializa um array de estruturas SALES. */
-SALES* initSales(){
-	SALES* sales = malloc (MAX_SALES*sizeof(SALES));
-	return sales;
-}
-
 /* Inicializa uma estrutura SALES. */
-SALES initSale(){
+SALES initSales(){
 	SALES a = malloc(sizeof(struct sales));
 	a->client=NULL;
 	a->product=NULL; 
@@ -142,7 +136,7 @@ static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char 
 }
 
 SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAL filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
-	SALES sale = initSale();
+	SALES sale = initSales();
 	sale->client = clie;
 	sale->product = prod;
 	sale->month = month;

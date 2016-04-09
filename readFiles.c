@@ -6,7 +6,7 @@
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES* sales,FACTURACAO fact){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACTURACAO fact){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
@@ -89,7 +89,7 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-SALES* valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES* sales,FACTURACAO fact,int *validated, int *invalidated){
+SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES sales,FACTURACAO fact,int *validated, int *invalidated){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int r;
@@ -106,8 +106,8 @@ SALES* valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SAL
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales[*validated] = updateSales(clie,prod,month,filial,quant,price,infoP);
-			insereFact(fact,sales[*validated]);
+			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
+			insereFact(fact,sales);
 			(*validated)++;
 		}
 		else (*invalidated)++;
