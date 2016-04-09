@@ -19,7 +19,21 @@ int main(){
 
 	getFile(CatClients,CatProducts,Sales,fact);	
 
-	printf("%s\n",getInfo(getAvl(fact->prod[month]->x[index]));
+	/*##########################TESTES######################################*/
+	int i;
+	double cont=0;
+	int cont2=0;
+
+	DADOS d=querie3T(fact,6,"NR1091",1);
+
+	for(i=0;i<3;i++){
+		printf("Filial %d: Price-> %f | Quant -> %d\n",i,d->totalpriceF[i],d->totalquantF[i]);
+		cont+=d->totalpriceF[i];
+		cont2+=d->totalquantF[i];
+	}
+	printf("TotalpriceMes -> %f\n",cont );
+	printf("TotalquantMes -> %d\n",cont2);
+	
 
 	return 0;
 }

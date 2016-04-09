@@ -24,12 +24,14 @@ void removeMyAvl(MY_AVL);
 BOOL existMyAvl(MY_AVL,STRING);
 BOOL existAvl(Avl, STRING);
 int totalElements(MY_AVL);
+void* gs (Avl ,STRING);
 
 /* GETS E SETS */
 Avl getAvl(MY_AVL);
 Avl getAvlLeft(Avl);
 Avl getAvlRight(Avl);
 char* getAvlCode(Avl);
+void* getInfo(Avl a);
 int getSize(MY_AVL a);
 
 /* APAGAR 

@@ -11,15 +11,15 @@
 
 /*Estruturas para organizar a facturacao em um array de 12, com cada indice um apontador para um array de 26 
 apontadores para uma avl*/
-
+/*
 struct aux{
   MY_AVL x[26];
 };
 
 typedef struct aux *AUX;
-
+*/
 struct fact{
-    AUX prod[SIZE_MONTH];
+    MY_AVL prod[SIZE_MONTH][26];
 };
 
 typedef struct fact *FACTURACAO;
@@ -35,13 +35,24 @@ typedef struct pq *PQ;
 
 struct info{
   PQ F[2][3];
-  double totalMes;
+  double totalMesP;
+  int totalMesQ;
 };
 
 typedef struct info *INFO;
 
-AUX initAux();
+struct dados{
+  double totalpriceF[3];
+  int totalquantF[3];
+};
+
+typedef struct dados *DADOS;
+
+
+
+//FAUX initAux();
 FACTURACAO initFact ();
-FACTURACAO insereFact(FACTURACAO,SALES );
+FACTURACAO insereFact(FACTURACAO,SALES);
+DADOS querie3T(FACTURACAO ,int,char*,int );
 
 #endif

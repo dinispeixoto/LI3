@@ -72,10 +72,6 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
-void* up(void* e,void* i){
-	void*y;
-	return y;
-}
 
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line,void* info) {
@@ -95,6 +91,7 @@ Avl insert(Avl estrutura, char* line,void* info) {
 		if((cp=strcmp(estrutura->code,line)) > 0) estrutura->left=insert(estrutura->left,line,info);
 		else if(cp<0)estrutura->right=insert(estrutura->right,line,info);
 		else estrutura->info=info;
+		
 
 		if(cp){
 		HL = heightAvl(estrutura->left);
@@ -172,6 +169,20 @@ void removeAvl(Avl estrutura){
 	}
 }
 
+void* gs (Avl a,STRING line){
+	int cp=0;
+	Avl aux=a;
+	while(a){
+		if((cp=strcmp(a->code,line)) > 0) a=a->left;
+		else if(cp<0) a=a->right;
+			else break;
+	}
+	if(a) return a->info;
+
+	return NULL;
+}
+
+
 /* GETS E SETS */ 
 
 Avl getAvl(MY_AVL estrutura){
@@ -188,6 +199,10 @@ Avl getAvlRight(Avl a){
 
 int getSize(MY_AVL a){
 	return a->total;
+}
+
+void* getInfo(Avl a){
+	return a->info;
 }
 
 char* getAvlCode(Avl a){
