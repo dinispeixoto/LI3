@@ -25,7 +25,11 @@ typedef struct dados *DADOS;
 FACTURACAO initFact ();
 FACTURACAO insereFact(FACTURACAO,SALES);
 DADOS querie3(FACTURACAO ,int,char*,int );
-double* getDadosP(DADOS d);
-int* getDadosQ(DADOS d);
+
+/* GETS E SETS */
+double getnumFilialP(INFO,int,int);
+int getnumFilialQ(INFO,int,int);
+double* getDadosP(DADOS);
+int* getDadosQ(DADOS);
 
 #endif
