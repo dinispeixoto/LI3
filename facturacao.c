@@ -1,11 +1,22 @@
 #include "facturacao.h"
 #include "Sales.h"
 #include "avl.h"
+#include "CatProducts.h"
+#include <stdio.h>
+
+
+AUX intiAux (){
+	int i;
+	AUX pa = malloc(sizeof(struct aux));
+	for(i=0;i<26;i++)	pa->x[i] = initMyAvl();
+	return pa;
+}
+
 
 FACTURACAO initFact (){
 	int i;
 	FACTURACAO f = malloc(sizeof(struct fact));
-	for(i=0;i<12;i++)	f->prod[i] = initMyAvl();
+	for(i=0;i<12;i++)	f->prod[i] = initAux();
 	return f;
 }
 
@@ -43,16 +54,21 @@ INFO copia (SALES s, INFO i){
 	return i;
 }
 
+
 FACTURACAO insereFact(FACTURACAO f,SALES s){
 
 	INFO i=initINFO();
-	
+	int a=0;
 	i=copia(s,i);
 	void* y=&i;
-	int month=getSalesMonth(s);
+	int month=getSalesMonth(s)-1;
+	int index = getProduct(getSalesProduct(s))[0]-'A';
 
-	f->prod[month]=insertMyAvl(f->prod[month],getProduct(getSalesProduct(s)),y);
+	f->prod[month]->x[index-1]=insertMyAvl(f->prod[month]->x[index-1],getProduct(getSalesProduct(s)),y);
 
+	
+
+	
 	return f;
 }
 

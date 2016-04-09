@@ -23,6 +23,7 @@ int testClient(CLIENT); /* ESTA TEM DE FICAR AQUI PQ É CHAMADA PELA PARTCHECK, 
 Avl getC(CATALOG_CLIENTS, int);
 char* getClient(CLIENT clie);
 CLIENT setClient(char* string);
+char* getX(CATALOG_CLIENTS , int );
 
 /* APAGAR
 int printCatClients(CATALOG_CLIENTS);

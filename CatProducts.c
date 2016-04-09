@@ -103,12 +103,12 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 
 /* #################################### QUERIES ######################################################## */
 
-GROUP_PRODUCTS initGroupProducts(){
+GROUP_PRODUCTS initGroupProducts(int size){
 	
 	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
-	group->GroupProd = malloc (sizeof(PRODUCT) * DEFAULT_SIZE);
+	group->GroupProd = malloc (sizeof(PRODUCT) * size);
 	group->sp = 0;
-	group->size = DEFAULT_SIZE;
+	group->size = size;
 
 	return group;
 }
@@ -116,9 +116,10 @@ GROUP_PRODUCTS initGroupProducts(){
 GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
 	
 	int index = letter - 'A';
-	GROUP_PRODUCTS group = initGroupProducts();
 	MY_AVL a = Catalog->CatProducts[index];
 	Avl tree = getAvl(a);
+	int size= getSize(a);
+	GROUP_PRODUCTS group = initGroupProducts(size);
 	travessia(tree,0,group);
 	return group;
 }

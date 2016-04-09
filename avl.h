@@ -30,6 +30,7 @@ Avl getAvl(MY_AVL);
 Avl getAvlLeft(Avl);
 Avl getAvlRight(Avl);
 char* getAvlCode(Avl);
+int getSize(MY_AVL a);
 
 /* APAGAR 
 void printAVL(Avl);
