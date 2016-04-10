@@ -142,7 +142,7 @@ GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){
 	/*if (array->sp == array->size) {
 		array->size *= 2;
 		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
-	} */
+	}*/
 	array->GroupProd[array->sp] = prod;
 	array->sp++;
 	return array;

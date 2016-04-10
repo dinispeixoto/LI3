@@ -8,6 +8,7 @@
 #include "CatProducts.h"
 #include "readFiles.h"
 #include "facturacao.h"
+#include "interpretador.h"
 
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
@@ -18,7 +19,7 @@ int main(){
 	FACTURACAO fact = initFact();
 	SALES Sales = initSale();
 
-	getFile(CatClients,CatProducts,Sales,fact);	
+	interpretador(CatClients,CatProducts,Sales,fact);
 
 	return 0;
 }

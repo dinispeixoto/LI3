@@ -41,7 +41,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	begin_clients = clock();
 	if(fileClients!=NULL){
 		clients = valCli(fileClients,clients,&validatedClients);
-		printf("CLIENTES: Foram validadas %d linhas.\n",validatedClients);
+		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 	}
 	end_clients = clock();
 
@@ -49,7 +49,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	begin_products = clock();
 	if(fileProducts!=NULL){
 		products = valProd(fileProducts,products,&validatedProducts);
-		printf("PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
+		printf("	PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
 	}
 	end_products = clock();
 	
@@ -57,7 +57,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	begin_sales = clock();
 	if(fileSales!=NULL){
 		sales = valSales(fileSales,clients,products,sales,fact,&validatedSales,&invalidatedSales);
-		printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
+		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
 	}
 	end_sales = clock();
 
@@ -67,9 +67,9 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	time_elapsed_sales = (double)end_sales - begin_sales / (CLOCKS_PER_SEC);
 
 	putchar('\n');
-	printf("Tempo de leitura dos CLIENTES: %ld ms.\n",time_elapsed_clients/1000);
-	printf("Tempo de leitura dos PRODUTOS: %ld ms.\n",time_elapsed_products/1000);
-	printf("Tempo de leitura das VENDAS: %ld ms.\n",time_elapsed_sales/1000);
+	printf("	Tempo de leitura dos CLIENTES: %ld ms.\n",time_elapsed_clients/1000);
+	printf("	Tempo de leitura dos PRODUTOS: %ld ms.\n",time_elapsed_products/1000);
+	printf("	Tempo de leitura das VENDAS: %ld ms.\n",time_elapsed_sales/1000);
 
 	
 	fclose(fileClients);
