@@ -70,7 +70,7 @@ void removeCatProds(CATALOG_PRODUCTS Catalog){
 }
 
 /* Testa se um produto tem a estrutura correta.*/
-int testProduct (PRODUCT prod){
+BOOL testProduct (PRODUCT prod){
    int num = atoi(prod->string+LETRAS_P),i;
    for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod->string[i]))) return 0;
@@ -128,22 +128,6 @@ PRODUCT* getGroupProd(GROUP_PRODUCTS a){
 	return a->GroupProd;
 }
 
-
-/* ########################################## APAGAR ###########################################
-
-int printCatProducts(CATALOG_PRODUCTS Catalog){
-
-	int i;
-
-	if(Catalog != NULL)
-		for(i=0;i<SIZE_ABC;i++)  {
-			printf("LETRA %c=====\n", 'A'+i); 
-			printMyAvl(Catalog->CatProducts[i]); 
-	}
-	return 0;
-}
-*/
-
 /* #################################### QUERIES ######################################################## */
 
 GROUP_PRODUCTS initGroupProducts(int size){
@@ -188,7 +172,7 @@ GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){
 	return array;
 }
 
-GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS array){	
+GROUP_PRODUCTS reallocGROUP_PRODUCTS(GROUP_PRODUCTS array){	
 	int i;
 	if (array->sp > (array->size*3)/4) {
 		array->size *= 2;
@@ -201,7 +185,7 @@ GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS array){
 	return array;
 }
 
-PRODUCT* insereP(PRODUCT* list,int* sp,int w,char* p){
+PRODUCT* insertGROUP_PRODUCTS(PRODUCT* list,int* sp,int w,char* p){
 	int i,cmp=0,a;
 	PRODUCT aux=malloc(sizeof(struct product));
 	aux->string=malloc(SIZE_PRODUCTS);
@@ -224,28 +208,3 @@ PRODUCT* insereP(PRODUCT* list,int* sp,int w,char* p){
 	free(aux);
 	return list;
 }
-
-
-
-/*
-void insertArray (char** array,Avl estrutura,int *a){
-	
-	if(estrutura->left==NULL && estrutura->right==NULL){
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else if(estrutura->left==NULL){ 
-		insertArray(array,estrutura->right,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else { 
-		insertArray(array,estrutura->left,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
-	}
-}
-*/

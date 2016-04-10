@@ -23,8 +23,8 @@ typedef struct info *INFO;
 
 typedef struct dados *DADOS;
 
-FACTURACAO initFact ();
-FACTURACAO copyProducts (FACTURACAO f,CATALOG_PRODUCTS p);
+FACTURACAO initFact();
+FACTURACAO copyProducts(FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 
 /* GETS E SETS */
@@ -38,7 +38,7 @@ double getnumTotalP(INFO);
 int getnumTotalQ(INFO);
 
 /* QUERIE 3*/
-DADOS querie3(FACTURACAO ,int,char*,int );
+DADOS querie3(FACTURACAO,int,char*,int );
 
 /* QUERIE 4*/
 GROUP_PRODUCTS querie4(FACTURACAO,int*,int);

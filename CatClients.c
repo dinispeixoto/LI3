@@ -38,7 +38,7 @@ CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 }
 
 /* Verifica se um cliente existe no catálogo.*/
-int existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
+BOOL existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 	int exist;
 	int index = clie->string[0]-'A';
 	exist = existMyAvl(Catalog->CatClients[index],clie->string);
@@ -69,7 +69,7 @@ void removeCatClients(CATALOG_CLIENTS Catalog){
 }
 
 /* Testa se um cliente tem a estrutura correta.*/
-int testClient(CLIENT client){
+BOOL testClient(CLIENT client){
 	int num = atoi(client->string+LETRAS_C),r=0;
 	if(isupper(client->string[0]) && (num>=1000) && (num<=5000))r++;
 	return r;
@@ -91,22 +91,6 @@ CLIENT setClient(char* string){
 	strcpy(client->string,string);
 	return client;
 }
-
-/* ########################################## APAGAR ###################################################
-
-int printCatClients(CATALOG_CLIENTS Catalog){
-
-	int i;
-
-	if(Catalog != NULL)
-		for(i=0;i<SIZE_ABC;i++){
-			printf("LETRA %c=====\n", 'A'+i); 
-			printMyAvl(Catalog->CatClients[i]); 
-		}
-	return 0;
-}
-
-*/
 
 /* #################################### QUERIES ######################################################## */
 
