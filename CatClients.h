@@ -22,6 +22,7 @@ int totalClients(CATALOG_CLIENTS);
 int testClient(CLIENT); /* ESTA TEM DE FICAR AQUI PQ É CHAMADA PELA PARTCHECK, MAS NÃO DEVERIA ESTAR AQUI */
 
 /* GETS & SETS */
+char* getClientIndex(CATALOG_CLIENTS,int);
 char* getClient(CLIENT clie);
 CLIENT setClient(char* string);
 

@@ -1,8 +1,8 @@
-#include "Sales.h"
-#include "CatClients.h"
-#include "CatProducts.h"					
-
 #define MAX_SALES 1000000
+
+#include "CatClients.h"
+#include "CatProducts.h"
+#include "Sales.h"
 
 struct sales{
 	CLIENT client;
@@ -17,8 +17,10 @@ struct sales{
 static int testSales(CLIENT,PRODUCT,double,int,char,int,int);
 
 /* Inicializa uma estrutura SALES. */
-SALES initSale(){
+SALES initSales(){
 	SALES a = malloc(sizeof(struct sales));
+	a->client=NULL;
+	a->product=NULL; 
 	return a;
 }
 
@@ -37,7 +39,7 @@ CLIENT getSalesClient(SALES a){
 }
 
 SALES setSalesClient(CLIENT c,SALES a){
-	a->client = c;
+	a->client = setClient(getClient(c));
 	return a;
 }
 
@@ -46,7 +48,7 @@ PRODUCT getSalesProduct(SALES a){
 }
 
 SALES setSalesProduct(PRODUCT c,SALES a){
-	a->product = c;
+	a->product = setProduct(getProduct(c));
 	return a;
 }
 
@@ -141,7 +143,8 @@ static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char 
   else return 1;
 }
 
-SALES updateSales(SALES sale,CLIENT clie,PRODUCT prod,MONTH month,FILIAL filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
+SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAL filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
+	SALES sale = initSales();
 	sale->client = clie;
 	sale->product = prod;
 	sale->month = month;

@@ -8,6 +8,7 @@ struct catp {
 struct conjProds{
 	int sp;
 	int size;
+	int jeito;
 	PRODUCT* GroupProd;
 };
 
@@ -83,12 +84,50 @@ char* getProduct(PRODUCT prod){
 	return prod->string;
 }
 
+MY_AVL getP(CATALOG_PRODUCTS p, int x){
+	return p->CatProducts[x];
+}
+
 PRODUCT setProduct(char* string){
 	PRODUCT prod = malloc(sizeof(struct product));
 	prod->string = malloc(SIZE_PRODUCTS);
 	strcpy(prod->string,string);
 	return prod;
 }
+
+void setGroupProdSize(GROUP_PRODUCTS gp,int x){
+	gp->size=x;
+}
+
+void setGroupProd(GROUP_PRODUCTS gp,PRODUCT* p){
+	gp->GroupProd=p;
+}
+
+int getGroupProdSize(GROUP_PRODUCTS a){
+	return a->size;
+}
+
+int getGroupProdSp(GROUP_PRODUCTS a){
+	return a->sp;
+}
+
+void setGroupProdSp(GROUP_PRODUCTS a,int x){
+	 a->sp=x;
+}
+
+int getJ(GROUP_PRODUCTS a){
+	return a->jeito;
+}
+
+
+void setJ(GROUP_PRODUCTS a,int x){
+	a->jeito=x;
+}
+
+PRODUCT* getGroupProd(GROUP_PRODUCTS a){
+	return a->GroupProd;
+}
+
 
 /* ########################################## APAGAR ###########################################
 
@@ -108,11 +147,16 @@ int printCatProducts(CATALOG_PRODUCTS Catalog){
 /* #################################### QUERIES ######################################################## */
 
 GROUP_PRODUCTS initGroupProducts(int size){
-	
+	int i;
 	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
 	group->GroupProd = malloc (sizeof(PRODUCT) * size);
+	for(i=0;i<size;i++){
+		group->GroupProd[i]=malloc(sizeof(struct product));
+		group->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
+	}
 	group->sp = 0;
 	group->size = size;
+	group->jeito=0;
 
 	return group;
 }
@@ -139,21 +183,46 @@ void travessia(Avl a,int index,GROUP_PRODUCTS array){
 }
 
 GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){	
-	/*if (array->sp == array->size) {
-		array->size *= 2;
-		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
-	}*/
 	array->GroupProd[array->sp] = prod;
 	array->sp++;
 	return array;
 }
 
-int getGroupProdSize(GROUP_PRODUCTS a){
-	return a->sp;
+GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS array){	
+	int i;
+	if (array->sp > (array->size*3)/4) {
+		array->size *= 2;
+		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
+		for(i=(array->size)/2;i<array->size;i++){
+			array->GroupProd[i]=malloc(sizeof(struct product));
+			array->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
+		}
+	}	
+	return array;
 }
 
-PRODUCT* getGroupProd(GROUP_PRODUCTS a){
-	return a->GroupProd;
+PRODUCT* insereP(PRODUCT* list,int* sp,int w,char* p){
+	int i,cmp=0,a;
+	PRODUCT aux=malloc(sizeof(struct product));
+	aux->string=malloc(SIZE_PRODUCTS);
+	if(w>0) a=*sp;	
+	else a=0;
+	for(i=a;i<=(*sp);i++){
+		if(i==(*sp)){
+			strcpy(list[i]->string,p);
+		}
+		else{
+			cmp=strcmp(list[i]->string,p);
+			if(cmp>=0){
+				strcpy(aux->string,list[i]->string);
+				strcpy(list[i]->string,p);
+				strcpy(p,aux->string);
+			}
+		}
+	}
+	(*sp)++;
+	free(aux);
+	return list;
 }
 
 

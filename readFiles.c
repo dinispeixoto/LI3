@@ -134,7 +134,7 @@ SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALE
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales = updateSales(sales,clie,prod,month,filial,quant,price,infoP);
+			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
 			insereFact(fact,sales);
 			(*validated)++;
 		}

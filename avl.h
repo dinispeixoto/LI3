@@ -14,9 +14,9 @@ typedef char* STRING;
 
 typedef int BOOL;
 
+Avl initAvl();
 MY_AVL initMyAvl();
 MY_AVL insertMyAvl(MY_AVL,STRING,void*);
-Avl initAvl();
 int heightAvl(Avl);
 Avl insert(Avl,STRING,void*);
 void removeAvl(Avl);
@@ -25,6 +25,9 @@ BOOL existMyAvl(MY_AVL,STRING);
 BOOL existAvl(Avl, STRING);
 int totalElements(MY_AVL);
 void* findInfo (Avl ,STRING);
+Avl cloneAvl (Avl);
+MY_AVL cloneMyAvl (MY_AVL);
+void removeFromMY_AVL (MY_AVL*,int);
 
 
 /* GETS E SETS */
@@ -34,6 +37,9 @@ Avl getAvlRight(Avl);
 char* getAvlCode(Avl);
 void* getInfo(Avl a);
 int getSize(MY_AVL a);
+void setInfo(Avl a,void* i);
+void setAv(Avl,Avl);
+void setAvl(MY_AVL,Avl);
 
 /* APAGAR 
 void printAVL(Avl);

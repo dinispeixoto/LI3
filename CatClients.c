@@ -77,6 +77,10 @@ int testClient(CLIENT client){
 
 /* GETS E SETS */
 
+char* getClientIndex(CATALOG_CLIENTS c, int a){
+	return getAvlCode(getAvl(c->CatClients[a]));
+}
+
 char* getClient(CLIENT clie){
 	return clie->string;
 }

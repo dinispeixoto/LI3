@@ -22,6 +22,7 @@ static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
+static void removeFromMY_AVL_AUX(Avl);
 /*static void insertArray(char**,Avl,int*);*/
 
 
@@ -181,6 +182,46 @@ void* findInfo (Avl a,STRING line){
 	return NULL;
 }
 
+Avl cloneAvl (Avl estrutura){
+	Avl aux = malloc (sizeof(struct avl));
+	aux->code = malloc(SIZE_CODE);
+	if(estrutura){
+		strcpy(aux->code,estrutura->code);
+		aux->height=estrutura->height;
+		aux->info=estrutura->info;
+		aux->left=cloneAvl(estrutura->left);
+		aux->right=cloneAvl(estrutura->right);
+	}
+	else aux=NULL;
+	return aux;
+}
+
+MY_AVL cloneMyAvl (MY_AVL estrutura){
+	MY_AVL aux = malloc (sizeof(struct myAvl));
+	if(estrutura){
+		aux->avl=cloneAvl(estrutura->avl);
+		aux->total=estrutura->total;
+	}
+	else aux=NULL;
+	return aux;
+}
+
+void removeFromMY_AVL (MY_AVL* a, int x){
+	int i;
+	for(i=0;i<x;i++){
+		removeFromMY_AVL_AUX(a[i]->avl);
+	}
+}
+
+static void removeFromMY_AVL_AUX (Avl a){
+	if(a){
+		removeFromMY_AVL_AUX(a->left);
+		removeFromMY_AVL_AUX(a->right);
+		free(a);
+	}
+	else free (a);
+}
+
 
 /* GETS E SETS */ 
 
@@ -204,42 +245,18 @@ void* getInfo(Avl a){
 	return a->info;
 }
 
+void setInfo(Avl a,void* i){
+	a->info=i;
+}
+
 char* getAvlCode(Avl a){
 	return a->code;
 }
 
-/* ############################################################## APAGAR ##########################################################################
-
-void printMyAvl(MY_AVL a){
-	printAVL(a->avl);
+void setAv(Avl c, Avl d){
+	c=d;
 }
 
-void printAVL(Avl estrutura) {	
-	if (!estrutura);
-	else {
-		printAVL(estrutura->left);
-		printf("%s\n", estrutura->code);
-		printAVL(estrutura->right);
-	}
+void setAvl(MY_AVL a, Avl b){
+	a->avl=b;
 }
-
-static void insertArray (char** array,Avl estrutura,int *a){
-	
-	if(estrutura->left==NULL && estrutura->right==NULL){
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else if(estrutura->left==NULL){ 
-		insertArray(array,estrutura->right,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else { 
-		insertArray(array,estrutura->left,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
-	}
-}*/
