@@ -26,7 +26,9 @@ FACTURACAO initF();
 FACTURACAO initFact (FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 DADOS querie3(FACTURACAO ,int,char*,int );
-double* getDadosP(DADOS d);
-int* getDadosQ(DADOS d);
-
+DADOS querie6(FACTURACAO, int , int);
+double* getDadosP(DADOS );
+int* getDadosQ(DADOS );
+double getDadosTP(DADOS);
+int getDadosTQ(DADOS);
 #endif

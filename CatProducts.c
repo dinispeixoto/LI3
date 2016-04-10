@@ -149,6 +149,28 @@ GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){
 	return array;
 }
 
+PRODUCT* insereP(PRODUCT* list,int size,char* p){
+	int i,cmp=0;
+	PRODUCT aux;
+	for(i=0;i<size;i++){
+		cmp=strcmp(list[i]->string,p);
+		if(cmp<0){
+			aux->string=list[i]->string;
+			list[i]->string=p;
+			p=aux->string;
+		}
+	}
+	return list;
+}
+
+void setGroupProdSize(GROUP_PRODUCTS gp,int x){
+	gp->size=x;
+}
+
+void setGroupProd(GROUP_PRODUCTS gp,PRODUCT* p){
+	gp->GroupProd=p;
+}
+
 int getGroupProdSize(GROUP_PRODUCTS a){
 	return a->sp;
 }

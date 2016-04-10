@@ -32,7 +32,10 @@ GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS,char);
 void travessia(Avl,int,GROUP_PRODUCTS);
 GROUP_PRODUCTS toGroup(GROUP_PRODUCTS,PRODUCT);
 int getGroupProdSize(GROUP_PRODUCTS);
+void setGroupProdSize(GROUP_PRODUCTS,int);
 PRODUCT* getGroupProd(GROUP_PRODUCTS);
+void setGroupProd(GROUP_PRODUCTS,PRODUCT*);
+PRODUCT* insereP(PRODUCT* ,int ,char* );
 
 /* APAGAR
 int printCatProducts(CATALOG_PRODUCTS);

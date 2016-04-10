@@ -32,9 +32,10 @@ DADOS initDADOS(){
 	for(i=0;i<3;i++){
 		d->totalpriceF[i]=0;
   		d->totalquantF[i]=0;
-  		d->totalMP=0;
-  		d->totalMQ=0;
+  		
   	}
+  	d->totalMP=0;
+  	d->totalMQ=0;
   	return d;
 }
 FACTURACAO initF (){
@@ -87,7 +88,6 @@ INFO copia (SALES s, INFO i){
 }
 /*###########################Querie3##############################*/
 
-
 double getnumFilialP(INFO c,int filial, int promo){
 	return c->F[promo][filial]->totalprice;
 }
@@ -121,25 +121,66 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 /*###########################Querie3##############################*/
 
 /*###########################Querie4##############################*/
+GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list){
+	int n;
+	if(getInfo(a)==NULL){
+		setGroupProd(list,insereP(getGroupProd(list),getGroupProdSize(list),getAvlCode(a)));
+		setGroupProdSize(list,getGroupProdSize(list)+1);
+	}
+	else{ 
+		list=found(getAvlLeft(a),list);
+		list=found(getAvlRight(a),list);
+	}
+	return list;
 
+}
+/*
+GROUP_PRODUCTS querie4 (FACTURACAO f){
+	GROUP_PRODUCTS gp = initGroupProducts();
+	int i;
 
+	for(i=0;i<12;i++){
+		verif(f->[i],gp);
+	}
+
+}
+*/
 /*############################Querie4#############################*/
 
-/*###########################Querie6##############################
-DADOS ps(Avl a,)
+/*###########################Querie6##############################*/
+
+double getnumTotalP(INFO c){
+	return c->totalMesP;
+}
+
+int getnumTotalQ(INFO c){
+	return c->totalMesQ;
+}
+
+DADOS ps(Avl a,DADOS d){
+	if(a!=NULL && getInfo(a)!=NULL){
+		void* x= (INFO)getInfo(a);
+		d->totalMP+=getnumTotalP(x);
+		d->totalMQ+=getnumTotalQ(x);
+		}
+	if(a!=NULL){
+		d=ps(getAvlLeft(a),d);
+		d=ps(getAvlRight(a),d);
+	}
+	return d;
+}
 
 DADOS querie6(FACTURACAO f, int inicio, int fim){
-	int i;
+	int i,j;
 	DADOS d= initDADOS();
-	for(i=inicio;i<=fim;i++){
+	for(i=(inicio-1);i<fim;i++){
 		for(j=0;j<26;j++){
-			d=ps(getAvl(f->[i][j]),&d);
-
-
+			d=ps(getAvl(f->prod[i][j]),d);
 		}
 	}
+	return d;
 }
-###########################Querie6##############################*/
+/*###########################Querie6##############################*/
 
 FACTURACAO insereFact(FACTURACAO f,SALES s){
 
@@ -171,4 +212,12 @@ double* getDadosP(DADOS d){
 
 int* getDadosQ(DADOS d){
 	return d->totalquantF;
+}
+
+double getDadosTP(DADOS d){
+	return d->totalMP;
+}
+
+int getDadosTQ(DADOS d){
+	return d->totalMQ;
 }

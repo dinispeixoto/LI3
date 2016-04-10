@@ -19,7 +19,7 @@ int main(){
 
 	getFile(CatClients,CatProducts,Sales,fact);	
 
-	/*##########################TESTES(Querie3)######################################*/
+	/*##########################TESTES(Querie3)######################################
 	getchar();
 	int i;
 	double cont=0;
@@ -34,6 +34,18 @@ int main(){
 	}
 	printf("TotalpriceMes -> %f\n",cont );
 	printf("TotalquantMes -> %d\n",cont2);
+	*/
+
+	/*##########################TESTES(Querie6)######################################*/
+	getchar();
+	int i;
+	double cont=0;
+	int cont2=0;
+
+	DADOS d=querie6(fact,1,12);
+
+	printf("TotalpriceMes -> %f\n",getDadosTP(d));
+	printf("TotalquantMes -> %d\n",getDadosTQ(d));
 
 
 	return 0;
