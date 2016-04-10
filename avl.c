@@ -253,8 +253,9 @@ char* getAvlCode(Avl a){
 	return a->code;
 }
 
-void setAv(Avl c, Avl d){
+Avl setAv(Avl c, Avl d){
 	c=d;
+	return c;
 }
 
 void setAvl(MY_AVL a, Avl b){

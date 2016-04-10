@@ -38,7 +38,7 @@ char* getAvlCode(Avl);
 void* getInfo(Avl a);
 int getSize(MY_AVL a);
 void setInfo(Avl a,void* i);
-void setAv(Avl,Avl);
+Avl setAv(Avl,Avl);
 void setAvl(MY_AVL,Avl);
 
 /* APAGAR 
