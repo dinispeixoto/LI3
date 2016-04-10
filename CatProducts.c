@@ -9,6 +9,7 @@ struct catp {
 
 struct conjProds{
 	int sp;
+	int jeito;
 	int size;
 	PRODUCT* GroupProd;
 };
@@ -91,6 +92,11 @@ PRODUCT setProduct(char* string){
 }
 
 
+void printGP(GROUP_PRODUCTS gp, int size){
+	int i;
+	for(i=0;i<size;i++)  
+			printf("%s\n",gp->GroupProd[i]->string); 
+}
 
 
 /* ########################################## APAGAR ###########################################
@@ -114,6 +120,7 @@ GROUP_PRODUCTS initGroupProducts(int size){
 	}
 	group->sp = 0;
 	group->size = size;
+	group->jeito=0;
 
 	return group;
 }
@@ -132,11 +139,14 @@ GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS array){
 	return array;
 }
 
-PRODUCT* insereP(PRODUCT* list,int size,int* sp,char* p){
+PRODUCT* insereP(PRODUCT* list,int size,int* sp,int w,char* p){
 	int i,cmp=0;
 	PRODUCT aux=malloc(sizeof(struct product));
 	aux->string=malloc(SIZE_PRODUCTS);
-	for(i=0;i<=(*sp);i++){
+	int a;
+	if(w>0) a=*sp;	
+	else a=0;
+	for(i=a;i<=(*sp);i++){
 		if(i==(*sp)){
 			strcpy(list[i]->string,p);
 		}
@@ -172,6 +182,15 @@ int getGroupProdSp(GROUP_PRODUCTS a){
 
 void setGroupProdSp(GROUP_PRODUCTS a,int x){
 	 a->sp=x;
+}
+
+int getJ(GROUP_PRODUCTS a){
+	return a->jeito;
+}
+
+
+void setJ(GROUP_PRODUCTS a,int x){
+	a->jeito=x;
 }
 
 PRODUCT* getGroupProd(GROUP_PRODUCTS a){

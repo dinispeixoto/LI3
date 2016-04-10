@@ -37,15 +37,20 @@ int main(){
 	*/
 
 	/*##########################TESTES(Querie4(TOTAIS e Filiais))###################################### FUNCIONA*/
-	/*
+	//SOU UM GENIO CRL
 	getchar();
 	int a,i;
 	GROUP_PRODUCTS f1;
-	a=0;
-	f1 = querie4(fact,&a,-1);
+	//for(i=1;i<4;i++){
+	//a=0;
+	for(i=1;i<4;i++){
+	a=0;	
+	f1 = querie4(fact,&a,i);
+
 	//printGP(f1,a);
 	printf("%d\n",a);
-	*/
+	}
+	//}
 	/*##########################TESTES(Querie6)###################################### FUNCIONA
 	getchar();
 	int i;

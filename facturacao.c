@@ -187,7 +187,7 @@ GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int y){
 		if(w==NULL || (y!=-1 && !verifInfo(w,y))){
 			(*x)++;
 			sp=getGroupProdSp(list);
-			setGroupProd(list,insereP(getGroupProd(list),getGroupProdSize(list),&sp,getAvlCode(a)));
+			setGroupProd(list,insereP(getGroupProd(list),getGroupProdSize(list),&sp,getJ(list),getAvlCode(a)));
 			setGroupProdSp(list,sp);
 			list=toGroup2(list);
 		}
@@ -211,6 +211,7 @@ GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int y){
 			}
 		}
 	for(i=0;i<26;i++){
+		setJ(gp,i+1);
 		gp=found(getAvl(clone[i]),gp,c,y);	
 	}
 	eliminar(clone,26);

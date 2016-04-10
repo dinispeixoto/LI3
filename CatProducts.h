@@ -25,6 +25,8 @@ int testProduct (PRODUCT);
 MY_AVL getP(CATALOG_PRODUCTS ,int );
 char* getProduct(PRODUCT prod);
 PRODUCT setProduct(char* string);
+void setJ(GROUP_PRODUCTS a,int x);
+int getJ(GROUP_PRODUCTS a);
 
 
 /*QUERIES*/
@@ -35,10 +37,10 @@ void setGroupProdSp(GROUP_PRODUCTS,int);
 void setGroupProdSize(GROUP_PRODUCTS,int);
 PRODUCT* getGroupProd(GROUP_PRODUCTS);
 void setGroupProd(GROUP_PRODUCTS,PRODUCT*);
-PRODUCT* insereP(PRODUCT* ,int ,int*,char* );
+PRODUCT* insereP(PRODUCT* ,int ,int*,int,char* );
 
 
-//void printGP(GROUP_PRODUCTS,int);
+void printGP(GROUP_PRODUCTS,int);
 /* APAGAR
 int printCatProducts(CATALOG_PRODUCTS);
 */
