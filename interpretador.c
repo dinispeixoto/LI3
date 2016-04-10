@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 #include "interpretador.h"
 
@@ -73,7 +70,7 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 	
 	if(!totalProducts(CatProducts)){
 		printf("\n	O Catálogo de Produtos encontra-se vazio de momento. Experimente usar primeiro o comando de leitura.\n");
-		sleep(4);
+		sleep(5);
 		system("clear");
 		interpretador(CatClients,CatProducts,Sales,fact);
 	}
@@ -109,6 +106,7 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 				putchar('\n');
 				printCatalogProds(group,page,totalPages,getGroupProdSize(group));
 			}
+			else if(page == 0) interpretador(CatClients,CatProducts,Sales,fact);
 			else{
 				printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
 				sleep(2);
@@ -136,6 +134,7 @@ void printCatalogProds(GROUP_PRODUCTS group,int page,int totalPages,int totalEle
 		if(index < totalElements)
 			printf("				%s\n",getProduct(getGroupProd(group)[index]));
 	}
+	printf("\n	 									0. Sair\n");
 }
 
 

@@ -1,6 +1,11 @@
 #ifndef __INTERPRETADOR_H__
 #define __INTERPRETADOR_H__
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "CatClients.h"
 #include "CatProducts.h"
 #include "Sales.h"
