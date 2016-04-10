@@ -11,7 +11,7 @@
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
 int main(){	
-
+	
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	FACTURACAO fact = initF();
@@ -19,7 +19,7 @@ int main(){
 
 	getFile(CatClients,CatProducts,Sales,fact);	
 
-	/*##########################TESTES(Querie3)######################################
+	/*##########################TESTES(Querie3)###################################### FUNCIONA
 	getchar();
 	int i;
 	double cont=0;
@@ -36,7 +36,17 @@ int main(){
 	printf("TotalquantMes -> %d\n",cont2);
 	*/
 
-	/*##########################TESTES(Querie6)######################################*/
+	/*##########################TESTES(Querie4(TOTAIS e Filiais))###################################### FUNCIONA*/
+	/*
+	getchar();
+	int a,i;
+	GROUP_PRODUCTS f1;
+	a=0;
+	f1 = querie4(fact,&a,-1);
+	//printGP(f1,a);
+	printf("%d\n",a);
+	*/
+	/*##########################TESTES(Querie6)###################################### FUNCIONA
 	getchar();
 	int i;
 	double cont=0;
@@ -46,7 +56,7 @@ int main(){
 
 	printf("TotalpriceMes -> %f\n",getDadosTP(d));
 	printf("TotalquantMes -> %d\n",getDadosTQ(d));
-
+	*/
 
 	return 0;
 }

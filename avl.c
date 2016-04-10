@@ -133,7 +133,7 @@ MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
 
 	if(a == NULL) a = initMyAvl();
 	(a->avl) = insert(a->avl,line,info);
-	(a->total)++;
+	if(!info)(a->total)++;
 	return a;
 }
 
@@ -206,6 +206,22 @@ MY_AVL cloneMyAvl (MY_AVL estrutura){
 	return aux;
 }
 
+void elimAux (Avl a){
+	if(a){
+		elimAux(a->left);
+		elimAux(a->right);
+		free(a);
+	}
+	else free (a);
+}
+
+void eliminar (MY_AVL* a, int x){
+	int i;
+	for(i=0;i<x;i++){
+		elimAux(a[i]->avl);
+	}
+}
+
 
 /* GETS E SETS */ 
 
@@ -229,8 +245,20 @@ void* getInfo(Avl a){
 	return a->info;
 }
 
+void setInfo(Avl a,void* i){
+	a->info=i;
+}
+
 char* getAvlCode(Avl a){
 	return a->code;
+}
+
+void setAv(Avl a, Avl b){
+	a=b;
+}
+
+void setAvl(MY_AVL a, Avl b){
+	a->avl=b;
 }
 
 /* ############################################################## APAGAR ##########################################################################

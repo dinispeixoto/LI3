@@ -86,6 +86,28 @@ INFO copia (SALES s, INFO i){
 	
 	return i;
 }
+
+FACTURACAO insereFact(FACTURACAO f,SALES s){
+
+	void* y;
+	int month=getSalesMonth(s)-1;
+	int index = getProduct(getSalesProduct(s))[0]-'A';
+	
+	void* x= (INFO)gs(getAvl(f->prod[month][index]),getProduct(getSalesProduct(s)));
+
+	if(x){
+		y=copia(s,x);
+	}
+	else {
+		INFO i=initINFO();
+		i=copia(s,i);
+		y=i;
+	}
+	f->prod[month][index]=insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
+	
+	return f;
+}
+
 /*###########################Querie3##############################*/
 
 double getnumFilialP(INFO c,int filial, int promo){
@@ -121,30 +143,80 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 /*###########################Querie3##############################*/
 
 /*###########################Querie4##############################*/
-GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list){
-	int n;
-	if(getInfo(a)==NULL){
-		setGroupProd(list,insereP(getGroupProd(list),getGroupProdSize(list),getAvlCode(a)));
-		setGroupProdSize(list,getGroupProdSize(list)+1);
+INFO acumulaInfo (INFO a, INFO b){
+	int i,j;
+	for(i=0;i<2;i++)
+		for(j=0;j<3;j++){
+			a->F[i][j]->totalprice+=b->F[i][j]->totalprice;
+			a->F[i][j]->totalquant+=b->F[i][j]->totalquant;
+
+		}
+	a->totalMesQ+=b->totalMesQ;
+	a->totalMesP+=b->totalMesQ;
+	return a;
+}
+
+Avl compare (Avl a, Avl b){
+	if(a){
+		if(getInfo(b)){
+			if(getInfo(a)){
+				void* x= (INFO)getInfo(a);
+				void* y= (INFO)getInfo(b);
+				setInfo(a,acumulaInfo(x,y));
+			}
+			else setInfo(a,getInfo(b));
+		}
+		setAv(getAvlLeft(a),compare(getAvlLeft(a),getAvlLeft(b)));
+		setAv(getAvlRight(a),compare(getAvlRight(a),getAvlRight(b)));
 	}
-	else{ 
-		list=found(getAvlLeft(a),list);
-		list=found(getAvlRight(a),list);
+	return a;
+}
+
+int verifInfo (INFO i, int filial){
+	int r=0,j;
+	for(j=0;j<2;j++)
+		r+=i->F[j][filial-1]->totalquant;
+	return r;
+}
+
+
+GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int y){
+	int sp;
+	if(a){
+	void*w=(INFO)getInfo(a);
+		if(w==NULL || (y!=-1 && !verifInfo(w,y))){
+			(*x)++;
+			sp=getGroupProdSp(list);
+			setGroupProd(list,insereP(getGroupProd(list),getGroupProdSize(list),&sp,getAvlCode(a)));
+			setGroupProdSp(list,sp);
+			list=toGroup2(list);
+		}
+		list=found(getAvlLeft(a),list,x,y);
+		list=found(getAvlRight(a),list,x,y);
 	}
 	return list;
-
 }
-/*
-GROUP_PRODUCTS querie4 (FACTURACAO f){
-	GROUP_PRODUCTS gp = initGroupProducts();
-	int i;
 
-	for(i=0;i<12;i++){
-		verif(f->[i],gp);
+GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int y){
+	GROUP_PRODUCTS gp = initGroupProducts(1);
+	int i,j;
+	MY_AVL clone[26];
+	
+	for(i=0;i<26;i++)
+				clone[i] = cloneMyAvl(f->prod[0][i]);	
+
+	for(i=1;i<12;i++){
+			for(j=0;j<26;j++){	
+				setAvl(clone[j],compare(getAvl(clone[j]),getAvl(f->prod[i][j])));
+			}
+		}
+	for(i=0;i<26;i++){
+		gp=found(getAvl(clone[i]),gp,c,y);	
 	}
-
+	eliminar(clone,26);
+	return gp;
 }
-*/
+
 /*############################Querie4#############################*/
 
 /*###########################Querie6##############################*/
@@ -181,29 +253,6 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 	return d;
 }
 /*###########################Querie6##############################*/
-
-FACTURACAO insereFact(FACTURACAO f,SALES s){
-
-	void* y;
-	int month=getSalesMonth(s)-1;
-	int index = getProduct(getSalesProduct(s))[0]-'A';
-	
-	void* x= (INFO)gs(getAvl(f->prod[month][index]),getProduct(getSalesProduct(s)));
-
-	if(x){
-		y=copia(s,x);
-	}
-	else {
-		INFO i=initINFO();
-		i=copia(s,i);
-		y=i;
-	}
-	//f->arr[index]=insertMyAvl(f->arr[index],getProduct(getSalesProduct(s)),NULL);
-	f->prod[month][index]=insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
-	
-	return f;
-}
-
 
 /*GET & SET*/
 double* getDadosP(DADOS d){

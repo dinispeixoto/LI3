@@ -28,15 +28,17 @@ PRODUCT setProduct(char* string);
 
 
 /*QUERIES*/
-GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS,char);
-void travessia(Avl,int,GROUP_PRODUCTS);
-GROUP_PRODUCTS toGroup(GROUP_PRODUCTS,PRODUCT);
+GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS);
 int getGroupProdSize(GROUP_PRODUCTS);
+int getGroupProdSp(GROUP_PRODUCTS);
+void setGroupProdSp(GROUP_PRODUCTS,int);
 void setGroupProdSize(GROUP_PRODUCTS,int);
 PRODUCT* getGroupProd(GROUP_PRODUCTS);
 void setGroupProd(GROUP_PRODUCTS,PRODUCT*);
-PRODUCT* insereP(PRODUCT* ,int ,char* );
+PRODUCT* insereP(PRODUCT* ,int ,int*,char* );
 
+
+//void printGP(GROUP_PRODUCTS,int);
 /* APAGAR
 int printCatProducts(CATALOG_PRODUCTS);
 */
