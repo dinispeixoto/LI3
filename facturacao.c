@@ -245,16 +245,16 @@ static int checkInfo(INFO i, int filial){
 static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
 	int sp;
 	if(a){
-	void*w = (INFO)getInfo(a);
+	void* w = (INFO)getInfo(a);
 
-		if(w==NULL || (filial!=-1 && !checkInfo(w,filial))){
+		list=found(getAvlLeft(a),list,x,filial);
+		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
 			(*x)++;
 			sp=getGroupProdSp(list);
 			setGroupProd(list,insertGROUP_PRODUCTS(getGroupProd(list),&sp,getJ(list),getAvlCode(a)));
 			setGroupProdSp(list,sp);
 			list=reallocGROUP_PRODUCTS(list);
 		}
-		list=found(getAvlLeft(a),list,x,filial);
 		list=found(getAvlRight(a),list,x,filial);
 	}
 

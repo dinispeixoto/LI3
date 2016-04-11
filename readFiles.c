@@ -4,7 +4,6 @@
 #include "Sales.h"
 #include "facturacao.h"			
 
-
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
 void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACTURACAO fact){
@@ -23,9 +22,9 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	time_t end_clients;
 	time_t end_products;
 	time_t end_sales;
-	long time_elapsed_clients;
-	long time_elapsed_products;
-	long time_elapsed_sales;
+	long time_elapsed_clients = 0;
+	long time_elapsed_products = 0;
+	long time_elapsed_sales = 0;
 
 	/*
 	fileClients = openFile();	
@@ -72,7 +71,15 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	printf("	Tempo de leitura dos PRODUTOS: %ld ms.\n",time_elapsed_products/1000);
 	printf("	Tempo de leitura das VENDAS: %ld ms.\n",time_elapsed_sales/1000);
 
-	
+	/* RESET TIMERS */
+	timer_delete(begin_clients);
+	timer_delete(end_clients);
+	timer_delete(begin_products);
+	timer_delete(end_products);
+	timer_delete(begin_sales);
+	timer_delete(end_sales);
+
+
 	fclose(fileClients);
 	fclose(fileProducts);
 	fclose(fileSales);	

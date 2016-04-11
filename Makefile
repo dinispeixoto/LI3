@@ -1,5 +1,5 @@
 CC = gcc 
-CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi -O2 -Wuninitialized -pedantic
+CFLAGS = -Wunreachable-code -ansi -O2
 FILES = *.c
 
 default:
@@ -16,3 +16,5 @@ debug:
 clean:
 	rm -f gereVendas
 	rm -f debug 
+
+# -Wuninitialized -pedantic -Wunused-parameter -Wall -Wextra
