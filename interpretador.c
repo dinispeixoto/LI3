@@ -46,7 +46,7 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 
 void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
 	
-	char rep[1];
+	char rep;
 	int size_input;
 
 	printf("\e[2J\e[H"); 
@@ -57,14 +57,13 @@ void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sal
 	getFile(CatClients,CatProducts,Sales,fact);
 	putchar('\n');
 	printf(" 								0.Sair\n\n");
-	printf("______________________________________________________________________________________________\n");
+	printf("______________________________________________________________________________________________\n\n");
 
-	printf("\n	Deseja continuar (S/N)? ");
-	size_input = scanf("%s",rep);
 
-	if(rep[0] == 'S' || rep[0] == 's')
-		interpretador(CatClients,CatProducts,Sales,fact);
-	else exit(0);	
+	while(getchar()!='\n');
+	rep = getchar();
+	if(rep == '0') exit(0);	
+	else interpretador(CatClients,CatProducts,Sales,fact);
 }
 
 /* QUERIE 2 */
@@ -80,6 +79,7 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 	testMemory(CatClients,CatProducts,Sales,fact,"O Catálogo de Produtos");
 
 	printTop(2);
+	printf("										0.Voltar\n");
 	printf("	Letra que deseja procurar: ");
 	size_input = scanf("\n%c",&rep);
 
@@ -113,6 +113,7 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 		while(page != 0);
 
 	}
+	else if(rep == '0') interpretador(CatClients,CatProducts,Sales,fact);
 	else{
 		printf("	Por favor insira uma letra de A a Z.\n");
 		sleep(2);
@@ -161,7 +162,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 	}
 
 	else{
-		printf("	\n\n\nPor favor responda somente com T(total) ou F(filial)!\n");
+		printf("\n\n\n 		Por favor responda somente com T(total) ou F(filial)!\n");
 		sleep(3);
 		printf("\e[2J\e[H");
 		productsNSold(CatClients,CatProducts,Sales,fact);
@@ -178,11 +179,11 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 
 void printPageNSold(GROUP_PRODUCTS group,int page,int totalPages){
 	int i,index;
-	printf("	Página %d de %d.\n",page,totalPages);
+	printf("\n	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i+(ELEM_PER_PAGE*(page-1));
 		if(index < getGroupProdSp(group))
-			printf("	%d | %s\n",index+1,getProduct(getGroupProd(group)[index]));
+			printf("\n	%d | %s",index+1,getProduct(getGroupProd(group)[index]));
 	}
 }
 
@@ -191,14 +192,15 @@ int printNSold(GROUP_PRODUCTS group,int totalPages){
 	int rep = 1,size_input,page;
 
 	do{
-		printf("	Escolha uma página: ");
+		
+		printf("\n\n	Escolha uma página: ");
 		size_input = scanf("\n%d",&page);
 
 		if(page > 0 && page <= totalPages){
 			printf("\e[2J\e[H");
 			printTop(4);
 			printPageNSold(group,page,totalPages);
-			}
+		}
 
 		else if(page == 0) return 0;
 		else{

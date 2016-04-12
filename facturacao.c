@@ -4,7 +4,7 @@
 #include "CatProducts.h"
 
 struct fact{
-    MY_AVL prod[SIZE_MONTH][26];
+    MY_AVL prod[SIZE_MONTH][SIZE_ABC];
 };
 
 struct pq {

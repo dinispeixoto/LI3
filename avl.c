@@ -23,6 +23,7 @@ static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
 static void removeFromMY_AVL_AUX(Avl);
+static Avl insertINFO(Avl,STRING,void*);
 /*static void insertArray(char**,Avl,int*);*/
 
 
@@ -132,8 +133,22 @@ Avl insert(Avl estrutura, char* line,void* info) {
 MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
 
 	if(a == NULL) a = initMyAvl();
-	(a->avl) = insert(a->avl,line,info);
+	if(!info)(a->avl) = insert(a->avl,line,info);
+	else (a->avl)=insertINFO(a->avl,line,info);
 	(a->total)++;
+	return a;
+}
+
+static Avl insertINFO(Avl a,STRING line,void* i){
+	Avl aux=a;
+	int cp;
+	while(a){
+		if((cp=strcmp(a->code,line)) > 0) a=a->left;
+		else if(cp<0) a=a->right;
+			else {a->info=i;break;}
+	}
+
+	a=aux;
 	return a;
 }
 
@@ -175,11 +190,10 @@ void* findInfo (Avl a,STRING line){
 	while(a){
 		if((cp=strcmp(a->code,line)) > 0) a=a->left;
 		else if(cp<0) a=a->right;
-			else break;
+		else break;
 	}
 	if(a) return a->info;
-
-	return NULL;
+	else return NULL;
 }
 
 Avl cloneAvl (Avl estrutura){
