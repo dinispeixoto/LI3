@@ -1,11 +1,5 @@
 #include "filiais.h"
 
-typedef struct filiais *FILIAIS;
-typedef struct clients_products *CLIENTS_PRODUCTS;
-typedef struct infoClients *INFO_CLIENTS;
-typedef struct infoProducts *INFO_PRODUCTS;
-
-
 struct filiais{
 	CLIENTS_PRODUCTS filiais[3];
 };
@@ -40,6 +34,7 @@ CLIENTS_PRODUCTS initClientsProducts(){
 		cp->Clients[i] = initMyAvl();
 		cp->Products[i] = initMyAvl();
 	}
+	return cp;
 }
 
 INFO_CLIENTS initFiliaisClients(){
