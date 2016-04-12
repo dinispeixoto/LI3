@@ -1,8 +1,8 @@
-#include "Sales.h"
-#include "CatClients.h"
-#include "CatProducts.h"					
-
 #define MAX_SALES 1000000
+
+#include "CatClients.h"
+#include "CatProducts.h"
+#include "Sales.h"
 
 struct sales{
 	CLIENT client;
@@ -22,6 +22,14 @@ SALES initSales(){
 	a->client=NULL;
 	a->product=NULL; 
 	return a;
+}
+
+void freeSale(SALES a){
+	if(a){
+		freeClient(a->client);
+		freeProduct(a->product);
+		free(a);
+	}	
 }
 
 /* GETS E SETS */

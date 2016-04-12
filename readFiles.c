@@ -15,6 +15,17 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	int validatedSales = 0;
 	int invalidatedSales = 0;
 	
+	/* TEMPOS */
+	time_t begin_clients;
+	time_t begin_products;
+	time_t begin_sales;
+	time_t end_clients;
+	time_t end_products;
+	time_t end_sales;
+	long time_elapsed_clients = 0;
+	long time_elapsed_products = 0;
+	long time_elapsed_sales = 0;
+
 	/*
 	fileClients = openFile();	
 	fileProducts = openFile();	
@@ -26,35 +37,59 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	fileSales = fopen(SALES_FILE,"r");
 	
 	
-
+	begin_clients = clock();
 	if(fileClients!=NULL){
 		clients = valCli(fileClients,clients,&validatedClients);
-		printf("CLIENTES: Foram validadas %d linhas.\n",validatedClients);
+		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 	}
+	end_clients = clock();
 
+
+	begin_products = clock();
 	if(fileProducts!=NULL){
 		products = valProd(fileProducts,products,&validatedProducts);
-		printf("PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
-		fact=initFact(fact,products);
+		printf("	PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
+		fact = copyProducts(fact,products);
 	}
+	end_products = clock();
 	
+
+	begin_sales = clock();
 	if(fileSales!=NULL){
 		sales = valSales(fileSales,clients,products,sales,fact,&validatedSales,&invalidatedSales);
-		printf("VENDAS: Foram validadas %d linhas.\n",validatedSales);
+		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
 	}
-	
+	end_sales = clock();
+
+
+	time_elapsed_clients = (double)end_clients - begin_clients / (CLOCKS_PER_SEC);
+	time_elapsed_products = (double)end_products - begin_products / (CLOCKS_PER_SEC);
+	time_elapsed_sales = (double)end_sales - begin_sales / (CLOCKS_PER_SEC);
+
+	putchar('\n');
+	printf("	Tempo de leitura dos CLIENTES: %ld ms.\n",time_elapsed_clients/1000);
+	printf("	Tempo de leitura dos PRODUTOS: %ld ms.\n",time_elapsed_products/1000);
+	printf("	Tempo de leitura das VENDAS: %ld ms.\n",time_elapsed_sales/1000);
+
+	/* RESET TIMERS */
+	timer_delete(begin_clients);
+	timer_delete(end_clients);
+	timer_delete(begin_products);
+	timer_delete(end_products);
+	timer_delete(begin_sales);
+	timer_delete(end_sales);
+
+
 	fclose(fileClients);
 	fclose(fileProducts);
 	fclose(fileSales);	
 }
 
 
-FILE* openFile(){ 
-	FILE* file;                             /* Isto é o base, tem de ser melhorado conforme necessitarmos quando tivermos o intrepertador. */
-	char fileName[SIZE_FILE_NAME];
-	scanf("%s", fileName);
+FILE* openFile(char* fileName){ 
+	FILE* file;                        
 	file = fopen(fileName,"r");
-	if(!file){ printf("Não consegui ler o ficheiro.\n"); file = openFile();}
+	if(!file) printf("Não consegui ler o ficheiro: %s.\n",fileName); 
 	return file;
 }
 
@@ -94,7 +129,7 @@ SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALE
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int r;
-	CLIENT clie = NULL; /* METI ESTA PORCARIA ASSIM PARA NÃO DAR WARNINGS */
+	CLIENT clie = NULL;
 	PRODUCT prod = NULL;
 	int month,filial,quant;
 	double price;
@@ -115,4 +150,3 @@ SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALE
 	}
 	return sales;
 }
- 

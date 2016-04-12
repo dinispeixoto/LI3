@@ -1,16 +1,14 @@
 #include "avl.h"
 #include "CatProducts.h"
 
-#define DEFAULT_SIZE 10
-
 struct catp {
 	MY_AVL CatProducts[SIZE_ABC];
 };
 
 struct conjProds{
 	int sp;
-	int jeito;
 	int size;
+	int jeito;
 	PRODUCT* GroupProd;
 };
 
@@ -25,6 +23,11 @@ CATALOG_PRODUCTS initProducts(){
 	CATALOG_PRODUCTS Catalog = malloc (sizeof(struct catp));
 	for(i=0;i<SIZE_ABC;i++)	Catalog->CatProducts[i] = initMyAvl();
 	return Catalog;
+}
+
+void freeProduct(PRODUCT prod){
+	free(prod->string);
+	free(prod);
 }
 
 /* Insere um produto no respectivo catálogo. */
@@ -67,7 +70,7 @@ void removeCatProds(CATALOG_PRODUCTS Catalog){
 }
 
 /* Testa se um produto tem a estrutura correta.*/
-int testProduct (PRODUCT prod){
+BOOL testProduct (PRODUCT prod){
    int num = atoi(prod->string+LETRAS_P),i;
    for(i=0;i<LETRAS_P;i++)
        if(!(isupper(prod->string[i]))) return 0;
@@ -76,12 +79,13 @@ int testProduct (PRODUCT prod){
 }
 
 /* GETS E SETS */
-MY_AVL getP(CATALOG_PRODUCTS p, int x){
-	return p->CatProducts[x];
-}
 
 char* getProduct(PRODUCT prod){
 	return prod->string;
+}
+
+MY_AVL getP(CATALOG_PRODUCTS p, int x){
+	return p->CatProducts[x];
 }
 
 PRODUCT setProduct(char* string){
@@ -89,79 +93,6 @@ PRODUCT setProduct(char* string){
 	prod->string = malloc(SIZE_PRODUCTS);
 	strcpy(prod->string,string);
 	return prod;
-}
-
-
-void printGP(GROUP_PRODUCTS gp, int size){
-	int i;
-	for(i=0;i<size;i++)  
-			printf("%s\n",gp->GroupProd[i]->string); 
-}
-
-
-/* ########################################## APAGAR ###########################################
-
-void printGP(GROUP_PRODUCTS gp, int size){
-	int i;
-	for(i=0;i<size;i++)  
-			printf("%s\n",gp->GroupProd[i]->string); 
-}*/
-
-
-/* #################################### QUERIES ######################################################## */
-
-GROUP_PRODUCTS initGroupProducts(int size){
-	int i;
-	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
-	group->GroupProd = malloc (sizeof(PRODUCT) * size);
-	for(i=0;i<size;i++){
-		group->GroupProd[i]=malloc(sizeof(struct product));
-		group->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
-	}
-	group->sp = 0;
-	group->size = size;
-	group->jeito=0;
-
-	return group;
-}
-
-
-GROUP_PRODUCTS toGroup2(GROUP_PRODUCTS array){	
-	int i;
-	if (array->sp > (array->size*3)/4) {
-		array->size *= 2;
-		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
-		for(i=(array->size)/2;i<array->size;i++){
-			array->GroupProd[i]=malloc(sizeof(struct product));
-			array->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
-		}
-	}	
-	return array;
-}
-
-PRODUCT* insereP(PRODUCT* list,int size,int* sp,int w,char* p){
-	int i,cmp=0;
-	PRODUCT aux=malloc(sizeof(struct product));
-	aux->string=malloc(SIZE_PRODUCTS);
-	int a;
-	if(w>0) a=*sp;	
-	else a=0;
-	for(i=a;i<=(*sp);i++){
-		if(i==(*sp)){
-			strcpy(list[i]->string,p);
-		}
-		else{
-			cmp=strcmp(list[i]->string,p);
-			if(cmp>=0){
-				strcpy(aux->string,list[i]->string);
-				strcpy(list[i]->string,p);
-				strcpy(p,aux->string);
-			}
-		}
-	}
-	(*sp)++;
-	free(aux);
-	return list;
 }
 
 void setGroupProdSize(GROUP_PRODUCTS gp,int x){
@@ -195,4 +126,85 @@ void setJ(GROUP_PRODUCTS a,int x){
 
 PRODUCT* getGroupProd(GROUP_PRODUCTS a){
 	return a->GroupProd;
+}
+
+/* #################################### QUERIES ######################################################## */
+
+GROUP_PRODUCTS initGroupProducts(int size){
+	int i;
+	GROUP_PRODUCTS group = malloc(sizeof(struct conjProds));	
+	group->GroupProd = malloc (sizeof(PRODUCT) * size);
+	for(i=0;i<size;i++){
+		group->GroupProd[i]=malloc(sizeof(struct product));
+		group->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
+	}
+	group->sp = 0;
+	group->size = size;
+	group->jeito=0;
+
+	return group;
+}
+
+GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
+	
+	int index = letter - 'A';
+	GROUP_PRODUCTS group = initGroupProducts(totalElements(Catalog->CatProducts[index]));
+	MY_AVL a = Catalog->CatProducts[index];
+	Avl tree = getAvl(a);
+	travessia(tree,0,group);
+	return group;
+}
+
+void travessia(Avl a,int index,GROUP_PRODUCTS array){
+	PRODUCT prod;
+	if(a!=NULL){
+		travessia(getAvlLeft(a),index,array);
+		prod = setProduct(getAvlCode(a));
+		array = toGroup(array,prod);
+		index++;
+		travessia(getAvlRight(a),index,array);
+	}
+}
+
+GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){	
+	array->GroupProd[array->sp] = prod;
+	array->sp++;
+	return array;
+}
+
+GROUP_PRODUCTS reallocGROUP_PRODUCTS(GROUP_PRODUCTS array){	
+	int i;
+	if (array->sp > (array->size*3)/4) {
+		array->size *= 2;
+		array->GroupProd = realloc(array->GroupProd,array->size*sizeof(PRODUCT));
+		for(i=(array->size)/2;i<array->size;i++){
+			array->GroupProd[i]=malloc(sizeof(struct product));
+			array->GroupProd[i]->string=malloc(SIZE_PRODUCTS);
+		}
+	}	
+	return array;
+}
+
+PRODUCT* insertGROUP_PRODUCTS(PRODUCT* list,int* sp,int w,char* p){
+	int i,cmp=0,a;
+	PRODUCT aux=malloc(sizeof(struct product));
+	aux->string=malloc(SIZE_PRODUCTS);
+	if(w>0) a=*sp;	
+	else a=0;
+	for(i=a;i<=(*sp);i++){
+		if(i==(*sp)){
+			strcpy(list[i]->string,p);
+		}
+		else{
+			cmp=strcmp(list[i]->string,p);
+			if(cmp>=0){
+				strcpy(aux->string,list[i]->string);
+				strcpy(list[i]->string,p);
+				strcpy(p,aux->string);
+			}
+		}
+	}
+	(*sp)++;
+	free(aux);
+	return list;
 }

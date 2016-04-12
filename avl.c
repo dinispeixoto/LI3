@@ -1,5 +1,4 @@
 #include "avl.h"
-#include <stdio.h>
 
 #define SIZE_CODE 7
 #define LEFT -2
@@ -23,6 +22,7 @@ static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
+static void removeFromMY_AVL_AUX(Avl);
 /*static void insertArray(char**,Avl,int*);*/
 
 
@@ -98,14 +98,14 @@ Avl insert(Avl estrutura, char* line,void* info) {
 		HR = heightAvl(estrutura->right);
 
 		estrutura->height = maior(HL,HR)+1;
-    
+
 		bal = HL - HR;
 
 		if(bal>1) bal=RIGHT;
 		if(bal<-1) bal=LEFT;
-    
+
 		switch (bal){
-        
+
 			case 2: if((ls=strcmp(line,estrutura->left->code)) < 0)
 						return rotateRight(estrutura);
 					else if (ls>0){
@@ -133,7 +133,7 @@ MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
 
 	if(a == NULL) a = initMyAvl();
 	(a->avl) = insert(a->avl,line,info);
-	if(!info)(a->total)++;
+	(a->total)++;
 	return a;
 }
 
@@ -154,7 +154,8 @@ int existAvl(Avl estrutura, char* line){
 }
 
 int totalElements(MY_AVL estrutura){
-	return estrutura->total;
+	if(estrutura) return estrutura->total;
+	else return 0;
 }
 
 void removeMyAvl(MY_AVL estrutura){
@@ -169,16 +170,15 @@ void removeAvl(Avl estrutura){
 	}
 }
 
-void* gs (Avl a,STRING line){
+void* findInfo (Avl a,STRING line){
 	int cp=0;
-	Avl aux=a;
 	while(a){
 		if((cp=strcmp(a->code,line)) > 0) a=a->left;
 		else if(cp<0) a=a->right;
 			else break;
 	}
 	if(a) return a->info;
-	a=aux;
+
 	return NULL;
 }
 
@@ -206,20 +206,20 @@ MY_AVL cloneMyAvl (MY_AVL estrutura){
 	return aux;
 }
 
-void elimAux (Avl a){
+void removeFromMY_AVL (MY_AVL* a, int x){
+	int i;
+	for(i=0;i<x;i++){
+		removeFromMY_AVL_AUX(a[i]->avl);
+	}
+}
+
+static void removeFromMY_AVL_AUX (Avl a){
 	if(a){
-		elimAux(a->left);
-		elimAux(a->right);
+		removeFromMY_AVL_AUX(a->left);
+		removeFromMY_AVL_AUX(a->right);
 		free(a);
 	}
 	else free (a);
-}
-
-void eliminar (MY_AVL* a, int x){
-	int i;
-	for(i=0;i<x;i++){
-		elimAux(a[i]->avl);
-	}
 }
 
 
@@ -253,46 +253,11 @@ char* getAvlCode(Avl a){
 	return a->code;
 }
 
-void setAv(Avl a, Avl b){
-	a=b;
+Avl setAv(Avl c, Avl d){
+	c=d;
+	return c;
 }
 
 void setAvl(MY_AVL a, Avl b){
 	a->avl=b;
 }
-
-/* ############################################################## APAGAR ##########################################################################
-
-void printMyAvl(MY_AVL a){
-	printAVL(a->avl);
-}
-
-void printAVL(Avl estrutura) {	
-	if (!estrutura);
-	else {
-		printAVL(estrutura->left);
-		printf("%s\n", estrutura->code);
-		printAVL(estrutura->right);
-	}
-}
-
-static void insertArray (char** array,Avl estrutura,int *a){
-	
-	if(estrutura->left==NULL && estrutura->right==NULL){
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else if(estrutura->left==NULL){ 
-		insertArray(array,estrutura->right,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-	}
-
-	else { 
-		insertArray(array,estrutura->left,a);
-		array[*a]=estrutura->code;
-		(*a)++;
-		if(estrutura->right!=NULL)insertArray(array,estrutura->right,a);
-	}
-}*/

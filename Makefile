@@ -1,14 +1,20 @@
 CC = gcc 
-CFLAGS = -Wall -Wextra -Wunreachable-code -Wunused-parameter -ansi -O2 -Wuninitialized -pedantic
+CFLAGS = -Wunreachable-code -ansi -O2
 FILES = *.c
 
 default:
-	$(CC) $(CFLAGS) $(FILES) -o li3
+	$(CC) $(CFLAGS) $(FILES) -o gereVendas
+
+run:
+	$(CC) $(CFLAGS) $(FILES) -o gereVendas
+	./gereVendas
 
 debug: 
 	gcc $(CFLAGS) $(FILES) -g -o debug
 	gdb debug
 
 clean:
-	rm -f li3
+	rm -f gereVendas
 	rm -f debug 
+
+# -Wuninitialized -pedantic -Wunused-parameter -Wall -Wextra
