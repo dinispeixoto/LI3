@@ -4,7 +4,7 @@
 #include "CatProducts.h"
 
 struct fact{
-    MY_AVL prod[SIZE_MONTH][26];
+    MY_AVL prod[SIZE_MONTH][SIZE_ABC];
 };
 
 struct pq {
@@ -216,7 +216,7 @@ static INFO updateInfo(INFO a, INFO b){
 	return a;
 }
 
-static Avl compare(Avl a, Avl b){
+/*static Avl compare(Avl a, Avl b){
 
 	if(a){
 		if(getInfo(b)){
@@ -230,6 +230,32 @@ static Avl compare(Avl a, Avl b){
 		setAv(getAvlLeft(a),compare(getAvlLeft(a),getAvlLeft(b)));
 		setAv(getAvlRight(a),compare(getAvlRight(a),getAvlRight(b)));
 
+	}
+	return a;
+}*/
+
+static Avl compare(Avl a, Avl b){
+
+	if(a){
+		if(getInfo(b)){
+			if(getInfo(a)){
+				INFO n = initINFO();
+				void* y = (INFO)getInfo(b);
+				n=updateInfo(n,y);
+				INFO m = initINFO();
+				void* x = (INFO)getInfo(a);
+				m=updateInfo(m,x);
+				setInfo(a,updateInfo(m,n));
+			}
+			else {
+				INFO p = initINFO();
+				void* r = (INFO)getInfo(b);
+				p=updateInfo(p,r);
+				setInfo(a,p);
+			}
+		}
+		setAv(getAvlLeft(a),compare(getAvlLeft(a),getAvlLeft(b)));
+		setAv(getAvlRight(a),compare(getAvlRight(a),getAvlRight(b)));
 	}
 	return a;
 }

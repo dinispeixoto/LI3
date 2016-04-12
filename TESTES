@@ -124,3 +124,25 @@ TESTAR A GROUP_PRODUCTS POR LETRA
 	printf("TotalpriceMes -> %f\n",cont );
 	printf("TotalquantMes -> %d\n",cont2);
 */
+
+Avl insertINFO(Avl a,STRING line,void* i){
+	Avl aux=a;
+	int cp;
+	while(a){
+		if((cp=strcmp(a->code,line)) > 0) a=a->left;
+		else if(cp<0) a=a->right;
+			else {a->info=i;break;}
+	}
+
+	a=aux;
+	return a;
+}
+
+MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
+
+	if(a == NULL) a = initMyAvl();
+	if(!info)(a->avl) = insert(a->avl,line,info);
+	else (a->avl)=insertINFO(a->avl,line,info);
+	(a->total)++;
+	return a;
+}
