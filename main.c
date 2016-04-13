@@ -19,8 +19,8 @@ int main(){
 	FACTURACAO fact = initFact();
 	SALES Sales = initSales();
 
-	/*interpretador(CatClients,CatProducts,Sales,fact);*/
-	getFile(CatClients,CatProducts,Sales,fact);
+	interpretador(CatClients,CatProducts,Sales,fact);
+	/*getFile(CatClients,CatProducts,Sales,fact);*/
 
 
 	return 0;

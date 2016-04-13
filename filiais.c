@@ -1,11 +1,5 @@
 #include "filiais.h"
 
-typedef struct filiais *FILIAIS;
-typedef struct clients_products *CLIENTS_PRODUCTS;
-typedef struct infoClients *INFO_CLIENTS;
-typedef struct infoProducts *INFO_PRODUCTS;
-
-
 struct filiais{
 	CLIENTS_PRODUCTS filiais[3];
 };
@@ -17,12 +11,12 @@ struct clients_products{
 
 struct infoClients{
 	MY_AVL clientsMatriz[12][2];
-	MY_AVL products_diferentes;
+	MY_AVL products_diferentes[26];
 };
 
 struct infoProducts{
-	MY_AVL productsMatriz;
-	MY_AVL clients_diferentes;
+	MY_AVL productsArray[12];
+	MY_AVL clients_diferentes[26];
 };
 
 FILIAIS initFiliais(){
@@ -49,14 +43,18 @@ INFO_CLIENTS initFiliaisClients(){
 		for(j=0;j<2;j++)
 			info->clientsMatriz[i][j] = initMyAvl();
 
-	info->products_diferentes = initMyAvl();
+	for(i=0;i<26;i++)
+		info->products_diferentes[i] = initMyAvl();
 	return info;
 }
 
 INFO_PRODUCTS initFiliaisProducts(){
 	INFO_PRODUCTS info;
-	info->productsMatriz = initMyAvl();
-	info->clients_diferentes = initMyAvl();
+	int i;
+	for(i=0;i<12;i++)
+		info->productsArray[i] = initMyAvl();
+	for(i=0;i<26;i++)
+		info->clients_diferentes[i] = initMyAvl();
 	return info;
 }
 
@@ -69,6 +67,20 @@ FILIAIS insertFiliais(FILIAIS f,SALES s){
 	INFO_PROMO infoPromo = getSalesInfoPromo(s);
 	FILIAL filial = getSalesFilial(s);
 	MONTH month = getSalesMonth(s);
+
+	CLIENTS_PRODUCTS a = f->filiais[filial];
+
+	int index_product = getProduct(product)[0]-'A';
+	int index_client = getClient(client)[0]-'A';
+
+	int exist_product = existMyAvl(a->Products[index_product],getProduct(product));
+	int exist_client = existMyAvl(a->Clients[index_client],getClient(client));
+
+	if(!exist_client) a->Products[index_product] = insertMyAvl(a->Products[index_product],getProduct(product),NULL);
+	else /*update*/
+
+	if(!exist_product) a->Clients[index_client] = insertMyAvl(a->Clients[index_client],getClient(client),NULL);
+	else /*update*/
 
 	return f;
 }
