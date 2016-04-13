@@ -174,7 +174,8 @@ int totalElements(MY_AVL estrutura){
 }
 
 void removeMyAvl(MY_AVL estrutura){
-	removeAvl(estrutura->avl);
+	if(estrutura)
+		removeAvl(estrutura->avl);
 }
 
 void removeAvl(Avl estrutura){

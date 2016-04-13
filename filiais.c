@@ -1,5 +1,8 @@
 #include "filiais.h"
 
+static INFO_CLIENTS copyInfoClient(SALES s, INFO_CLIENTS info);
+static INFO_PRODUCTS copyInfoProduct(SALES s, INFO_PRODUCTS info);
+
 struct filiais{
 	CLIENTS_PRODUCTS filiais[3];
 };
@@ -12,10 +15,10 @@ struct clients_products{
 struct total{
 	int totalQ;
 	double totalP;
-	//Heap ou MY_avl
+	MY_AVL avl;
 };
 
-//dentro do info da avl de cima
+/*dentro do info da avl de cima*/
 struct valores{
 	int quant;
 	double pago;
@@ -94,7 +97,7 @@ FILIAIS insertFiliais(FILIAIS f,SALES s){
 
 	if(!infoProducts){
 		INFO_PRODUCTS infoProducts = initFiliaisProducts();
-		infoProducts = copyInfoClient(s,infoProducts);
+		infoProducts = copyInfoProduct(s,infoProducts);
 	}
 
 	if(!infoClients){
@@ -107,7 +110,6 @@ FILIAIS insertFiliais(FILIAIS f,SALES s){
 
 static INFO_CLIENTS copyInfoClient(SALES s, INFO_CLIENTS info){
 
-	
 
 }
 

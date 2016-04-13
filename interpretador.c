@@ -15,7 +15,7 @@ void menu(){
 	printf("______________________________________________________________________________________________\n\n\n");
 }
 
-void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 
 	char buffer[1]; int size_input;
 
@@ -27,31 +27,31 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 	if(buffer[0] == '0') exit(0);
 
 	else if(buffer[0] == '1')
-		readFiles(CatClients,CatProducts,Sales,fact); 
+		readFiles(CatClients,CatProducts,filiais,fact); 
 
 	else if(buffer[0] == '2') 
-		readCatalog(CatClients,CatProducts,Sales,fact);
+		readCatalog(CatClients,CatProducts,filiais,fact);
 
 	else if(buffer[0] == '3')
-		productMonth(CatClients,CatProducts,Sales,fact);
+		productMonth(CatClients,CatProducts,filiais,fact);
 			
 	else if(buffer[0] == '4')
-		productsNSold(CatClients,CatProducts,Sales,fact); /* FALTA DAR ERRO SE NÃO TIVERMOS LIDO PRIMEIRO && OUTROS ERROS DA FUNÇÃO && APRESENTAR POR PÁGINAS */
+		productsNSold(CatClients,CatProducts,filiais,fact); /* FALTA DAR ERRO SE NÃO TIVERMOS LIDO PRIMEIRO && OUTROS ERROS DA FUNÇÃO && APRESENTAR POR PÁGINAS */
 
 	else if(buffer[0] == '6')
-		periodMonths(CatClients,CatProducts,Sales,fact);
+		periodMonths(CatClients,CatProducts,filiais,fact);
 
 	else{
 		printf("	Este comando não é válido!\n");
 		sleep(1);
 		printf("\e[2J\e[H");
-		interpretador(CatClients,CatProducts,Sales,fact);
+		interpretador(CatClients,CatProducts,filiais,fact);
 	}
 }
 
 /* QUERIE 1 */
 
-void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 	
 	char rep;
 	int size_input;
@@ -60,8 +60,12 @@ void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sal
 	printTop(1);
 	putchar('\n');
 
+	/* LIMPAR MEMÓRIA */
+	removeCatClients(CatClients);
+	removeCatProds(CatProducts);
+	freeFact(fact);
 
-	getFile(CatClients,CatProducts,Sales,fact);
+	getFile(CatClients,CatProducts,filiais,fact);
 	putchar('\n');
 	printf(" 								0.Sair\n\n");
 	printf("______________________________________________________________________________________________\n\n");
@@ -70,12 +74,12 @@ void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sal
 	while(getchar()!='\n');
 	rep = getchar();
 	if(rep == '0') exit(0);	
-	else interpretador(CatClients,CatProducts,Sales,fact);
+	else interpretador(CatClients,CatProducts,filiais,fact);
 }
 
 /* QUERIE 2 */
 
-void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 
 	GROUP_PRODUCTS group;
 	char rep;
@@ -83,7 +87,7 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 
 	printf("\e[2J\e[H");
 	
-	testMemory(CatClients,CatProducts,Sales,fact,"O Catálogo de Produtos");
+	testMemory(CatClients,CatProducts,filiais,fact,"O Catálogo de Produtos");
 
 	printTop(2);
 	printf("										0.Voltar\n");
@@ -109,23 +113,23 @@ void readCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES S
 				printTop(2);
 				printCatalogProds(group,page,totalPages,getGroupProdSize(group));
 			}
-			else if(page == 0) interpretador(CatClients,CatProducts,Sales,fact);
+			else if(page == 0) interpretador(CatClients,CatProducts,filiais,fact);
 			else{
 				printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
 				sleep(2);
 				printf("\e[2J\e[H");
-				readCatalog(CatClients,CatProducts,Sales,fact);
+				readCatalog(CatClients,CatProducts,filiais,fact);
 			}
 		}
 		while(page != 0);
 
 	}
-	else if(rep == '0') interpretador(CatClients,CatProducts,Sales,fact);
+	else if(rep == '0') interpretador(CatClients,CatProducts,filiais,fact);
 	else{
 		printf("	Por favor insira uma letra de A a Z.\n");
 		sleep(2);
 		printf("\e[2J\e[H");
-		readCatalog(CatClients,CatProducts,Sales,fact);
+		readCatalog(CatClients,CatProducts,filiais,fact);
 	}
 }
 
@@ -142,7 +146,7 @@ void printCatalogProds(GROUP_PRODUCTS group,int page,int totalPages,int totalEle
 
 /* QUERIE 3 */
 
-void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 
 	int input,month,exist,filial,i;
 	double totalPrice_data1=0,totalPrice_data2=0;
@@ -156,101 +160,101 @@ void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES 
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,Sales,fact,"O Catálogo de informações sobre um produto num determinado mês");
+	testMemory(CatClients,CatProducts,filiais,fact,"O Catálogo de informações sobre um produto num determinado mês");
 
 	printTop(3);
 
+	printf("\n										0.Voltar\n");
+
+	printf("	Introduza o mês (1-12): ");
+	input = scanf("%d",&month);
+
+	if(month < 0 || month > 12){
+		printf("\n	Introduza um mês válido (1-12)!\n");
+		sleep(2);
 		printf("\e[2J\e[H");
-		printTop(3);
-		printf("\n										0.Voltar\n");
+		productMonth(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
+	else if(month == 0){
+		 interpretador(CatClients,CatProducts,filiais,fact);
+		 exit(0);
+	}
 
-		printf("	Introduza o mês (1-12): ");
-		input = scanf("%d",&month);
-
-		if(month < 0 || month > 12){
-			printf("\n	Introduza um mês válido (1-12)!\n");
-			sleep(2);
-			printf("\e[2J\e[H");
-			productMonth(CatClients,CatProducts,Sales,fact);
-			exit(0);
-		}
-		else if(month == 0){
-			 interpretador(CatClients,CatProducts,Sales,fact);
-			 exit(0);
-		}
-
-		printf("	Introduza o produto: ");
-		input = scanf("%s",productString);
+	printf("	Introduza o produto: ");
+	input = scanf("%s",productString);
 		
-		if(!strcmp(productString,"0")){
-			interpretador(CatClients,CatProducts,Sales,fact);
-			exit(0);
-		}
-		/*productString[7] = 0;*/
-		prod = setProduct(productString);
-		exist = existProduct(CatProducts,prod);
+	if(!strcmp(productString,"0")){
+		interpretador(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
+	/*productString[7] = 0;*/
+	prod = setProduct(productString);
+	exist = existProduct(CatProducts,prod);
 
-		if(!exist){
-			printf("\n	Este produto não existe no Cátalogo!\n");
-			sleep(2);
-			printf("\e[2J\e[H");
-			productMonth(CatClients,CatProducts,Sales,fact);
-			exit(0);
-		}
+	if(!exist){
+		printf("\n	Este produto não existe no Cátalogo!\n");
+		sleep(2);
+		printf("\e[2J\e[H");
+		productMonth(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
 
-		data1 = querie3(fact,month,productString,0);
-		data2 = querie3(fact,month,productString,1);
+	data1 = querie3(fact,month,productString,0);
+	data2 = querie3(fact,month,productString,1);
 
-		printf("	Deseja a informação sobre o produto total ou por filial? T/F ");
-		input = scanf("\n%c",&rep);
+	printf("	Deseja a informação sobre o produto total ou por filial? T/F ");
+	input = scanf("\n%c",&rep);
 
-		if(rep == 'F'){
-			printf("	Qual o filial que deseja: ");
-			input = scanf("\n%d",&filial);
-			printf("	Filial %d: Price-> %f | Quant -> %d\n",filial,getDadosP(data1)[filial],getDadosQ(data1)[filial]);
-			printf("	Filial %d: Price-> %f | Quant -> %d\n",filial,getDadosP(data2)[filial],getDadosQ(data2)[filial]);
-		}
+	if(rep == 'F'){
+		printf("	Qual o filial que deseja: ");
+		input = scanf("\n%d",&filial);
+		printf("	Filial %d: Price-> %f | Quant -> %d\n",filial,getDadosP(data1)[filial],getDadosQ(data1)[filial]);
+		printf("	Filial %d: Price-> %f | Quant -> %d\n",filial,getDadosP(data2)[filial],getDadosQ(data2)[filial]);
+	}
 
-		else if(rep == 'T'){
-			for(i=0;i<3;i++){
-				totalPrice_data1+=getDadosP(data1)[i];
-				totalPrice_data2+=getDadosP(data2)[i];
-				totalQuant_data1+=getDadosQ(data1)[i]; 
-				totalQuant_data2+=getDadosQ(data2)[i]; 
-			}
-			printf("\n\n\n");
-			printf("		PROMO -> N\n");
-			printf("	TotalpriceMes -> %f\n",totalPrice_data1);
-			printf("	TotalquantMes -> %d\n",totalQuant_data1);
-			putchar('\n');
-			printf("		PROMO -> P\n");
-			printf("	TotalpriceMes -> %f\n",totalPrice_data2);
-			printf("	TotalquantMes -> %d\n\n",totalQuant_data2);
-
-		}
-		else if(rep == '0'){
-			interpretador(CatClients,CatProducts,Sales,fact);
-			exit(0);
+	else if(rep == 'T'){
+		for(i=0;i<3;i++){
+			totalPrice_data1+=getDadosP(data1)[i];
+			totalPrice_data2+=getDadosP(data2)[i];
+			totalQuant_data1+=getDadosQ(data1)[i]; 
+			totalQuant_data2+=getDadosQ(data2)[i]; 
 		}
 
-		else{
-			printf("\n\n\n 		Por favor responda somente com T(total) ou F(filial)!\n");
-			sleep(3);
-			printf("\e[2J\e[H");
-			productMonth(CatClients,CatProducts,Sales,fact);
-			exit(0);
-		}
+		printf("\n\n\n");
+		printf("		PROMO -> N\n");
+		printf("	TotalpriceMes -> %f\n",totalPrice_data1);
+		printf("	TotalquantMes -> %d\n",totalQuant_data1);
+		putchar('\n');
+		printf("		PROMO -> P\n");
+		printf("	TotalpriceMes -> %f\n",totalPrice_data2);
+		printf("	TotalquantMes -> %d\n\n",totalQuant_data2);
 
-		while(getchar()!='\n');
-		c = getchar();
-		if(c!='0') productMonth(CatClients,CatProducts,Sales,fact);
-		else interpretador(CatClients,CatProducts,Sales,fact);
+	}
+	
+	else if(rep == '0'){
+		interpretador(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
+
+	else{
+		printf("\n\n\n 		Por favor responda somente com T(total) ou F(filial)!\n");
+		sleep(3);
+		printf("\e[2J\e[H");
+		productMonth(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
+
+	while(getchar()!='\n');
+	c = getchar();
+	if(c!='0') productMonth(CatClients,CatProducts,filiais,fact);
+	else interpretador(CatClients,CatProducts,filiais,fact);
 	
 }
 
 
 /* QUERIE 4 */
-void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 
 	char rep;
 	int filial,contador=0,totalPages,size_input,error,i;
@@ -259,7 +263,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,Sales,fact,"O Catálogo de Produtos não vendidos");
+	testMemory(CatClients,CatProducts,filiais,fact,"O Catálogo de Produtos não vendidos");
 
 	printTop(4);
 
@@ -280,7 +284,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 		printf("\n\n\n 		Por favor responda somente com T(total) ou F(filial)!\n");
 		sleep(3);
 		printf("\e[2J\e[H");
-		productsNSold(CatClients,CatProducts,Sales,fact);
+		productsNSold(CatClients,CatProducts,filiais,fact);
 	}
 
 	totalPages = calculatePages(group,ELEM_PER_PAGE);
@@ -288,8 +292,8 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES
 	error = printNSold(group,totalPages);
 
 
-	if(error == -1) productsNSold(CatClients,CatProducts,Sales,fact);
-	else if(error == 0) interpretador(CatClients,CatProducts,Sales,fact);
+	if(error == -1) productsNSold(CatClients,CatProducts,filiais,fact);
+	else if(error == 0) interpretador(CatClients,CatProducts,filiais,fact);
 }
 
 void printPageNSold(GROUP_PRODUCTS group,int page,int totalPages){
@@ -332,64 +336,81 @@ int printNSold(GROUP_PRODUCTS group,int totalPages){
 
 /* QUERIE 6 */
 
-void periodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact){
+void periodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact){
 
 	int begin;
 	int end;
 	int input;
+	char c;
 
 	DADOS data;
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,Sales,fact,"O Catálogo de informações sobre um período de meses");
+	testMemory(CatClients,CatProducts,filiais,fact,"O Catálogo de informações sobre um período de meses");
 
 	printTop(6);
 
 	printf("	Introduza o mês inicial (1-12): ");
 	input = scanf("%d",&begin);
 
-	if(begin < 0 || begin > 12){
+	if(begin <= 0 || begin > 12){
 		printf("\n	Introduza um mês válido (1-12)!\n");
 		sleep(2);
 		printf("\e[2J\e[H");
-		periodMonths(CatClients,CatProducts,Sales,fact);
+		periodMonths(CatClients,CatProducts,filiais,fact);
 		exit(0);
 	}
 
 	printf("	Introduza o mês final (1-12): ");
 	input = scanf("%d",&end);
 
-	if(end < 0 || end > 12){
+	if(end <= 0 || end > 12){
 		printf("\n	Introduza um mês válido (1-12)!\n");
 		sleep(2);
 		printf("\e[2J\e[H");
-		periodMonths(CatClients,CatProducts,Sales,fact);
+		periodMonths(CatClients,CatProducts,filiais,fact);
+		exit(0);
+	}
+
+	if(begin >= end){
+		printf("\n	Introduza um intervalo de meses válido!\n");
+		sleep(2);
+		printf("\e[2J\e[H");
+		periodMonths(CatClients,CatProducts,filiais,fact);
 		exit(0);
 	}
 
 	data = querie6(fact,begin,end);
-	printDATA(data);
+	printDATA(data,begin,end);
+
+	while(getchar()!='\n');
+	c = getchar();
+	if(c!='0') periodMonths(CatClients,CatProducts,filiais,fact);
+	else interpretador(CatClients,CatProducts,filiais,fact);
+
 }
 
-void printDATA(DADOS data){
+void printDATA(DADOS data,int begin,int end){
 
 	printf("\e[2J\e[H");
 	printTop(6);
 
-	printf("	FALTA IMPRIMIR AS MERDAS\n");
+	printf("	No intervalo de meses (%d-%d):\n\n",begin,end);
+	printf("	Total facturado -> %f\n",getDadosTP(data));
+	printf("	Total de vendas registadas -> %d\n",getDadosTQ(data));
 
 }
 
 /* AUXILIARES */
 
-void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES Sales,FACTURACAO fact,char* menuName){
+void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAIS filiais,FACTURACAO fact,char* menuName){
 	if(!totalProducts(CatProducts)){
 		printf("\n 		 %s encontra-se vazio de momento. \n",menuName);
 		printf("		 Experimente usar primeiro o comando de leitura.\n\n");
 		sleep(5);
 		printf("\e[2J\e[H");
-		interpretador(CatClients,CatProducts,Sales,fact);
+		interpretador(CatClients,CatProducts,filiais,fact);
 	}
 }
 

@@ -42,6 +42,13 @@ FACTURACAO initFact(){
 	return f;
 }
 
+void freeFact(FACTURACAO f){
+	int i,j;
+	for(i=0;i<12;i++)
+		for(j=0;j<26;j++)
+			removeMyAvl(f->prod[i][j]);
+}
+
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 	int i,j;
 	for(i=0;i<12;i++)	
@@ -65,9 +72,8 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 		INFO i = initINFO();
 		i = copyInfo(s,i);
 		y = i;
+		f->prod[month][index] = insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
 	}
-
-	f->prod[month][index] = insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
 	return f;
 }
 

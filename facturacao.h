@@ -24,6 +24,7 @@ typedef struct info *INFO;
 typedef struct dados *DADOS;
 
 FACTURACAO initFact();
+void freeFact(FACTURACAO f);
 FACTURACAO copyProducts(FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 

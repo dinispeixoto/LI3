@@ -6,14 +6,14 @@
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACTURACAO fact){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
 	int validatedClients = 0;
 	int validatedProducts = 0;
 	int validatedSales = 0;
-	int invalidatedSales = 0;
+	int invalidated = 0;
 	
 	/* TEMPOS */
 	time_t begin_clients;
@@ -57,9 +57,10 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,SALES sales,FACT
 	
 	if(fileSales!=NULL){
 		begin_sales = clock();
-		sales = valSales(fileSales,clients,products,sales,fact,&validatedSales,&invalidatedSales);
+		invalidated = valSales(fileSales,clients,products,filiais,fact,&validatedSales);
 		end_sales = clock();
 		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
+		printf("	VENDAS: Não foram validadas %d linhas.\n",invalidated);
 	}
 
 
@@ -119,15 +120,16 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALES sales,FACTURACAO fact,int *validated, int *invalidated){
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact,int *validated){
 
 	char buffer[SIZE_BUF_SALES],*line;
-	int r;
+	int r,invalidated=0;
 	CLIENT clie = NULL;
 	PRODUCT prod = NULL;
 	int month,filial,quant;
 	double price;
 	char infoP;
+	SALES sales = initSales();
 
 	/* TESTES */
 
@@ -137,19 +139,15 @@ SALES valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,SALE
 
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
-
 		if(r){
-
 			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
-		
 			insereFact(fact,sales);
-
+			/*insertFiliais(filiais,sales);*/
 			(*validated)++;
-			
 		}
-		else (*invalidated)++;
+		else invalidated++;
 
 	}
 
-	return sales;
+	return invalidated;
 }
