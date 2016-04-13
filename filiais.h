@@ -8,6 +8,8 @@
 
 typedef struct filiais *FILIAIS;
 typedef struct clients_products *CLIENTS_PRODUCTS;
+typedef struct total *TOTAL;
+typedef struct valores *VALORES;
 typedef struct infoClients *INFO_CLIENTS;
 typedef struct infoProducts *INFO_PRODUCTS;
 
@@ -15,6 +17,7 @@ FILIAIS initFiliais();
 CLIENTS_PRODUCTS initClientsProducts();
 INFO_CLIENTS initFiliaisClients();
 INFO_PRODUCTS initFiliaisProducts();
+TOTAL initFiliaisTotal();
 
 
 #endif

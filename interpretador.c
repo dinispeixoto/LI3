@@ -216,14 +216,14 @@ void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,SALES 
 				totalPrice_data1+=getDadosP(data1)[i];
 				totalPrice_data2+=getDadosP(data2)[i];
 				totalQuant_data1+=getDadosQ(data1)[i]; 
-				totalQuant_data2+=getDadosQ(data1)[i]; 
+				totalQuant_data2+=getDadosQ(data2)[i]; 
 			}
 			printf("\n\n\n");
-			printf("		PROMO -> 0\n");
+			printf("		PROMO -> N\n");
 			printf("	TotalpriceMes -> %f\n",totalPrice_data1);
 			printf("	TotalquantMes -> %d\n",totalQuant_data1);
 			putchar('\n');
-			printf("		PROMO -> 1\n");
+			printf("		PROMO -> P\n");
 			printf("	TotalpriceMes -> %f\n",totalPrice_data2);
 			printf("	TotalquantMes -> %d\n\n",totalQuant_data2);
 
