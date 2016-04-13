@@ -25,6 +25,8 @@ void testMemory(CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES,FACTURACAO,char*);
 int calculatePages(GROUP_PRODUCTS,int);
 void printPageNSold(GROUP_PRODUCTS,int,int);
 int printNSold(GROUP_PRODUCTS,int);
-
+void periodMonths(CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES,FACTURACAO);
+void printDATA(DADOS);
+void productMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,SALES,FACTURACAO);
 
 #endif
