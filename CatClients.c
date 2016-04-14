@@ -85,6 +85,10 @@ char* getClient(CLIENT clie){
 	return clie->string;
 }
 
+MY_AVL getC(CATALOG_CLIENTS c, int i){
+	return c->CatClients[i];
+}
+
 CLIENT setClient(char* string){
 	CLIENT client = malloc(sizeof(struct client));
 	client->string = malloc(SIZE_CLIENTS);

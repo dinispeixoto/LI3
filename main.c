@@ -9,18 +9,21 @@
 #include "readFiles.h"
 #include "facturacao.h"
 /*#include "interpretador.h"*/
-#include "filiais.h"
-
+#include "filial.h"
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
 int main(){	
 
+	int i;
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	FACTURACAO fact = initFact();
-	FILIAIS filiais = initFiliais();
+	FILIAL arrayFiliais[3];
 
-	interpretador(CatClients,CatProducts,filiais,fact);
-	/*getFile(CatClients,CatProducts,filiais,fact);*/
+	for(i=0;i<3;i++)
+		arrayFiliais[i] = initFilial();
+
+	/*interpretador(CatClients,CatProducts,filial,fact);*/
+	getFile(CatClients,CatProducts,arrayFiliais,fact);
 	return 0;
 }

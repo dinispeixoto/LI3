@@ -2,11 +2,12 @@
 #include "CatClients.h"
 #include "CatProducts.h"
 #include "Sales.h"
-#include "facturacao.h"			
+#include "facturacao.h"		
+#include "filial.h"	
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
@@ -40,6 +41,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,
 	if(fileClients!=NULL){
 		begin_clients = clock();
 		clients = valCli(fileClients,clients,&validatedClients);
+		/*filiais = copyC(filiais,clients);*/
 		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 		end_clients = clock();
 	}
@@ -51,13 +53,14 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,
 		products = valProd(fileProducts,products,&validatedProducts);
 		printf("	PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
 		fact = copyProducts(fact,products);
+		/*filiais = copyP(filiais,products);*/
 		end_products = clock();
 	}
 
 	
 	if(fileSales!=NULL){
 		begin_sales = clock();
-		invalidated = valSales(fileSales,clients,products,filiais,fact,&validatedSales);
+		invalidated = valSales(fileSales,clients,products,f,fact,&validatedSales);
 		end_sales = clock();
 		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
 		printf("	VENDAS: Não foram validadas %d linhas.\n",invalidated);
@@ -120,7 +123,7 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact,int *validated){
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,int *validated){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int r,invalidated=0;
@@ -142,7 +145,13 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAI
 		if(r){
 			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
 			insereFact(fact,sales);
-			/*insertFiliais(filiais,sales);*/
+
+			switch(filial){
+				case(1): f[0] = insertFilial(f[0],sales); break;
+				case(2): f[1] = insertFilial(f[1],sales); break;
+				case(3): f[2] = insertFilial(f[2],sales); break;
+			}
+
 			(*validated)++;
 		}
 		else invalidated++;

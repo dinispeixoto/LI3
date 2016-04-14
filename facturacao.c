@@ -44,9 +44,12 @@ FACTURACAO initFact(){
 
 void freeFact(FACTURACAO f){
 	int i,j;
-	for(i=0;i<12;i++)
-		for(j=0;j<26;j++)
-			removeMyAvl(f->prod[i][j]);
+	if(f){
+		for(i=0;i<12;i++)
+			for(j=0;j<26;j++)
+				removeMyAvl(f->prod[i][j]);
+		free(f);
+	}
 }
 
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
@@ -310,7 +313,7 @@ static DADOS avlToDados(Avl a,DADOS d){
 	if(a!=NULL && getInfo(a)!=NULL){
 		void* x= (INFO)getInfo(a);
 		d->totalMP+=getnumTotalP(x);
-		d->totalMQ+=getnumTotalQ(x);
+		d->totalMQ++;
 		}
 	if(a!=NULL){
 		d=avlToDados(getAvlLeft(a),d);

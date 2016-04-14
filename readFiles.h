@@ -10,7 +10,7 @@
 #include "CatProducts.h"
 #include "Sales.h"
 #include "facturacao.h"		
-#include "filiais.h"
+#include "filial.h"
 
 /* Nomes dos ficheiros DEFAULT. */
 
@@ -20,10 +20,10 @@
 #define	PRODUCTS_FILE "Produtos.txt"
 #define SALES_FILE "Vendas.txt"
 
-void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAIS,FACTURACAO);
+void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 FILE* openFile(char*);
 CATALOG_CLIENTS valCli(FILE *,CATALOG_CLIENTS,int*);
 CATALOG_PRODUCTS valProd(FILE *,CATALOG_PRODUCTS,int*);
-int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAIS,FACTURACAO,int*);
+int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int*);
 
 #endif

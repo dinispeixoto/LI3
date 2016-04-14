@@ -73,7 +73,6 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
-
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line,void* info) {
 	

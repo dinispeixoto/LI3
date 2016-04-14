@@ -23,8 +23,9 @@ int totalClients(CATALOG_CLIENTS);
 
 /* GETS & SETS */
 char* getClientIndex(CATALOG_CLIENTS,int);
-char* getClient(CLIENT clie);
-CLIENT setClient(char* string);
+char* getClient(CLIENT);
+CLIENT setClient(char*);
+MY_AVL getC(CATALOG_CLIENTS,int);
 
 /* APAGAR
 int printCatClients(CATALOG_CLIENTS);
