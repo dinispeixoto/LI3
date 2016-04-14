@@ -15,6 +15,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 	int validatedProducts = 0;
 	int validatedSales = 0;
 	int invalidated = 0;
+	int i;
 	
 	/* TEMPOS */
 	time_t begin_clients;
@@ -41,7 +42,8 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 	if(fileClients!=NULL){
 		begin_clients = clock();
 		clients = valCli(fileClients,clients,&validatedClients);
-		/*filiais = copyC(filiais,clients);*/
+		for(i=0;i<3;i++)
+			f[i] = copyCPO(f[i],clients);
 		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 		end_clients = clock();
 	}

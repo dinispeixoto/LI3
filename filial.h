@@ -18,4 +18,6 @@ INFO_CLIENT initInfoClient();
 INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s);
 INFO_PRODUCT updateInfoP(INFO_PRODUCT info, SALES s);
 
+FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c);
+
 #endif
