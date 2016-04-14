@@ -47,7 +47,6 @@ FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 	for(i=0;i<12;i++)	
 		for(j=0;j<26;j++)
 			f->prod[i][j] = cloneMyAvl(getP(p,j));
-	
 	return f;
 }
 
@@ -60,14 +59,15 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	void* x = (INFO)findInfo(getAvl(f->prod[month][index]),getProduct(getSalesProduct(s)));
 
 	if(x)
-		y = copyInfo(s,x);
+		x = copyInfo(s,x);
 	else {
 		INFO i = initINFO();
 		i = copyInfo(s,i);
 		y = i;
+		f->prod[month][index] = insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
 	}
 
-	f->prod[month][index] = insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
+	
 	return f;
 }
 

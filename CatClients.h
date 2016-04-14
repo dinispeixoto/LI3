@@ -20,6 +20,7 @@ void freeClient(CLIENT);
 void removeCatClients(CATALOG_CLIENTS);
 int totalClientsLetter(CATALOG_CLIENTS,char);
 int totalClients(CATALOG_CLIENTS);
+MY_AVL getC(CATALOG_CLIENTS , int );
 
 /* GETS & SETS */
 char* getClientIndex(CATALOG_CLIENTS,int);
