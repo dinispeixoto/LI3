@@ -64,12 +64,12 @@ FILIAL insertFilial(FILIAL f,SALES s){
 	/*if(!getSize(f->Clients[index_client]))
 		f->Clients[index_client] = firstNode(getClient(client),NULL);*/
 
-	INFO_CLIENT infoC = (INFO_CLIENT) findInfo(getAvl(f->Clients[index_client]),getClient(client));
+	INFO_CLIENT infoC = (INFO_CLIENT) findInfo(getAvl(f->Clients[index_client]),getClient(client),NULL);
 
 	if(!infoC){
 		infoC = initInfoClient();
-		//infoC = updateInfoC(infoC,s);
-		f->Clients[index_client] = insertMyAvl(f->Clients[index_client],getClient(client),infoC);
+		infoC = updateInfoC(infoC,s);
+		f->Clients[index_client] = insertMyAvl(f->Clients[index_client],getClient(client),infoC,1);
 	}
 	else infoC = updateInfoC(infoC,s);
 
@@ -84,7 +84,7 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 	INFO_PROMO infoPromo = getSalesInfoPromo(s);
 	char* prod=getProduct(product);
 	int index_product = prod[0]-'A';
-
+	int aux=0;
 
 	int info_int;
 	if(infoPromo == 'P') info_int = 1;
@@ -92,14 +92,13 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 
  	MY_AVL a = infoC->Products[month-1][index_product];
 
- 	INFO_PRODUCT infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod);
+ 	INFO_PRODUCT infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod,&aux);
 
  	if(!infoP) {
  		infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
 		infoP = updateInfoP(infoP,s);
-		a = insertMyAvl(a,getProduct(product),infoP);
+		a = insertMyAvl(a,getProduct(product),infoP,aux);
 	}
-
 	else infoP = updateInfoP(infoP,s);
 
 	infoC->totalProducts += getSalesQuantity(s);

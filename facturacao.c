@@ -71,7 +71,7 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	void* y;
 	int index = getProduct(getSalesProduct(s))[0]-'A';
 	
-	void* x = (INFO)findInfo(getAvl(f->prod[index]),getProduct(getSalesProduct(s)));
+	void* x = (INFO)findInfo(getAvl(f->prod[index]),getProduct(getSalesProduct(s)),NULL);
 
 	if(x)
 		x = copyInfoFact(s,x,f);
@@ -79,7 +79,7 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 		INFO i = initINFO();
 		i = copyInfoFact(s,i,f);
 		y = i;
-		f->prod[index] = insertMyAvl(f->prod[index],getProduct(getSalesProduct(s)),y);
+		f->prod[index] = insertMyAvl(f->prod[index],getProduct(getSalesProduct(s)),y,1);
 	}
 	return f;
 }
@@ -181,7 +181,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 	DADOS d = initDADOS();
 
 	int index = product[0]-'A';
-	void* x = (INFO)findInfo(getAvl(f->prod[index]),product);
+	void* x = (INFO)findInfo(getAvl(f->prod[index]),product,NULL);
 	
 	if(x) d = updatePriceQuantity(x,d,promo,mes);
 

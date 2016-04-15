@@ -16,7 +16,7 @@ typedef int BOOL;
 
 Avl initAvl();
 MY_AVL initMyAvl();
-MY_AVL insertMyAvl(MY_AVL,STRING,void*);
+MY_AVL insertMyAvl(MY_AVL,STRING,void*,int);
 int heightAvl(Avl);
 Avl insert(Avl,STRING,void*);
 void removeAvl(Avl);
@@ -24,7 +24,7 @@ void removeMyAvl(MY_AVL);
 BOOL existMyAvl(MY_AVL,STRING);
 BOOL existAvl(Avl, STRING);
 int totalElements(MY_AVL);
-void* findInfo (Avl ,STRING);
+void* findInfo (Avl ,STRING,int*);
 Avl cloneAvl (Avl);
 MY_AVL cloneMyAvl (MY_AVL);
 void removeFromMY_AVL (MY_AVL*,int);
