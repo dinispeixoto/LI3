@@ -187,8 +187,7 @@ GROUP_PRODUCTS reallocGROUP_PRODUCTS(GROUP_PRODUCTS array){
 
 PRODUCT* insertGROUP_PRODUCTS(PRODUCT* list,int* sp,int w,char* p){
 	int i,cmp=0,a;
-	PRODUCT aux=malloc(sizeof(struct product));
-	aux->string=malloc(SIZE_PRODUCTS);
+	char* string=malloc(SIZE_PRODUCTS);
 	if(w>0) a=*sp;	
 	else a=0;
 	for(i=a;i<=(*sp);i++){
@@ -198,13 +197,13 @@ PRODUCT* insertGROUP_PRODUCTS(PRODUCT* list,int* sp,int w,char* p){
 		else{
 			cmp=strcmp(list[i]->string,p);
 			if(cmp>=0){
-				strcpy(aux->string,list[i]->string);
+				strcpy(string,list[i]->string);
 				strcpy(list[i]->string,p);
-				strcpy(p,aux->string);
+				strcpy(p,string);
 			}
 		}
 	}
 	(*sp)++;
-	free(aux);
+	free(string);
 	return list;
 }

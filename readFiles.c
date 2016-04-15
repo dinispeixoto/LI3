@@ -28,11 +28,6 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 	double time_elapsed_products = 0;
 	double time_elapsed_sales = 0;
 
-	/*
-	fileClients = openFile();	
-	fileProducts = openFile();	
-	fileSales = openFile();	
-	*/
 	
 	fileClients = fopen(CLIENTS_FILE,"r");	
 	fileProducts = fopen(PRODUCTS_FILE,"r");
@@ -44,8 +39,15 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 		clients = valCli(fileClients,clients,&validatedClients);
 		for(i=0;i<3;i++)
 			f[i] = copyCPO(f[i],clients);
-		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
 		end_clients = clock();
+		time_elapsed_clients = (double) (end_clients - begin_clients) / CLOCKS_PER_SEC;
+		
+		printf("	 _______________________________________\n");
+		printf("	| 		CLIENTES 		|\n");
+		printf("	| Nome do ficheiro: %s.	|\n",CLIENTS_FILE);
+		printf("	| Foram validadas %d linhas.		|\n",validatedClients);
+		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_clients);
+		printf("	|_______________________________________|\n");
 	}
 
 
@@ -53,10 +55,16 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 	if(fileProducts!=NULL){
 		begin_products = clock();
 		products = valProd(fileProducts,products,&validatedProducts);
-		printf("	PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
 		fact = copyProducts(fact,products);
-		/*filiais = copyP(filiais,products);*/
 		end_products = clock();
+		time_elapsed_products = (double) (end_products - begin_products) / CLOCKS_PER_SEC;
+		
+		printf("	 _______________________________________\n");
+		printf("	| 		PRODUTOS 		|\n");
+		printf("	| Nome do ficheiro: %s.	|\n",PRODUCTS_FILE);
+		printf("	| Foram validadas %d linhas.	|\n",validatedProducts);
+		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_products);
+		printf("	|_______________________________________|\n");
 	}
 
 	
@@ -64,21 +72,17 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 		begin_sales = clock();
 		invalidated = valSales(fileSales,clients,products,f,fact,&validatedSales);
 		end_sales = clock();
-		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
-		printf("	VENDAS: Não foram validadas %d linhas.\n",invalidated);
+		time_elapsed_sales = (double) (end_sales - begin_sales) / CLOCKS_PER_SEC;
+
+
+		printf("	 _______________________________________\n");
+		printf("	| 		VENDAS 			|\n");
+		printf("	| Nome do ficheiro: %s.		|\n",SALES_FILE);
+		printf("	| Foram validadas %d linhas.	|\n",validatedSales);
+		printf("	| Não foram validadas %d linhas.	|\n",invalidated);
+		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_sales);
+		printf("	|_______________________________________|\n");
 	}
-
-
-	time_elapsed_clients = (double) (end_clients - begin_clients) / CLOCKS_PER_SEC;
-	time_elapsed_products = (double) (end_products - begin_products) / CLOCKS_PER_SEC;
-	time_elapsed_sales = (double) (end_sales - begin_sales) / CLOCKS_PER_SEC;
-
-	putchar('\n');
-	printf("	Tempo de leitura dos CLIENTES: %f s.\n",time_elapsed_clients);
-	printf("	Tempo de leitura dos PRODUTOS: %f s.\n",time_elapsed_products);
-	printf("	Tempo de leitura das VENDAS: %f s.\n",time_elapsed_sales);
-
-
 
 	fclose(fileClients);
 	fclose(fileProducts);

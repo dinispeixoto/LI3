@@ -27,6 +27,7 @@ typedef struct dados *DADOS;
 typedef struct totalMes *TOTAL_MES;
 
 FACTURACAO initFact();
+DADOS initDADOS();
 FACTURACAO copyProducts(FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 
@@ -39,15 +40,25 @@ double getDadosTP(DADOS);
 int getDadosTQ(DADOS);
 double getnumTotalP(INFO);
 int getnumTotalQ(INFO);
-
-/* QUERIE 3*/
-DADOS querie3(FACTURACAO,int,char*,int );
+DADOS setTotalPrice(DADOS,int,double);
+DADOS setTotalQuantity(DADOS,int,int);
+MY_AVL getProductIndex(FACTURACAO,int);
+PQ getNormalPQ(INFO,int,int);
+PQ getPromoPQ(INFO,int,int);
+int getTotalQuantPQ(PQ);
+double getTotalMP(DADOS);
+int getTotalMQ(DADOS);
+DADOS setTotalMP(DADOS,double);
+DADOS setTotalMQ(DADOS,int);
+DADOS updateTotalMP(DADOS,double);
+DADOS updateTotalMQ(DADOS,int);
+TOTAL_MES getTotalMes(FACTURACAO,int);
+double getTotalFacturadoMES(TOTAL_MES m);
+int getTotalQuantMES(TOTAL_MES m);
 
 /* QUERIE 4*/
 GROUP_PRODUCTS querie4(FACTURACAO,int*,int);
 
-/* QUERIE 6*/
-DADOS querie6(FACTURACAO,int,int);
 
 
 #endif

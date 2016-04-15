@@ -26,6 +26,21 @@ char* getClientIndex(CATALOG_CLIENTS,int);
 char* getClient(CLIENT);
 CLIENT setClient(char*);
 MY_AVL getC(CATALOG_CLIENTS,int);
+void setGroupClieSize(GROUP_CLIENTS ,int );
+void setGroupClie(GROUP_CLIENTS ,CLIENT* );
+int getGroupClieSize(GROUP_CLIENTS );
+int getGroupClieSp(GROUP_CLIENTS );
+void setGroupClieSp(GROUP_CLIENTS ,int );
+int getJC(GROUP_CLIENTS );
+void setJC(GROUP_CLIENTS ,int );
+CLIENT* getGroupClie(GROUP_CLIENTS );
+
+
+GROUP_CLIENTS initGroupClients(int );
+GROUP_CLIENTS reallocGROUP_CLIENTS(GROUP_CLIENTS );
+CLIENT* insertGROUP(CLIENT* list,int posicao,char* c);
+CLIENT* insertGROUP_CLIENTS(CLIENT* ,int* ,int ,char*);
+CLIENT* removeGROUP_CLIENTS(CLIENT* ,int* ,char*);
 
 /* APAGAR
 int printCatClients(CATALOG_CLIENTS);

@@ -106,7 +106,39 @@ TESTAR A GROUP_PRODUCTS POR LETRA
 		GROUP_PRODUCTS a = productsLetter(CatProducts,l);
 		for(i=0;i<getGroupProdSize(a);i++)
 			printf("%s\n",getProduct(getGroupProd(a)[i]));
+
 	}
+##########################QUERIE 5##################################
+DADOS_FILIAL df=initDadosFilial();
+	for(i=0;i<3;i++)
+	    querie5(arrayFiliais[i],df,"Z5000",i);
+	
+	int j;
+	for(i=0;i<3;i++)
+		for(j=0;j<12;j++)
+			printf("MES-%d filial-%d Q-%d\n",j,i,getDadosI(df,i,j));	
+
+###########################QUERIE 7###################################
+getchar();
+	GROUP_CLIENTS gc;
+	gc=querie7 (arrayFiliais);
+	
+	for(i=0;i<getGroupClieSp(gc);i++)
+		printf("%s\n",getClient(getGroupClie(gc)[i]));
+	printf("%d\n",getGroupClieSp(gc));
+
+###########################QUERIE 8###################################
+/*getchar();
+	GROUP_CLIENTS gcN;
+	GROUP_CLIENTS gcP;
+	gcN=querie8(arrayFiliais[1],"AF1184",&gcP);
+	
+	for(i=0;i<getGroupClieSp(gcN);i++)
+		printf("%s\n",getClient(getGroupClie(gcN)[i]));
+	printf("%d\n",getGroupClieSp(gcN));
+	for(i=0;i<getGroupClieSp(gcP);i++)
+		printf("%s\n",getClient(getGroupClie(gcP)[i]));
+	printf("%d\n",getGroupClieSp(gcP));*/
 
 ##########################TESTES######################################
 	getchar();

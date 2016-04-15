@@ -23,7 +23,8 @@ int main(){
 	for(i=0;i<3;i++)
 		arrayFiliais[i] = initFilial();
 
-	/*interpretador(CatClients,CatProducts,filial,fact);*/
-	getFile(CatClients,CatProducts,arrayFiliais,fact);
+	interpretador(CatClients,CatProducts,arrayFiliais,fact);
+	/*getFile(CatClients,CatProducts,arrayFiliais,fact);*/
+
 	return 0;
 }

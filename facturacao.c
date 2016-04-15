@@ -1,7 +1,4 @@
 #include "facturacao.h"
-#include "Sales.h"
-#include "avl.h"
-#include "CatProducts.h"
 
 struct fact{
 	TOTAL_MES tm[12];
@@ -31,7 +28,6 @@ struct dados{
   int totalMQ;
 };
 
-static DADOS initDADOS();
 static PQ initPQ();
 static INFO initINFO();
 static INFO copyInfoFact(SALES,INFO,FACTURACAO);
@@ -57,6 +53,18 @@ FACTURACAO initFact(){
 	for(i=0;i<12;i++)
 		f->tm[i]=initTotalMes();
 	return f;
+}
+
+DADOS initDADOS(){
+	int i;
+	DADOS d = malloc(sizeof(struct dados));
+	for(i=0;i<3;i++){
+		d->totalpriceF[i] = 0;
+		d->totalquantF[i] = 0;
+	}
+	d->totalMP=0;
+	d->totalMQ=0;
+	return d;
 }
 
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
@@ -117,19 +125,73 @@ int getDadosTQ(DADOS d){
 	return d->totalMQ;
 }
 
-/* STATICS */
-
-static DADOS initDADOS(){
-	int i;
-	DADOS d = malloc(sizeof(struct dados));
-	for(i=0;i<3;i++){
-		d->totalpriceF[i] = 0;
-  		d->totalquantF[i] = 0;
-  	}
-  	d->totalMP=0;
-    d->totalMQ=0;
-  	return d;
+DADOS setTotalPrice(DADOS d,int index,double total){
+	d->totalpriceF[index] = total;
+	return d;
 }
+
+DADOS setTotalQuantity(DADOS d,int index,int total){
+	d->totalquantF[index] = total;
+	return d;
+}
+
+MY_AVL getProductIndex(FACTURACAO f,int index){
+	return f->prod[index];
+}
+
+PQ getNormalPQ(INFO i,int month,int filial){
+	return i->N[month][filial-1];
+}
+
+PQ getPromoPQ(INFO i,int month,int filial){
+	return i->N[month][filial-1];
+}
+
+int getTotalQuantPQ(PQ a){
+	return a->totalquant;
+}
+
+double getTotalMP(DADOS d){
+	return d->totalMP; 
+}
+
+DADOS setTotalMP(DADOS d, double total){
+	d->totalMP = total;
+	return d;
+}
+
+DADOS updateTotalMP(DADOS d, double total){
+	d->totalMP += total;
+	return d;
+}
+
+int getTotalMQ(DADOS d){
+	return d->totalMQ;
+}
+
+DADOS setTotalMQ(DADOS d, int total){
+	d->totalMQ = total;
+	return d;
+}
+
+DADOS updateTotalMQ(DADOS d, int total){
+	d->totalMQ += total;
+	return d;
+}
+
+TOTAL_MES getTotalMes(FACTURACAO i,int month){
+	return i->tm[month];
+}
+
+double getTotalFacturadoMES(TOTAL_MES m){
+	return m->totalFacturado;
+}
+
+int getTotalQuantMES(TOTAL_MES m){
+	return m->totalQuant;
+}
+
+/* STATICS */
 
 static PQ initPQ(){
 	PQ x = malloc (sizeof (struct pq));
@@ -173,31 +235,6 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 	return i;
 }
 
-/* ######################################### QUERIE 3 #################################### */
-
-
-DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
-	
-	DADOS d = initDADOS();
-
-	int index = product[0]-'A';
-	void* x = (INFO)findInfo(getAvl(f->prod[index]),product,NULL);
-	
-	if(x) d = updatePriceQuantity(x,d,promo,mes);
-
-	return d;
-
-}
-
-static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
-	int i;
-	for(i=0;i<3;i++){
-		d->totalpriceF[i]=getnumFilialP(f,i,promo,mes);
-		d->totalquantF[i]=getnumFilialQ(f,i,promo,mes);
-	}
-	return d;
-}
-
 /* ######################################### QUERIE 4 ####################################### */
 
 GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
@@ -237,17 +274,3 @@ static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
 
 	return list;
 }
-/* ######################################### QUERIE 6 ####################################### */
-
-DADOS querie6(FACTURACAO f, int inicio, int fim){
-	int i,j;
-	DADOS d= initDADOS();
-	for(i=(inicio-1);i<fim;i++){
-		d->totalMP+=f->tm[i]->totalFacturado;
-		d->totalMQ+=f->tm[i]->totalQuant;
-	}
-	return d;
-}
-
-
-
