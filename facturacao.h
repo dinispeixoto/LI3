@@ -5,6 +5,7 @@
 #define SIZE_CLIENTS 6 
 #define SIZE_PRODUCTS 7 
 #define SIZE_SALES 29 
+#define SIZE_FILIAIS 3
 
 #include "avl.h"
 #include "Sales.h"
@@ -23,13 +24,15 @@ typedef struct info *INFO;
 
 typedef struct dados *DADOS;
 
+typedef struct totalMes *TOTAL_MES;
+
 FACTURACAO initFact();
 FACTURACAO copyProducts(FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
 
 /* GETS E SETS */
-double getnumFilialP(INFO,int,int);
-int getnumFilialQ(INFO,int,int);
+double getnumFilialP(INFO,int,int,int);
+int getnumFilialQ(INFO,int,int,int);
 double* getDadosP(DADOS);
 int* getDadosQ(DADOS);
 double getDadosTP(DADOS);

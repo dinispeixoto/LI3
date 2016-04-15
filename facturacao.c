@@ -4,7 +4,8 @@
 #include "CatProducts.h"
 
 struct fact{
-    MY_AVL prod[SIZE_MONTH][SIZE_ABC];
+	TOTAL_MES tm[12];
+    MY_AVL prod[SIZE_ABC];
 };
 
 struct pq {
@@ -12,10 +13,15 @@ struct pq {
 	int totalquant;
 };
 
+struct totalMes{
+	double totalFacturado; 
+	int totalQuant;
+	int RegistoV;
+};
+
 struct info{
-  PQ F[2][3];
-  double totalMesP;
-  int totalMesQ;
+  PQ N[SIZE_MONTH][SIZE_FILIAIS];
+  PQ P[SIZE_MONTH][SIZE_FILIAIS];
 };
 
 struct dados{
@@ -28,46 +34,53 @@ struct dados{
 static DADOS initDADOS();
 static PQ initPQ();
 static INFO initINFO();
-static INFO copyInfo(SALES, INFO);
-static DADOS updatePriceQuantity(INFO,DADOS,int);
+static INFO copyInfoFact(SALES,INFO,FACTURACAO);
+static DADOS updatePriceQuantity(INFO,DADOS,int,int);
 static INFO updateInfo(INFO,INFO);
 static Avl compare (Avl,Avl);
 static int checkInfo (INFO,int);
 static GROUP_PRODUCTS found(Avl,GROUP_PRODUCTS,int*,int);
-static DADOS avlToDados(Avl,DADOS);
+static DADOS factToDados(Avl,DADOS);
 
+TOTAL_MES initTotalMes(){
+	int i;
+	TOTAL_MES tm = malloc(sizeof(struct totalMes));
+	tm->totalFacturado=0; 
+	tm->totalQuant=0;
+	tm->RegistoV=0;
+	return tm;
+}
 
 FACTURACAO initFact(){
+	int i;
 	FACTURACAO f = malloc(sizeof(struct fact));
+	for(i=0;i<12;i++)
+		f->tm[i]=initTotalMes();
 	return f;
 }
 
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
-	int i,j;
-	for(i=0;i<12;i++)	
-		for(j=0;j<26;j++)
-			f->prod[i][j] = cloneMyAvl(getP(p,j));
+	int i;	
+	for(i=0;i<26;i++)
+		f->prod[i] = cloneMyAvl(getP(p,i));
 	return f;
 }
 
 FACTURACAO insereFact(FACTURACAO f,SALES s){
 
 	void* y;
-	int month = getSalesMonth(s)-1;
 	int index = getProduct(getSalesProduct(s))[0]-'A';
 	
-	void* x = (INFO)findInfo(getAvl(f->prod[month][index]),getProduct(getSalesProduct(s)));
+	void* x = (INFO)findInfo(getAvl(f->prod[index]),getProduct(getSalesProduct(s)),NULL);
 
 	if(x)
-		x = copyInfo(s,x);
+		x = copyInfoFact(s,x,f);
 	else {
 		INFO i = initINFO();
-		i = copyInfo(s,i);
+		i = copyInfoFact(s,i,f);
 		y = i;
-		f->prod[month][index] = insertMyAvl(f->prod[month][index],getProduct(getSalesProduct(s)),y);
+		f->prod[index] = insertMyAvl(f->prod[index],getProduct(getSalesProduct(s)),y,1);
 	}
-
-	
 	return f;
 }
 
@@ -81,12 +94,19 @@ int* getDadosQ(DADOS d){
 	return d->totalquantF;
 }
 
-double getnumFilialP(INFO c,int filial, int promo){
-	return c->F[promo][filial]->totalprice;
+double getnumFilialP(INFO i,int filial, int promo,int mes){
+	if(promo)
+		return i->P[mes-1][filial]->totalprice;
+	else 
+		return i->N[mes-1][filial]->totalprice;
+	
 }
 
-int getnumFilialQ(INFO c,int filial, int promo){
-	return c->F[promo][filial]->totalquant;
+int getnumFilialQ(INFO i,int filial, int promo,int mes){
+	if(promo)
+		return i->P[mes-1][filial]->totalquant;
+	else 
+		return i->N[mes-1][filial]->totalquant;
 }
 
 double getDadosTP(DADOS d){
@@ -95,14 +115,6 @@ double getDadosTP(DADOS d){
 
 int getDadosTQ(DADOS d){
 	return d->totalMQ;
-}
-
-double getnumTotalP(INFO c){
-	return c->totalMesP;
-}
-
-int getnumTotalQ(INFO c){
-	return c->totalMesQ;
 }
 
 /* STATICS */
@@ -114,6 +126,8 @@ static DADOS initDADOS(){
 		d->totalpriceF[i] = 0;
   		d->totalquantF[i] = 0;
   	}
+  	d->totalMP=0;
+    d->totalMQ=0;
   	return d;
 }
 
@@ -127,33 +141,37 @@ static PQ initPQ(){
 static INFO initINFO(){
 	int j,k;
 	INFO i=malloc(sizeof(struct info));
-	for(j=0;j<2;j++){
-		for(k=0;k<3;k++)
-			i->F[j][k] = initPQ();
+	for(j=0;j<12;j++){
+		for(k=0;k<3;k++){
+			i->N[j][k] = initPQ();
+			i->P[j][k] = initPQ();
+		}
 	}
-	i->totalMesP = 0;
-	i->totalMesQ = 0;
 	return i;
 }
 
+static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
+	double price=getSalesPrice(s);
+	int quantity=getSalesQuantity(s);
+	int filial=getSalesFilial(s)-1;
+	int month=getSalesMonth(s)-1;
+	char infoP=getSalesInfoPromo(s);
+	double total=price*quantity;
 
-static INFO copyInfo(SALES s, INFO i){
-	int p,f;
-	double total;
+	switch(infoP){
+		case 'P':	i->P[month][filial]->totalprice += total;
+					i->P[month][filial]->totalquant += quantity;	
+					break;
+		case 'N':	i->N[month][filial]->totalprice += total;
+					i->N[month][filial]->totalquant += quantity;		
+					break;
+	}
 
-	if(getSalesInfoPromo(s)== 'P') p=1;
-	else p=0;
-
-	f=getSalesFilial(s)-1;
-	total=(getSalesPrice(s))*(getSalesQuantity(s));
-
-	i->F[p][f]->totalprice += total;
-	i->F[p][f]->totalquant += getSalesQuantity(s);
-	i->totalMesP += total;
-	i->totalMesQ += getSalesQuantity(s);	
+	f->tm[month]->totalFacturado+=total;
+	f->tm[month]->totalQuant+=quantity;
+	f->tm[month]->RegistoV++; 
 	return i;
 }
-
 
 /* ######################################### QUERIE 3 #################################### */
 
@@ -163,19 +181,19 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 	DADOS d = initDADOS();
 
 	int index = product[0]-'A';
-	void* x = (INFO)findInfo(getAvl(f->prod[mes-1][index]),product);
+	void* x = (INFO)findInfo(getAvl(f->prod[index]),product,NULL);
 	
-	if(x) d = updatePriceQuantity(x,d,promo);
+	if(x) d = updatePriceQuantity(x,d,promo,mes);
 
 	return d;
 
 }
 
-static DADOS updatePriceQuantity(INFO f,DADOS d,int promo){
+static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 	int i;
 	for(i=0;i<3;i++){
-		d->totalpriceF[i]=getnumFilialP(f,i,promo);
-		d->totalquantF[i]=getnumFilialQ(f,i,promo);
+		d->totalpriceF[i]=getnumFilialP(f,i,promo,mes);
+		d->totalquantF[i]=getnumFilialQ(f,i,promo,mes);
 	}
 	return d;
 }
@@ -185,86 +203,19 @@ static DADOS updatePriceQuantity(INFO f,DADOS d,int promo){
 GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
 	GROUP_PRODUCTS group = initGroupProducts(1);
 	int i,j;
-	MY_AVL clone[26];
-	
-	for(i=0;i<26;i++)
-				clone[i] = cloneMyAvl(f->prod[0][i]);	
-
-	for(i=1;i<12;i++){
-			for(j=0;j<26;j++){	
-				setAvl(clone[j],compare(getAvl(clone[j]),getAvl(f->prod[i][j])));
-			}
-		}
+		
 	for(i=0;i<26;i++){
 		setJ(group,i+1);
-		group = found(getAvl(clone[i]),group,c,filial);	
+		group = found(getAvl(f->prod[i]),group,c,filial);	
 	}
-	removeFromMY_AVL(clone,26);
 	return group;
 }
 
-static INFO updateInfo(INFO a, INFO b){
-	int i,j;
-	for(i=0;i<2;i++)
-		for(j=0;j<3;j++){
-			a->F[i][j]->totalprice += b->F[i][j]->totalprice;
-			a->F[i][j]->totalquant += b->F[i][j]->totalquant;
-
-		}
-	a->totalMesQ += b->totalMesQ;
-	a->totalMesP += b->totalMesQ;
-	return a;
-}
-
-/*static Avl compare(Avl a, Avl b){
-
-	if(a){
-		if(getInfo(b)){
-			if(getInfo(a)){
-				void* x = (INFO)getInfo(a);
-				void* y = (INFO)getInfo(b);
-				setInfo(a,updateInfo(x,y));
-			}
-			else setInfo(a,getInfo(b));
-		}
-		setAv(getAvlLeft(a),compare(getAvlLeft(a),getAvlLeft(b)));
-		setAv(getAvlRight(a),compare(getAvlRight(a),getAvlRight(b)));
-
-	}
-	return a;
-}*/
-
-static Avl compare(Avl a, Avl b){
-
-	if(a){
-		if(getInfo(b)){
-			if(getInfo(a)){
-				INFO n = initINFO();
-				void* y = (INFO)getInfo(b);
-				n=updateInfo(n,y);
-				INFO m = initINFO();
-				void* x = (INFO)getInfo(a);
-				m=updateInfo(m,x);
-				setInfo(a,updateInfo(m,n));
-			}
-			else {
-				INFO p = initINFO();
-				void* r = (INFO)getInfo(b);
-				p=updateInfo(p,r);
-				setInfo(a,p);
-			}
-		}
-		setAv(getAvlLeft(a),compare(getAvlLeft(a),getAvlLeft(b)));
-		setAv(getAvlRight(a),compare(getAvlRight(a),getAvlRight(b)));
-	}
-	return a;
-}
-
 static int checkInfo(INFO i, int filial){
-	int r=0,j;
-	for(j=0;j<2;j++)
-		r += i->F[j][filial-1]->totalquant;
-	return r;
+	int j;
+	for(j=0;j<12;j++)
+		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
+	return 0;
 }
 
 
@@ -286,29 +237,17 @@ static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
 
 	return list;
 }
-
 /* ######################################### QUERIE 6 ####################################### */
 
 DADOS querie6(FACTURACAO f, int inicio, int fim){
 	int i,j;
 	DADOS d= initDADOS();
 	for(i=(inicio-1);i<fim;i++){
-		for(j=0;j<26;j++){
-			d=avlToDados(getAvl(f->prod[i][j]),d);
-		}
+		d->totalMP+=f->tm[i]->totalFacturado;
+		d->totalMQ+=f->tm[i]->totalQuant;
 	}
 	return d;
 }
 
-static DADOS avlToDados(Avl a,DADOS d){
-	if(a!=NULL && getInfo(a)!=NULL){
-		void* x= (INFO)getInfo(a);
-		d->totalMP+=getnumTotalP(x);
-		d->totalMQ+=getnumTotalQ(x);
-		}
-	if(a!=NULL){
-		d=avlToDados(getAvlLeft(a),d);
-		d=avlToDados(getAvlRight(a),d);
-	}
-	return d;
-}
+
+

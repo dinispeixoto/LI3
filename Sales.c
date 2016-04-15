@@ -10,7 +10,7 @@ struct sales{
 	PRICE price;
 	QUANTITY quantity;
 	INFO_PROMO infoPromo;
-	FILIAL filial;
+	FILIAIS filial;
 	MONTH month;
 };
 
@@ -79,11 +79,11 @@ SALES setSalesInfoPromo(INFO_PROMO c,SALES a){
 	return a;
 }
 
-FILIAL getSalesFilial(SALES a){
+FILIAIS getSalesFilial(SALES a){
 	return a->filial;
 }
 
-SALES setSalesFilial(FILIAL c,SALES a){
+SALES setSalesFilial(FILIAIS c,SALES a){
 	a->filial = c;
 	return a;
 }
@@ -143,7 +143,7 @@ static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char 
   else return 1;
 }
 
-SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAL filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
+SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAIS filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
 	SALES sale = initSales();
 	sale->client = clie;
 	sale->product = prod;

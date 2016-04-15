@@ -2,20 +2,21 @@
 #include "CatClients.h"
 #include "CatProducts.h"
 #include "Sales.h"
-#include "facturacao.h"
-#include "filiais.h"		
+#include "facturacao.h"		
+#include "filial.h"	
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
-void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact){
+void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact){
 
 			
 	FILE *fileClients,*fileProducts,*fileSales;	
 	int validatedClients = 0;
 	int validatedProducts = 0;
 	int validatedSales = 0;
-	int invalidatedSales = 0;
+	int invalidated = 0;
 	int i;
+	
 	/* TEMPOS */
 	time_t begin_clients;
 	time_t begin_products;
@@ -41,8 +42,9 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,
 	if(fileClients!=NULL){
 		begin_clients = clock();
 		clients = valCli(fileClients,clients,&validatedClients);
+		for(i=0;i<3;i++)
+			f[i] = copyCPO(f[i],clients);
 		printf("	CLIENTES: Foram validadas %d linhas.\n",validatedClients);
-		filiais=copyC(filiais,clients);
 		end_clients = clock();
 	}
 
@@ -53,16 +55,17 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAIS filiais,
 		products = valProd(fileProducts,products,&validatedProducts);
 		printf("	PRODUTOS: Foram validadas %d linhas.\n",validatedProducts);
 		fact = copyProducts(fact,products);
-		filiais=copyP(filiais,products);
+		/*filiais = copyP(filiais,products);*/
 		end_products = clock();
 	}
 
 	
 	if(fileSales!=NULL){
 		begin_sales = clock();
-		invalidatedSales = valSales(fileSales,clients,products,filiais,fact,&validatedSales);
+		invalidated = valSales(fileSales,clients,products,f,fact,&validatedSales);
 		end_sales = clock();
 		printf("	VENDAS: Foram validadas %d linhas.\n",validatedSales);
+		printf("	VENDAS: Não foram validadas %d linhas.\n",invalidated);
 	}
 
 
@@ -122,16 +125,15 @@ CATALOG_PRODUCTS valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAIS filiais,FACTURACAO fact,int *validated){
+int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,int *validated){
 
 	char buffer[SIZE_BUF_SALES],*line;
-	int r;
+	int r,invalidated=0;
 	CLIENT clie = NULL;
 	PRODUCT prod = NULL;
-	int month,filial,quant,invalidated;
+	int month,filial,quant;
 	double price;
 	char infoP;
-
 	SALES sales = initSales();
 
 	/* TESTES */
@@ -142,18 +144,17 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAI
 
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
-
 		if(r){
-
 			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
-		
 			insereFact(fact,sales);
 
-			filiais=insertFiliais(filiais,sales);
-			//printf("%s\n",getProduct(prod));
+			switch(filial){
+				case(1): f[0] = insertFilial(f[0],sales); break;
+				case(2): f[1] = insertFilial(f[1],sales); break;
+				case(3): f[2] = insertFilial(f[2],sales); break;
+			}
+
 			(*validated)++;
-			//printf("%d\n",*validated);
-			
 		}
 		else invalidated++;
 

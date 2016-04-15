@@ -73,7 +73,6 @@ int heightAvl(Avl a){
 	else return a->height;
 }
 
-
 /* Inserir numa Avl */
 Avl insert(Avl estrutura, char* line,void* info) {
 	
@@ -130,10 +129,10 @@ Avl insert(Avl estrutura, char* line,void* info) {
 
 }
 
-MY_AVL insertMyAvl(MY_AVL a,char* line,void* info){
+MY_AVL insertMyAvl(MY_AVL a,char* line,void* info,int aux){
 
 	if(a == NULL) a = initMyAvl();
-	if(!info)(a->avl) = insert(a->avl,line,info);
+	if(!info || aux)(a->avl) = insert(a->avl,line,info);
 	else (a->avl)=insertINFO(a->avl,line,info);
 	(a->total)++;
 	return a;
@@ -174,7 +173,8 @@ int totalElements(MY_AVL estrutura){
 }
 
 void removeMyAvl(MY_AVL estrutura){
-	removeAvl(estrutura->avl);
+	if(estrutura)
+		removeAvl(estrutura->avl);
 }
 
 void removeAvl(Avl estrutura){
@@ -185,7 +185,7 @@ void removeAvl(Avl estrutura){
 	}
 }
 
-void* findInfo (Avl a,STRING line){
+void* findInfo (Avl a,STRING line,int *x){
 	int cp=0;
 	while(a){
 		if((cp=strcmp(a->code,line)) > 0) a=a->left;
@@ -193,7 +193,8 @@ void* findInfo (Avl a,STRING line){
 		else break;
 	}
 	if(a) return a->info;
-	else return NULL;
+	else if(x){(*x)++;return NULL;}
+		else return NULL;
 }
 
 Avl cloneAvl (Avl estrutura){
