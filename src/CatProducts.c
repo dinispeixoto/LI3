@@ -1,5 +1,4 @@
-#include "avl.h"
-#include "CatProducts.h"
+#include "headers/CatProducts.h"
 
 struct catp {
 	MY_AVL CatProducts[SIZE_ABC];

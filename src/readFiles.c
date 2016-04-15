@@ -1,9 +1,9 @@
-#include "readFiles.h"
-#include "CatClients.h"
-#include "CatProducts.h"
-#include "Sales.h"
-#include "facturacao.h"		
-#include "filial.h"	
+#include "headers/readFiles.h"
+#include "headers/CatClients.h"
+#include "headers/CatProducts.h"
+#include "headers/Sales.h"
+#include "headers/facturacao.h"		
+#include "headers/filial.h"	
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */

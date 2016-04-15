@@ -1,4 +1,4 @@
-#include "avl.h"
+#include "headers/avl.h"
 
 #define SIZE_CODE 7
 #define LEFT -2

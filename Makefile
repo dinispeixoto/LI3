@@ -1,6 +1,6 @@
 CC = gcc 
 CFLAGS = -Wunreachable-code -ansi -O2
-FILES = *.c
+FILES = src/*.c
 
 default:
 	$(CC) $(CFLAGS) $(FILES) -o gereVendas

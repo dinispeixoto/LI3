@@ -1,6 +1,6 @@
 #define MAX_SALES 1000000
 
-#include "Sales.h"
+#include "headers/Sales.h"
 
 
 struct sales{

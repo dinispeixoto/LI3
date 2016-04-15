@@ -2,14 +2,14 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "avl.h"
-#include "Sales.h"
-#include "CatClients.h"
-#include "CatProducts.h"
-#include "readFiles.h"
-#include "facturacao.h"
-/*#include "interpretador.h"*/
-#include "filial.h"
+#include "headers/avl.h"
+#include "headers/Sales.h"
+#include "headers/CatClients.h"
+#include "headers/CatProducts.h"
+#include "headers/readFiles.h"
+#include "headers/facturacao.h"
+#include "headers/interpretador.h"
+#include "headers/filial.h"
 
 /* Main -> Gerar estruturas que vão armazenar os dados em memória */
 int main(){	

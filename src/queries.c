@@ -1,4 +1,4 @@
-#include "queries.h"
+#include "headers/queries.h"
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes);
 static int checkInfo(INFO i, int filial);
