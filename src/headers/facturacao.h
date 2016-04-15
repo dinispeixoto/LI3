@@ -57,7 +57,7 @@ double getTotalFacturadoMES(TOTAL_MES m);
 int getTotalQuantMES(TOTAL_MES m);
 
 /* QUERIE 4*/
-GROUP_PRODUCTS querie4(FACTURACAO,int*,int);
+/*GROUP_PRODUCTS querie4(FACTURACAO,int*,int);*/
 
 
 

@@ -144,7 +144,7 @@ PQ getNormalPQ(INFO i,int month,int filial){
 }
 
 PQ getPromoPQ(INFO i,int month,int filial){
-	return i->N[month][filial-1];
+	return i->P[month][filial-1];
 }
 
 int getTotalQuantPQ(PQ a){
@@ -236,7 +236,7 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 }
 
 /* ######################################### QUERIE 4 ####################################### */
-
+/*
 GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
 	GROUP_PRODUCTS group = initGroupProducts(1);
 	int i,j;
@@ -273,4 +273,4 @@ static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
 	}
 
 	return list;
-}
+}*/

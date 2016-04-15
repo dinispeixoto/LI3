@@ -23,8 +23,20 @@ int main(){
 	for(i=0;i<3;i++)
 		arrayFiliais[i] = initFilial();
 
-	interpretador(CatClients,CatProducts,arrayFiliais,fact);
-	/*getFile(CatClients,CatProducts,arrayFiliais,fact);*/
+	/*interpretador(CatClients,CatProducts,arrayFiliais,fact);*/
+	getFile(CatClients,CatProducts,arrayFiliais,fact);
+
+	getchar();
+	int a;
+	GROUP_PRODUCTS f1;
+
+			a=0;	
+			f1 = querie4(fact,&a,1);
+
+		for(i=0;i<getGroupProdSp(f1);i++)
+			printf("%s\n",getProduct(getGroupProd(f1)[i]));
+		printf("%d\n",a);
+	
 
 	return 0;
 }

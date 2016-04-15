@@ -31,7 +31,7 @@ static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 	return d;
 }
 
-/* ######################################### QUERIE 4 ####################################### 
+/* ######################################### QUERIE 4 ####################################### */
 
 GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
 	GROUP_PRODUCTS group = initGroupProducts(1);
@@ -47,7 +47,7 @@ GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
 static int checkInfo(INFO i, int filial){
 	int j;
 	for(j=0;j<12;j++)
-		if(getTotalQuantPQ(getNormalPQ(i,j,filial-1))>0 || (getTotalQuantPQ(getPromoPQ(i,j,filial-1)))>0) return 1;
+		if(getTotalQuantPQ(getNormalPQ(i,j,filial))>0 || (getTotalQuantPQ(getPromoPQ(i,j,filial)))>0) return 1;
 	return 0;
 }
 
@@ -68,7 +68,7 @@ static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
 	}
 
 	return list;
-}*/
+}
 
 /*#################################QUERIE 5##################################### FUNCIONA*/
 
