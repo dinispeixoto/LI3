@@ -1,7 +1,7 @@
 #include "headers/facturacao.h"
 
 struct fact{
-	TOTAL_MES tm[12];
+	TOTAL_MES tm[SIZE_MONTH];
     MY_AVL prod[SIZE_ABC];
 };
 
@@ -37,6 +37,8 @@ static Avl compare (Avl,Avl);
 static int checkInfo (INFO,int);
 static GROUP_PRODUCTS found(Avl,GROUP_PRODUCTS,int*,int);
 static DADOS factToDados(Avl,DADOS);
+static void freeTotalMes(TOTAL_MES m);
+static void freePQ(PQ x);
 
 TOTAL_MES initTotalMes(){
 	int i;
@@ -50,10 +52,39 @@ TOTAL_MES initTotalMes(){
 FACTURACAO initFact(){
 	int i;
 	FACTURACAO f = malloc(sizeof(struct fact));
-	for(i=0;i<12;i++)
+	for(i=0;i<SIZE_MONTH;i++)
 		f->tm[i]=initTotalMes();
 	return f;
 }
+
+void freeFact(FACTURACAO f){
+	int i;
+	for(i=0;i<SIZE_MONTH;i++) freeTotalMes(f->tm[i]);
+	for(i=0;i<SIZE_ABC;i++) removeMyAvl(f->prod[i],freeInfo);
+	free(f);
+}
+
+void freeInfo(void* info){
+	INFO x = (INFO) info;
+	int i,j;
+	if(x){
+		for(i=0;i<SIZE_MONTH;i++)
+			for(j=0;j<SIZE_FILIAIS;j++){
+				freePQ(x->N[i][j]);
+				freePQ(x->P[i][j]);
+			}
+		free(x);
+	}
+}
+
+static void freePQ(PQ x){
+	if(x) free(x);
+}
+
+static void freeTotalMes(TOTAL_MES m){
+	if(m) free(m);
+}
+
 
 DADOS initDADOS(){
 	int i;

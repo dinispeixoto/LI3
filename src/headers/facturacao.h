@@ -30,6 +30,8 @@ FACTURACAO initFact();
 DADOS initDADOS();
 FACTURACAO copyProducts(FACTURACAO,CATALOG_PRODUCTS);
 FACTURACAO insereFact(FACTURACAO,SALES);
+void freeFact(FACTURACAO f);
+void freeInfo(void*);
 
 /* GETS E SETS */
 double getnumFilialP(INFO,int,int,int);

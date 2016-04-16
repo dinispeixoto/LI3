@@ -63,7 +63,7 @@ int totalClients(CATALOG_CLIENTS Catalog){
 void removeCatClients(CATALOG_CLIENTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
-		removeMyAvl(Catalog->CatClients[i]);
+		removeMyAvl(Catalog->CatClients[i],NULL);
 		Catalog->CatClients[i] = NULL;
 	}
 }

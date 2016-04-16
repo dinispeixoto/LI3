@@ -172,15 +172,16 @@ int totalElements(MY_AVL estrutura){
 	else return 0;
 }
 
-void removeMyAvl(MY_AVL estrutura){
+void removeMyAvl(MY_AVL estrutura,Func f){
 	if(estrutura)
-		removeAvl(estrutura->avl);
+		removeAvl(estrutura->avl,f);
 }
 
-void removeAvl(Avl estrutura){
+void removeAvl(Avl estrutura,Func freeInfo){
 	if(estrutura != NULL){
-		removeAvl(estrutura->right);
-		removeAvl(estrutura->left);
+		removeAvl(estrutura->right,freeInfo);
+		removeAvl(estrutura->left,freeInfo);
+		if(freeInfo!=NULL) freeInfo(estrutura->info);
 		free(estrutura);
 	}
 }

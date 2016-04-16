@@ -47,6 +47,12 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 	else if(buffer[0] == '6')
 		periodMonths(CatClients,CatProducts,arrayFiliais,fact);
 
+	else if(buffer[0] == 'm'){
+		freeMemory(CatClients,CatProducts,arrayFiliais,fact);
+		interpretador(CatClients,CatProducts,arrayFiliais,fact);
+	}
+
+
 	else{
 		printf("	Este comando não é válido!\n");
 		sleep(1);
@@ -421,12 +427,6 @@ int calculatePages(GROUP_PRODUCTS group,int elemPerPage){
 	if(totalPages*elemPerPage < getGroupProdSp(group)) totalPages++;
 	return totalPages;
 }
-
-void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
-	/* LIMPAR MEMÓRIA */
-	removeCatClients(CatClients);
-	removeCatProds(CatProducts);
-} 
 
 void printTop(int i){
 

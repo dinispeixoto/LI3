@@ -40,6 +40,45 @@ FILIAL initFilial(){
 	return filial;
 }
 
+void freeFilial(FILIAL f){
+	int i;
+	if(f){
+		for(i=0;i<26;i++)
+			removeMyAvl(f->Clients[i],freeInfoClient);
+	}
+	free(f);
+}
+
+void freeInfoClient(void* infoClient){
+	int i;
+	INFO_CLIENT x = (INFO_CLIENT) infoClient;
+	if(x){
+		for(i=0;i<12;i++)
+			freeInfoMes(x->im[i]);
+	}
+	free(x);
+}
+
+void freeInfoMes(INFO_MES info){
+	int i;
+	if(info){
+		for(i=0;i<26;i++)
+			removeMyAvl(info->Products[i],freeInfoProduct);
+	}
+	free(info);
+}
+
+void freeInfoProduct(void* infoProduct){
+	int i;
+	INFO_PRODUCT x = (INFO_PRODUCT) infoProduct;
+	if(x){
+		/*free(x->quantity);
+		free(x->price);*/
+		free(x);
+	}
+}
+
+
 INFO_MES initInfoMes(){
 	int i;
 	INFO_MES im = malloc(sizeof(struct infoMes));
@@ -64,9 +103,9 @@ INFO_PRODUCT initInfoProduct(){
 	int i;
 	INFO_PRODUCT info = malloc(sizeof(struct infoProduct));
 	for(i=0;i<2;i++){
-	info->quantity[i] = 0;
-	info->price[i] = 0;
-}
+		info->quantity[i] = 0;
+		info->price[i] = 0;
+	}
 	return info;
 }
 

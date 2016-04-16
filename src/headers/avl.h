@@ -14,13 +14,15 @@ typedef char* STRING;
 
 typedef int BOOL;
 
+typedef void (*Func)(void*);
+
 Avl initAvl();
 MY_AVL initMyAvl();
 MY_AVL insertMyAvl(MY_AVL,STRING,void*,int);
 int heightAvl(Avl);
 Avl insert(Avl,STRING,void*);
-void removeAvl(Avl);
-void removeMyAvl(MY_AVL);
+void removeAvl(Avl,Func);
+void removeMyAvl(MY_AVL,Func);
 BOOL existMyAvl(MY_AVL,STRING);
 BOOL existAvl(Avl, STRING);
 int totalElements(MY_AVL);

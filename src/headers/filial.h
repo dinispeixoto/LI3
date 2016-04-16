@@ -18,6 +18,10 @@ INFO_PRODUCT initInfoProduct();
 INFO_CLIENT initInfoClient();
 INFO_MES initInfoMes();
 DADOS_FILIAL initDadosFilial();
+void freeFilial(FILIAL);
+void freeInfoClient(void*);
+void freeInfoMes(INFO_MES);
+void freeInfoProduct(void*);
 
 INFO_CLIENT updateInfoC(INFO_CLIENT,SALES);
 INFO_PRODUCT updateInfoP(INFO_PRODUCT,SALES);

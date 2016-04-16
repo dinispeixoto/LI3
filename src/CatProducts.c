@@ -63,7 +63,7 @@ int totalProducts(CATALOG_PRODUCTS Catalog){
 void removeCatProds(CATALOG_PRODUCTS Catalog){
 	int i;
 	for(i=0;i<SIZE_ABC;i++) {
-		removeMyAvl(Catalog->CatProducts[i]);
+		removeMyAvl(Catalog->CatProducts[i],NULL);
 		Catalog->CatProducts[i] = NULL;
 	}
 }

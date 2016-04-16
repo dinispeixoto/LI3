@@ -77,7 +77,7 @@ void getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTUR
 
 		printf("	 _______________________________________\n");
 		printf("	| 		VENDAS 			|\n");
-		printf("	| Nome do ficheiro: %s.		|\n",SALES_FILE);
+		printf("	| Nome do ficheiro: %s.	|\n",SALES_FILE);
 		printf("	| Foram validadas %d linhas.	|\n",validatedSales);
 		printf("	| Não foram validadas %d linhas.	|\n",invalidated);
 		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_sales);
@@ -166,3 +166,13 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL
 
 	return invalidated;
 }
+
+void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	/* LIMPAR MEMÓRIA */
+	int i;
+	removeCatClients(CatClients);
+	removeCatProds(CatProducts);
+	freeFact(fact);
+	for(i=0;i<3;i++)
+		freeFilial(arrayFiliais[i]);
+} 
