@@ -1,5 +1,7 @@
 #include "filial.h"
 
+#define index(i) i-'A'
+
 struct filial{
 	MY_AVL Clients[26];
 };
@@ -21,7 +23,6 @@ struct infoProduct{
 
 struct dadosFilial{
 	int quant[3][12];
-	MY_AVL clients[26];
 };
 
 
@@ -76,8 +77,6 @@ DADOS_FILIAL initDadosFilial(){
 	for(i=0;i<3;i++)
 		for(j=0;j<12;j++)
 			df->quant[i][j]=0;
-
-	for(i=0;i<26;i++) df->clients[i]=initMyAvl();	
 	return df;
 }
 
@@ -264,13 +263,13 @@ GROUP_CLIENTS checkProd(INFO_PRODUCT ip,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP,char
 
 	if(ip->quantity[0]){
 		posicao=getGroupClieSp(gcN);
-		insertGROUP(getGroupClie(gcN),posicao,client);
+		insertGROUP_C(getGroupClie(gcN),posicao,client);
 		setGroupClieSp(gcN,posicao+1);
 		gcN=reallocGROUP_CLIENTS(gcN);
 	}
 	if(ip->quantity[1]){
 		posicao=getGroupClieSp(gcP);
-		insertGROUP(getGroupClie(gcP),posicao,client);
+		insertGROUP_C(getGroupClie(gcP),posicao,client);
 		setGroupClieSp(gcP,posicao+1);
 		gcP=reallocGROUP_CLIENTS(gcP);
 	}
@@ -314,12 +313,69 @@ GROUP_CLIENTS querie8(FILIAL f,char* product,GROUP_CLIENTS* P){
 }
 
 /*#################################QUERIE 9#####################################*/
+int quant(INFO_PRODUCT ip){
+	return (ip->quantity[0]+ip->quantity[1]);
+}
+
+GROUP_PRODUCTS converte (Heap hp, GROUP_PRODUCTS gp){
+	int i,posicao;
+	while(0<getHeapUsed(hp)){
+		posicao=getGroupProdSp(gp);
+		insertGROUP_P( getGroupProd(gp),posicao,extractMax(hp));
+		setGroupProdSp(gp,posicao+1);
+		gp=reallocGROUP_PRODUCTS(gp);
+	}
+	return gp;
+}
+
+Heap findProd2(Avl a,Heap hp){
+	int r;
+	if(a){
+	findProd2(getAvlLeft(a),hp);
+	void* x= (INFO_PRODUCT)getInfo(a);
+	r=quant(x);
+	insertHeap(hp,r,getAvlCode(a));
+	findProd2(getAvlRight(a),hp);
+	}
+	return hp;
+}
+
+Heap findProd(INFO_CLIENT ic, int month,Heap hp){
+	int i;
+	for(i=0;i<26;i++){
+		findProd2(getAvl(ic->im[month-1]->Products[i]),hp);
+	}
+	return hp;
+}
+
+GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
+	int i;
+	Heap hp=initHeap(1);
+	int in=index(client[0]);
+	for(i=0;i<3;i++){
+		void* x=(INFO_CLIENT)findInfo(getAvl(f[i]->Clients[in]),client,NULL);
+		findProd(x,month,hp);
+	}
+	GROUP_PRODUCTS gp= initGroupProducts(1);
+	
+	converte(hp,gp);
+	return gp;
+}
 
 /*#################################QUERIE 10#####################################*/
+querie10(FILIAL f,);
 
 /*#################################QUERIE 11#####################################*/
 
 /*#################################QUERIE 12#####################################*/
-
+int querie12Clients(FILIAL* f){
+	int i,j,sum=0,r;
+	for(i=0;i<3;i++)
+		for(j=0;j<26;j++){
+			r=infoNULL(getAvl(f[i]->Clients[j]));
+			sum+=r;
+		}
+	return sum;
+}
 
 

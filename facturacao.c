@@ -249,5 +249,16 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 	return d;
 }
 
+/*#################################QUERIE 12#####################################*/
+int querie12Products(FACTURACAO f){
+	int i,sum=0,r;
+
+	for(i=0;i<26;i++){
+		r=infoNULL(getAvl(f->prod[i]));			
+		sum+=r;
+	}
+	return sum;
+}
+
 
 

@@ -38,7 +38,7 @@ CLIENT* getGroupClie(GROUP_CLIENTS );
 
 GROUP_CLIENTS initGroupClients(int );
 GROUP_CLIENTS reallocGROUP_CLIENTS(GROUP_CLIENTS );
-CLIENT* insertGROUP(CLIENT* list,int posicao,char* c);
+CLIENT* insertGROUP_C(CLIENT* ,int ,char* );
 CLIENT* insertGROUP_CLIENTS(CLIENT* ,int* ,int ,char*);
 CLIENT* removeGROUP_CLIENTS(CLIENT* ,int* ,char*);
 

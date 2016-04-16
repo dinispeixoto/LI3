@@ -172,6 +172,12 @@ GROUP_PRODUCTS toGroup(GROUP_PRODUCTS array,PRODUCT prod){
 	return array;
 }
 
+PRODUCT* insertGROUP_P(PRODUCT* list,int posicao,char* c){
+
+	strcpy(list[posicao]->string,c);
+	return list;
+}
+
 GROUP_PRODUCTS reallocGROUP_PRODUCTS(GROUP_PRODUCTS array){	
 	int i;
 	if (array->sp > (array->size*3)/4) {

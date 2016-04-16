@@ -237,6 +237,15 @@ static void removeFromMY_AVL_AUX (Avl a){
 	else free (a);
 }
 
+int infoNULL(Avl a){
+	int r=0;
+	if(a){
+		r+=infoNULL(a->left);
+		r+=infoNULL(a->right);
+		if(!a->info)r++;
+	}
+	return r;
+}
 
 /* GETS E SETS */ 
 

@@ -26,5 +26,11 @@ int main(){
 	/*interpretador(CatClients,CatProducts,filial,fact);*/
 	getFile(CatClients,CatProducts,arrayFiliais,fact);
 
+	int r=querie12Products(fact);
+	printf("%d\n",r);
+
+	getchar();
+	
+
 	return 0;
 }

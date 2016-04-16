@@ -2,6 +2,7 @@
 #define __FILIAIS_H__
 
 #include "avl.h"
+#include "heap.h"
 #include "CatClients.h"
 #include "CatProducts.h"
 #include "Sales.h"
@@ -27,6 +28,8 @@ int getDadosI(DADOS_FILIAL ,int ,int );
 
 DADOS_FILIAL querie5(FILIAL ,DADOS_FILIAL,char* ,int);
 GROUP_CLIENTS querie7 (FILIAL* );
-GROUP_CLIENTS querie8(FILIAL f,char* product,GROUP_CLIENTS* N);
+GROUP_CLIENTS querie8(FILIAL ,char* ,GROUP_CLIENTS* );
+GROUP_PRODUCTS querie9(FILIAL* , char* ,int );
+int querie12Clients(FILIAL* );
 
 #endif

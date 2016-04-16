@@ -159,7 +159,7 @@ GROUP_CLIENTS reallocGROUP_CLIENTS(GROUP_CLIENTS array){
 	return array;
 }
 
-CLIENT* insertGROUP(CLIENT* list,int posicao,char* c){
+CLIENT* insertGROUP_C(CLIENT* list,int posicao,char* c){
 
 	strcpy(list[posicao]->string,c);
 	return list;

@@ -140,6 +140,20 @@ getchar();
 		printf("%s\n",getClient(getGroupClie(gcP)[i]));
 	printf("%d\n",getGroupClieSp(gcP));*/
 
+##########################QUERIE 9###################################
+GROUP_PRODUCTS gp;
+	gp=querie9(arrayFiliais,"Z5000",4);
+
+	for(i=0;i<getGroupProdSp(gp);i++)
+		printf("%s\n",getProduct(getGroupProd(gp)[i]));	
+
+###########################QUERIE 12#################################
+int r=querie12Clients(arrayFiliais);
+	printf("%d\n",r);
+
+int r=querie12Products(fact);
+	printf("%d\n",r);
+
 ##########################TESTES######################################
 	getchar();
 	int i;
