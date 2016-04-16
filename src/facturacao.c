@@ -78,11 +78,11 @@ void freeInfo(void* info){
 }
 
 static void freePQ(PQ x){
-	if(x) free(x);
+	free(x);
 }
 
 static void freeTotalMes(TOTAL_MES m){
-	if(m) free(m);
+	free(m);
 }
 
 
