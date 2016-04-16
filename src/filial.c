@@ -1,5 +1,6 @@
 #include "headers/filial.h"
 
+
 struct filial{
 	MY_AVL Clients[26];
 };
@@ -23,6 +24,7 @@ struct dadosFilial{
 	int quant[3][12];
 	MY_AVL clients[26];
 };
+
 
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c){
@@ -212,6 +214,21 @@ int getInfoMesQuantity(INFO_MES info){
 	return info->quantity;
 }
 
+MY_AVL getInfoMesProduct(INFO_MES info,int index){
+	return info->Products[index];
+}
+
+int getInfoProductQuantity(INFO_PRODUCT info,int index){
+	return info->quantity[index];
+}
+
+double getInfoProductPrice(INFO_PRODUCT info,int index){
+	return info->price[index];
+}
+
+
+
+
 /*####################Acede a strcut mais funda ##############################
 int c(INFO_PRODUCT ip){
 	return (ip->quantity[0]+ip->quantity[1]);
@@ -230,152 +247,7 @@ int getCenas(FILIAL f){
 	return y;
 }
 */
-/*#################################QUERIE 5##################################### FUNCIONA
 
-DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial){
-	int i;
-	for(i=0;i<12;i++){
-		df->quant[filial][i]+=ic->im[i]->quantity;
-	}
-	return df;
-}
-
-
-DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial){
-	int i,j;
-	int index = client[0]-'A';
-	void* x = (INFO_CLIENT)findInfo(getAvl(f->Clients[index]),client,NULL);
-
-	df=addQ(df,x,filial);
-	
-	return df;
-}
-*/
-/*#################################QUERIE 7###################################### FUNCIONA(VERIFICAR REMOVE)*/
-static GROUP_CLIENTS removeList(Avl a,GROUP_CLIENTS list );
-static GROUP_CLIENTS insereList(Avl a,GROUP_CLIENTS list );
-static GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list);
-
-GROUP_CLIENTS removeList(Avl a,GROUP_CLIENTS list ){
-	int sp;
-	if(a){
-		removeList(getAvlLeft(a),list);
-		void* x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
-		if(!getComp(x)){
-			sp=getGroupClieSp(list);
-			removeGROUP_CLIENTS(getGroupClie(list),&sp,getAvlCode(a));
-			setGroupClieSp(list,sp);
-		}
-		removeList(getAvlRight(a),list);
-	}
-	return list;
-}
-
-GROUP_CLIENTS insereList(Avl a,GROUP_CLIENTS list ){
-	int sp;
-	if(a){
-		insereList(getAvlLeft(a),list);
-		void* x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
-		if(getComp(x)){
-			sp=getGroupClieSp(list);
-			insertGROUP_CLIENTS(getGroupClie(list),&sp,getJC(list),getAvlCode(a));
-			setGroupClieSp(list,sp);
-			list=reallocGROUP_CLIENTS(list);
-		}
-		insereList(getAvlRight(a),list);
-	}
-	return list;
-}
-
-GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list){
-	int i,j;
-
-	for(j=0;j<26;j++){
-		setJC(list,j+1);
-		insereList(getAvl(f[0]->Clients[j]),list);
-		}
-	
-	for(i=1;i<3;i++){
-		for(j=0;j<26;j++){
-			setJC(list,j+1);
-			removeList(getAvl(f[i]->Clients[j]),list);
-			}
-		}
-	
-	return list;
-}
-
-GROUP_CLIENTS querie7 (FILIAL* f){
-	int i;
-	GROUP_CLIENTS list = initGroupClients(1);
-
-	checkClientsValeN(f,list);
-
-	return list;
-}
-
-/*#################################QUERIE 8#####################################*/
-GROUP_CLIENTS checkProd(INFO_PRODUCT ip,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP,char* client){
-	int i,posicao;
-
-	if(ip->quantity[0]){
-		posicao=getGroupClieSp(gcN);
-		insertGROUP(getGroupClie(gcN),posicao,client);
-		setGroupClieSp(gcN,posicao+1);
-		gcN=reallocGROUP_CLIENTS(gcN);
-	}
-	if(ip->quantity[1]){
-		posicao=getGroupClieSp(gcP);
-		insertGROUP(getGroupClie(gcP),posicao,client);
-		setGroupClieSp(gcP,posicao+1);
-		gcP=reallocGROUP_CLIENTS(gcP);
-	}
-	return gcN;
-}
-
-GROUP_CLIENTS find2 (INFO_CLIENT ic,char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP,char* client){
-	int i;
-	int index=product[0]-'A';
-
-	for(i=0;i<12;i++){
-		if(getAvl(ic->im[i]->Products[index])){
-			void* x=(INFO_PRODUCT)findInfo(getAvl(ic->im[i]->Products[index]),product,NULL);
-			if(x) checkProd(x,gcN,gcP,client);
-		}
-	}
-	return gcN;
-}
-
-GROUP_CLIENTS find (Avl a, char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP){
-	
-	if(a){
-		find(getAvlLeft(a),product,gcN,gcP);
-		void* x=(INFO_CLIENT)getInfo(a);
-		find2(x,product,gcN,gcP,getAvlCode(a));
-		find(getAvlRight(a),product,gcN,gcP);
-	}
-	return gcN;
-}
-
-
-GROUP_CLIENTS querie8(FILIAL f,char* product,GROUP_CLIENTS* P){
-	int i;
-	GROUP_CLIENTS gcN=initGroupClients(1);
-	GROUP_CLIENTS gcP=initGroupClients(1);
-	for(i=0;i<26;i++){
-		find(getAvl(f->Clients[i]),product,gcN,gcP);
-	}
-	(*P)=gcP;
-	return gcN;
-}
-
-/*#################################QUERIE 9#####################################*/
-
-/*#################################QUERIE 10#####################################*/
-
-/*#################################QUERIE 11#####################################*/
-
-/*#################################QUERIE 12#####################################*/
 
 
 

@@ -62,9 +62,12 @@ int totalClients(CATALOG_CLIENTS Catalog){
 /* Limpa o catálogo de clientes. */
 void removeCatClients(CATALOG_CLIENTS Catalog){
 	int i;
-	for(i=0;i<SIZE_ABC;i++) {
-		removeMyAvl(Catalog->CatClients[i],NULL);
-		Catalog->CatClients[i] = NULL;
+	if(Catalog){
+		for(i=0;i<SIZE_ABC;i++) {
+			removeMyAvl(Catalog->CatClients[i],NULL);
+			Catalog->CatClients[i] = NULL;
+		}
+		free(Catalog);
 	}
 }
 

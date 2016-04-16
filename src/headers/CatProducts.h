@@ -37,6 +37,7 @@ void setJ(GROUP_PRODUCTS,int);
 PRODUCT* getGroupProd(GROUP_PRODUCTS);
 
 /*QUERIES*/
+PRODUCT* insertGROUP_P(PRODUCT* list,int posicao,char* c);
 GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS,char);
 void travessia(Avl,int,GROUP_PRODUCTS);
 GROUP_PRODUCTS toGroup(GROUP_PRODUCTS,PRODUCT);

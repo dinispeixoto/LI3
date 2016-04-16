@@ -181,7 +181,8 @@ void removeAvl(Avl estrutura,Func freeInfo){
 	if(estrutura != NULL){
 		removeAvl(estrutura->right,freeInfo);
 		removeAvl(estrutura->left,freeInfo);
-		if(freeInfo!=NULL) freeInfo(estrutura->info);
+		if(freeInfo!=NULL)
+			freeInfo(estrutura->info);
 		free(estrutura);
 	}
 }
@@ -236,6 +237,17 @@ static void removeFromMY_AVL_AUX (Avl a){
 		free(a);
 	}
 	else free (a);
+}
+
+
+int infoNULL(Avl a){
+	int r=0;
+	if(a){
+		r+=infoNULL(a->left);
+		r+=infoNULL(a->right);
+		if(!a->info)r++;
+	}
+	return r;
 }
 
 

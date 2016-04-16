@@ -62,9 +62,12 @@ int totalProducts(CATALOG_PRODUCTS Catalog){
 /* Limpa o catálogo de produtos. */
 void removeCatProds(CATALOG_PRODUCTS Catalog){
 	int i;
-	for(i=0;i<SIZE_ABC;i++) {
-		removeMyAvl(Catalog->CatProducts[i],NULL);
-		Catalog->CatProducts[i] = NULL;
+	if(Catalog){
+		for(i=0;i<SIZE_ABC;i++) {
+			removeMyAvl(Catalog->CatProducts[i],NULL);
+			Catalog->CatProducts[i] = NULL;
+		}
+		free(Catalog);
 	}
 }
 
@@ -144,16 +147,6 @@ GROUP_PRODUCTS initGroupProducts(int size){
 	return group;
 }
 
-GROUP_PRODUCTS productsLetter(CATALOG_PRODUCTS Catalog,char letter){
-	
-	int index = letter - 'A';
-	GROUP_PRODUCTS group = initGroupProducts(totalElements(Catalog->CatProducts[index]));
-	MY_AVL a = Catalog->CatProducts[index];
-	Avl tree = getAvl(a);
-	travessia(tree,0,group);
-	return group;
-}
-
 void travessia(Avl a,int index,GROUP_PRODUCTS array){
 	PRODUCT prod;
 	if(a!=NULL){
@@ -182,6 +175,11 @@ GROUP_PRODUCTS reallocGROUP_PRODUCTS(GROUP_PRODUCTS array){
 		}
 	}	
 	return array;
+}
+
+PRODUCT* insertGROUP_P(PRODUCT* list,int posicao,char* c){
+	strcpy(list[posicao]->string,c);
+	return list;
 }
 
 PRODUCT* insertGROUP_PRODUCTS(PRODUCT* list,int* sp,int w,char* p){

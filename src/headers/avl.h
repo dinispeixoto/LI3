@@ -30,6 +30,7 @@ void* findInfo (Avl ,STRING,int*);
 Avl cloneAvl (Avl);
 MY_AVL cloneMyAvl (MY_AVL);
 void removeFromMY_AVL (MY_AVL*,int);
+int infoNULL(Avl);
 
 
 /* GETS E SETS */
