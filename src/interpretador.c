@@ -10,10 +10,10 @@ void menu(){
 	printf("	02. Apresentar Catálogo de Produtos.\n");
 	printf("	03. Informações sobre as vendas de um produto num determinado mês.\n");
 	printf("	04. Produtos não comprados.\n");
-	printf("	05. ...\n");
+	printf("	05. Informações sobre as compras de um determinado cliente.\n");
 	printf("	06. Resultados num intervalo de meses.\n");
-	printf("	07. ...\n");
-	printf("	08. ...\n");
+	printf("	07. Lista de clientes que realizaram compras em todas as filiais.\n");
+	printf("	08. Lista de clientes que compraram um produto num determinado filial.\n");
 	printf("	09. ...\n");
 	printf("	10. ...\n");
 	printf("	11. ...\n");
@@ -52,8 +52,16 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 			productsNSold(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
+		case '5':
+			infoClientPurchases(CatClients,CatProducts,arrayFiliais,fact);
+			break;
+
 		case '6': 
 			periodMonths(CatClients,CatProducts,arrayFiliais,fact);
+			break;
+
+		case '7':
+			listClients(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 			
 		case 'm': 
@@ -138,7 +146,7 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	GROUP_PRODUCTS group;
 
 	group = querie2(CatProducts,buffer[0]);
-	totalPages = calculatePages(group,ELEM_PER_PAGE);		
+	totalPages = calculatePagesProducts(group,ELEM_PER_PAGE);		
 
 	printCatalogProds(group,actualPage,totalPages,getGroupProdSize(group));
 
@@ -311,6 +319,7 @@ void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int mon
 }
 
 
+
 /* QUERIE 4 */
 
 void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
@@ -356,7 +365,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 		backToProductsNSold(CatClients,CatProducts,arrayFiliais,fact,3);
 	}
 
-	totalPages = calculatePages(group,ELEM_PER_PAGE);
+	totalPages = calculatePagesProducts(group,ELEM_PER_PAGE);
 	printPageNSold(group,1,totalPages);
 	error = printNSold(group,totalPages);
 
@@ -419,6 +428,79 @@ void backToProductsNSold (CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduct
 	sleep(sleepTime);
 	printf("\e[2J\e[H");
 	productsNSold(CatClients,CatProducts,arrayFiliais,fact);
+}
+
+
+
+/* QUERIE 5 */
+
+void infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+
+	int input,exist,i;
+	char c;
+	char clientString[5];
+	CLIENT clie = malloc(sizeof(CLIENT));
+
+	DADOS_FILIAL df_1 = initDadosFilial();
+
+	printf("\e[2J\e[H");
+
+	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de informações sobre as compras de um cliente");
+
+	printTop(5);
+
+	printf("							0.Voltar\n");
+
+	printf("	Introduza um cliente: ");
+	input = scanf("%s",clientString);
+		
+	if(!strcmp(clientString,"0")){
+		backInterpretador(CatClients,CatProducts,arrayFiliais,fact,0);
+	}
+
+	if(input < 6){
+		clie = setClient(clientString);
+		exist = existClient(CatClients,clie);
+	}
+
+	if(!exist){
+		printf("\n	Este cliente não existe no Cátalogo!\n");
+		backToClientPurchases(CatClients,CatProducts,arrayFiliais,fact,2);
+	}
+
+	for(i=0;i<3;i++)
+		df_1 = querie5(arrayFiliais[i],df_1,clientString,i);
+	printClientPurchases(df_1,clientString);
+
+
+	putchar('\n');
+	printf("	Pressione qualquer tecla para continuar!		0.Sair\n");
+	printf("________________________________________________________________________________\n");
+	printf("	>> ");
+
+	while(getchar()!='\n');
+	c = getchar();
+	if(c!='0') backToClientPurchases(CatClients,CatProducts,arrayFiliais,fact,0);
+	else backInterpretador(CatClients,CatProducts,arrayFiliais,fact,0);
+}
+
+void printClientPurchases(DADOS_FILIAL df,char* clientString){
+	int i;
+	printf("\e[2J\e[H");
+	printTop(5);
+	printf("	Informações sobre as compras do cliente %s.\n",clientString);
+	printf("	----------------------------------------------\n");
+	printf("\t| Mês |  Filial 1  |  Filial 2  |  Filial 3  |\n");
+	for(i=0;i<12;i++)
+		printf(" \t| %2d  |\t   %5d   |    %5d   |    %5d   |\t\n",i+1,getDadosFilialQuantity(df,1,i+1),getDadosFilialQuantity(df,2,i+1),
+			getDadosFilialQuantity(df,3,i+1));
+}
+
+void backToClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int sleepTime){
+	sleep(sleepTime);
+	printf("\e[2J\e[H");
+	infoClientPurchases(CatClients,CatProducts,arrayFiliais,fact);
+	exit(0);
 }
 
 
@@ -494,8 +576,70 @@ void printDATA(DADOS data,int begin,int end){
 	printf("	No intervalo de meses (%d-%d):\n\n",begin,end);
 	printf("	Foram facturados %f euros.\n",getDadosTP(data));
 	printf("	Foram registadas %d vendas.\n",getDadosTQ(data));
-
 }
+
+
+
+/* QUERIE 7 */
+
+void listClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+
+	printf("\e[2J\e[H");
+	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de clientes que compraram em todas as filiais");
+	printTop(7);
+	searchPageListClients(CatClients,CatProducts,arrayFiliais,fact,1);	
+}
+
+void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int actualPage){
+
+	int page,totalPages,size_input;
+	GROUP_CLIENTS group = querie7(arrayFiliais);
+	totalPages = calculatePagesClients(group,ELEM_PER_PAGE);		
+
+	printListClients(group,actualPage,totalPages,getGroupClieSize(group));
+
+	do{
+		printf("	Escolha uma página: ");
+		size_input = scanf("%d",&page);
+		if(page > 0 && page <= totalPages){
+			actualPage = page;
+			printf("\e[2J\e[H");
+			printTop(7);
+			printListClients(group,actualPage,totalPages,getGroupClieSize(group));
+		}
+		else if(page == 0) backInterpretador(CatClients,CatProducts,arrayFiliais,fact,0);
+		else{
+			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
+			sleep(2);
+			printf("\e[2J\e[H");
+			printTop(7);
+			searchPageListClients(CatClients,CatProducts,arrayFiliais,fact,actualPage);
+			exit(0);
+		}
+	}
+	while(page != 0);
+}
+
+void printListClients(GROUP_CLIENTS group,int page,int totalPages,int totalElements){
+	int i,index;
+	printf("	Página %d de %d.\n",page,totalPages);
+	for(i=0;i<ELEM_PER_PAGE;i++){
+		index = i + (ELEM_PER_PAGE*(page-1));
+		if(index < totalElements)
+			printf("				%s\n",getClient(getGroupClie(group)[index]));
+	}
+	printf("							0.Sair\n");
+}
+
+
+
+/* QUERIE 8 */
+
+void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	
+}
+
+
 
 /* AUXILIARES */
 
@@ -509,9 +653,15 @@ void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	}
 }
 
-int calculatePages(GROUP_PRODUCTS group,int elemPerPage){
+int calculatePagesProducts(GROUP_PRODUCTS group,int elemPerPage){
 	int totalPages = (getGroupProdSp(group)/elemPerPage);
 	if(totalPages*elemPerPage < getGroupProdSp(group)) totalPages++;
+	return totalPages;
+}
+
+int calculatePagesClients(GROUP_CLIENTS group,int elemPerPage){
+	int totalPages = (getGroupClieSp(group)/elemPerPage);
+	if(totalPages*elemPerPage < getGroupClieSp(group)) totalPages++;
 	return totalPages;
 }
 
@@ -528,19 +678,23 @@ void printTop(int i){
 			break;
 
 		case 2:  /* CATÁLOGO DE PRODUTOS */
-			printf("\n	                        CATÁLOGO DE PRODUTOS                                      \n");
+			printf("\n	                        CATÁLOGO DE PRODUTOS                                    \n");
 			break;
 
 		case 3:
-			printf("\n	                   PRODUTO NUM DETERMINADO MÊS                                \n");
+			printf("\n	                   PRODUTO NUM DETERMINADO MÊS                              \n");
 			break;
 
 		case 4:
-			printf("\n	                        PRODUTOS NÃO VENDIDOS                                     \n");
+			printf("\n	                        PRODUTOS NÃO VENDIDOS                                   \n");
+			break;
+
+		case 5:
+			printf("\n	                        COMPRAS DE UM CLIENTE                                   \n");
 			break;
 
 		case 6:
-			printf("\n	                        PERÍODO DE MESES                                          \n");
+			printf("\n	                        PERÍODO DE MESES                                         \n");
 			break;
 	}
 	printf("________________________________________________________________________________\n");

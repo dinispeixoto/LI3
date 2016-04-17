@@ -40,13 +40,24 @@ void printPageNSold(GROUP_PRODUCTS,int,int);
 int printNSold(GROUP_PRODUCTS,int);
 
 
+void infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+void printClientPurchases(DADOS_FILIAL df,char* clientString);
+void backToClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int sleepTime);
+
+
 void productMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void printDATA(DADOS,int,int);
 void backToPeriodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int sleepTime);
 
 
+void listClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int actualPage);
+void printListClients(GROUP_CLIENTS group,int page,int totalPages,int totalElements);
+
+
 void printGROUP_PRODS(GROUP_PRODUCTS, int);
 void testMemory(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,char*);
-int calculatePages(GROUP_PRODUCTS,int);
+int calculatePagesProducts(GROUP_PRODUCTS group,int elemPerPage);
+int calculatePagesClients(GROUP_CLIENTS group,int elemPerPage);
 
 #endif

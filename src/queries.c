@@ -123,9 +123,7 @@ static GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list);
 GROUP_CLIENTS querie7 (FILIAL* f){
 	int i;
 	GROUP_CLIENTS list = initGroupClients(1);
-
 	checkClientsValeN(f,list);
-
 	return list;
 }
 

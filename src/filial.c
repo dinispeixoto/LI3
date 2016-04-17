@@ -201,6 +201,10 @@ MY_AVL getClientIndexF(FILIAL f,int index){
 	return f->Clients[index];
 }
 
+int getDadosFilialQuantity(DADOS_FILIAL df,int filial,int month){
+	return df->quant[filial-1][month-1];
+}
+
 DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int filial,int month,int total){
 	df->quant[filial][month] += total;
 	return df;

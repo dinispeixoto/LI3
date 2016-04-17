@@ -36,6 +36,7 @@ int getInfoMesQuantity(INFO_MES);
 int getInfoProductQuantity(INFO_PRODUCT,int);
 double getInfoProductPrice(INFO_PRODUCT,int);
 MY_AVL getInfoMesProduct(INFO_MES,int);
+int getDadosFilialQuantity(DADOS_FILIAL,int,int);
 
 DADOS_FILIAL querie5(FILIAL,DADOS_FILIAL,char* ,int);
 GROUP_CLIENTS querie7 (FILIAL*);
