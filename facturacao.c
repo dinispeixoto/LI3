@@ -2,6 +2,7 @@
 #include "Sales.h"
 #include "avl.h"
 #include "CatProducts.h"
+#include "heap.h"
 
 struct fact{
 	TOTAL_MES tm[12];
@@ -248,7 +249,36 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 	}
 	return d;
 }
+/*############################################QUERIE 10 #######################################*/
+int qua (INFO info,int filial){
+	int i,sum=0;
+	for(i=0;i<12;i++){
+		sum+=(info->N[i][filial-1]->totalquant+info->P[i][filial-1]->totalquant);
+	}
+	return sum;
+}
 
+int pesq (Avl a, Heap hp,int filial){
+	int r;
+	if(a){
+	pesq(getAvlLeft(a),hp,filial);
+	void* x= (INFO)getInfo(a);
+	if(x){
+		r=qua(x,filial);
+		insertHeap(hp,r,getAvlCode(a));
+	}
+	pesq(getAvlRight(a),hp,filial);
+	}
+	return 1;
+}
+
+int querie10Fact (FACTURACAO f,Heap hp,int filial){
+	int i;
+	for(i=0;i<26;i++){
+		pesq(getAvl(f->prod[i]),hp,filial);
+	}
+	return 1;
+}
 /*#################################QUERIE 12#####################################*/
 int querie12Products(FACTURACAO f){
 	int i,sum=0,r;

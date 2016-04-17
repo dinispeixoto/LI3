@@ -30,6 +30,8 @@ DADOS_FILIAL querie5(FILIAL ,DADOS_FILIAL,char* ,int);
 GROUP_CLIENTS querie7 (FILIAL* );
 GROUP_CLIENTS querie8(FILIAL ,char* ,GROUP_CLIENTS* );
 GROUP_PRODUCTS querie9(FILIAL* , char* ,int );
+GROUP_PRODUCTS querie10(FILIAL ,int);
+GROUP_PRODUCTS querie11(FILIAL* ,char* );
 int querie12Clients(FILIAL* );
 
 #endif

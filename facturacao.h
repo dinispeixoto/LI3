@@ -9,6 +9,7 @@
 
 #include "avl.h"
 #include "Sales.h"
+#include "heap.h"
 
 
 /*Estruturas para organizar a facturacao em um array de 12, com cada indice um apontador para um array de 26 
@@ -48,6 +49,8 @@ GROUP_PRODUCTS querie4(FACTURACAO,int*,int);
 
 /* QUERIE 6*/
 DADOS querie6(FACTURACAO,int,int);
+
+int querie10Fact (FACTURACAO ,Heap ,int);
 
 
 #endif

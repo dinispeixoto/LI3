@@ -8,9 +8,13 @@
 typedef struct heap *Heap;
 
 Heap initHeap (int );
-int insertHeap (Heap , int ,char* );
+Heap** initHeapMatriz(int ,int ,int);
+int insertHeap (Heap , int ,char*);
 char*  extractMax (Heap );
 
 int getHeapUsed(Heap);
+int getMax(Heap );
+
+void printHeap(Heap h);
 
 #endif

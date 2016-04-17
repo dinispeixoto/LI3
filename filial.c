@@ -139,10 +139,9 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info, SALES s){
 	if(infoPromo == 'P') info_int = 1;
 	else info_int = 0; 
 
-	for(i=0;i<2;i++){
 	info->quantity[info_int] += qt;
 	info->price[info_int] += price*qt;
-	}
+	
 	return info;
 }
 
@@ -317,13 +316,14 @@ int quant(INFO_PRODUCT ip){
 	return (ip->quantity[0]+ip->quantity[1]);
 }
 
-GROUP_PRODUCTS converte (Heap hp, GROUP_PRODUCTS gp){
+GROUP_PRODUCTS converte (Heap hp, GROUP_PRODUCTS gp,int total){
 	int i,posicao;
-	while(0<getHeapUsed(hp)){
+	while(0<total){
 		posicao=getGroupProdSp(gp);
 		insertGROUP_P( getGroupProd(gp),posicao,extractMax(hp));
 		setGroupProdSp(gp,posicao+1);
 		gp=reallocGROUP_PRODUCTS(gp);
+		total--;
 	}
 	return gp;
 }
@@ -357,16 +357,129 @@ GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
 		findProd(x,month,hp);
 	}
 	GROUP_PRODUCTS gp= initGroupProducts(1);
-	
-	converte(hp,gp);
+	converte(hp,gp,getHeapUsed(hp));
 	return gp;
 }
 
 /*#################################QUERIE 10#####################################*/
-querie10(FILIAL f,);
+int maxList(Heap* h){
+	int i,j,index=0;
+	int max=getMax(h[0]);
+	for(i=0;i<26;i++){
+		for(j=0;j<26;j++){
+		if(max<getMax(h[i])) {
+			index=i;
+			max=getMax(h[i]);
+		}
+		}
+	}
+	return (index);
+}
+
+GROUP_PRODUCTS converteList (Heap* hp, GROUP_PRODUCTS gp,int total){
+	int posicao,x,y;
+	while(0<total){
+		posicao=getGroupProdSp(gp);
+		x=maxList(hp);
+		insertGROUP_P( getGroupProd(gp),posicao,extractMax(hp[x]));
+		setGroupProdSp(gp,posicao+1);
+		gp=reallocGROUP_PRODUCTS(gp);
+		total--;
+	}
+	return gp;
+}
+
+int findProd3(Avl a,Heap hp){
+	int r,ind;
+	if(a){
+	findProd3(getAvlLeft(a),hp);
+	void* x= (INFO_PRODUCT)getInfo(a);
+	ind=index(getAvlCode(a)[0]);
+	r=quant(x);
+	insertHeap(hp,r,getAvlCode(a));
+	findProd3(getAvlRight(a),hp);
+	}
+	return 1;
+}
+
+int pesquisa2 (INFO_CLIENT ic, Heap* hp){
+	int i,j;
+	for(i=0;i<12;i++){
+		for(j=0;j<26;j++){
+			findProd3(getAvl(ic->im[i]->Products[j]),hp[j]);
+		}
+	}
+	return 1;
+}
+
+
+int pesquisa (Avl a, Heap* hp){
+	if(a){
+	pesquisa(getAvlLeft(a),hp);
+	
+	void* x= (INFO_CLIENT)getInfo(a);
+	pesquisa2(x,hp);
+
+	pesquisa(getAvlRight(a),hp);
+	}
+	return 1;
+}
+
+GROUP_PRODUCTS querie10(FILIAL f,int N){
+	int i,j;
+	Heap hp[26];
+	  for(i=0;i<26;i++)
+        hp[i]=initHeap(1);
+
+	for(i=0;i<26;i++){
+		pesquisa(getAvl(f->Clients[i]), hp);
+	}
+	GROUP_PRODUCTS gp = initGroupProducts(1);
+	
+	converteList(hp,gp,N);
+	return gp;
+}
 
 /*#################################QUERIE 11#####################################*/
+int quant2(INFO_PRODUCT ip){
+	return (ip->price[0]+ip->price[1]);
+}
 
+Heap highCost2 (Avl a,Heap hp){
+	int r;
+	if(a){
+	highCost2(getAvlLeft(a),hp);
+	void* x= (INFO_PRODUCT)getInfo(a);
+	r=quant2(x);
+	insertHeap(hp,r,getAvlCode(a));
+	highCost2(getAvlRight(a),hp);
+	}
+	return hp;
+}
+
+Heap highCost (INFO_CLIENT ic,Heap hp){
+	int i,j;
+	for(i=0;i<12;i++){
+		for(j=0;j<26;j++){
+		highCost2(getAvl(ic->im[i]->Products[j]),hp);
+		}
+	}
+	return hp;
+}
+
+GROUP_PRODUCTS querie11(FILIAL* f,char* client){
+	int i;
+	int in = index(client[0]);
+	Heap hp=initHeap(1);
+	for(i=0;i<3;i++){
+		void* x=findInfo(getAvl(f[i]->Clients[in]),client,NULL);
+		highCost(x,hp);
+	}
+	GROUP_PRODUCTS gp= initGroupProducts(1);
+	
+	converte(hp,gp,3);
+	return gp;
+}
 /*#################################QUERIE 12#####################################*/
 int querie12Clients(FILIAL* f){
 	int i,j,sum=0,r;
@@ -377,5 +490,3 @@ int querie12Clients(FILIAL* f){
 		}
 	return sum;
 }
-
-
