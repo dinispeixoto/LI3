@@ -18,4 +18,4 @@ debug:
 	gdb debug
 
 
-# -Wuninitialized -pedantic -Wunused-parameter -Wall -Wextra
+# -Wuninitialized -pedantic -Wunused-parameter -Wall -Wextra -O2

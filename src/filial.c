@@ -181,10 +181,8 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info, SALES s){
 	if(infoPromo == 'P') info_int = 1;
 	else info_int = 0; 
 
-	for(i=0;i<2;i++){
 	info->quantity[info_int] += qt;
 	info->price[info_int] += price*qt;
-	}
 	return info;
 }
 

@@ -39,10 +39,13 @@ CATALOG_CLIENTS insertClient(CATALOG_CLIENTS Catalog, CLIENT clie){
 
 /* Verifica se um cliente existe no catálogo.*/
 BOOL existClient(CATALOG_CLIENTS Catalog, CLIENT clie){
-	int exist;
-	int index = clie->string[0]-'A';
-	exist = existMyAvl(Catalog->CatClients[index],clie->string);
-	return exist;
+	int exist,index;
+	if(clie->string[0] >= 'A' && clie->string[0] <= 'Z' ){
+		index = clie->string[0]-'A';
+		exist = existMyAvl(Catalog->CatClients[index],clie->string);
+		return exist;
+	}
+	else return FALSE;
 }
 
 /* Conta quantos clientes existem começados por uma determinada letra no catálogo.*/

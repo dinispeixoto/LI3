@@ -39,10 +39,13 @@ CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
 
 /* Verifica se um produto existe no catálogo.*/
 BOOL existProduct(CATALOG_PRODUCTS Catalog, PRODUCT prod){
-	int exist;
-	int index = prod->string[0]-'A';
-	exist = existMyAvl(Catalog->CatProducts[index],prod->string);
-	return exist;
+	int exist,index;
+	if(prod->string[0] >= 'A' && prod->string[0] <= 'Z' ){
+		index = prod->string[0]-'A';
+		exist = existMyAvl(Catalog->CatProducts[index],prod->string);
+		return exist;
+	} 
+	else return FALSE;
 }
 
 /* Conta quantos produtos existem começados por uma determinada letra no catálogo.*/
