@@ -30,18 +30,18 @@ int main(){
 	time_t begin_clients;
 	time_t end_clients;
 	double time_elapsed_clients = 0;
-	
+	GROUP_PRODUCTS gp;
 	getchar();
 	begin_clients = clock();
 
 	Heap hp=initHeap(1);
 	querie10Fact(fact,hp,1);
 	printf("-----\n");
-	for(i=0;i<5;i++)
-		printf("%s\n",extractMax(hp));
-	/*GROUP_PRODUCTS gp;
+	gp=querie10(arrayFiliais[0],hp,5);
+
+	
 	for(i=0;i<getGroupProdSp(gp);i++)
-		printf("%s\n",getProduct(getGroupProd(gp)[i]));	*/
+		printf("%s\n",getProduct(getGroupProd(gp)[i]));	
 	
 	end_clients = clock();
 

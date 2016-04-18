@@ -105,7 +105,6 @@ CATALOG_CLIENTS valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 		Catalog = insertClient(Catalog,line);
 		(*validated)++;
 	}
-		
 	return Catalog;
 }
 

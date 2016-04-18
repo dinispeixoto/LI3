@@ -1,6 +1,11 @@
 #include "filial.h"
 
+#include <stdio.h>
+
 #define index(i) i-'A'
+#define SIZE_PRODUCTS 7 
+
+
 
 struct filial{
 	MY_AVL Clients[26];
@@ -23,8 +28,8 @@ struct infoProduct{
 
 struct dadosFilial{
 	int quant[3][12];
+	int* numero;
 };
-
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c){
 	int i,j;	
@@ -362,81 +367,50 @@ GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
 }
 
 /*#################################QUERIE 10#####################################*/
-int maxList(Heap* h){
-	int i,j,index=0;
-	int max=getMax(h[0]);
-	for(i=0;i<26;i++){
-		for(j=0;j<26;j++){
-		if(max<getMax(h[i])) {
-			index=i;
-			max=getMax(h[i]);
-		}
-		}
-	}
-	return (index);
-}
 
-GROUP_PRODUCTS converteList (Heap* hp, GROUP_PRODUCTS gp,int total){
-	int posicao,x,y;
-	while(0<total){
-		posicao=getGroupProdSp(gp);
-		x=maxList(hp);
-		insertGROUP_P( getGroupProd(gp),posicao,extractMax(hp[x]));
-		setGroupProdSp(gp,posicao+1);
-		gp=reallocGROUP_PRODUCTS(gp);
-		total--;
-	}
-	return gp;
-}
-
-int findProd3(Avl a,Heap hp){
-	int r,ind;
-	if(a){
-	findProd3(getAvlLeft(a),hp);
-	void* x= (INFO_PRODUCT)getInfo(a);
-	ind=index(getAvlCode(a)[0]);
-	r=quant(x);
-	insertHeap(hp,r,getAvlCode(a));
-	findProd3(getAvlRight(a),hp);
-	}
-	return 1;
-}
-
-int pesquisa2 (INFO_CLIENT ic, Heap* hp){
+int pesquisa2 (INFO_CLIENT ic, Heap hp,int N,int* num,char** prod){
 	int i,j;
-	for(i=0;i<12;i++){
-		for(j=0;j<26;j++){
-			findProd3(getAvl(ic->im[i]->Products[j]),hp[j]);
+	int ind;
+	for(j=0;j<N;j++){
+		ind= index(prod[j][0]);
+		for(i=0;i<12;i++){
+			void* x=findInfo(getAvl(ic->im[i]->Products[ind]),prod[j],NULL);
+			if(x){num[j]++;return 1;}
 		}
 	}
 	return 1;
 }
 
 
-int pesquisa (Avl a, Heap* hp){
+int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 	if(a){
-	pesquisa(getAvlLeft(a),hp);
+	pesquisa(getAvlLeft(a),hp,N,num,prod);
 	
 	void* x= (INFO_CLIENT)getInfo(a);
-	pesquisa2(x,hp);
+	pesquisa2(x,hp,N,num,prod);
 
-	pesquisa(getAvlRight(a),hp);
+	pesquisa(getAvlRight(a),hp,N,num,prod);
 	}
 	return 1;
 }
 
-GROUP_PRODUCTS querie10(FILIAL f,int N){
+GROUP_PRODUCTS querie10(FILIAL f,Heap hp,int N){
 	int i,j;
-	Heap hp[26];
-	  for(i=0;i<26;i++)
-        hp[i]=initHeap(1);
-
-	for(i=0;i<26;i++){
-		pesquisa(getAvl(f->Clients[i]), hp);
+	int num[N];
+	char* prod[N];
+	for(i=0;i<N;i++){
+		num[i]= 0;
+		prod[i]=getString(hp,i);
 	}
+	for(i=0;i<26;i++){
+		pesquisa(getAvl(f->Clients[i]), hp,N,num,prod);
+	} 
 	GROUP_PRODUCTS gp = initGroupProducts(1);
 	
-	converteList(hp,gp,N);
+	for(i=0;i<N;i++){
+		printf("%d-%s\n",num[i],prod[i]);
+	}
+	converte(hp,gp,N);
 	return gp;
 }
 

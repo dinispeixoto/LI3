@@ -14,6 +14,7 @@ char*  extractMax (Heap );
 
 int getHeapUsed(Heap);
 int getMax(Heap );
+char* getString(Heap hp,int i);
 
 void printHeap(Heap h);
 

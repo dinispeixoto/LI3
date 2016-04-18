@@ -112,6 +112,10 @@ int getHeapUsed(Heap h){
 	return h->used;
 }
 
+char* getString(Heap hp,int i){
+    return hp->values[i].c;
+}
+
 void printHeap(Heap h){
     int i;
     printf("%d\n",h->used);
