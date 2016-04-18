@@ -15,7 +15,7 @@ void menu(){
 	printf("	06. Resultados num intervalo de meses.\n");
 	printf("	07. Lista de clientes que realizaram compras em todas as filiais.\n");
 	printf("	08. Lista de clientes que compraram um produto num determinado filial.\n");
-	printf("	09. ...\n");
+	printf("	09. Produtos mais comprados por um cliente num determinado mês.\n");
 	printf("	10. ...\n");
 	printf("	11. ...\n");
 	printf("	12. Clientes e produtos inactivos.			0. Sair.\n");
@@ -68,6 +68,10 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 
 		case 8:
 			listClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
+			break;
+
+		case 9:
+			infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 12:
@@ -775,6 +779,108 @@ void printClientsProdFilial(GROUP_CLIENTS group,int page,int totalPages,int tota
 }
 
 
+/* QUERIE 9 */
+
+void backToClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	getchar();getchar();
+	printf("\e[2J\e[H");
+	infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+	exit(0);
+}
+
+void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+
+	char clientString[BUFFER_SIZE];
+	char buff_month[BUFFER_SIZE];
+	int month,input,exist;
+	GROUP_PRODUCTS group;
+	CLIENT clie = malloc(sizeof(CLIENT));
+
+	printf("\e[2J\e[H");
+	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
+	printTop(9);
+
+	printf("							0.Voltar\n");
+
+	printf("	Introduza um cliente: ");
+	input = scanf("%s",clientString);
+	clientString[5] = 0;
+		
+	if(!strcmp(clientString,"0")){
+		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
+	}
+
+	clie = setClient(clientString);
+	exist = existClient(CatClients,clie);
+
+	if(!exist){
+		printf("\n	Este cliente não existe no Cátalogo!\n");
+		getchar();
+		backToClientMonth(CatClients,CatProducts,arrayFiliais,fact); 
+	}
+
+	printf("	Introduza o mês (1-12): ");
+	input = scanf("%s",buff_month);
+	month = atoi(buff_month);
+
+	if(buff_month[0] == '0') backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
+	if(month <= 0 || month > 12){
+		printf("\n	Introduza um mês válido (1-12)!\n");
+		backToClientMonth(CatClients,CatProducts,arrayFiliais,fact); 
+	}
+
+	group = querie9(arrayFiliais,clientString,month);
+	searchPageProducts(CatClients,CatProducts,arrayFiliais,fact,group,1); 
+}
+
+
+void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,GROUP_PRODUCTS group,int actualPage){
+
+	int page,totalPages,size_input;
+	char string_page[BUFFER_SIZE];
+
+	totalPages = calculatePagesProducts(group,ELEM_PER_PAGE);		
+
+	printPageMostSold(group,actualPage,totalPages); /*MUDAR ISTO */
+
+	do{
+		printf("\n\n");
+		printf("	Escolha uma página: ");
+		size_input = scanf("%s",string_page);
+		page = atoi(string_page);
+
+		if(string_page[0]=='0') infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+		else if(page > 0 && page <= totalPages){
+			actualPage = page;
+			printf("\e[2J\e[H");
+			printTop(2);
+			printPageMostSold(group,actualPage,totalPages); /*MUDAR ISTO */
+		}
+		else{
+			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
+			getchar();getchar();
+			printf("\e[2J\e[H");
+			printTop(2);
+			searchPageProducts(CatClients,CatProducts,arrayFiliais,fact,group,actualPage);
+			exit(0);
+		}
+	}
+	while(page != 0);
+}
+
+void printPageMostSold(GROUP_PRODUCTS group,int page,int totalPages){
+	int i,index;
+	printf("\e[2J\e[H");
+	printTop(4);
+	printf("							  0.Voltar\n");
+	printf("\n	Página %d de %d.\n",page,totalPages);
+	for(i=0;i<ELEM_PER_PAGE;i++){
+		index = i+(ELEM_PER_PAGE*(page-1));
+		if(index < getGroupProdSp(group))
+			printf("\n				%2dº | %s",index+1,getProduct(getGroupProd(group)[index]));
+	}
+}
+
 
 /* QUERIE 12 */
 
@@ -877,6 +983,10 @@ void printTop(int i){
 
 		case 8:
 			printf("\n	             CLIENTES QUE COMPRARAM UM PRODUTO                        \n\n");
+			break;
+
+		case 9:
+			printf("\n	             PRODUTOS MAIS COMPRADOS POR UM CLIENTE                     \n\n");
 			break;
 
 		case 12:
