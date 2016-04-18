@@ -238,7 +238,7 @@ static GROUP_CLIENTS find(Avl a, char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS g
 /*#################################QUERIE 9#####################################*/
 
 static int quant(INFO_PRODUCT);
-static GROUP_PRODUCTS converte(Heap,GROUP_PRODUCTS);
+static GROUP_PRODUCTS converte (Heap,GROUP_PRODUCTS,int);
 static Heap findProd2(Avl,Heap);
 static Heap findProd(INFO_CLIENT,int,Heap);
 
@@ -252,8 +252,7 @@ GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
 	}
 
 	GROUP_PRODUCTS group= initGroupProducts(1);
-	
-	converte(heap,group);
+	converte(heap,group,getHeapUsed(heap));
 	return group;
 }
 
@@ -261,25 +260,27 @@ static int quant(INFO_PRODUCT ip){
 	return (getInfoProductQuantity(ip,0)+getInfoProductQuantity(ip,1));
 }
 
-static GROUP_PRODUCTS converte (Heap heap, GROUP_PRODUCTS group){
+static GROUP_PRODUCTS converte (Heap heap, GROUP_PRODUCTS group,int total){
 	int i,posicao;
-	while(0<getHeapUsed(heap)){
+	while(0<total){
 		posicao=getGroupProdSp(group);
 		insertGROUP_P(getGroupProd(group),posicao,extractMax(heap));
 		setGroupProdSp(group,posicao+1);
 		group=reallocGROUP_PRODUCTS(group);
+		total--;
 	}
 	return group;
 }
 
+
 static Heap findProd2(Avl a,Heap heap){
 	int r;
 	if(a){
-	findProd2(getAvlLeft(a),heap);
-	void* x= (INFO_PRODUCT)getInfo(a);
-	r=quant(x);
-	insertHeap(heap,r,getAvlCode(a));
-	findProd2(getAvlRight(a),heap);
+		findProd2(getAvlLeft(a),heap);
+		void* x= (INFO_PRODUCT)getInfo(a);
+		r=quant(x);
+		insertHeap(heap,r,getAvlCode(a));
+		findProd2(getAvlRight(a),heap);
 	}
 	return heap;
 }
@@ -290,6 +291,95 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 		findProd2(getAvl(getInfoMesProduct(getInfoMes(ic,month-1),i)),heap);
 	}
 	return heap;
+}
+
+/*#################################QUERIE 10#####################################*/
+
+int pesquisa2 (INFO_CLIENT ic, Heap hp,int N,int* num,char** prod){
+	int i,j;
+	int ind;
+	for(j=0;j<N;j++){
+		ind= index(prod[j][0]);
+		for(i=0;i<12;i++){
+			void* x=findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),ind)),prod[j],NULL);
+			if(x){num[j]++;return 1;}
+		}
+	}
+	return 1;
+}
+
+int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
+	if(a){
+	pesquisa(getAvlLeft(a),hp,N,num,prod);
+	
+	void* x= (INFO_CLIENT)getInfo(a);
+	pesquisa2(x,hp,N,num,prod);
+
+	pesquisa(getAvlRight(a),hp,N,num,prod);
+	}
+	return 1;
+}
+
+GROUP_PRODUCTS querie10(FILIAL f,Heap hp,int N){
+	int i,j;
+	int num[N];
+	char* prod[N];
+	for(i=0;i<N;i++){
+		num[i]= 0;
+		prod[i]=getString(hp,i);
+	}
+	for(i=0;i<26;i++){
+		pesquisa(getAvl(getClientIndexF(f,i)),hp,N,num,prod);
+	} 
+	GROUP_PRODUCTS gp = initGroupProducts(1);
+	
+	for(i=0;i<N;i++){
+		printf("%d-%s\n",num[i],prod[i]);
+	}
+	converte(hp,gp,N);
+	return gp;
+}
+
+/*#################################QUERIE 11#####################################*/
+
+int quant2(INFO_PRODUCT ip){
+	return (getInfoProductPrice(ip,0)+getInfoProductPrice(ip,1));
+}
+
+Heap highCost2 (Avl a,Heap hp){
+	int r;
+	if(a){
+	highCost2(getAvlLeft(a),hp);
+	void* x= (INFO_PRODUCT)getInfo(a);
+	r=quant2(x);
+	insertHeap(hp,r,getAvlCode(a));
+	highCost2(getAvlRight(a),hp);
+	}
+	return hp;
+}
+
+Heap highCost (INFO_CLIENT ic,Heap hp){
+	int i,j;
+	for(i=0;i<12;i++){
+		for(j=0;j<26;j++){
+		highCost2(getAvl(getInfoMesProduct(getInfoMes(ic,i),j)),hp);
+		}
+	}
+	return hp;
+}
+
+GROUP_PRODUCTS querie11(FILIAL* f,char* client){
+	int i;
+	int in = index(client[0]);
+	Heap hp=initHeap(1);
+	for(i=0;i<3;i++){
+		void* x=findInfo(getAvl(getClientIndexF(f[i],in)),client,NULL);
+		highCost(x,hp);
+	}
+	GROUP_PRODUCTS gp= initGroupProducts(1);
+	
+	converte(hp,gp,3);
+	return gp;
 }
 
 /*#################################QUERIE 12#####################################*/

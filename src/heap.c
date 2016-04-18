@@ -3,10 +3,12 @@
 #define PARENT(i) (i-1)/2  /* os indices do array começam em 0 */
 #define LEFT(i) 2*i + 1
 #define RIGHT(i) 2*i + 2
+#define SIZE_PRODUCTS 7
 
 struct elem{
-	int valor;
-	char c[6];
+    int valor;
+    int registo;
+    char c[SIZE_PRODUCTS];
 };
 
 struct heap{
@@ -14,6 +16,7 @@ struct heap{
  int   used;
  struct elem *values;
 };
+
 
 void swap (Heap h, int a, int b) {
     struct elem t = h->values[a];
@@ -29,6 +32,18 @@ Heap initHeap (int size) {
     return h;
 }
 
+Heap** initHeapMatriz(int size,int x,int y){
+    int i,j;
+    Heap** hp=malloc(26*sizeof(struct heap***));
+
+    for(i=0;i<x;i++){
+        hp[i]=malloc(26*sizeof(struct heap*));
+        for(j=0;j<y;j++)
+            hp[i][j]=initHeap(1);
+    }
+    return hp;
+}
+
 void bubbleUp (Heap h, int i) {
 
     while (i!=0 && h->values[i].valor > h->values[PARENT(i)].valor) {
@@ -39,14 +54,30 @@ void bubbleUp (Heap h, int i) {
 }
 
 int  insertHeap (Heap h, int x,char* ct) {
+    int i;
     if (h->used == h->size) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
         h->size *= 2;
     }
-    h->values[h->used].valor= x;
-    strcpy(h->values[h->used].c,ct);
-    (h->used)++;
-    bubbleUp(h, h->used-1);
+    /*if(r){
+        for(i=0;i<h->used;i++){
+          if(strcmp(h->values[i].c,ct)==0){  
+                h->values[i].valor+= x;
+                h->values[i].registo++;
+                r=0;
+                bubbleUp(h, i);
+                break;
+            }
+        }
+    } 
+    if(r){*/
+        h->values[h->used].valor= x;
+        h->values[h->used].registo++;
+        strcpy(h->values[h->used].c,ct);
+        (h->used)++;
+        bubbleUp(h, h->used-1);
+     
+
     return 1;
 }
 
@@ -62,8 +93,9 @@ void bubbleDown (Heap h, int N) {
 }
 
 char*  extractMax (Heap h) {
-    char* r=malloc(6);
+   
     if (h->used > 0) {
+        char* r=malloc(SIZE_PRODUCTS);
         strcpy(r,h->values[0].c);   
         h->values[0] = h->values[h->used-1]; 
         (h->used)--;
@@ -74,7 +106,14 @@ char*  extractMax (Heap h) {
 }
 
 
-int getHeapUsed(Heap h){
-	return h->used;
+int getMax(Heap h){
+    return (h->values[0].valor);
 }
 
+int getHeapUsed(Heap h){
+    return h->used;
+}
+
+char* getString(Heap hp,int i){
+    return hp->values[i].c;
+}
