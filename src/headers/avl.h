@@ -14,7 +14,7 @@ typedef char* STR;
 
 typedef int BOOL;
 
-typedef void (*Func)(void*);
+typedef void(*Func)(void*);
 
 Avl initAvl();
 MY_AVL initMyAvl();

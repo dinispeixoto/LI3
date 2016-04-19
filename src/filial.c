@@ -22,7 +22,6 @@ struct infoProduct{
 
 struct dadosFilial{
 	int quant[3][12];
-	MY_AVL clients[26];
 };
 
 
@@ -85,7 +84,7 @@ INFO_MES initInfoMes(){
 	int i;
 	INFO_MES im = malloc(sizeof(struct infoMes));
 	for(i=0;i<26;i++){
-		im->Products[i]=initMyAvl();
+		im->Products[i]=NULL;
 	}
 	im->quantity=0;
 	return im;
@@ -118,7 +117,6 @@ DADOS_FILIAL initDadosFilial(){
 		for(j=0;j<12;j++)
 			df->quant[i][j]=0;
 
-	for(i=0;i<26;i++) df->clients[i]=initMyAvl();	
 	return df;
 }
 
@@ -157,14 +155,24 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 
  	MY_AVL a = infoC->im[month-1]->Products[index_product];
 
- 	INFO_PRODUCT infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod,&aux);
+ 	if(a){
 
- 	if(!infoP) {
- 		infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
-		infoP = updateInfoP(infoP,s);
-		a = insertMyAvl(a,getProduct(product),infoP,aux);
+ 		INFO_PRODUCT infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod,&aux);
+
+ 		if(!infoP) {
+ 			infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
+			infoP = updateInfoP(infoP,s);
+			a = insertMyAvl(a,getProduct(product),infoP,aux);
+		}
+		else infoP = updateInfoP(infoP,s);
 	}
-	else infoP = updateInfoP(infoP,s);
+	else{ 
+		infoC->im[month-1]->Products[index_product]=initMyAvl();
+		INFO_PRODUCT infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
+		infoP = updateInfoP(infoP,s);
+		infoC->im[month-1]->Products[index_product]= insertMyAvl(infoC->im[month-1]->Products[index_product],getProduct(product),infoP,1);
+	}
+	
 
 	infoC->im[month-1]->quantity+=getSalesQuantity(s);
 

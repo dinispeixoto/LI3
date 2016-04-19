@@ -8,6 +8,16 @@ static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
 static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
 
 /* ######################################### QUERIE 2 #################################### */
+static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
+	if(a){
+		travessia(getAvlLeft(a),ls);
+		addListaStrings(ls,getListaSp(ls),getAvlCode(a));
+		ls=reallocListaStrings(ls);
+		travessia(getAvlRight(a),ls);
+	}
+	return ls;
+}
+
 
  LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	
@@ -15,7 +25,7 @@ static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
 	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
 	MY_AVL a = getP(Catalog,index);
 	Avl tree = getAvl(a);
-	/*travessia(tree,0,group);*/
+	travessia(tree,group);
 	return group;
 }
 
@@ -51,7 +61,6 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	int i,j;
 		
 	for(i=0;i<26;i++){
-		/*setJ(group,i+1);*/
 		group = found(getAvl(getProductIndex(f,i)),group,filial);
 	}
 	return group;
@@ -155,17 +164,14 @@ static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
 
 	for(j=0;j<26;j++){
-		/*setJC(list,j+1);*/
 		insereList(getAvl(getClientIndexF(f[0],j)),list);
 		}
 
 	for(i=1;i<3;i++){
 		for(j=0;j<26;j++){
-			/*setJC(list,j+1);*/
 			removeList(getAvl(getClientIndexF(f[i],j)),list);
 			}
 		}
-	
 	return list;
 }
 
@@ -204,11 +210,13 @@ static LISTA_STRINGS find2(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_
 	int index=product[0]-'A';
 
 	for(i=0;i<12;i++){
-		if(getAvl(getInfoMesProduct(getInfoMes(ic,i),index))){
-			void* x=(INFO_PRODUCT)findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),index)),product,NULL);
-			if(x) checkProd(x,gcN,gcP,client);
+		if(getInfoMesProduct(getInfoMes(ic,i),index)){
+			if(getAvl(getInfoMesProduct(getInfoMes(ic,i),index))){
+				void* x=(INFO_PRODUCT)findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),index)),product,NULL);
+				if(x) checkProd(x,gcN,gcP,client);
+			}
 		}
-	}
+	}	
 	return gcN;
 }
 
@@ -275,27 +283,51 @@ static Heap findProd2(Avl a,Heap heap){
 static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 	int i;
 	for(i=0;i<26;i++){
-		findProd2(getAvl(getInfoMesProduct(getInfoMes(ic,month-1),i)),heap);
+		if(getInfoMesProduct(getInfoMes(ic,month-1),i))
+			findProd2(getAvl(getInfoMesProduct(getInfoMes(ic,month-1),i)),heap);
 	}
 	return heap;
 }
 
 /*#################################QUERIE 10#####################################*/
+static int qua (INFO info,int filial){
+	int i,sum=0;
+	for(i=0;i<12;i++){
+		sum+=(getTotalQuantPQ(getNormalPQ(info,i,filial))+getTotalQuantPQ(getPromoPQ(info,i,filial)));
+	}
+	return sum;
+}
 
-int pesquisa2 (INFO_CLIENT ic, Heap hp,int N,int* num,char** prod){
+static int pesq (Avl a, Heap hp,int filial){
+	int r;
+	if(a){
+	pesq(getAvlLeft(a),hp,filial);
+	void* x= (INFO)getInfo(a);
+	if(x){
+		r=qua(x,filial);
+		insertHeap(hp,r,getAvlCode(a));
+	}
+	pesq(getAvlRight(a),hp,filial);
+	}
+	return 1;
+}
+
+static int pesquisa2 (INFO_CLIENT ic, Heap hp,int N,int* num,char** prod){
 	int i,j;
 	int ind;
 	for(j=0;j<N;j++){
 		ind= index(prod[j][0]);
 		for(i=0;i<12;i++){
-			void* x=findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),ind)),prod[j],NULL);
-			if(x){num[j]++;return 1;}
+			if(getInfoMesProduct(getInfoMes(ic,i),ind)){
+				void* x=findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),ind)),prod[j],NULL);
+				if(x){num[j]++;return 1;}
+			}	
 		}
 	}
 	return 1;
 }
 
-int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
+static int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 	if(a){
 	pesquisa(getAvlLeft(a),hp,N,num,prod);
 	
@@ -307,8 +339,16 @@ int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 	return 1;
 }
 
-LISTA_STRINGS querie10(FILIAL f,Heap hp,int N){
-	int i,j;
+static int querie10Fact (FACTURACAO f,Heap hp,int filial){
+	int i;
+	for(i=0;i<26;i++){
+		pesq(getAvl(getProductIndex(f,i)),hp,filial);
+	}
+	return 1;
+}
+
+static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N){
+	int i;
 	int num[N];
 	char* prod[N];
 	for(i=0;i<N;i++){
@@ -320,20 +360,28 @@ LISTA_STRINGS querie10(FILIAL f,Heap hp,int N){
 	} 
 	LISTA_STRINGS gp = initListaStrings(1,SIZE_PRODUCT);
 	
-	for(i=0;i<N;i++){
+	/*for(i=0;i<N;i++){
 		printf("%d-%s\n",num[i],*prod[i]);
-	}
+	}*/
 	converte(hp,gp,N);
 	return gp;
 }
 
+LISTA_STRINGS querie10 (FILIAL f,FACTURACAO fact, int N,int filial){
+	Heap hp=initHeap(1);
+	querie10Fact(fact,hp,filial);
+	LISTA_STRINGS ls;
+	ls=querie10Fil(f,hp,N);
+	return ls;
+}
+
 /*#################################QUERIE 11#####################################*/
 
-int quant2(INFO_PRODUCT ip){
+static int quant2(INFO_PRODUCT ip){
 	return (getInfoProductPrice(ip,0)+getInfoProductPrice(ip,1));
 }
 
-Heap highCost2 (Avl a,Heap hp){
+static Heap highCost2 (Avl a,Heap hp){
 	int r;
 	if(a){
 	highCost2(getAvlLeft(a),hp);
@@ -345,11 +393,12 @@ Heap highCost2 (Avl a,Heap hp){
 	return hp;
 }
 
-Heap highCost (INFO_CLIENT ic,Heap hp){
+static Heap highCost (INFO_CLIENT ic,Heap hp){
 	int i,j;
 	for(i=0;i<12;i++){
 		for(j=0;j<26;j++){
-		highCost2(getAvl(getInfoMesProduct(getInfoMes(ic,i),j)),hp);
+			if(getInfoMesProduct(getInfoMes(ic,i),j))	
+				highCost2(getAvl(getInfoMesProduct(getInfoMes(ic,i),j)),hp);
 		}
 	}
 	return hp;
@@ -371,7 +420,7 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 
 /*#################################QUERIE 12#####################################*/
 
-int querie12Clients(FILIAL* f){
+static int querie12Clients(FILIAL* f){
 	int i,j,sum=0,r;
 	for(i=0;i<3;i++)
 		for(j=0;j<26;j++){
@@ -381,7 +430,7 @@ int querie12Clients(FILIAL* f){
 	return sum;
 }
 
-int querie12Products(FACTURACAO f){
+static int querie12Products(FACTURACAO f){
 	int i,sum=0,r;
 
 	for(i=0;i<26;i++){
@@ -391,3 +440,9 @@ int querie12Products(FACTURACAO f){
 	return sum;
 }
 
+int querie12(FILIAL* f, FACTURACAO fact, int* sumClient){
+	int sumProduct;
+	*sumClient=querie12Clients(f);
+	sumProduct=querie12Products(fact);
+	return sumProduct;
+}

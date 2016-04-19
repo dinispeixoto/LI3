@@ -200,16 +200,18 @@ void* findInfo (Avl a,STR line,int *x){
 }
 
 Avl cloneAvl (Avl estrutura){
-	Avl aux = malloc (sizeof(struct avl));
-	aux->code = malloc(SIZE_CODE);
+	Avl aux;
 	if(estrutura){
+		aux = malloc (sizeof(struct avl));
+		aux->code = malloc(SIZE_CODE);
 		strcpy(aux->code,estrutura->code);
 		aux->height=estrutura->height;
 		aux->info=estrutura->info;
 		aux->left=cloneAvl(estrutura->left);
 		aux->right=cloneAvl(estrutura->right);
 	}
-	else aux=NULL;
+	else return NULL;
+
 	return aux;
 }
 

@@ -74,6 +74,10 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 			infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
+		case 11:
+			threeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+			break;
+
 		case 12:
 			inactiveClientsProducts(CatClients,CatProducts,arrayFiliais,fact);
 			break;
@@ -662,7 +666,7 @@ void printListClients(LISTA_STRINGS group,int page,int totalPages,int totalEleme
 /* QUERIE 8 */
 
 void backToClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
-	getchar();getchar();
+	getchar();
 	printf("\e[2J\e[H");
 	listClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
 	exit(0);
@@ -882,6 +886,73 @@ void printPageMostSold(LISTA_STRINGS group,int page,int totalPages){
 }
 
 
+
+/* QUERIE 11 */
+
+void backToThreeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	getchar();
+	printf("\e[2J\e[H");
+	threeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+	exit(0);
+}
+
+void threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+
+	int exist,input;
+	char clientString[BUFFER_SIZE],c;
+	LISTA_STRINGS group;
+	CLIENT clie = malloc(sizeof(CLIENT));
+
+	printf("\e[2J\e[H");
+	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo dos três produtos em que um cliente gastou mais dinheiro");
+	printTop(11);
+
+	printf("							0.Voltar\n");
+
+	printf("	Introduza um cliente: ");
+	input = scanf("%s",clientString);
+	clientString[5] = 0;
+		
+	if(!strcmp(clientString,"0")){
+		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
+	}
+
+	clie = setClient(clientString);
+	exist = existClient(CatClients,clie);
+
+	if(!exist){
+		printf("\n	Este cliente não existe no Cátalogo!\n");
+		getchar();
+		backToThreeMostPurchased(CatClients,CatProducts,arrayFiliais,fact); 
+	}
+
+	group = querie11(arrayFiliais,clientString);
+	printThreeMostPurchased(group,clientString); 
+
+	printf("\n\n");
+	printf("	Pressione qualquer tecla para continuar!		0.Voltar\n");
+	printf("________________________________________________________________________________\n");
+	printf("	>> ");
+	while(getchar()!='\n'); 
+	c = getchar();
+	if(c =='0') interpretador(CatClients,CatProducts,arrayFiliais,fact);	
+	else threeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+}
+
+void printThreeMostPurchased(LISTA_STRINGS group,char* clientString){
+	int i;
+	printf("\e[2J\e[H");
+	printTop(11);
+	printf("	Os produtos em que o cliente %s gastou mais dinheiro são:",clientString);
+	putchar('\n');
+	printf("	 _____________________________________________________\n");
+	printf("	|                                                     |\n");
+	for(i=0;i<3;i++)
+		printf("	| 	%dº 	%s 			    	      |\n",i+1,getListaString(group,i));
+	printf("	|_____________________________________________________|\n\n");
+}
+
+
 /* QUERIE 12 */
 
 void inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
@@ -894,8 +965,7 @@ void inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProd
 	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos e clientes inactivos");
 
 	printTop(12);
-	clients = querie12Clients(arrayFiliais);
-	products = querie12Products(fact);
+	products = querie12(arrayFiliais,fact,&clients);
 
 	printClientsProducts(clients,products);
 
@@ -989,6 +1059,10 @@ void printTop(int i){
 			printf("\n	             PRODUTOS MAIS COMPRADOS POR UM CLIENTE                     \n\n");
 			break;
 
+		case 11:
+			printf("\n	             PRODUTOS EM QUE UM CLIENTE GASTOU MAIS DINHEIRO               \n\n");
+			break;
+
 		case 12:
 			printf("\n	             CLIENTES E PRODUTOS INACTIVOS                        \n\n");
 			break;
@@ -997,4 +1071,3 @@ void printTop(int i){
 	printf("\n");
 }
 
-/* O 3 É PANELEIRO */ 

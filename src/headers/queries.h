@@ -17,8 +17,8 @@ DADOS querie6(FACTURACAO,int,int);
 LISTA_STRINGS querie7(FILIAL*);
 LISTA_STRINGS querie8(FILIAL,char*,LISTA_STRINGS*);
 LISTA_STRINGS querie9(FILIAL*,char*,int);
-
-int querie12Clients(FILIAL*);
-int querie12Products(FACTURACAO);
+LISTA_STRINGS querie10(FILIAL,FACTURACAO,int,int);
+LISTA_STRINGS querie11(FILIAL*,char*);
+int querie12(FILIAL*,FACTURACAO,int*);
 
 #endif
