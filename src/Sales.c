@@ -1,8 +1,7 @@
 #define MAX_SALES 1000000
 
-#include "CatClients.h"
-#include "CatProducts.h"
-#include "Sales.h"
+#include "headers/Sales.h"
+
 
 struct sales{
 	CLIENT client;

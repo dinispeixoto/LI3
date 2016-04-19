@@ -10,27 +10,27 @@
 
 typedef struct avl *Avl;
 typedef struct myAvl *MY_AVL;
-typedef char* STRING;
+typedef char* STR;
 
 typedef int BOOL;
 
+typedef void (*Func)(void*);
+
 Avl initAvl();
 MY_AVL initMyAvl();
-MY_AVL insertMyAvl(MY_AVL,STRING,void*,int);
+MY_AVL insertMyAvl(MY_AVL,STR,void*,int);
 int heightAvl(Avl);
-Avl insert(Avl,STRING,void*);
-void removeAvl(Avl);
-void removeMyAvl(MY_AVL);
-BOOL existMyAvl(MY_AVL,STRING);
-BOOL existAvl(Avl, STRING);
+Avl insert(Avl,STR,void*);
+void removeAvl(Avl,Func);
+void removeMyAvl(MY_AVL,Func);
+BOOL existMyAvl(MY_AVL,STR);
+BOOL existAvl(Avl, STR);
 int totalElements(MY_AVL);
-void* findInfo (Avl ,STRING,int*);
+void* findInfo (Avl ,STR,int*);
 Avl cloneAvl (Avl);
 MY_AVL cloneMyAvl (MY_AVL);
 void removeFromMY_AVL (MY_AVL*,int);
 int infoNULL(Avl);
-
-
 
 
 /* GETS E SETS */
@@ -43,10 +43,5 @@ int getSize(MY_AVL a);
 void setInfo(Avl a,void* i);
 Avl setAv(Avl,Avl);
 void setAvl(MY_AVL,Avl);
-
-/* APAGAR 
-void printAVL(Avl);
-void printMyAvl(MY_AVL);
-*/
 
 #endif

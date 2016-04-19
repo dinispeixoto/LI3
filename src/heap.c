@@ -1,14 +1,14 @@
-#include "heap.h"
+#include "headers/heap.h"
 
-#define PARENT(i) (i-1)/2  // os indices do array começam em 0 
+#define PARENT(i) (i-1)/2  /* os indices do array começam em 0 */
 #define LEFT(i) 2*i + 1
 #define RIGHT(i) 2*i + 2
 #define SIZE_PRODUCTS 7
 
 struct elem{
-	int valor;
+    int valor;
     int registo;
-	char c[SIZE_PRODUCTS];
+    char c[SIZE_PRODUCTS];
 };
 
 struct heap{
@@ -16,6 +16,7 @@ struct heap{
  int   used;
  struct elem *values;
 };
+
 
 void swap (Heap h, int a, int b) {
     struct elem t = h->values[a];
@@ -104,22 +105,15 @@ char*  extractMax (Heap h) {
     else return NULL;
 }
 
+
 int getMax(Heap h){
     return (h->values[0].valor);
 }
 
 int getHeapUsed(Heap h){
-	return h->used;
+    return h->used;
 }
 
 char* getString(Heap hp,int i){
     return hp->values[i].c;
-}
-
-void printHeap(Heap h){
-    int i;
-    printf("%d\n",h->used);
-    printf("%d\n",h->size);
-    for(i=0;i<h->used;i++)
-    printf("%s - %d\n",h->values[i].c,h->values[i].valor);
 }

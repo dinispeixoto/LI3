@@ -16,14 +16,15 @@
 
 #define SIZE_FILE_NAME 32
 
-#define CLIENTS_FILE "Clientes.txt"
-#define	PRODUCTS_FILE "Produtos.txt"
-#define SALES_FILE "Vendas.txt"
+#define CLIENTS_FILE "files/Clientes.txt"
+#define	PRODUCTS_FILE "files/Produtos.txt"
+#define SALES_FILE "files/Vendas.txt"
 
 void getFile(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 FILE* openFile(char*);
 CATALOG_CLIENTS valCli(FILE *,CATALOG_CLIENTS,int*);
 CATALOG_PRODUCTS valProd(FILE *,CATALOG_PRODUCTS,int*);
 int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int*);
+void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
 
 #endif

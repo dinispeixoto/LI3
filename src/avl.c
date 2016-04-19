@@ -1,11 +1,11 @@
-#include "avl.h"
+#include "headers/avl.h"
 
 #define SIZE_CODE 7
 #define LEFT -2
 #define RIGHT 2
 
 struct avl {
-	STRING code;
+	STR code;
 	int height;
 	void* info;
 	struct avl *left, *right;
@@ -23,7 +23,7 @@ static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
 static void removeFromMY_AVL_AUX(Avl);
-static Avl insertINFO(Avl,STRING,void*);
+static Avl insertINFO(Avl,STR,void*);
 /*static void insertArray(char**,Avl,int*);*/
 
 
@@ -138,7 +138,7 @@ MY_AVL insertMyAvl(MY_AVL a,char* line,void* info,int aux){
 	return a;
 }
 
-static Avl insertINFO(Avl a,STRING line,void* i){
+static Avl insertINFO(Avl a,STR line,void* i){
 	Avl aux=a;
 	int cp;
 	while(a){
@@ -172,20 +172,22 @@ int totalElements(MY_AVL estrutura){
 	else return 0;
 }
 
-void removeMyAvl(MY_AVL estrutura){
+void removeMyAvl(MY_AVL estrutura,Func f){
 	if(estrutura)
-		removeAvl(estrutura->avl);
+		removeAvl(estrutura->avl,f);
 }
 
-void removeAvl(Avl estrutura){
+void removeAvl(Avl estrutura,Func freeInfo){
 	if(estrutura != NULL){
-		removeAvl(estrutura->right);
-		removeAvl(estrutura->left);
+		removeAvl(estrutura->right,freeInfo);
+		removeAvl(estrutura->left,freeInfo);
+		if(freeInfo!=NULL)
+			freeInfo(estrutura->info);
 		free(estrutura);
 	}
 }
 
-void* findInfo (Avl a,STRING line,int *x){
+void* findInfo (Avl a,STR line,int *x){
 	int cp=0;
 	while(a){
 		if((cp=strcmp(a->code,line)) > 0) a=a->left;
@@ -237,6 +239,7 @@ static void removeFromMY_AVL_AUX (Avl a){
 	else free (a);
 }
 
+
 int infoNULL(Avl a){
 	int r=0;
 	if(a){
@@ -246,6 +249,7 @@ int infoNULL(Avl a){
 	}
 	return r;
 }
+
 
 /* GETS E SETS */ 
 
