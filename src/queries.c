@@ -8,6 +8,16 @@ static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
 static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
 
 /* ######################################### QUERIE 2 #################################### */
+static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
+	if(a){
+		travessia(getAvlLeft(a),ls);
+		addListaStrings(ls,getListaSp(ls),getAvlCode(a));
+		ls=reallocListaStrings(ls);
+		travessia(getAvlRight(a),ls);
+	}
+	return ls;
+}
+
 
  LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	
@@ -15,7 +25,7 @@ static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
 	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
 	MY_AVL a = getP(Catalog,index);
 	Avl tree = getAvl(a);
-	/*travessia(tree,0,group);*/
+	travessia(tree,group);
 	return group;
 }
 
