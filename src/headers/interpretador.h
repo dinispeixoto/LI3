@@ -13,6 +13,7 @@
 #include "facturacao.h"		
 #include "readFiles.h"
 #include "queries.h"
+#include "listaStrings.h"
 
 void menu();
 void printTop(int);
@@ -26,7 +27,7 @@ void readFiles(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void readCatalog(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void readCatalogIntro(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void searchPage(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,char*,int);
-void printCatalogProds(GROUP_PRODUCTS group,int,int,int);
+void printCatalogProds(LISTA_STRINGS group,int,int,int);
 
 
 void periodMonths(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
@@ -36,8 +37,8 @@ void backToProductMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 
 void productsNSold(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void backToProductsNSold (CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
-void printPageNSold(GROUP_PRODUCTS,int,int);
-void printNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,GROUP_PRODUCTS group,int totalPages,int actualPage);
+void printPageNSold(LISTA_STRINGS,int,int);
+void printNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,LISTA_STRINGS group,int totalPages,int actualPage);
 
 void infoClientPurchases(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void printClientPurchases(DADOS_FILIAL,char*);
@@ -51,19 +52,19 @@ void backToPeriodMonths(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 
 void listClients(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void searchPageListClients(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int);
-void printListClients(GROUP_CLIENTS,int,int,int);
+void printListClients(LISTA_STRINGS,int,int,int);
 
 
-void searchPageListClientsProdFilial(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int,GROUP_CLIENTS*);
-void printClientsProdFilial(GROUP_CLIENTS,int,int,int);
+void searchPageListClientsProdFilial(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int,LISTA_STRINGS*);
+void printClientsProdFilial(LISTA_STRINGS,int,int,int);
 void listClientsProdFilial(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 void backToClientsProdFilial(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 
 
 void backToClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
 void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
-void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,GROUP_PRODUCTS group,int actualPage);
-void printPageMostSold(GROUP_PRODUCTS group,int page,int totalPages);
+void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,LISTA_STRINGS group,int actualPage);
+void printPageMostSold(LISTA_STRINGS group,int page,int totalPages);
 
 
 void inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
@@ -71,9 +72,9 @@ void printClientsProducts(int clients,int products);
 
 
 
-void printGROUP_PRODS(GROUP_PRODUCTS,int);
+void printGROUP_PRODS(LISTA_STRINGS,int);
 void testMemory(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,char*);
-int calculatePagesProducts(GROUP_PRODUCTS,int);
-int calculatePagesClients(GROUP_CLIENTS,int);
+int calculatePagesProducts(LISTA_STRINGS,int);
+int calculatePagesClients(LISTA_STRINGS,int);
 
 #endif

@@ -231,25 +231,5 @@ double getInfoProductPrice(INFO_PRODUCT info,int index){
 
 
 
-/*####################Acede a strcut mais funda ##############################
-int c(INFO_PRODUCT ip){
-	return (ip->quantity[0]+ip->quantity[1]);
-}
-
-
-int cen(INFO_CLIENT ic){
-	void* x = (INFO_CLIENT)findInfo(getAvl(ic->im[0]->Products[4]),"EG1226",NULL);
-	return c(x);
-}
-
-
-int getCenas(FILIAL f){
-	void* x = (INFO_CLIENT)findInfo(getAvl(f->Clients[0]),getAvlCode(getAvl(f->Clients[0])),NULL);
-	int y=cen(x);
-	return y;
-}
-*/
-
-
 
 

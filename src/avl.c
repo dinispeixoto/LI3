@@ -5,7 +5,7 @@
 #define RIGHT 2
 
 struct avl {
-	STRING code;
+	STR code;
 	int height;
 	void* info;
 	struct avl *left, *right;
@@ -23,7 +23,7 @@ static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
 static void removeFromMY_AVL_AUX(Avl);
-static Avl insertINFO(Avl,STRING,void*);
+static Avl insertINFO(Avl,STR,void*);
 /*static void insertArray(char**,Avl,int*);*/
 
 
@@ -138,7 +138,7 @@ MY_AVL insertMyAvl(MY_AVL a,char* line,void* info,int aux){
 	return a;
 }
 
-static Avl insertINFO(Avl a,STRING line,void* i){
+static Avl insertINFO(Avl a,STR line,void* i){
 	Avl aux=a;
 	int cp;
 	while(a){
@@ -187,7 +187,7 @@ void removeAvl(Avl estrutura,Func freeInfo){
 	}
 }
 
-void* findInfo (Avl a,STRING line,int *x){
+void* findInfo (Avl a,STR line,int *x){
 	int cp=0;
 	while(a){
 		if((cp=strcmp(a->code,line)) > 0) a=a->left;

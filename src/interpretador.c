@@ -157,12 +157,12 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 
 	int page,totalPages,size_input;
 	char string_page[BUFFER_SIZE];
-	GROUP_PRODUCTS group;
+	LISTA_STRINGS group;
 
 	group = querie2(CatProducts,buffer[0]);
 	totalPages = calculatePagesProducts(group,ELEM_PER_PAGE);		
 
-	printCatalogProds(group,actualPage,totalPages,getGroupProdSize(group));
+	printCatalogProds(group,actualPage,totalPages,getListaSize(group));
 
 	do{
 		printf("	Escolha uma página: ");
@@ -174,7 +174,7 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 			actualPage = page;
 			printf("\e[2J\e[H");
 			printTop(2);
-			printCatalogProds(group,actualPage,totalPages,getGroupProdSize(group));
+			printCatalogProds(group,actualPage,totalPages,getListaSize(group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
@@ -188,13 +188,13 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	while(page != 0);
 }
 
-void printCatalogProds(GROUP_PRODUCTS group,int page,int totalPages,int totalElements){
+void printCatalogProds(LISTA_STRINGS group,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i + (ELEM_PER_PAGE*(page-1));
 		if(index < totalElements)
-			printf("				%s\n",getProduct(getGroupProd(group)[index]));
+			printf("				%s\n",getListaString(group,index));
 	}
 	printf("							0.Sair\n");
 }
@@ -340,7 +340,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 	char rep[BUFFER_SIZE];
 	int filial,contador=0,totalPages,size_input,error;
 	int contador1=0,contador2=0,contador3=0;
-	GROUP_PRODUCTS group1,group2,group3,group;
+	LISTA_STRINGS group1,group2,group3,group;
 
 
 	printf("\e[2J\e[H");
@@ -355,10 +355,10 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 	size_input = scanf("%s",rep);
 
 	if(rep[0] == 'F' || rep[0] == 'f'){
-		group1 = querie4(fact,&contador1,1);
-		group2 = querie4(fact,&contador2,2);
-		group3 = querie4(fact,&contador3,3);
-		filial = productsNSoldFiliais(contador1,contador2,contador3);
+		group1 = querie4(fact,1);
+		group2 = querie4(fact,2);
+		group3 = querie4(fact,3);
+		filial = productsNSoldFiliais(getListaSp(group1),getListaSp(group2),getListaSp(group3));
 		switch(filial){
 			case 1: group = group1; break;
 			case 2: group = group2; break;
@@ -368,7 +368,7 @@ void productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 	}
 
 	else if(rep[0] == 'T' || rep[0] == 't'){
-		group = querie4(fact,&contador,-1);
+		group = querie4(fact,-1);
 	}
 	else if(rep[0] == '0'){
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
@@ -406,7 +406,7 @@ int productsNSoldFiliais(int g1,int g2,int g3){
 	}
 }
 
-void printPageNSold(GROUP_PRODUCTS group,int page,int totalPages){
+void printPageNSold(LISTA_STRINGS group,int page,int totalPages){
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
@@ -414,12 +414,12 @@ void printPageNSold(GROUP_PRODUCTS group,int page,int totalPages){
 	printf("\n	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i+(ELEM_PER_PAGE*(page-1));
-		if(index < getGroupProdSp(group))
-			printf("\n				%d | %s",index+1,getProduct(getGroupProd(group)[index]));
+		if(index < getListaSp(group))
+			printf("\n				%3d | %s",index+1,getListaString(group,index));
 	}
 }
 
-void printNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,GROUP_PRODUCTS group,int totalPages,int actualPage){
+void printNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,LISTA_STRINGS group,int totalPages,int actualPage){
 
 	int rep = 1,size_input,page;
 	char string_page[BUFFER_SIZE];
@@ -617,10 +617,10 @@ void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 
 	int page,totalPages,size_input;
 	char string_page[BUFFER_SIZE];
-	GROUP_CLIENTS group = querie7(arrayFiliais);
+	LISTA_STRINGS group = querie7(arrayFiliais);
 	totalPages = calculatePagesClients(group,ELEM_PER_PAGE);		
 
-	printListClients(group,actualPage,totalPages,getGroupClieSize(group));
+	printListClients(group,actualPage,totalPages,getListaSize(group));
 
 	do{
 		printf("	Escolha uma página: ");
@@ -631,7 +631,7 @@ void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 			actualPage = page;
 			printf("\e[2J\e[H");
 			printTop(7);
-			printListClients(group,actualPage,totalPages,getGroupClieSize(group));
+			printListClients(group,actualPage,totalPages,getListaSize(group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
@@ -645,15 +645,16 @@ void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	while(page != 0);
 }
 
-void printListClients(GROUP_CLIENTS group,int page,int totalPages,int totalElements){
+void printListClients(LISTA_STRINGS group,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i + (ELEM_PER_PAGE*(page-1));
 		if(index < totalElements)
-			printf("				%s\n",getClient(getGroupClie(group)[index]));
+			printf("\n				%5d | %s",index+1,getListaString(group,index));
 	}
-	printf("							0.Sair\n");
+	putchar('\n');
+	printf("								0.Sair\n");
 }
 
 
@@ -672,8 +673,8 @@ void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	int filial,exist,input;
 	char productString[BUFFER_SIZE],stringFilial[BUFFER_SIZE],c,stringPromo[BUFFER_SIZE];
 	char* result;
-	GROUP_CLIENTS group_N;
-	GROUP_CLIENTS group_P;
+	LISTA_STRINGS group_N;
+	LISTA_STRINGS group_P;
 
 	PRODUCT prod = malloc(sizeof(PRODUCT));
 
@@ -719,8 +720,8 @@ void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	putchar('\n');
 	printf("	 ___________________________________________________\n");
 	printf("	|                                                   |\n");
-	printf("	| Total de clientes que compraram sem promoção: %3d |\n",getGroupClieSp(group_N));
-	printf("	| Total de clientes que compraram com promoção: %3d |\n",getGroupClieSp(group_P));
+	printf("	| Total de clientes que compraram sem promoção: %3d |\n",getListaSp(group_N));
+	printf("	| Total de clientes que compraram com promoção: %3d |\n",getListaSp(group_P));
 	printf("	|___________________________________________________|\n\n");
 	printf("\n	Gostaria de ver os clientes que compram com ou sem promoção (P/N)? ");
 	input = scanf("%s",stringPromo);
@@ -734,14 +735,14 @@ void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	}
 }
 
-void searchPageListClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int actualPage,GROUP_CLIENTS* group){
+void searchPageListClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int actualPage,LISTA_STRINGS* group){
 
 	int page,totalPages,size_input;
 	totalPages = calculatePagesClients(*group,ELEM_PER_PAGE);	
 	char string_page[BUFFER_SIZE];	
 	printf("\e[2J\e[H");
 	printTop(7);
-	printClientsProdFilial(*group,actualPage,totalPages,getGroupClieSp(*group));
+	printClientsProdFilial(*group,actualPage,totalPages,getListaSp(*group));
 
 	do{
 		printf("	Escolha uma página: ");
@@ -753,7 +754,7 @@ void searchPageListClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS
 			actualPage = page;
 			printf("\e[2J\e[H");
 			printTop(8);
-			printClientsProdFilial(*group,actualPage,totalPages,getGroupClieSp(*group));
+			printClientsProdFilial(*group,actualPage,totalPages,getListaSp(*group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
@@ -767,13 +768,13 @@ void searchPageListClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS
 	while(page != 0);
 }
 
-void printClientsProdFilial(GROUP_CLIENTS group,int page,int totalPages,int totalElements){
+void printClientsProdFilial(LISTA_STRINGS group,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i + (ELEM_PER_PAGE*(page-1));
 		if(index < totalElements)
-			printf("					%s\n",getClient(getGroupClie(group)[index]));
+			printf("					%s\n",getListaString(group,index));
 	}
 	printf("							0. Voltar\n");
 }
@@ -793,7 +794,7 @@ void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 	char clientString[BUFFER_SIZE];
 	char buff_month[BUFFER_SIZE];
 	int month,input,exist;
-	GROUP_PRODUCTS group;
+	LISTA_STRINGS group;
 	CLIENT clie = malloc(sizeof(CLIENT));
 
 	printf("\e[2J\e[H");
@@ -833,8 +834,7 @@ void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 	searchPageProducts(CatClients,CatProducts,arrayFiliais,fact,group,1); 
 }
 
-
-void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,GROUP_PRODUCTS group,int actualPage){
+void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,LISTA_STRINGS group,int actualPage){
 
 	int page,totalPages,size_input;
 	char string_page[BUFFER_SIZE];
@@ -868,7 +868,7 @@ void searchPageProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,
 	while(page != 0);
 }
 
-void printPageMostSold(GROUP_PRODUCTS group,int page,int totalPages){
+void printPageMostSold(LISTA_STRINGS group,int page,int totalPages){
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
@@ -876,8 +876,8 @@ void printPageMostSold(GROUP_PRODUCTS group,int page,int totalPages){
 	printf("\n	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<ELEM_PER_PAGE;i++){
 		index = i+(ELEM_PER_PAGE*(page-1));
-		if(index < getGroupProdSp(group))
-			printf("\n				%2dº | %s",index+1,getProduct(getGroupProd(group)[index]));
+		if(index < getListaSp(group))
+			printf("\n				%2dº | %s",index+1,getListaString(group,index));
 	}
 }
 
@@ -933,15 +933,15 @@ void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	}
 }
 
-int calculatePagesProducts(GROUP_PRODUCTS group,int elemPerPage){
-	int totalPages = (getGroupProdSp(group)/elemPerPage);
-	if(totalPages*elemPerPage < getGroupProdSp(group)) totalPages++;
+int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage){
+	int totalPages = (getListaSp(group)/elemPerPage);
+	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;
 }
 
-int calculatePagesClients(GROUP_CLIENTS group,int elemPerPage){
-	int totalPages = (getGroupClieSp(group)/elemPerPage);
-	if(totalPages*elemPerPage < getGroupClieSp(group)) totalPages++;
+int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){   /* ESTA AGORA É IGUAL À ANTERIOR!!! */
+	int totalPages = (getListaSp(group)/elemPerPage);
+	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;
 }
 
@@ -996,3 +996,5 @@ void printTop(int i){
 	printf("________________________________________________________________________________\n");
 	printf("\n");
 }
+
+/* O 3 É PANELEIRO */ 

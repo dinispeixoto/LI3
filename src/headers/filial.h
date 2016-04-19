@@ -38,8 +38,4 @@ double getInfoProductPrice(INFO_PRODUCT,int);
 MY_AVL getInfoMesProduct(INFO_MES,int);
 int getDadosFilialQuantity(DADOS_FILIAL,int,int);
 
-DADOS_FILIAL querie5(FILIAL,DADOS_FILIAL,char* ,int);
-GROUP_CLIENTS querie7 (FILIAL*);
-GROUP_CLIENTS querie8(FILIAL,char*,GROUP_CLIENTS*);
-
 #endif

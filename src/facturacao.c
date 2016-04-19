@@ -35,7 +35,6 @@ static DADOS updatePriceQuantity(INFO,DADOS,int,int);
 static INFO updateInfo(INFO,INFO);
 static Avl compare (Avl,Avl);
 static int checkInfo (INFO,int);
-static GROUP_PRODUCTS found(Avl,GROUP_PRODUCTS,int*,int);
 static DADOS factToDados(Avl,DADOS);
 static void freeTotalMes(TOTAL_MES m);
 static void freePQ(PQ x);
@@ -265,43 +264,3 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 	f->tm[month]->RegistoV++; 
 	return i;
 }
-
-/* ######################################### QUERIE 4 ####################################### */
-/*
-GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
-	GROUP_PRODUCTS group = initGroupProducts(1);
-	int i,j;
-		
-	for(i=0;i<26;i++){
-		setJ(group,i+1);
-		group = found(getAvl(f->prod[i]),group,c,filial);	
-	}
-	return group;
-}
-
-static int checkInfo(INFO i, int filial){
-	int j;
-	for(j=0;j<12;j++)
-		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
-	return 0;
-}
-
-
-static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
-	int sp;
-	if(a){
-	void* w = (INFO)getInfo(a);
-
-		list=found(getAvlLeft(a),list,x,filial);
-		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
-			(*x)++;
-			sp=getGroupProdSp(list);
-			setGroupProd(list,insertGROUP_PRODUCTS(getGroupProd(list),&sp,getJ(list),getAvlCode(a)));
-			setGroupProdSp(list,sp);
-			list=reallocGROUP_PRODUCTS(list);
-		}
-		list=found(getAvlRight(a),list,x,filial);
-	}
-
-	return list;
-}*/

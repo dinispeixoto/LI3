@@ -4,18 +4,18 @@
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes);
 static int checkInfo(INFO i, int filial);
-static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial);
+static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
 static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
 
 /* ######################################### QUERIE 2 #################################### */
 
-GROUP_PRODUCTS querie2(CATALOG_PRODUCTS Catalog,char letter){
+ LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	
 	int index = letter - 'A';
-	GROUP_PRODUCTS group = initGroupProducts(totalElements(getP(Catalog,index)));
+	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
 	MY_AVL a = getP(Catalog,index);
 	Avl tree = getAvl(a);
-	travessia(tree,0,group);
+	/*travessia(tree,0,group);*/
 	return group;
 }
 
@@ -46,13 +46,13 @@ static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 
 /* ######################################### QUERIE 4 ####################################### */
 
-GROUP_PRODUCTS querie4(FACTURACAO f,int* c,int filial){
-	GROUP_PRODUCTS group = initGroupProducts(1);
+LISTA_STRINGS querie4(FACTURACAO f,int filial){
+	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
 	int i,j;
 		
 	for(i=0;i<26;i++){
-		setJ(group,i+1);
-		group = found(getAvl(getProductIndex(f,i)),group,c,filial);
+		/*setJ(group,i+1);*/
+		group = found(getAvl(getProductIndex(f,i)),group,filial);
 	}
 	return group;
 }
@@ -64,20 +64,17 @@ static int checkInfo(INFO i, int filial){
 	return 0;
 }
 
-static GROUP_PRODUCTS found(Avl a,GROUP_PRODUCTS list,int* x,int filial){
+static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 	int sp;
 	if(a){
 	void* w = (INFO)getInfo(a);
 
-		list=found(getAvlLeft(a),list,x,filial);
+		list=found(getAvlLeft(a),list,filial);
 		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
-			(*x)++;
-			sp=getGroupProdSp(list);
-			setGroupProd(list,insertGROUP_PRODUCTS(getGroupProd(list),&sp,getJ(list),getAvlCode(a)));
-			setGroupProdSp(list,sp);
-			list=reallocGROUP_PRODUCTS(list);
+			addListaStrings(list,getListaSp(list),getAvlCode(a));
+			list=reallocListaStrings(list);
 		}
-		list=found(getAvlRight(a),list,x,filial);
+		list=found(getAvlRight(a),list,filial);
 	}
 
 	return list;
@@ -116,59 +113,55 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 }
 
 /*#################################QUERIE 7###################################### FUNCIONA(VERIFICAR REMOVE)*/
-static GROUP_CLIENTS removeList(Avl a,GROUP_CLIENTS list );
-static GROUP_CLIENTS insereList(Avl a,GROUP_CLIENTS list );
-static GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list);
+static LISTA_STRINGS removeList(Avl a,LISTA_STRINGS list );
+static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS list );
+static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list);
 
-GROUP_CLIENTS querie7 (FILIAL* f){
+LISTA_STRINGS querie7 (FILIAL* f){
 	int i;
-	GROUP_CLIENTS list = initGroupClients(1);
+	LISTA_STRINGS list = initListaStrings(1,SIZE_CLIENT);
 	checkClientsValeN(f,list);
 	return list;
 }
 
-static GROUP_CLIENTS removeList(Avl a,GROUP_CLIENTS list ){
+static LISTA_STRINGS removeList(Avl a,LISTA_STRINGS list ){
 	int sp;
 	if(a){
 		removeList(getAvlLeft(a),list);
 		void* x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
 		if(!getComp(x)){
-			sp=getGroupClieSp(list);
-			removeGROUP_CLIENTS(getGroupClie(list),&sp,getAvlCode(a));
-			setGroupClieSp(list,sp);
+			removeListaStrings(list,getAvlCode(a));
 		}
 		removeList(getAvlRight(a),list);
 	}
 	return list;
 }
 
-static GROUP_CLIENTS insereList(Avl a,GROUP_CLIENTS list ){
+static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS list){
 	int sp;
 	if(a){
 		insereList(getAvlLeft(a),list);
 		void* x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
 		if(getComp(x)){
-			sp=getGroupClieSp(list);
-			insertGROUP_CLIENTS(getGroupClie(list),&sp,getJC(list),getAvlCode(a));
-			setGroupClieSp(list,sp);
-			list=reallocGROUP_CLIENTS(list);
+			addListaStrings(list,getListaSp(list),getAvlCode(a));
+			list=reallocListaStrings(list);
 		}
 		insereList(getAvlRight(a),list);
 	}
 	return list;
 }
 
-static GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list){
+static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
 
 	for(j=0;j<26;j++){
-		setJC(list,j+1);
+		/*setJC(list,j+1);*/
 		insereList(getAvl(getClientIndexF(f[0],j)),list);
 		}
 
 	for(i=1;i<3;i++){
 		for(j=0;j<26;j++){
-			setJC(list,j+1);
+			/*setJC(list,j+1);*/
 			removeList(getAvl(getClientIndexF(f[i],j)),list);
 			}
 		}
@@ -177,14 +170,14 @@ static GROUP_CLIENTS checkClientsValeN (FILIAL* f,GROUP_CLIENTS list){
 }
 
 /*#################################QUERIE 8#####################################*/
-static GROUP_CLIENTS checkProd(INFO_PRODUCT,GROUP_CLIENTS,GROUP_CLIENTS,char*);
-static GROUP_CLIENTS find2(INFO_CLIENT,char*,GROUP_CLIENTS,GROUP_CLIENTS,char*);
-static GROUP_CLIENTS find(Avl,char*,GROUP_CLIENTS,GROUP_CLIENTS);
+static LISTA_STRINGS checkProd(INFO_PRODUCT,LISTA_STRINGS,LISTA_STRINGS,char*);
+static LISTA_STRINGS find2(INFO_CLIENT,char*,LISTA_STRINGS,LISTA_STRINGS,char*);
+static LISTA_STRINGS find(Avl,char*,LISTA_STRINGS,LISTA_STRINGS);
 
-GROUP_CLIENTS querie8(FILIAL f,char* product,GROUP_CLIENTS* P){
+LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	int i;
-	GROUP_CLIENTS gcN=initGroupClients(1);
-	GROUP_CLIENTS gcP=initGroupClients(1);
+	LISTA_STRINGS gcN = initListaStrings(1,SIZE_CLIENT);
+	LISTA_STRINGS gcP = initListaStrings(1,SIZE_CLIENT);
 	for(i=0;i<26;i++){
 		find(getAvl(getClientIndexF(f,i)),product,gcN,gcP);
 	}
@@ -192,25 +185,21 @@ GROUP_CLIENTS querie8(FILIAL f,char* product,GROUP_CLIENTS* P){
 	return gcN;
 }
 
-static GROUP_CLIENTS checkProd(INFO_PRODUCT ip,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP,char* client){
+static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
 	int i,posicao;
 
 	if(getInfoProductQuantity(ip,0)){
-		posicao=getGroupClieSp(gcN);
-		insertGROUP(getGroupClie(gcN),posicao,client);
-		setGroupClieSp(gcN,posicao+1);
-		gcN=reallocGROUP_CLIENTS(gcN);
+		addListaStrings(gcN,getListaSp(gcN),client);
+		gcN=reallocListaStrings(gcN);
 	}
 	if(getInfoProductQuantity(ip,1)){
-		posicao=getGroupClieSp(gcP);
-		insertGROUP(getGroupClie(gcP),posicao,client);
-		setGroupClieSp(gcP,posicao+1);
-		gcP=reallocGROUP_CLIENTS(gcP);
+		addListaStrings(gcP,getListaSp(gcP),client);
+		gcP=reallocListaStrings(gcP);
 	}
 	return gcN;
 }
 
-static GROUP_CLIENTS find2(INFO_CLIENT ic,char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP,char* client){
+static LISTA_STRINGS find2(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
 	int i;
 	int index=product[0]-'A';
 
@@ -223,7 +212,7 @@ static GROUP_CLIENTS find2(INFO_CLIENT ic,char* product,GROUP_CLIENTS gcN,GROUP_
 	return gcN;
 }
 
-static GROUP_CLIENTS find(Avl a, char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS gcP){
+static LISTA_STRINGS find(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
 	
 	if(a){
 		find(getAvlLeft(a),product,gcN,gcP);
@@ -238,11 +227,11 @@ static GROUP_CLIENTS find(Avl a, char* product,GROUP_CLIENTS gcN,GROUP_CLIENTS g
 /*#################################QUERIE 9#####################################*/
 
 static int quant(INFO_PRODUCT);
-static GROUP_PRODUCTS converte (Heap,GROUP_PRODUCTS,int);
+static LISTA_STRINGS converte (Heap,LISTA_STRINGS,int);
 static Heap findProd2(Avl,Heap);
 static Heap findProd(INFO_CLIENT,int,Heap);
 
-GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
+LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 	int i;
 	Heap heap=initHeap(1);
 	int index=index(client[0]);
@@ -251,7 +240,7 @@ GROUP_PRODUCTS querie9(FILIAL* f, char* client,int month){
 		findProd(x,month,heap);
 	}
 
-	GROUP_PRODUCTS group= initGroupProducts(1);
+	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
 	converte(heap,group,getHeapUsed(heap));
 	return group;
 }
@@ -260,13 +249,11 @@ static int quant(INFO_PRODUCT ip){
 	return (getInfoProductQuantity(ip,0)+getInfoProductQuantity(ip,1));
 }
 
-static GROUP_PRODUCTS converte (Heap heap, GROUP_PRODUCTS group,int total){
+static LISTA_STRINGS converte (Heap heap, LISTA_STRINGS group,int total){
 	int i,posicao;
 	while(0<total){
-		posicao=getGroupProdSp(group);
-		insertGROUP_P(getGroupProd(group),posicao,extractMax(heap));
-		setGroupProdSp(group,posicao+1);
-		group=reallocGROUP_PRODUCTS(group);
+		addListaStrings(group,getListaSp(group),extractMax(heap));
+		group=reallocListaStrings(group);
 		total--;
 	}
 	return group;
@@ -320,7 +307,7 @@ int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 	return 1;
 }
 
-GROUP_PRODUCTS querie10(FILIAL f,Heap hp,int N){
+LISTA_STRINGS querie10(FILIAL f,Heap hp,int N){
 	int i,j;
 	int num[N];
 	char* prod[N];
@@ -331,10 +318,10 @@ GROUP_PRODUCTS querie10(FILIAL f,Heap hp,int N){
 	for(i=0;i<26;i++){
 		pesquisa(getAvl(getClientIndexF(f,i)),hp,N,num,prod);
 	} 
-	GROUP_PRODUCTS gp = initGroupProducts(1);
+	LISTA_STRINGS gp = initListaStrings(1,SIZE_PRODUCT);
 	
 	for(i=0;i<N;i++){
-		printf("%d-%s\n",num[i],prod[i]);
+		printf("%d-%s\n",num[i],*prod[i]);
 	}
 	converte(hp,gp,N);
 	return gp;
@@ -368,7 +355,7 @@ Heap highCost (INFO_CLIENT ic,Heap hp){
 	return hp;
 }
 
-GROUP_PRODUCTS querie11(FILIAL* f,char* client){
+LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int i;
 	int in = index(client[0]);
 	Heap hp=initHeap(1);
@@ -376,7 +363,7 @@ GROUP_PRODUCTS querie11(FILIAL* f,char* client){
 		void* x=findInfo(getAvl(getClientIndexF(f[i],in)),client,NULL);
 		highCost(x,hp);
 	}
-	GROUP_PRODUCTS gp= initGroupProducts(1);
+	LISTA_STRINGS gp= initListaStrings(1,SIZE_PRODUCT);
 	
 	converte(hp,gp,3);
 	return gp;
