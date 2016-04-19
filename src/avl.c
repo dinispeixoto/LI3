@@ -175,6 +175,7 @@ int totalElements(MY_AVL estrutura){
 void removeMyAvl(MY_AVL estrutura,Func f){
 	if(estrutura)
 		removeAvl(estrutura->avl,f);
+		free(estrutura);
 }
 
 void removeAvl(Avl estrutura,Func freeInfo){

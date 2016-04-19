@@ -19,7 +19,7 @@ static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 }
 
 
- LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
+LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	
 	int index = letter - 'A';
 	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
@@ -367,7 +367,7 @@ static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N){
 	return gp;
 }
 
-LISTA_STRINGS querie10 (FILIAL f,FACTURACAO fact, int N,int filial){
+LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial){
 	Heap hp=initHeap(1);
 	querie10Fact(fact,hp,filial);
 	LISTA_STRINGS ls;

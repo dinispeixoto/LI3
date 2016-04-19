@@ -17,7 +17,7 @@ void menu(){
 	printf("	08. Lista de clientes que compraram um produto num determinado filial.\n");
 	printf("	09. Produtos mais comprados por um cliente num determinado mês.\n");
 	printf("	10. ...\n");
-	printf("	11. ...\n");
+	printf("	11. Produtos em que um cliente gastou mais dinheiro.\n");
 	printf("	12. Clientes e produtos inactivos.			0. Sair.\n");
 	printf("________________________________________________________________________________\n\n");
 }
@@ -102,15 +102,49 @@ void backInterpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,F
 
 
 /* QUERIE 1 */
+void backReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	getchar();getchar();
+	printf("\e[2J\e[H");
+	readFiles(CatClients,CatProducts,arrayFiliais,fact);
+	exit(0);
+}
+
 
 void readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 	
-	char rep;
-	int size_input;
+	char rep,info[BUFFER_SIZE],clientsFile[BUFFER_SIZE],productsFile[BUFFER_SIZE],salesFile[BUFFER_SIZE];
+	int size_input,r=1;
 
 	printf("\e[2J\e[H"); 
+	printTop(1);
+	printf("							0.Voltar\n");
+	printf("\n\n");
+	printf("	Deseja ler os ficheiros DEFAULT (S/N)?  ");
+	size_input = scanf("%s",info);
+	if(info[0]=='0') backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
+	else if(info[0]=='S') {
+		printf("\e[2J\e[H"); 
+		r=getFile(CatClients,CatProducts,arrayFiliais,fact,CLIENTS_FILE,PRODUCTS_FILE,SALES_FILE);
+	}
+	else if(info[0]=='N'){
+		printf("	Ficheiro de Clientes: ");
+		size_input = scanf("%s",clientsFile);
+		printf("	Ficheiro de Produtos: ");
+		size_input = scanf("%s",productsFile);
+		printf("	Ficheiro de Vendas: ");
+		size_input = scanf("%s",salesFile);
+		printf("\e[2J\e[H"); 
+		r=getFile(CatClients,CatProducts,arrayFiliais,fact,clientsFile,productsFile,salesFile);
+		if(!r){
+			printf("\n\n\n	Os ficheiros que tentou ler não são válidos!\n");
+			backReadFiles(CatClients,CatProducts,arrayFiliais,fact);
+		}
+	}
+	else{
+		 printf("	Por favor responda apenas com sim (S) ou não (N)!\n");
+		 backReadFiles(CatClients,CatProducts,arrayFiliais,fact);
+	}
 
-	getFile(CatClients,CatProducts,arrayFiliais,fact);
 	putchar('\n');
 	printf("	Pressione qualquer tecla para continuar!		0.Sair\n");
 	printf("________________________________________________________________________________\n");
@@ -886,6 +920,32 @@ void printPageMostSold(LISTA_STRINGS group,int page,int totalPages){
 }
 
 
+/* QUERIE 10 */
+
+void nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+
+	/*LISTA_STRINGS group;
+	printf("\e[2J\e[H");
+	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
+	printTop(10);
+
+	printf("							0.Voltar\n");
+
+	printf("	Introduza a quantidade de produtos mais vendidos que deseja ver: ");
+	input = scanf("%s",buff_quant);
+	quant = atoi(buff_quant);
+
+	if(buff_quant[0] == '0') backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
+	if(quant <= 0 || quant > 171008){
+		printf("\n	Introduza uma quantidade válida!\n");
+		backToClientMonth(CatClients,CatProducts,arrayFiliais,fact); 
+	}
+
+	group = querie10(f,fact,quant,filial));
+
+*/
+}
+
 
 /* QUERIE 11 */
 
@@ -1027,7 +1087,11 @@ void printTop(int i){
 			printf("		|_____|___|_| |___|\\___/|___|_|_|___|__,|___|\n");
 			break;
 
-		case 2:  /* CATÁLOGO DE PRODUTOS */
+		case 1:  
+			printf("\n	                        LEITURA DE FICHEIROS                                    \n");
+			break;
+
+		case 2:  
 			printf("\n	                        CATÁLOGO DE PRODUTOS                                    \n");
 			break;
 

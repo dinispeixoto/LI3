@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <unistd.h>
 
 #include "CatClients.h"
 #include "CatProducts.h"
@@ -14,6 +13,11 @@
 #include "readFiles.h"
 #include "queries.h"
 #include "listaStrings.h"
+
+#define CLIENTS_FILE "files/Clientes.txt"
+#define	PRODUCTS_FILE "files/Produtos.txt"
+#define SALES_FILE "files/Vendas.txt"
+
 
 void menu();
 void printTop(int);

@@ -7,7 +7,6 @@
 
 struct elem{
     int valor;
-    int registo;
     char c[SIZE_PRODUCTS];
 };
 
@@ -72,7 +71,6 @@ int  insertHeap (Heap h, int x,char* ct) {
     } 
     if(r){*/
         h->values[h->used].valor= x;
-        h->values[h->used].registo++;
         strcpy(h->values[h->used].c,ct);
         (h->used)++;
         bubbleUp(h, h->used-1);
@@ -92,7 +90,7 @@ void bubbleDown (Heap h, int N) {
         swap(h, i, LEFT(i)); 
 }
 
-char*  extractMax (Heap h) {
+char*  extractMax(Heap h){
    
     if (h->used > 0) {
         char* r=malloc(SIZE_PRODUCTS);
