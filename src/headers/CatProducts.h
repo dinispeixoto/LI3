@@ -6,6 +6,7 @@
 #define SIZE_ABC 26 /* abecedário */
 #define SIZE_BUFFER 64
 
+#include <ctype.h>
 #include "avl.h"
 
 typedef struct product *PRODUCT;

@@ -31,7 +31,7 @@ Heap initHeap (int size) {
     return h;
 }
 
-Heap** initHeapMatriz(int size,int x,int y){
+Heap** initHeapMatriz(int size,int x,int y){ /* NÃO USAS ESTE SIZE PARA PIÇA NENHUMA */
     int i,j;
     Heap** hp=malloc(26*sizeof(struct heap***));
 
@@ -53,7 +53,7 @@ void bubbleUp (Heap h, int i) {
 }
 
 int  insertHeap (Heap h, int x,char* ct) {
-    int i;
+    
     if (h->used == h->size) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
         h->size *= 2;

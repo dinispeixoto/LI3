@@ -1,6 +1,5 @@
 #include "headers/readFiles.h"
 
-static FILE* openFile(char*);
 static int valCli(FILE *,CATALOG_CLIENTS,int*);
 static int valProd(FILE *,CATALOG_PRODUCTS,int*);
 static int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int*);
@@ -103,15 +102,6 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 	return r;
 }
 
-
-static FILE* openFile(char* fileName){ 
-	FILE* file;                        
-	file = fopen(fileName,"r");
-	if(!file) printf("Não consegui ler o ficheiro: %s.\n",fileName); 
-	return file;
-}
-
-
 /* Faz a validação dos clientes. */
 static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
@@ -199,7 +189,6 @@ void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	}
 	else{
 		printf("A MEMÓRIA JÁ ESTÁ VAZIA\n");
-		sleep(2);
 	}
 		
 } 

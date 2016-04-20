@@ -31,16 +31,10 @@ struct dados{
 static PQ initPQ();
 static INFO initINFO();
 static INFO copyInfoFact(SALES,INFO,FACTURACAO);
-static DADOS updatePriceQuantity(INFO,DADOS,int,int);
-static INFO updateInfo(INFO,INFO);
-static Avl compare (Avl,Avl);
-static int checkInfo (INFO,int);
-static DADOS factToDados(Avl,DADOS);
 static void freeTotalMes(TOTAL_MES m);
 static void freePQ(PQ x);
 
 TOTAL_MES initTotalMes(){
-	int i;
 	TOTAL_MES tm = malloc(sizeof(struct totalMes));
 	tm->totalFacturado=0; 
 	tm->totalQuant=0;

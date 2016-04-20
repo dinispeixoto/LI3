@@ -5,6 +5,7 @@
 #define LETRAS_C 1
 #define SIZE_ABC 26 /* abecedário */
 
+#include <ctype.h>
 #include "avl.h"
 
 typedef struct client *CLIENT;
