@@ -11,7 +11,7 @@ struct infoMes{
 };
 
 struct infoClient{
-	INFO_MES im[SIZE_MONTH];
+	INFO_MES info_mes[SIZE_MONTH];
 	int Comprou;                           /* soma dos avl->size das 26 letras; dá o total de produtos comprados num ano */
 };
 
@@ -55,7 +55,7 @@ void freeInfoClient(void* infoClient){
 	INFO_CLIENT x = (INFO_CLIENT) infoClient;
 	if(x){
 		for(i=0;i<SIZE_MONTH;i++)
-			freeInfoMes(x->im[i]);
+			freeInfoMes(x->info_mes[i]);
 	}
 	free(x);
 }
@@ -82,12 +82,12 @@ void freeInfoProduct(void* infoProduct){
 
 INFO_MES initInfoMes(){
 	int i;
-	INFO_MES im = malloc(sizeof(struct infoMes));
+	INFO_MES info_mes = malloc(sizeof(struct infoMes));
 	for(i=0;i<SIZE_ABC;i++){
-		im->Products[i]=NULL;
+		info_mes->Products[i]=NULL;
 	}
-	im->quantity=0;
-	return im;
+	info_mes->quantity=0;
+	return info_mes;
 }
 
 INFO_CLIENT initInfoClient(){
@@ -95,7 +95,7 @@ INFO_CLIENT initInfoClient(){
 	INFO_CLIENT info = malloc(sizeof(struct infoClient));
 	
 	for(i=0;i<SIZE_MONTH;i++)
-		info->im[i] = initInfoMes();
+		info->info_mes[i] = initInfoMes();
 	info->Comprou=0;
 	return info;
 }
@@ -149,7 +149,7 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 	int aux=0;
 	INFO_PRODUCT infoP;
 
- 	MY_AVL a = infoC->im[month-1]->Products[index_product];
+ 	MY_AVL a = infoC->info_mes[month-1]->Products[index_product];
 
  	if(a){
 
@@ -163,14 +163,14 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 		else infoP = updateInfoP(infoP,s);
 	}
 	else{ 
-		infoC->im[month-1]->Products[index_product]=initMyAvl();
+		infoC->info_mes[month-1]->Products[index_product]=initMyAvl();
 		infoP = initInfoProduct(); 
 		infoP = updateInfoP(infoP,s);
-		infoC->im[month-1]->Products[index_product]= insertMyAvl(infoC->im[month-1]->Products[index_product],getProduct(product),infoP,1);
+		infoC->info_mes[month-1]->Products[index_product]= insertMyAvl(infoC->info_mes[month-1]->Products[index_product],getProduct(product),infoP,1);
 	}
 	
 
-	infoC->im[month-1]->quantity+=getSalesQuantity(s);
+	infoC->info_mes[month-1]->quantity+=getSalesQuantity(s);
 
  	return infoC;
 }
@@ -213,7 +213,7 @@ DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int filial,int month,int to
 }
 
 INFO_MES getInfoMes(INFO_CLIENT info,int month){
-	return info->im[month];
+	return info->info_mes[month];
 }
 
 int getInfoMesQuantity(INFO_MES info){

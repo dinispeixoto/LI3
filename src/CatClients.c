@@ -12,7 +12,7 @@ struct client {
 CATALOG_CLIENTS initClients(){
 
 	int i;
-    CATALOG_CLIENTS Catalog = malloc (sizeof(struct catc));
+	CATALOG_CLIENTS Catalog = malloc (sizeof(struct catc));
 	for(i=0;i<SIZE_ABC;i++)	Catalog->CatClients[i] = initMyAvl();
 	return Catalog;
 }

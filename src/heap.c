@@ -11,9 +11,9 @@ struct elem{
 };
 
 struct heap{
- int   size;
- int   used;
- struct elem *values;
+    int   size;
+    int   used;
+    struct elem *values;
 };
 
 
@@ -31,25 +31,12 @@ Heap initHeap (int size) {
     return h;
 }
 
-Heap** initHeapMatriz(int size,int x,int y){ /* NÃO USAS ESTE SIZE PARA PIÇA NENHUMA */
-    int i,j;
-    Heap** hp=malloc(26*sizeof(struct heap***));
-
-    for(i=0;i<x;i++){
-        hp[i]=malloc(26*sizeof(struct heap*));
-        for(j=0;j<y;j++)
-            hp[i][j]=initHeap(1);
-    }
-    return hp;
-}
-
 void bubbleUp (Heap h, int i) {
 
     while (i!=0 && h->values[i].valor > h->values[PARENT(i)].valor) {
         swap(h, i, PARENT(i));
         i = PARENT(i);
     }    
-    
 }
 
 int  insertHeap (Heap h, int x,char* ct) {
@@ -58,24 +45,11 @@ int  insertHeap (Heap h, int x,char* ct) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
         h->size *= 2;
     }
-    /*if(r){
-        for(i=0;i<h->used;i++){
-          if(strcmp(h->values[i].c,ct)==0){  
-                h->values[i].valor+= x;
-                h->values[i].registo++;
-                r=0;
-                bubbleUp(h, i);
-                break;
-            }
-        }
-    } 
-    if(r){*/
-        h->values[h->used].valor= x;
-        strcpy(h->values[h->used].c,ct);
-        (h->used)++;
-        bubbleUp(h, h->used-1);
-     
 
+    h->values[h->used].valor= x;
+    strcpy(h->values[h->used].c,ct);
+    (h->used)++;
+    bubbleUp(h, h->used-1);
     return 1;
 }
 

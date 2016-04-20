@@ -116,7 +116,7 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 	DADOS d= initDADOS();
 	for(i=(inicio-1);i<fim;i++){
 		d = updateTotalMP(d,getTotalFacturadoMES(getTotalMes(f,i)));
-		d = updateTotalMQ(d,getTotalQuantMES(getTotalMes(f,i)));
+		d = updateTotalVendas(d,getTotalRegisto(getTotalMes(f,i)));
 	}
 	return d;
 }
