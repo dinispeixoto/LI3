@@ -1,5 +1,3 @@
-#define MAX_SALES 1000000
-
 #include "headers/Sales.h"
 
 

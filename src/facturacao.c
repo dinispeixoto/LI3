@@ -1,8 +1,8 @@
 #include "headers/facturacao.h"
 
 struct fact{
-	TOTAL_MES tm[SIZE_MONTH];
-    MY_AVL prod[SIZE_ABC];
+	TOTAL_MES tm[SIZE_MONTH]; 
+	MY_AVL prod[SIZE_ABC];
 };
 
 struct pq {
@@ -17,15 +17,15 @@ struct totalMes{
 };
 
 struct info{
-  PQ N[SIZE_MONTH][SIZE_FILIAIS];
-  PQ P[SIZE_MONTH][SIZE_FILIAIS];
+	PQ N[SIZE_MONTH][SIZE_FILIAIS];
+	PQ P[SIZE_MONTH][SIZE_FILIAIS];
 };
 
 struct dados{
-  double totalpriceF[3];
-  int totalquantF[3];
-  double totalMP;
-  int totalMQ;
+	double totalpriceF[SIZE_FILIAIS];
+	int totalquantF[SIZE_FILIAIS];
+	double totalMP;
+	int totalMQ;
 };
 
 static PQ initPQ();
@@ -88,7 +88,7 @@ static void freeTotalMes(TOTAL_MES m){
 DADOS initDADOS(){
 	int i;
 	DADOS d = malloc(sizeof(struct dados));
-	for(i=0;i<3;i++){
+	for(i=0;i<SIZE_FILIAIS;i++){
 		d->totalpriceF[i] = 0;
 		d->totalquantF[i] = 0;
 	}
@@ -99,7 +99,7 @@ DADOS initDADOS(){
 
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 	int i;	
-	for(i=0;i<26;i++)
+	for(i=0;i<SIZE_ABC;i++)
 		f->prod[i] = cloneMyAvl(getP(p,i));
 	return f;
 }
@@ -233,8 +233,8 @@ static PQ initPQ(){
 static INFO initINFO(){
 	int j,k;
 	INFO i=malloc(sizeof(struct info));
-	for(j=0;j<12;j++){
-		for(k=0;k<3;k++){
+	for(j=0;j<SIZE_MONTH;j++){
+		for(k=0;k<SIZE_FILIAIS;k++){
 			i->N[j][k] = initPQ();
 			i->P[j][k] = initPQ();
 		}

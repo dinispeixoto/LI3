@@ -3,14 +3,11 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 #include "CatClients.h"
 #include "CatProducts.h"
 
-#define SIZE_BUFFER 64
 #define SIZE_BUF_SALES 128
-#define SIZE_SALES 29 
 
 typedef struct sales *SALES;
 typedef int QUANTITY;

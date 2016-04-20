@@ -4,7 +4,6 @@
 #define SIZE_CLIENTS 6
 #define LETRAS_C 1
 #define SIZE_ABC 26 /* abecedário */
-#define SIZE_BUFFER 64
 
 #include "avl.h"
 

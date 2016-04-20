@@ -103,7 +103,6 @@ char*  extractMax(Heap h){
     else return NULL;
 }
 
-
 int getMax(Heap h){
     return (h->values[0].valor);
 }

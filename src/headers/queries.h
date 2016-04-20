@@ -6,6 +6,9 @@
 #include "heap.h"
 #include "listaStrings.h"
 
+#define SIZE_ABC 26
+#define SIZE_MONTH 12
+#define SIZE_FILIAIS 3
 #define SIZE_PRODUCT 6
 #define SIZE_CLIENT 5
 

@@ -3,8 +3,6 @@
 
 #define SIZE_MONTH 12
 #define SIZE_CLIENTS 6 
-#define SIZE_PRODUCTS 7 
-#define SIZE_SALES 29 
 #define SIZE_FILIAIS 3
 
 #include "avl.h"
@@ -40,8 +38,6 @@ double* getDadosP(DADOS);
 int* getDadosQ(DADOS);
 double getDadosTP(DADOS);
 int getDadosTQ(DADOS);
-double getnumTotalP(INFO);
-int getnumTotalQ(INFO);
 DADOS setTotalPrice(DADOS,int,double);
 DADOS setTotalQuantity(DADOS,int,int);
 MY_AVL getProductIndex(FACTURACAO,int);
@@ -57,10 +53,5 @@ DADOS updateTotalMQ(DADOS,int);
 TOTAL_MES getTotalMes(FACTURACAO,int);
 double getTotalFacturadoMES(TOTAL_MES m);
 int getTotalQuantMES(TOTAL_MES m);
-
-/* QUERIE 4*/
-/*GROUP_PRODUCTS querie4(FACTURACAO,int*,int);*/
-
-
 
 #endif

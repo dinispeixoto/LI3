@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+
 
 #define TRUE 1
 #define FALSE 0
@@ -11,7 +11,6 @@
 typedef struct avl *Avl;
 typedef struct myAvl *MY_AVL;
 typedef char* STR;
-
 typedef int BOOL;
 
 typedef void(*Func)(void*);

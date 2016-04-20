@@ -6,6 +6,10 @@
 #include "CatProducts.h"
 #include "Sales.h"
 
+#define SIZE_MONTH 12
+#define SIZE_FILIAIS 3
+#define SIZE_INFOP 2
+
 typedef struct filial *FILIAL;
 typedef struct infoMes *INFO_MES;
 typedef struct infoClient *INFO_CLIENT;

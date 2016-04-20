@@ -47,7 +47,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 	int i;
-	for(i=0;i<3;i++){
+	for(i=0;i<SIZE_FILIAIS;i++){
 		d = setTotalPrice(d,i,getnumFilialP(f,i,promo,mes));
 		d = setTotalQuantity(d,i,getnumFilialQ(f,i,promo,mes));
 	}
@@ -60,7 +60,7 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
 	int i,j;
 		
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		group = found(getAvl(getProductIndex(f,i)),group,filial);
 	}
 	return group;
@@ -68,7 +68,7 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial){
 
 static int checkInfo(INFO i, int filial){
 	int j;
-	for(j=0;j<12;j++)
+	for(j=0;j<SIZE_MONTH;j++)
 		if(getTotalQuantPQ(getNormalPQ(i,j,filial))>0 || (getTotalQuantPQ(getPromoPQ(i,j,filial)))>0) return 1;
 	return 0;
 }
@@ -103,7 +103,7 @@ DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial){
 
 static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial){
 	int i;
-	for(i=0;i<12;i++)
+	for(i=0;i<SIZE_MONTH;i++)
 		df = updateQuant_DadosFilial(df,filial,i,getInfoMesQuantity(getInfoMes(ic,i)));
 	return df;
 }
@@ -163,12 +163,12 @@ static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS list){
 static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
 
-	for(j=0;j<26;j++){
+	for(j=0;j<SIZE_ABC;j++){
 		insereList(getAvl(getClientIndexF(f[0],j)),list);
 		}
 
-	for(i=1;i<3;i++){
-		for(j=0;j<26;j++){
+	for(i=1;i<SIZE_FILIAIS;i++){
+		for(j=0;j<SIZE_ABC;j++){
 			removeList(getAvl(getClientIndexF(f[i],j)),list);
 			}
 		}
@@ -184,7 +184,7 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	int i;
 	LISTA_STRINGS gcN = initListaStrings(1,SIZE_CLIENT);
 	LISTA_STRINGS gcP = initListaStrings(1,SIZE_CLIENT);
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		find(getAvl(getClientIndexF(f,i)),product,gcN,gcP);
 	}
 	(*P)=gcP;
@@ -209,7 +209,7 @@ static LISTA_STRINGS find2(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_
 	int i;
 	int index=product[0]-'A';
 
-	for(i=0;i<12;i++){
+	for(i=0;i<SIZE_MONTH;i++){
 		if(getInfoMesProduct(getInfoMes(ic,i),index)){
 			if(getAvl(getInfoMesProduct(getInfoMes(ic,i),index))){
 				void* x=(INFO_PRODUCT)findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),index)),product,NULL);
@@ -243,7 +243,7 @@ LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 	int i;
 	Heap heap=initHeap(1);
 	int index=index(client[0]);
-	for(i=0;i<3;i++){
+	for(i=0;i<SIZE_FILIAIS;i++){
 		void* x=(INFO_CLIENT)findInfo(getAvl(getClientIndexF(f[i],index)),client,NULL);
 		findProd(x,month,heap);
 	}
@@ -282,7 +282,7 @@ static Heap findProd2(Avl a,Heap heap){
 
 static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 	int i;
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		if(getInfoMesProduct(getInfoMes(ic,month-1),i))
 			findProd2(getAvl(getInfoMesProduct(getInfoMes(ic,month-1),i)),heap);
 	}
@@ -292,7 +292,7 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 /*#################################QUERIE 10#####################################*/
 static int qua (INFO info,int filial){
 	int i,sum=0;
-	for(i=0;i<12;i++){
+	for(i=0;i<SIZE_MONTH;i++){
 		sum+=(getTotalQuantPQ(getNormalPQ(info,i,filial))+getTotalQuantPQ(getPromoPQ(info,i,filial)));
 	}
 	return sum;
@@ -317,7 +317,7 @@ static int pesquisa2 (INFO_CLIENT ic, Heap hp,int N,int* num,char** prod){
 	int ind;
 	for(j=0;j<N;j++){
 		ind= index(prod[j][0]);
-		for(i=0;i<12;i++){
+		for(i=0;i<SIZE_MONTH;i++){
 			if(getInfoMesProduct(getInfoMes(ic,i),ind)){
 				void* x=findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),ind)),prod[j],NULL);
 				if(x){num[j]++;return 1;}
@@ -341,7 +341,7 @@ static int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 
 static int querie10Fact (FACTURACAO f,Heap hp,int filial){
 	int i;
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_MONTH;i++){
 		pesq(getAvl(getProductIndex(f,i)),hp,filial);
 	}
 	return 1;
@@ -395,8 +395,8 @@ static Heap highCost2 (Avl a,Heap hp){
 
 static Heap highCost (INFO_CLIENT ic,Heap hp){
 	int i,j;
-	for(i=0;i<12;i++){
-		for(j=0;j<26;j++){
+	for(i=0;i<SIZE_MONTH;i++){
+		for(j=0;j<SIZE_ABC;j++){
 			if(getInfoMesProduct(getInfoMes(ic,i),j))	
 				highCost2(getAvl(getInfoMesProduct(getInfoMes(ic,i),j)),hp);
 		}
@@ -408,7 +408,7 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int i;
 	int in = index(client[0]);
 	Heap hp=initHeap(1);
-	for(i=0;i<3;i++){
+	for(i=0;i<SIZE_FILIAIS;i++){
 		void* x=findInfo(getAvl(getClientIndexF(f[i],in)),client,NULL);
 		highCost(x,hp);
 	}
@@ -422,8 +422,8 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 
 static int querie12Clients(FILIAL* f){
 	int i,j,sum=0,r;
-	for(i=0;i<3;i++)
-		for(j=0;j<26;j++){
+	for(i=0;i<SIZE_FILIAIS;i++)
+		for(j=0;j<SIZE_ABC;j++){
 			r=infoNULL(getAvl(getClientIndexF(f[i],j)));
 			sum+=r;
 		}
@@ -433,7 +433,7 @@ static int querie12Clients(FILIAL* f){
 static int querie12Products(FACTURACAO f){
 	int i,sum=0,r;
 
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		r=infoNULL(getAvl(getProductIndex(f,i)));			
 		sum+=r;
 	}

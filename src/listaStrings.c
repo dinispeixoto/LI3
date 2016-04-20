@@ -14,7 +14,7 @@ struct string{
 LISTA_STRINGS initListaStrings(int size,int sizeElement){
 	int i;
 	LISTA_STRINGS lista = malloc(sizeof(struct lista));	
-	lista->elements = malloc (sizeof(STRING) * size);
+	lista->elements = malloc(sizeof(STRING) * size);
 	for(i=0;i<size;i++){
 		lista->elements[i]=malloc(sizeof(struct string));
 		lista->elements[i]->string=malloc(sizeElement);

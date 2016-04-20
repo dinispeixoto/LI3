@@ -1,5 +1,11 @@
 #include "headers/readFiles.h"
 
+static FILE* openFile(char*);
+static int valCli(FILE *,CATALOG_CLIENTS,int*);
+static int valProd(FILE *,CATALOG_PRODUCTS,int*);
+static int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int*);
+
+
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
 validado em memória, na respectiva estrutura. */
 int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,char* clientsFile,char* productsFile,char* salesFile){
@@ -46,7 +52,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		printf("	| Foram lidas %7d linhas.		|\n",validatedClients+invalidatedClients);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedClients);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedClients);
-		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_clients);
+		printf("	| Tempo de leitura: %9f s.	|\n",time_elapsed_clients);
 		printf("	|_______________________________________|\n");
 	}
 	else return 0;
@@ -66,7 +72,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		printf("	| Foram lidas %7d linhas.		|\n",validatedProducts+invalidatedProducts);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedProducts);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedProducts);
-		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_products);
+		printf("	| Tempo de leitura: %9f s.	|\n",time_elapsed_products);
 		printf("	|_______________________________________|\n");
 	}
 	else return 0;
@@ -85,7 +91,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		printf("	| Foram lidas %7d linhas.		|\n",validatedSales+invalidatedSales);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedSales);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedSales);
-		printf("	| Tempo de leitura: %f s.		|\n",time_elapsed_sales);
+		printf("	| Tempo de leitura: %9f s.	|\n",time_elapsed_sales);
 		printf("	|_______________________________________|\n");
 	}
 	else return 0;
@@ -98,7 +104,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 }
 
 
-FILE* openFile(char* fileName){ 
+static FILE* openFile(char* fileName){ 
 	FILE* file;                        
 	file = fopen(fileName,"r");
 	if(!file) printf("Não consegui ler o ficheiro: %s.\n",fileName); 
@@ -107,7 +113,7 @@ FILE* openFile(char* fileName){
 
 
 /* Faz a validação dos clientes. */
-int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
+static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	int invalidated = 0;
 	char buffer[SIZE_BUFFER];
@@ -126,7 +132,7 @@ int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 }
 
 /* Faz a validação dos produtos. */
-int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
+static int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	int invalidated = 0;
 	char buffer[SIZE_BUFFER];
@@ -145,7 +151,7 @@ int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 }
 
 /* Conta quantas linhas do ficheiro com as vendas são válidas. */
-int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,int *validated){
+static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,int *validated){
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int r,invalidated=0;
@@ -155,8 +161,6 @@ int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL
 	double price;
 	char infoP;
 	SALES sales = initSales();
-
-	/* TESTES */
 
 	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
 		

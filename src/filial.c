@@ -2,33 +2,33 @@
 
 
 struct filial{
-	MY_AVL Clients[26];
+	MY_AVL Clients[SIZE_ABC];
 };
 
 struct infoMes{
-	MY_AVL Products[26];
+	MY_AVL Products[SIZE_ABC];
 	int quantity;
 };
 
 struct infoClient{
-	INFO_MES im[12];
+	INFO_MES im[SIZE_MONTH];
 	int Comprou;                           /* soma dos avl->size das 26 letras; dá o total de produtos comprados num ano */
 };
 
 struct infoProduct{
-	int quantity[2];
-	double price[2];
+	int quantity[SIZE_INFOP];
+	double price[SIZE_INFOP];
 };
 
 struct dadosFilial{
-	int quant[3][12];
+	int quant[SIZE_FILIAIS][SIZE_MONTH];
 };
 
 
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c){
 	int i,j;	
-	for(j=0;j<26;j++)
+	for(j=0;j<SIZE_ABC;j++)
 		f->Clients[j] = cloneMyAvl(getC(c,j));
 	return f;
 }
@@ -36,7 +36,7 @@ FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c){
 FILIAL initFilial(){
 	int i;
 	FILIAL filial = malloc(sizeof(struct filial));
-	for(i=0;i<26;i++)
+	for(i=0;i<SIZE_ABC;i++)
 		filial->Clients[i] = initMyAvl();
 	return filial;
 }
@@ -44,7 +44,7 @@ FILIAL initFilial(){
 void freeFilial(FILIAL f){
 	int i;
 	if(f){
-		for(i=0;i<26;i++)
+		for(i=0;i<SIZE_ABC;i++)
 			removeMyAvl(f->Clients[i],freeInfoClient);
 	}
 	free(f);
@@ -54,7 +54,7 @@ void freeInfoClient(void* infoClient){
 	int i;
 	INFO_CLIENT x = (INFO_CLIENT) infoClient;
 	if(x){
-		for(i=0;i<12;i++)
+		for(i=0;i<SIZE_MONTH;i++)
 			freeInfoMes(x->im[i]);
 	}
 	free(x);
@@ -63,7 +63,7 @@ void freeInfoClient(void* infoClient){
 void freeInfoMes(INFO_MES info){
 	int i;
 	if(info){
-		for(i=0;i<26;i++)
+		for(i=0;i<SIZE_ABC;i++)
 			removeMyAvl(info->Products[i],freeInfoProduct);
 	}
 	free(info);
@@ -83,7 +83,7 @@ void freeInfoProduct(void* infoProduct){
 INFO_MES initInfoMes(){
 	int i;
 	INFO_MES im = malloc(sizeof(struct infoMes));
-	for(i=0;i<26;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		im->Products[i]=NULL;
 	}
 	im->quantity=0;
@@ -94,7 +94,7 @@ INFO_CLIENT initInfoClient(){
 	int i,j,k;
 	INFO_CLIENT info = malloc(sizeof(struct infoClient));
 	
-	for(i=0;i<12;i++)
+	for(i=0;i<SIZE_MONTH;i++)
 		info->im[i] = initInfoMes();
 	info->Comprou=0;
 	return info;
@@ -103,7 +103,7 @@ INFO_CLIENT initInfoClient(){
 INFO_PRODUCT initInfoProduct(){
 	int i;
 	INFO_PRODUCT info = malloc(sizeof(struct infoProduct));
-	for(i=0;i<2;i++){
+	for(i=0;i<SIZE_INFOP;i++){
 		info->quantity[i] = 0;
 		info->price[i] = 0;
 	}
@@ -113,8 +113,8 @@ INFO_PRODUCT initInfoProduct(){
 DADOS_FILIAL initDadosFilial(){
 	int i,j;
 	DADOS_FILIAL df = malloc(sizeof(struct dadosFilial));
-	for(i=0;i<3;i++)
-		for(j=0;j<12;j++)
+	for(i=0;i<SIZE_FILIAIS;i++)
+		for(j=0;j<SIZE_MONTH;j++)
 			df->quant[i][j]=0;
 
 	return df;
@@ -160,7 +160,7 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
  		INFO_PRODUCT infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod,&aux);
 
  		if(!infoP) {
- 			infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
+ 			infoP = initInfoProduct(); 
 			infoP = updateInfoP(infoP,s);
 			a = insertMyAvl(a,getProduct(product),infoP,aux);
 		}
@@ -168,7 +168,7 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 	}
 	else{ 
 		infoC->im[month-1]->Products[index_product]=initMyAvl();
-		INFO_PRODUCT infoP = initInfoProduct(); /* TESTAR A FAZER UPDATE E INIT AO MESMO TEMPO A VER SE É MAIS RPD */
+		INFO_PRODUCT infoP = initInfoProduct(); 
 		infoP = updateInfoP(infoP,s);
 		infoC->im[month-1]->Products[index_product]= insertMyAvl(infoC->im[month-1]->Products[index_product],getProduct(product),infoP,1);
 	}

@@ -200,7 +200,7 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 	group = querie2(CatProducts,buffer[0]);
 	totalPages = calculatePagesProducts(group,ELEM_PER_PAGE);		
 
-	printCatalogProds(group,actualPage,totalPages,getListaSize(group));
+	printCatalogProds(group,actualPage,totalPages,getListaSp(group));
 
 	do{
 		printf("	Escolha uma página: ");
@@ -212,7 +212,7 @@ void searchPage(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 			actualPage = page;
 			printf("\e[2J\e[H");
 			printTop(2);
-			printCatalogProds(group,actualPage,totalPages,getListaSize(group));
+			printCatalogProds(group,actualPage,totalPages,getListaSp(group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
@@ -658,7 +658,7 @@ void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	LISTA_STRINGS group = querie7(arrayFiliais);
 	totalPages = calculatePagesClients(group,ELEM_PER_PAGE);		
 
-	printListClients(group,actualPage,totalPages,getListaSize(group));
+	printListClients(group,actualPage,totalPages,getListaSp(group));
 
 	do{
 		printf("	Escolha uma página: ");
@@ -669,7 +669,7 @@ void searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 			actualPage = page;
 			printf("\e[2J\e[H");
 			printTop(7);
-			printListClients(group,actualPage,totalPages,getListaSize(group));
+			printListClients(group,actualPage,totalPages,getListaSp(group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
