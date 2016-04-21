@@ -62,6 +62,7 @@ static int testMemory(CATALOG_PRODUCTS,char*);
 static int calculatePagesProducts(LISTA_STRINGS,int);
 static int calculatePagesClients(LISTA_STRINGS,int);
 static void printTop(int);
+static int exitGereVendas();
 
 
 static void menu(){
@@ -95,7 +96,7 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	switch(num_commando){
 
 		case 0:
-			res = 0;
+			res = exitGereVendas();
 			break;
 
 		case 1: 
@@ -185,6 +186,17 @@ static int cleaningMemory(){
 	return res;
 }
 
+static int exitGereVendas(){
+	printf("\e[2J\e[H"); 	
+	printf(" _______________________________________________________________\n");
+	printf("| 	__   __   _ _                                    _ 	|\n");
+ 	printf("|	\\ \\ / /__| | |_ ___   ___ ___ _ __  _ __ _ _ ___| |	|\n");
+  	printf("|	 \\ V / _ \\ |  _/ -_) (_-</ -_) '  \\| '_ \\ '_/ -_)_|	|\n");
+   	printf("|	  \\_/\\___/_|\\__\\___| /__/\\___|_|_|_| .__/_| \\___(_)	|\n");
+    printf("|                              		   |_|	   		|\n");  		   
+    printf("|_______________________________________________________________|\n");      
+  	return 0;
+}
 
 /* QUERIE 1 */
 
