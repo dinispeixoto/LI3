@@ -4,7 +4,67 @@
 #define PAGE_SIZE 20
 #define BUFFER_SIZE 32
 
-void menu(){
+/* FUNÇÕES PRIVADAS AO MÓDULO */
+static void menu();
+static int cleaningMemory();
+/* QUERIE 1 */
+static int runningReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+static int readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+/* QUERIE 2 */
+static int runningReadCatalog(CATALOG_PRODUCTS CatProducts);
+static int readCatalogIntro(CATALOG_PRODUCTS CatProducts);
+static int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage);
+static void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements);
+/* QUERIE 3 */
+static int runningProductMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static int productMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int month);
+/* QUERIE 4 */
+static int productsNSoldFiliais(int g1,int g2,int g3);
+static int runningProductsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static int productsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElements);
+static int printNSold(LISTA_STRINGS group,int totalPages,int *actualPage);
+/* QUERIE 5 */
+static int runningInfoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static void printClientPurchases(DADOS_FILIAL df,char* clientString);
+/* QUERIE 6 */
+static int periodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static int runningToPeriodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
+static void printDATA(DADOS data,int begin,int end);
+/* QUERIE 7 */
+static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int searchPageListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,int *actualPage);
+static void printListClients(PAGE page_list,int page,int totalPages,int totalElements);
+/* QUERIE 8 */ 
+static int runningClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int listClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group);
+static void printClientsProdFilial(PAGE page_list,int page,int totalPages,int totalElements);
+/* QUERIE 9 */ 
+static int runningClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int searchPageProducts(LISTA_STRINGS group,int *actualPage);
+static void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements);
+/* QUERIE 10 */
+static int runningMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+/* QUERIE 11 */
+static int runningThreeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
+static void printThreeMostPurchased(LISTA_STRINGS group,char* clientString);
+/* QUERIE 12 */
+static int inactiveClientsProducts(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+static void printClientsProducts(int clients,int products);
+/* AUXILIARES */
+static int testMemory(CATALOG_PRODUCTS CatProducts,char* menuName);
+static int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage);
+static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage);
+static void printTop(int i);
+
+
+static void menu(){
 
 	printTop(0);
 	printf("	01. Fazer leitura dos ficheiros.\n");
@@ -21,7 +81,6 @@ void menu(){
 	printf("	12. Clientes e produtos inactivos.			0. Sair.\n");
 	printf("________________________________________________________________________________\n\n");
 }
-
 
 int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 
@@ -45,47 +104,47 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 			break;
 
 		case 2: 
-			res = runningReadCatalog(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningReadCatalog(CatProducts);
 			break;
 
 		case 3: 
-			res = runningProductMonth(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningProductMonth(CatProducts,fact);
 			break;
 
 		case 4: 
-			res = runningProductsNSold(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningProductsNSold(CatProducts,fact);
 			break;
 
 		case 5:
-			res = runningInfoClientPurchases(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningInfoClientPurchases(CatClients,CatProducts,arrayFiliais);
 			break;
 
 		case 6: 
-			res = runningToPeriodMonths(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningToPeriodMonths(CatProducts,fact);
 			break;
 
 		case 7:
-			res = runningListClients(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningListClients(CatProducts,arrayFiliais);
 			break;
 
 		case 8:
-			res = runningClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningClientsProdFilial(CatProducts,arrayFiliais);
 			break;
 
 		case 9:
-			res = runningClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningClientMonth(CatClients,CatProducts,arrayFiliais);
 			break;
 
 		case 10:
-			res = nProductsMostSold(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningMostSold(CatProducts,arrayFiliais,fact);
 			break;
 
 		case 11:
-			res = runningThreeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningThreeMostPurchased(CatClients,CatProducts,arrayFiliais);
 			break;
 
 		case 12:
-			res = inactiveClientsProducts(CatClients,CatProducts,arrayFiliais,fact);
+			res = inactiveClientsProducts(CatProducts,arrayFiliais,fact);
 			break;
 			
 		/*default:
@@ -97,7 +156,7 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	return res;
 }
 
-int cleaningMemory(){
+static int cleaningMemory(){
 	int input,res;
 	char buffer[BUFFER_SIZE];
 	printf("\e[2J\e[H"); 
@@ -126,9 +185,10 @@ int cleaningMemory(){
 	return res;
 }
 
+
 /* QUERIE 1 */
 
-int runningReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 	int running=1;
 	while(running){
 		running = readFiles(CatClients,CatProducts,arrayFiliais,fact);
@@ -136,7 +196,7 @@ int runningReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 	return 1;
 }
 
-int readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 	
 	char rep,info[BUFFER_SIZE],clientsFile[BUFFER_SIZE],productsFile[BUFFER_SIZE],salesFile[BUFFER_SIZE];
 	int size_input,r=1;
@@ -189,21 +249,22 @@ int readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* ar
 
 /* QUERIE 2 */
 
-int runningReadCatalog(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningReadCatalog(CATALOG_PRODUCTS CatProducts){
 	int running=1;
 	while(running){
-		running = readCatalogIntro(CatClients,CatProducts,arrayFiliais,fact);
+		running = readCatalogIntro(CatProducts);
 	}
 	return 1;
 }
 
-int readCatalogIntro(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 	
 	char buffer[BUFFER_SIZE];
-	int size_input,running=1,actualPage=1;
+	int size_input,running=1,actualPage=1,test;
 
 	printf("\e[2J\e[H");
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de Produtos");
+	test = testMemory(CatProducts,"O Catálogo de Produtos");
+	if(test) return 0;
 	printTop(2);
 	printf("							0.Voltar\n");
 	printf("	Letra que deseja procurar: ");
@@ -226,7 +287,7 @@ int readCatalogIntro(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 	return 0;
 }
 
-int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage){
+static int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage){
 
 	int page,totalPages,size_input,page_begin;
 	char string_page[BUFFER_SIZE];
@@ -267,7 +328,7 @@ int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage){
 	return 0;
 }
 
-void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements){
+static void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
@@ -282,17 +343,17 @@ void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements)
 
 /* QUERIE 3 */
 
-int runningProductMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningProductMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 	int running=1;
 	while(running){
-		running = productMonth(CatClients,CatProducts,arrayFiliais,fact);
+		running = productMonth(CatProducts,fact);
 	}
 	return 1;
 }
 
-int productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int productMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 
-	int input,month,exist=0;
+	int input,month,exist=0,test;
 	char c;
 	char rep[BUFFER_SIZE];
 	char productString[BUFFER_SIZE];
@@ -304,7 +365,8 @@ int productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL*
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de informações sobre um produto num determinado mês");
+	test = testMemory(CatProducts,"O Catálogo de informações sobre um produto num determinado mês");
+	if(test) return 0;
 
 	printTop(3);
 
@@ -373,7 +435,7 @@ int productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL*
 	else return 0;
 }
 
-void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int month){
+static void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int month){
 
 	double totalPrice_dataN=0,totalPrice_dataP=0;
 	int totalQuant_dataN=0,totalQuant_dataP=0,filial;
@@ -419,7 +481,7 @@ void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int mon
 
 /* QUERIE 4 */
 
-int productsNSoldFiliais(int g1,int g2,int g3){
+static int productsNSoldFiliais(int g1,int g2,int g3){
 	int filial; char string_filial[BUFFER_SIZE];
 	int input;
 	printf("\e[2J\e[H");
@@ -443,24 +505,25 @@ int productsNSoldFiliais(int g1,int g2,int g3){
 	}
 }
 
-int runningProductsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningProductsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 	int running=1;
 	while(running){
-		running = productsNSold(CatClients,CatProducts,arrayFiliais,fact);
+		running = productsNSold(CatProducts,fact);
 	}
 	return 1;
 }
 
-int productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int productsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 
 	char rep[BUFFER_SIZE];
-	int filial,totalPages,size_input,running=1,actualPage=1;
+	int filial,totalPages,size_input,running=1,actualPage=1,test;
 	LISTA_STRINGS group1,group2,group3,group=NULL;
 
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de Produtos não vendidos");
+	test = testMemory(CatProducts,"O Catálogo de Produtos não vendidos");
+	if(test) return 0;
 
 	printTop(4);
 
@@ -503,7 +566,7 @@ int productsNSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	return 0;
 }
 
-void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElements){
+static void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElements){
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
@@ -516,7 +579,7 @@ void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElements){
 	}
 }
 
-int printNSold(LISTA_STRINGS group,int totalPages,int *actualPage){
+static int printNSold(LISTA_STRINGS group,int totalPages,int *actualPage){
 
 	int size_input,page,page_begin;
 	char string_page[BUFFER_SIZE];
@@ -554,17 +617,17 @@ int printNSold(LISTA_STRINGS group,int totalPages,int *actualPage){
 
 /* QUERIE 5 */
 
-int runningInfoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningInfoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running=1;
 	while(running){
-		running = infoClientPurchases(CatClients,CatProducts,arrayFiliais,fact);
+		running = infoClientPurchases(CatClients,CatProducts,arrayFiliais);
 	}
 	return 1;
 }
 
-int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 
-	int input,exist,i;
+	int input,exist,i,test;
 	char c;
 	char clientString[BUFFER_SIZE];
 	CLIENT clie = initClie();
@@ -573,7 +636,8 @@ int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de informações sobre as compras de um cliente");
+	test = testMemory(CatProducts,"O Catálogo de informações sobre as compras de um cliente");
+	if(test) return 0;
 
 	printTop(5);
 
@@ -613,7 +677,7 @@ int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,
 	else return 0;
 }
 
-void printClientPurchases(DADOS_FILIAL df,char* clientString){
+static void printClientPurchases(DADOS_FILIAL df,char* clientString){
 	int i;
 	printf("\e[2J\e[H");
 	printTop(5);
@@ -629,10 +693,12 @@ void printClientPurchases(DADOS_FILIAL df,char* clientString){
 
 /* QUERIE 6 */
 
-int periodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int periodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 
-	char buff_begin[BUFFER_SIZE];int begin;
-	char buff_end[BUFFER_SIZE]; int end;
+	char buff_begin[BUFFER_SIZE];
+	int begin,test;
+	char buff_end[BUFFER_SIZE]; 
+	int end;
 	int input;
 	char c;
 
@@ -640,7 +706,8 @@ int periodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL*
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de informações sobre um período de meses");
+	test = testMemory(CatProducts,"O Catálogo de informações sobre um período de meses");
+	if(test) return 0;
 
 	printTop(6);
 	printf("							0.Voltar\n");
@@ -687,15 +754,15 @@ int periodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL*
 	else return 1;
 }
 
-int runningToPeriodMonths(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningToPeriodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 	int running=1;
 	while(running){
-		running = periodMonths(CatClients,CatProducts,arrayFiliais,fact);
+		running = periodMonths(CatProducts,fact);
 	}
 	return 1;
 }
 
-void printDATA(DADOS data,int begin,int end){
+static void printDATA(DADOS data,int begin,int end){
 
 	printf("\e[2J\e[H");
 	printTop(6);
@@ -709,26 +776,28 @@ void printDATA(DADOS data,int begin,int end){
 
 /* QUERIE 7 */
 
-int runningListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running=1,actualPage=1;
 	while(running){
-		running = searchPageListClients(CatClients,CatProducts,arrayFiliais,fact,&actualPage);
+		running = searchPageListClients(CatProducts,arrayFiliais,&actualPage);
 	}
 	return 1;
 }
 
-int searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,int *actualPage){
+static int searchPageListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,int *actualPage){
 
-	int page,totalPages,size_input,page_begin;
+	int page,totalPages,size_input,page_begin,test;
 	char string_page[BUFFER_SIZE];
 	PAGE page_list;
-	LISTA_STRINGS group = querie7(arrayFiliais);
-	totalPages = calculatePagesClients(group,PAGE_SIZE);
+	LISTA_STRINGS group; 
 	
 	printf("\e[2J\e[H");
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de clientes que compraram em todas as filiais");
-	printTop(7);
+	test = testMemory(CatProducts,"O Catálogo de clientes que compraram em todas as filiais");
+	if(test) return 0;
 
+	printTop(7);
+	group = querie7(arrayFiliais);
+	totalPages = calculatePagesClients(group,PAGE_SIZE);
 	page_begin = (PAGE_SIZE*(*actualPage-1));
 	page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);	
 
@@ -758,7 +827,7 @@ int searchPageListClients(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduct
 	return 0;
 }
 
-void printListClients(PAGE page_list,int page,int totalPages,int totalElements){
+static void printListClients(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
@@ -774,17 +843,17 @@ void printListClients(PAGE page_list,int page,int totalPages,int totalElements){
 
 /* QUERIE 8 */
 
-int runningClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running=1;
 	while(running){
-		running = listClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
+		running = listClientsProdFilial(CatProducts,arrayFiliais);
 	}
 	return 1;
 }
 
-int listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int listClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 
-	int filial,exist,input,actualPage=1,running=1,running2=1;
+	int filial,exist,input,actualPage=1,running=1,running2=1,test;
 	char productString[BUFFER_SIZE],stringFilial[BUFFER_SIZE],stringPromo[BUFFER_SIZE];
 	LISTA_STRINGS group_N;
 	LISTA_STRINGS group_P;
@@ -793,7 +862,8 @@ int listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduct
 
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de informações sobre um produto num determinado filial");
+	test = testMemory(CatProducts,"O Catálogo de informações sobre um produto num determinado filial");
+	if(test) return 0;
 
 	printTop(8);
 
@@ -863,7 +933,7 @@ int listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduct
 	return 0;
 }
 
-int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group){
+static int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group){
 
 	char string_page[BUFFER_SIZE];
 	int page,totalPages,size_input,page_begin;
@@ -903,7 +973,7 @@ int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group){
 	return 0;
 }
 
-void printClientsProdFilial(PAGE page_list,int page,int totalPages,int totalElements){
+static void printClientsProdFilial(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
 	if(totalPages){
 		printf("	Página %d de %d.\n",page,totalPages);
@@ -920,24 +990,27 @@ void printClientsProdFilial(PAGE page_list,int page,int totalPages,int totalElem
 
 /* QUERIE 9 */
 
-int runningClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running = 1;
 	while(running){
-		running = infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+		running = infoClientMonth(CatClients,CatProducts,arrayFiliais);
 	}
 	return 1;
 }
 
-int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 
 	char clientString[BUFFER_SIZE];
 	char buff_month[BUFFER_SIZE];
-	int month,input,exist,actualPage = 1,running = 1;
+	int month,input,exist,actualPage = 1,running = 1,test;
 	LISTA_STRINGS group;
 	CLIENT clie = initClie();
 
 	printf("\e[2J\e[H");
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
+
+	test = testMemory(CatProducts,"O Catálogo de produtos que um cliente mais comprou");
+	if(test) return 0;
+
 	printTop(9);
 
 	printf("							0.Voltar\n");
@@ -976,7 +1049,7 @@ int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILI
 	return 0;
 }
 
-int searchPageProducts(LISTA_STRINGS group,int *actualPage){
+static int searchPageProducts(LISTA_STRINGS group,int *actualPage){
 
 	int page,totalPages,size_input,page_begin;
 	PAGE page_list;
@@ -1016,7 +1089,7 @@ int searchPageProducts(LISTA_STRINGS group,int *actualPage){
 	return 0;
 }
 
-void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements){
+static void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
@@ -1032,21 +1105,24 @@ void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements)
 
 /* QUERIE 10 */
 
-int runningMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 	int running = 1;
 	while(running){
-		running = nProductsMostSold(CatClients,CatProducts,arrayFiliais,fact);
+		running = nProductsMostSold(CatProducts,arrayFiliais,fact);
 	}
 	return 1;
 }
 
-int nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 
 	LISTA_STRINGS group;
-	int filial,input,quant,i,j;
+	int filial,input,quant,i,j,test;
 	char buff_quant[BUFFER_SIZE];
 	printf("\e[2J\e[H");
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
+
+	test = testMemory(CatProducts,"O Catálogo de produtos que um cliente mais comprou");
+	if(test) return 0;
+
 	printTop(10);
 
 	printf("							0.Voltar\n");
@@ -1097,23 +1173,26 @@ int nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FI
 
 /* QUERIE 11 */
 
-int runningThreeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningThreeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running=1;
 	while(running){
-		running = threeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+		running = threeMostPurchased(CatClients,CatProducts,arrayFiliais);
 	}
 	return 1;
 }
 
-int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 
-	int exist,input;
+	int exist,input,test;
 	char clientString[BUFFER_SIZE],c;
 	LISTA_STRINGS group;
 	CLIENT clie = initClie();
 
 	printf("\e[2J\e[H");
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo dos três produtos em que um cliente gastou mais dinheiro");
+
+	test = testMemory(CatProducts,"O Catálogo dos três produtos em que um cliente gastou mais dinheiro");
+	if(test) return 0;
+
 	printTop(11);
 
 	printf("							0.Voltar\n");
@@ -1147,7 +1226,7 @@ int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,F
 	else return 1;
 }
 
-void printThreeMostPurchased(LISTA_STRINGS group,char* clientString){
+static void printThreeMostPurchased(LISTA_STRINGS group,char* clientString){
 	int i;
 	printf("\e[2J\e[H");
 	printTop(11);
@@ -1163,13 +1242,14 @@ void printThreeMostPurchased(LISTA_STRINGS group,char* clientString){
 
 /* QUERIE 12 */
 
-int inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int inactiveClientsProducts(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 
-	int clients = 0;
+	int clients = 0,test;
 	int products = 0;
 	printf("\e[2J\e[H");
 
-	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos e clientes inactivos");
+	test = testMemory(CatProducts,"O Catálogo de produtos e clientes inactivos");
+	if(test) return 1;
 
 	printTop(12);
 	products = querie12(arrayFiliais,fact,&clients);
@@ -1186,7 +1266,7 @@ int inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProdu
 	return 1;	
 }
 
-void printClientsProducts(int clients,int products){
+static void printClientsProducts(int clients,int products){
 	printf("	 _____________________________________________________\n");
 	printf("	|                                                     |\n");
 	printf("	| Total de clientes que nunca compraram : %5d       |\n",clients);
@@ -1198,7 +1278,8 @@ void printClientsProducts(int clients,int products){
 
 /* AUXILIARES */
 
-void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact,char* menuName){
+static int testMemory(CATALOG_PRODUCTS CatProducts,char* menuName){
+	int r=0;
 	if(!totalProducts(CatProducts)){
 		putchar('\n');
 		printf("		 %s\n",menuName);
@@ -1207,23 +1288,24 @@ void testMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* 
 		while(getchar()!='\n');
 		while(getchar()!='\n');
 		printf("\e[2J\e[H");
-		interpretador(CatClients,CatProducts,arrayFiliais,fact);
+		r=1;
 	}
+	return r;
 }
 
-int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage){
+static int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage){
 	int totalPages = (getListaSp(group)/elemPerPage);
 	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;
 }
 
-int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){   /* ESTA AGORA É IGUAL À ANTERIOR!!! */
+static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){   /* ESTA AGORA É IGUAL À ANTERIOR!!! */
 	int totalPages = (getListaSp(group)/elemPerPage);
 	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;
 }
 
-void printTop(int i){
+static void printTop(int i){
 
 	printf("________________________________________________________________________________\n");
 
