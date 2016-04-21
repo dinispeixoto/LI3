@@ -107,10 +107,10 @@ static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	int invalidated = 0;
 	char buffer[SIZE_BUFFER];
-	CLIENT line = malloc(sizeof(CLIENT));
+	CLIENT line = initClie();
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-		line = setClient(strtok(buffer,"\r\n"));
+		line = setClient(line,strtok(buffer,"\r\n"));
 		if(testClient(line)){
 			Catalog = insertClient(Catalog,line);
 			(*validated)++;
@@ -126,10 +126,10 @@ static int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	int invalidated = 0;
 	char buffer[SIZE_BUFFER];
-	PRODUCT line = malloc(sizeof(PRODUCT));
+	PRODUCT line =initProd();
 
 	while(fgets(buffer,SIZE_BUFFER,file)!=NULL){
-		line = setProduct(strtok(buffer,"\r\n"));
+		line = setProduct(line,strtok(buffer,"\r\n"));
 		if(testProduct(line)){
 			Catalog = insertProduct(Catalog,line);
 			(*validated)++;
@@ -145,11 +145,11 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 
 	char buffer[SIZE_BUF_SALES],*line;
 	int r,invalidated=0;
-	CLIENT clie = NULL;
-	PRODUCT prod = NULL;
 	int month,filial,quant;
 	double price;
 	char infoP;
+	CLIENT clie=initClie(); 
+	PRODUCT prod=initProd();
 	SALES sales = initSales();
 
 	while(fgets(buffer,SIZE_BUF_SALES,file)!=NULL){
@@ -159,7 +159,8 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 		/* verificar, em caso positivo alocar espaço para a string e copia-la para o array. */
 		r = partCheck(line,clients,products,&clie,&prod,&month,&filial,&quant,&price,&infoP);
 		if(r){
-			sales = updateSales(clie,prod,month,filial,quant,price,infoP);
+
+			sales = updateSales(sales,clie,prod,month,filial,quant,price,infoP);
 			insereFact(fact,sales);
 
 			switch(filial){
@@ -173,7 +174,9 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 		else invalidated++;
 
 	}
-
+	free(sales);
+	freeProduct(prod);
+	freeClient(clie);
 	return invalidated;
 }
 

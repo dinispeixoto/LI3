@@ -55,6 +55,7 @@ void freeFact(FACTURACAO f){
 	for(i=0;i<SIZE_MONTH;i++) freeTotalMes(f->total_mes[i]);
 	for(i=0;i<SIZE_ABC;i++) removeMyAvl(f->prod[i],freeInfo);
 	free(f);
+	f=NULL;
 }
 
 void freeInfo(void* info){
@@ -101,18 +102,21 @@ FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 FACTURACAO insereFact(FACTURACAO f,SALES s){
 
 	void* y;
-	int index = getProduct(getSalesProduct(s))[0]-'A';
+	char* prod = getProduct(getSalesProduct(s));
+	int index = prod[0]-'A';
+	Avl nodo=getAvl(f->prod[index]);
+	void* x = (INFO)findInfo(nodo,prod,NULL);
 	
-	void* x = (INFO)findInfo(getAvl(f->prod[index]),getProduct(getSalesProduct(s)),NULL);
-
 	if(x)
 		x = copyInfoFact(s,x,f);
 	else {
 		INFO i = initINFO();
 		i = copyInfoFact(s,i,f);
 		y = i;
-		f->prod[index] = insertMyAvl(f->prod[index],getProduct(getSalesProduct(s)),y,1);
+		f->prod[index] = insertMyAvl(f->prod[index],prod,y,1);
 	}
+	freeNodo(nodo);
+	free(prod);
 	return f;
 }
 

@@ -14,6 +14,7 @@ typedef struct catp *CATALOG_PRODUCTS;
 
 
 CATALOG_PRODUCTS initProducts();
+PRODUCT initProd();
 CATALOG_PRODUCTS insertProduct(CATALOG_PRODUCTS, PRODUCT);
 BOOL testProduct (PRODUCT);
 BOOL existProduct(CATALOG_PRODUCTS, PRODUCT);
@@ -26,7 +27,7 @@ int totalProducts(CATALOG_PRODUCTS);
 
 /* GETS & SETS */
 char* getProduct(PRODUCT);
-PRODUCT setProduct(char*);
+PRODUCT setProduct(PRODUCT,char*);
 MY_AVL getP(CATALOG_PRODUCTS, int);
 
 #endif

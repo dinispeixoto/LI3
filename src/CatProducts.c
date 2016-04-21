@@ -17,6 +17,12 @@ CATALOG_PRODUCTS initProducts(){
 	return Catalog;
 }
 
+PRODUCT initProd(){
+	PRODUCT prod = malloc(sizeof(struct product));
+	prod->string = NULL;
+	return prod;
+}
+
 void freeProduct(PRODUCT prod){
 	free(prod->string);
 	free(prod);
@@ -79,16 +85,18 @@ BOOL testProduct (PRODUCT prod){
 /* GETS E SETS */
 
 char* getProduct(PRODUCT prod){
-	return prod->string;
+	char* new = malloc((strlen(prod->string)+1)*sizeof(char));
+	strcpy(new,prod->string);
+	return new;
 }
 
 MY_AVL getP(CATALOG_PRODUCTS p, int x){
 	return p->CatProducts[x];
 }
 
-PRODUCT setProduct(char* string){
-	PRODUCT prod = malloc(sizeof(struct product));
-	prod->string = malloc(SIZE_PRODUCTS);
-	strcpy(prod->string,string);
-	return prod;
+PRODUCT setProduct(PRODUCT p,char* string){
+	if(!p->string)
+		p->string = malloc((strlen(string)+1)*sizeof(char));
+	strcpy(p->string,string);
+	return p;
 }

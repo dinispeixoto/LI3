@@ -7,9 +7,9 @@
 typedef struct heap *Heap;
 
 Heap initHeap (int );
-int insertHeap (Heap , int ,char*);
+int insertHeap (Heap , double ,char*);
 char*  extractMax (Heap );
-char* extractMaxQuantity(Heap h,int* res);
+char* extractMaxQuantity(Heap h,double* res);
 
 int getHeapUsed(Heap);
 int getMax(Heap );

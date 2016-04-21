@@ -35,63 +35,28 @@ CLIENT getSalesClient(SALES a){
 	return a->client;
 }
 
-SALES setSalesClient(CLIENT c,SALES a){
-	a->client = setClient(getClient(c));
-	return a;
-}
-
 PRODUCT getSalesProduct(SALES a){
 	return a->product;
-}
-
-SALES setSalesProduct(PRODUCT c,SALES a){
-	a->product = setProduct(getProduct(c));
-	return a;
 }
 
 PRICE getSalesPrice(SALES a){
 	return a->price;
 }
 
-SALES setSalesPrice(PRICE c,SALES a){
-	a->price = c;
-	return a;
-}
-
 QUANTITY getSalesQuantity(SALES a){
 	return a->quantity;
-}
-
-SALES setSalesQuantity(QUANTITY c,SALES a){
-	a->quantity = c;
-	return a;
 }
 
 INFO_PROMO getSalesInfoPromo(SALES a){
 	return a->infoPromo;
 }
 
-SALES setSalesInfoPromo(INFO_PROMO c,SALES a){
-	a->infoPromo = c;
-	return a;
-}
-
 FILIAIS getSalesFilial(SALES a){
 	return a->filial;
 }
 
-SALES setSalesFilial(FILIAIS c,SALES a){
-	a->filial = c;
-	return a;
-}
-
 MONTH getSalesMonth(SALES a){
 	return a->month;
-}
-
-SALES setSalesMonth(MONTH c,SALES a){
-	a->month = c;
-	return a;
 }
 
 /*Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente exitem, 
@@ -105,11 +70,11 @@ int partCheck(char* line, CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,CLIE
 
 	for(i=0;token != NULL;i++){
 		switch(i){
-			case 0: *prod = setProduct(token); break;
+			case 0: *prod = setProduct(*prod,token); break;
 			case 1: *price = atof(token); break;
 			case 2: *quant = atoi(token); break;
 			case 3: *infoP = token[0]; break;
-			case 4: *clie = setClient(token); break;
+			case 4: *clie = setClient(*clie,token); break;
 			case 5: *month = atoi(token); break;
 			case 6: *filial = atoi(token); break;
 		}
@@ -140,8 +105,7 @@ static int testSales(CLIENT clie, PRODUCT prod,double price, int quantity, char 
   else return 1;
 }
 
-SALES updateSales(CLIENT clie,PRODUCT prod,MONTH month,FILIAIS filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
-	SALES sale = initSales();
+SALES updateSales(SALES sale,CLIENT clie,PRODUCT prod,MONTH month,FILIAIS filial,QUANTITY quant,PRICE price,INFO_PROMO infoP){
 	sale->client = clie;
 	sale->product = prod;
 	sale->month = month;

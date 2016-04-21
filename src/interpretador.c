@@ -34,7 +34,8 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 
 	switch(num_commando){
 
-		case 0: 
+		case 0:
+			freeMemory(CatClients,CatProducts,arrayFiliais,fact); 
 			exit(0); 
 			break;
 
@@ -270,7 +271,7 @@ void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	DADOS dataN;
 	DADOS dataP;
 
-	PRODUCT prod = malloc(sizeof(PRODUCT));
+	PRODUCT prod = initProd();
 
 	printf("\e[2J\e[H");
 
@@ -299,7 +300,7 @@ void productMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	if(!strcmp(productString,"0")){
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	}
-	prod = setProduct(productString);
+	prod = setProduct(prod,productString);
 	exist = existProduct(CatProducts,prod);
 
 	if(!exist){
@@ -344,12 +345,12 @@ void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int mon
 
 	double totalPrice_dataN=0,totalPrice_dataP=0;
 	int totalQuant_dataN=0,totalQuant_dataP=0,filial;
-
+	char* product=getProduct(prod);
 	printf("\e[2J\e[H");
 	printTop(3);
 
 	if(isTotal){
-		printf("	Informação total sobre o produto '%s' no mês '%d'.\n\n",getProduct(prod),month);
+		printf("	Informação total sobre o produto '%s' no mês '%d'.\n\n",product,month);
 		for(filial=0;filial<3;filial++){
 			totalPrice_dataN+=getDadosP(dataN)[filial];
 			totalPrice_dataP+=getDadosP(dataP)[filial];
@@ -366,7 +367,7 @@ void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int mon
 	}
 
 	else{
-		printf("	Informação por filial sobre o produto '%s' no mês '%d'.\n",getProduct(prod),month);
+		printf("	Informação por filial sobre o produto '%s' no mês '%d'.\n",product,month);
 		for(filial=0;filial<3;filial++){
 			printf("	_________________________________________\n");
 			printf("	 		FILIAL %d\n",filial+1); 
@@ -379,6 +380,7 @@ void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int mon
 			printf("	  Total vendido: %d\n",getDadosQ(dataP)[filial]);
 		}
 	}
+	free(prod);
 }
 
 
@@ -519,7 +521,7 @@ void infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts
 	int input,exist,i;
 	char c;
 	char clientString[BUFFER_SIZE];
-	CLIENT clie = malloc(sizeof(CLIENT));
+	CLIENT clie = initClie();
 
 	DADOS_FILIAL df_1 = initDadosFilial();
 
@@ -539,7 +541,7 @@ void infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	}
 
-	clie = setClient(clientString);
+	clie = setClient(clie,clientString);
 	exist = existClient(CatClients,clie);
 
 	if(!exist && input){
@@ -739,7 +741,7 @@ void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 	LISTA_STRINGS group_N;
 	LISTA_STRINGS group_P;
 
-	PRODUCT prod = malloc(sizeof(PRODUCT));
+	PRODUCT prod = initProd();
 
 	printf("\e[2J\e[H");
 
@@ -758,7 +760,7 @@ void listClientsProdFilial(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	}
 
-	prod = setProduct(productString);
+	prod = setProduct(prod,productString);
 	exist = existProduct(CatProducts,prod);
 
 	if(!exist && input){
@@ -869,7 +871,7 @@ void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 	char buff_month[BUFFER_SIZE];
 	int month,input,exist;
 	LISTA_STRINGS group;
-	CLIENT clie = malloc(sizeof(CLIENT));
+	CLIENT clie = initClie();
 
 	printf("\e[2J\e[H");
 	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
@@ -885,7 +887,7 @@ void infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FIL
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	}
 
-	clie = setClient(clientString);
+	clie = setClient(clie,clientString);
 	exist = existClient(CatClients,clie);
 
 	if(!exist && input){
@@ -1044,7 +1046,7 @@ void threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,
 	int exist,input;
 	char clientString[BUFFER_SIZE],c;
 	LISTA_STRINGS group;
-	CLIENT clie = malloc(sizeof(CLIENT));
+	CLIENT clie = initClie();
 
 	printf("\e[2J\e[H");
 	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo dos três produtos em que um cliente gastou mais dinheiro");
@@ -1060,7 +1062,7 @@ void threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,
 		backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	}
 
-	clie = setClient(clientString);
+	clie = setClient(clie,clientString);
 	exist = existClient(CatClients,clie);
 
 	if(!exist && input){

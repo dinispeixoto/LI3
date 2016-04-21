@@ -3,10 +3,9 @@
 #define PARENT(i) (i-1)/2  /* os indices do array começam em 0 */
 #define LEFT(i) 2*i + 1
 #define RIGHT(i) 2*i + 2
-#define SIZE_PRODUCTS 7
 
 struct elem{
-    int valor;
+    double valor;
     char* c;
 };
 
@@ -39,7 +38,7 @@ void bubbleUp (Heap h, int i) {
     }    
 }
 
-int  insertHeap (Heap h, int x,char* ct) {
+int  insertHeap (Heap h, double x,char* ct) {
     
     if (h->used == h->size) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
@@ -79,7 +78,7 @@ char*  extractMax(Heap h){
 }
 
 
-char* extractMaxQuantity(Heap h,int* res){
+char* extractMaxQuantity(Heap h,double* res){
 if (h->used > 0) {
         char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
         strcpy(r,h->values[0].c);

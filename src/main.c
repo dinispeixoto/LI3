@@ -17,12 +17,13 @@ int main(){
 	int i;
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
-	FACTURACAO fact = initFact();
-	FILIAL arrayFiliais[3];
+	FACTURACAO Fact = initFact();
+	FILIAL Filiais[3];
 
 	for(i=0;i<3;i++)
-		arrayFiliais[i] = initFilial();
+		Filiais[i] = initFilial();
 
-	interpretador(CatClients,CatProducts,arrayFiliais,fact);
+	interpretador(CatClients,CatProducts,Filiais,Fact);
+
 	return 0;
 }

@@ -182,6 +182,7 @@ void removeAvl(Avl estrutura,Func freeInfo){
 	if(estrutura != NULL){
 		removeAvl(estrutura->right,freeInfo);
 		removeAvl(estrutura->left,freeInfo);
+		free(estrutura->code);
 		if(freeInfo!=NULL)
 			freeInfo(estrutura->info);
 		free(estrutura);
@@ -225,23 +226,33 @@ MY_AVL cloneMyAvl (MY_AVL estrutura){
 	else aux=NULL;
 	return aux;
 }
-
+/*
 void removeFromMY_AVL (MY_AVL* a, int x){
 	int i;
 	for(i=0;i<x;i++){
 		removeFromMY_AVL_AUX(a[i]->avl);
+		free(a[i]);
 	}
+	free(a);
+	a=NULL;
 }
 
 static void removeFromMY_AVL_AUX (Avl a){
 	if(a){
 		removeFromMY_AVL_AUX(a->left);
 		removeFromMY_AVL_AUX(a->right);
+		free(a->code);
 		free(a);
 	}
 	else free (a);
+	a=NULL;
 }
+*/
 
+void freeNodo(Avl a){
+	free(a->code);
+	free(a);
+}
 
 int infoNULL(Avl a){
 	int r=0;
@@ -257,16 +268,50 @@ int infoNULL(Avl a){
 /* GETS E SETS */ 
 
 Avl getAvl(MY_AVL estrutura){
-	return estrutura->avl;
+	Avl aux;
+	if(estrutura->avl){
+		aux = malloc (sizeof(struct avl));
+		aux->code = malloc((strlen(estrutura->avl->code)+1)*sizeof(char));
+		strcpy(aux->code,estrutura->avl->code);
+		aux->height=estrutura->avl->height;
+		aux->info=estrutura->avl->info;
+		aux->left=estrutura->avl->left;
+		aux->right=estrutura->avl->right;
+	}
+	else return NULL;
+	return aux;
 }
 
 Avl getAvlLeft(Avl a){
-	return a->left;
+	Avl aux;
+	if(a->left){
+		aux = malloc (sizeof(struct avl));
+		aux->code = malloc((strlen(a->left->code)+1)*sizeof(char));
+		strcpy(aux->code,a->left->code);
+		aux->height=a->left->height;
+		aux->info=a->left->info;
+		aux->left=a->left->left;
+		aux->right=a->left->right;
+	}
+	else return NULL;
+	return aux;
 }
 
 Avl getAvlRight(Avl a){
-	return a->right;
+	Avl aux;
+	if(a->right){
+		aux = malloc (sizeof(struct avl));
+		aux->code = malloc((strlen(a->right->code)+1)*sizeof(char));
+		strcpy(aux->code,a->right->code);
+		aux->height=a->right->height;
+		aux->info=a->right->info;
+		aux->left=a->right->left;
+		aux->right=a->right->right;
+	}
+	else return NULL;
+	return aux;
 }
+
 
 int getSize(MY_AVL a){
 	return a->total;
@@ -284,11 +329,6 @@ char* getAvlCode(Avl a){
 	char* new = malloc((strlen(a->code)+1)*sizeof(char));
 	strcpy(new,a->code);
 	return new;
-}
-
-Avl setAv(Avl c, Avl d){
-	c=d;
-	return c;
 }
 
 void setAvl(MY_AVL a, Avl b){

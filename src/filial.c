@@ -123,19 +123,22 @@ DADOS_FILIAL initDadosFilial(){
 FILIAL insertFilial(FILIAL f,SALES s){
 	
 	CLIENT client = getSalesClient(s);
-
-	int index_client = getClient(client)[0]-'A';
-
-	INFO_CLIENT infoC = (INFO_CLIENT) findInfo(getAvl(f->Clients[index_client]),getClient(client),NULL);
+	char* cli = getClient(client);
+	int index_client = cli[0]-'A';
+	Avl nodo=getAvl(f->Clients[index_client]);
+	INFO_CLIENT infoC = (INFO_CLIENT) findInfo(nodo,cli,NULL);
 
 	if(!infoC){
 		infoC = initInfoClient();
 		infoC = updateInfoC(infoC,s);
-		f->Clients[index_client] = insertMyAvl(f->Clients[index_client],getClient(client),infoC,1);
+		f->Clients[index_client] = insertMyAvl(f->Clients[index_client],cli,infoC,1);
 	}
 	else infoC = updateInfoC(infoC,s);
 
 	infoC->Comprou=1;
+
+	if(nodo)freeNodo(nodo);
+	free(cli);
 	return f;
 
 }
@@ -150,15 +153,15 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 	INFO_PRODUCT infoP;
 
  	MY_AVL a = infoC->info_mes[month-1]->Products[index_product];
-
+ 	Avl nodo=NULL;
  	if(a){
-
- 		infoP = (INFO_PRODUCT) findInfo(getAvl(a),prod,&aux);
+ 		nodo=getAvl(a);
+ 		infoP = (INFO_PRODUCT) findInfo(nodo,prod,&aux);
 
  		if(!infoP) {
  			infoP = initInfoProduct(); 
 			infoP = updateInfoP(infoP,s);
-			a = insertMyAvl(a,getProduct(product),infoP,aux);
+			a = insertMyAvl(a,prod,infoP,aux);
 		}
 		else infoP = updateInfoP(infoP,s);
 	}
@@ -166,12 +169,13 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s){
 		infoC->info_mes[month-1]->Products[index_product]=initMyAvl();
 		infoP = initInfoProduct(); 
 		infoP = updateInfoP(infoP,s);
-		infoC->info_mes[month-1]->Products[index_product]= insertMyAvl(infoC->info_mes[month-1]->Products[index_product],getProduct(product),infoP,1);
+		infoC->info_mes[month-1]->Products[index_product]= insertMyAvl(infoC->info_mes[month-1]->Products[index_product],prod,infoP,1);
 	}
 	
 
 	infoC->info_mes[month-1]->quantity+=getSalesQuantity(s);
-
+	if(nodo)freeNodo(nodo);
+	free(prod);
  	return infoC;
 }
 

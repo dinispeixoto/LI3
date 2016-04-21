@@ -134,12 +134,15 @@ LISTA_STRINGS querie7 (FILIAL* f){
 
 static LISTA_STRINGS removeList(Avl a,LISTA_STRINGS list ){
 	void* x;
+	char* client;
 	if(a){
 		removeList(getAvlLeft(a),list);
-		x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
+		client=getAvlCode(a);
+		x = (INFO_CLIENT)findInfo(a,client,NULL);
 		if(!getComp(x)){
-			removeListaStrings(list,getAvlCode(a));
+			removeListaStrings(list,client);
 		}
+		free(client);
 		removeList(getAvlRight(a),list);
 	}
 	return list;
@@ -147,28 +150,44 @@ static LISTA_STRINGS removeList(Avl a,LISTA_STRINGS list ){
 
 static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS list){
 	void* x;
+	Avl aux;
+	char* client;
 	if(a){
-		insereList(getAvlLeft(a),list);
+		aux=getAvlLeft(a);
+		insereList(aux,list);
+		if(aux){freeNodo(aux);
+				aux=NULL;}
+		client=getAvlCode(a);
 		x = (INFO_CLIENT)findInfo(a,getAvlCode(a),NULL);
+		free(client);
 		if(getComp(x)){
 			addListaStrings(list,getListaSp(list),getAvlCode(a));
 			list=reallocListaStrings(list);
 		}
-		insereList(getAvlRight(a),list);
+		aux=getAvlRight(a);
+		insereList(aux,list);
+		if(aux){freeNodo(aux);
+				aux=NULL;}
 	}
 	return list;
 }
 
 static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
-
+	Avl aux;
 	for(j=0;j<SIZE_ABC;j++){
+		aux=getAvl(getClientIndexF(f[0],j));
 		insereList(getAvl(getClientIndexF(f[0],j)),list);
+		freeNodo(aux);
+		aux=NULL;
 		}
 
 	for(i=1;i<SIZE_FILIAIS;i++){
 		for(j=0;j<SIZE_ABC;j++){
-			removeList(getAvl(getClientIndexF(f[i],j)),list);
+			aux=getAvl(getClientIndexF(f[i],j));
+			removeList(aux,list);
+			freeNodo(aux);
+			aux=NULL;
 			}
 		}
 	return list;
@@ -290,7 +309,8 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 
 /*#################################QUERIE 10#####################################*/
 static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados,int*num,char** prod){
-	int i,a=0,n=total,res;
+	int i,a=0,n=total;
+	double res;
 	char* aux;
 	while(0<total){
 		aux=getString(heap ,0);
@@ -303,7 +323,7 @@ static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados,
 		}
 			free(aux);
 			addListaStrings(group,getListaSp(group),extractMaxQuantity(heap,&res));
-			dados[1][a]=res;
+			dados[1][a]=(int)res;
 			group=reallocListaStrings(group);
 			total--;
 			a++;
@@ -408,12 +428,12 @@ LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial,int** dados){
 
 /*#################################QUERIE 11#####################################*/
 
-static int quant2(INFO_PRODUCT ip){
+static double quant2(INFO_PRODUCT ip){
 	return (getInfoProductPrice(ip,0)+getInfoProductPrice(ip,1));
 }
 
 static Heap highCost2 (Avl a,Heap hp){
-	int r;
+	double r;
 	void* x;
 	char* copy;
 	if(a){
