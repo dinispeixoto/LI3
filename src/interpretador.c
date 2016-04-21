@@ -8,60 +8,60 @@
 static void menu();
 static int cleaningMemory();
 /* QUERIE 1 */
-static int runningReadFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
-static int readFiles(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+static int runningReadFiles(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+static int readFiles(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 /* QUERIE 2 */
-static int runningReadCatalog(CATALOG_PRODUCTS CatProducts);
-static int readCatalogIntro(CATALOG_PRODUCTS CatProducts);
-static int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage);
-static void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements);
+static int runningReadCatalog(CATALOG_PRODUCTS);
+static int readCatalogIntro(CATALOG_PRODUCTS);
+static int searchPage(CATALOG_PRODUCTS,char*,int*);
+static void printCatalogProds(PAGE,int,int,int);
 /* QUERIE 3 */
-static int runningProductMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static int productMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static void printProductMonth(DADOS dataN, DADOS dataP,int isTotal,PRODUCT prod,int month);
+static int runningProductMonth(CATALOG_PRODUCTS,FACTURACAO);
+static int productMonth(CATALOG_PRODUCTS,FACTURACAO);
+static void printProductMonth(DADOS,DADOS,int,PRODUCT,int);
 /* QUERIE 4 */
-static int productsNSoldFiliais(int g1,int g2,int g3);
-static int runningProductsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static int productsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElements);
-static int printNSold(LISTA_STRINGS group,int totalPages,int *actualPage);
+static int productsNSoldFiliais(int,int,int);
+static int runningProductsNSold(CATALOG_PRODUCTS,FACTURACAO);
+static int productsNSold(CATALOG_PRODUCTS,FACTURACAO);
+static void printPageNSold(PAGE,int,int,int);
+static int printNSold(LISTA_STRINGS,int,int*);
 /* QUERIE 5 */
-static int runningInfoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static void printClientPurchases(DADOS_FILIAL df,char* clientString);
+static int runningInfoClientPurchases(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static int infoClientPurchases(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static void printClientPurchases(DADOS_FILIAL,char*);
 /* QUERIE 6 */
-static int periodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static int runningToPeriodMonths(CATALOG_PRODUCTS CatProducts,FACTURACAO fact);
-static void printDATA(DADOS data,int begin,int end);
+static int periodMonths(CATALOG_PRODUCTS,FACTURACAO);
+static int runningToPeriodMonths(CATALOG_PRODUCTS,FACTURACAO);
+static void printDATA(DADOS,int,int);
 /* QUERIE 7 */
-static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int searchPageListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,int *actualPage);
-static void printListClients(PAGE page_list,int page,int totalPages,int totalElements);
+static int runningListClients(CATALOG_PRODUCTS,FILIAL*);
+static int searchPageListClients(CATALOG_PRODUCTS,FILIAL*,int*);
+static void printListClients(PAGE,int,int,int);
 /* QUERIE 8 */ 
-static int runningClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int listClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group);
-static void printClientsProdFilial(PAGE page_list,int page,int totalPages,int totalElements);
+static int runningClientsProdFilial(CATALOG_PRODUCTS,FILIAL*);
+static int listClientsProdFilial(CATALOG_PRODUCTS,FILIAL*);
+static int searchPageListClientsProdFilial(int*,LISTA_STRINGS*);
+static void printClientsProdFilial(PAGE,int,int,int);
 /* QUERIE 9 */ 
-static int runningClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int searchPageProducts(LISTA_STRINGS group,int *actualPage);
-static void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements);
+static int runningClientMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static int infoClientMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static int searchPageProducts(LISTA_STRINGS,int*);
+static void printPageMostSold(PAGE,int,int,int);
 /* QUERIE 10 */
-static int runningMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
-static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
+static int runningMostSold(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+static int nProductsMostSold(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 /* QUERIE 11 */
-static int runningThreeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais);
-static void printThreeMostPurchased(LISTA_STRINGS group,char* clientString);
+static int runningThreeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static int threeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
+static void printThreeMostPurchased(LISTA_STRINGS,char*);
 /* QUERIE 12 */
-static int inactiveClientsProducts(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact);
-static void printClientsProducts(int clients,int products);
+static int inactiveClientsProducts(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+static void printClientsProducts(int,int);
 /* AUXILIARES */
-static int testMemory(CATALOG_PRODUCTS CatProducts,char* menuName);
-static int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage);
-static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage);
-static void printTop(int i);
+static int testMemory(CATALOG_PRODUCTS,char*);
+static int calculatePagesProducts(LISTA_STRINGS,int);
+static int calculatePagesClients(LISTA_STRINGS,int);
+static void printTop(int);
 
 
 static void menu(){
