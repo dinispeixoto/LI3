@@ -1,3 +1,12 @@
+/** @file interpretador.h
+ *  @brief Protótipos das funções que trabalham com o Interpretador.
+ *
+ *  O ficheiro contém os protótipos das funçoes
+ *  que implemetam o Interpretador, assim como a implementação das estruturas necessárias e macros.
+ *
+ *  @author Grupo 33
+ */
+
 #ifndef __INTERPRETADOR_H__
 #define __INTERPRETADOR_H__
 
@@ -14,12 +23,28 @@
 #include "queries.h"
 #include "listaStrings.h"
 
+/**
+ * @brief Ficheiro dos Clientes.
+ */
 #define CLIENTS_FILE "files/Clientes.txt"
-#define	PRODUCTS_FILE "files/Produtos.txt"
-#define SALES_FILE "files/Vendas_1M.txt"
 
+/**
+ * @brief Ficheiro dos Produtos.
+ */
+#define	PRODUCTS_FILE "files/Produtos.txt"
+
+/**
+ * @brief Ficheiro das Vendas.
+ */
+#define SALES_FILE "files/Vendas.txt"
+
+/**
+ * @brief Tamanho de uma Página.
+ */
 #define PAGE_SIZE 20
 
+
 int interpretador(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+
 
 #endif
