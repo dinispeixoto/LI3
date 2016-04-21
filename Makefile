@@ -14,7 +14,7 @@ clean:
 	rm -f debug 
 
 debug: 
-	gcc $(CFLAGS) $(FILES) -g -o debug
+	gcc $(FILES) -g -o debug
 	gdb debug
 
 
