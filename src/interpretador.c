@@ -16,7 +16,7 @@ void menu(){
 	printf("	07. Lista de clientes que realizaram compras em todas as filiais.\n");
 	printf("	08. Lista de clientes que compraram um produto num determinado filial.\n");
 	printf("	09. Produtos mais comprados por um cliente num determinado mês.\n");
-	printf("	10. ...\n");
+	printf("	10. Lista dos N produtos mais comprados ao longo do ano.\n");
 	printf("	11. Produtos em que um cliente gastou mais dinheiro.\n");
 	printf("	12. Clientes e produtos inactivos.			0. Sair.\n");
 	printf("________________________________________________________________________________\n\n");
@@ -72,6 +72,10 @@ void interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIA
 
 		case 9:
 			infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+			break;
+
+		case 10:
+			nProductsMostSold(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 11:
@@ -960,11 +964,20 @@ void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements)
 }
 
 
-/* QUERIE 10 
+/* QUERIE 10 */
+
+void backToIdontKnow(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+	getchar();
+	printf("\e[2J\e[H");
+	infoClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+	exit(0);
+}
 
 void nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 
 	LISTA_STRINGS group;
+	int filial,input,quant,i,j;
+	char buff_quant[BUFFER_SIZE];
 	printf("\e[2J\e[H");
 	testMemory(CatClients,CatProducts,arrayFiliais,fact,"O Catálogo de produtos que um cliente mais comprou");
 	printTop(10);
@@ -978,12 +991,42 @@ void nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,F
 	if(buff_quant[0] == '0') backInterpretador(CatClients,CatProducts,arrayFiliais,fact);
 	if(quant <= 0 || quant > 171008){
 		printf("\n	Introduza uma quantidade válida!\n");
-		backToClientMonth(CatClients,CatProducts,arrayFiliais,fact); 
+		backToIdontKnow(CatClients,CatProducts,arrayFiliais,fact); 
 	}
 
-	group = querie10(f,fact,quant,filial));
+	printf("	Introduza uma filial(1-3): ");
+	input = scanf("%s",buff_quant);
+	filial = atoi(buff_quant);
+
+	int** dados=malloc(2*sizeof(int**));
+
+    for(i=0;i<2;i++){
+        dados[i]=malloc(quant*sizeof(int));
+        for(j=0;j<quant;j++)
+           dados[i][j]=0;
+    }
+
+	group = querie10(arrayFiliais[filial-1],fact,quant,filial,dados);
+
+	for(i=0;i<quant;i++){
+	printf("\n\n");
+	printf(" Produto: %s Nº de Clientes:%d Quantidade:%d										\n",getListaString(group,i),dados[0][i],dados[1][i]);
+	}
+	printf("\n\n");
+	printf("	Pressione qualquer tecla para continuar!		\n");
+	printf("________________________________________________________________________________\n");
+	printf("	>> ");
+	while(getchar()!='\n')
+		;
+	 getchar();
+
+	for(i=0;i<2;i++)
+        free(dados[i]);
+	free(dados);
+
+	interpretador(CatClients,CatProducts,arrayFiliais,fact);	
 }
-*/
+
 
 
 
@@ -1152,23 +1195,27 @@ void printTop(int i){
 			break;
 
 		case 7:
-			printf("\n	             CLIENTES QUE COMPRARAM EM TODOS OS FILIAIS                       \n");
+			printf("\n	               CLIENTES QUE COMPRARAM EM TODOS OS FILIAIS                       \n");
 			break; 
 
 		case 8:
-			printf("\n	             CLIENTES QUE COMPRARAM UM PRODUTO                        \n\n");
+			printf("\n	                   CLIENTES QUE COMPRARAM UM PRODUTO                        \n\n");
 			break;
 
 		case 9:
-			printf("\n	             PRODUTOS MAIS COMPRADOS POR UM CLIENTE                     \n\n");
+			printf("\n	                 PRODUTOS MAIS COMPRADOS POR UM CLIENTE                     \n\n");
+			break;
+
+		case 10:
+			printf("\n                       OS N PRODUTOS MAIS COMPRADOS                          \n\n");
 			break;
 
 		case 11:
-			printf("\n	             PRODUTOS EM QUE UM CLIENTE GASTOU MAIS DINHEIRO               \n\n");
+			printf("\n	              PRODUTOS EM QUE UM CLIENTE GASTOU MAIS DINHEIRO               \n\n");
 			break;
 
 		case 12:
-			printf("\n	             CLIENTES E PRODUTOS INACTIVOS                        \n\n");
+			printf("\n	                    CLIENTES E PRODUTOS INACTIVOS                        \n\n");
 			break;
 	}
 	printf("________________________________________________________________________________\n");

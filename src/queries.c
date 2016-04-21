@@ -289,6 +289,28 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 }
 
 /*#################################QUERIE 10#####################################*/
+static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados,int*num,char** prod){
+	int i,a=0,n=total,res;
+	char* aux;
+	while(0<total){
+		aux=getString(heap ,0);
+			for(i=0;i<n;i++){
+				if(strcmp(prod[i],aux)==0){
+					dados[0][a]=num[i];
+					i=n;
+
+				}
+		}
+			free(aux);
+			addListaStrings(group,getListaSp(group),extractMaxQuantity(heap,&res));
+			dados[1][a]=res;
+			group=reallocListaStrings(group);
+			total--;
+			a++;
+	}
+	return 1 ;
+}
+
 static int qua (INFO info,int filial){
 	int i,sum=0;
 	for(i=0;i<SIZE_MONTH;i++){
@@ -298,13 +320,18 @@ static int qua (INFO info,int filial){
 }
 
 static int pesq (Avl a, Heap hp,int filial){
-	int r; void* x;
+	int r; 
+	void* x;
+	char* aux;
+
 	if(a){
 	pesq(getAvlLeft(a),hp,filial);
 	x = (INFO)getInfo(a);
 	if(x){
+		aux=getAvlCode(a);
 		r=qua(x,filial);
-		insertHeap(hp,r,getAvlCode(a));
+		insertHeap(hp,r,aux);
+		free(aux);
 	}
 	pesq(getAvlRight(a),hp,filial);
 	}
@@ -341,38 +368,41 @@ static int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 
 static int querie10Fact (FACTURACAO f,Heap hp,int filial){
 	int i;
-	for(i=0;i<SIZE_MONTH;i++){
+	for(i=0;i<SIZE_ABC;i++){
 		pesq(getAvl(getProductIndex(f,i)),hp,filial);
 	}
 	return 1;
 }
 
-static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N){
+static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N,int** dados){
 	int i;
 	int num[N];
-	char* prod[N];
+	char** prod;
 	LISTA_STRINGS gp;
-	for(i=0;i<N;i++){
+	for(i=0;i<N;i++)
 		num[i]= 0;
-		prod[i]=getString(hp,i);
-	}
+	
+	prod=getListString(hp,N);
+
 	for(i=0;i<26;i++){
 		pesquisa(getAvl(getClientIndexF(f,i)),hp,N,num,prod);
 	} 
 	gp = initListaStrings(1,SIZE_PRODUCT);
+
+	converteTransfer(hp,gp,N,dados,num,prod);
 	
-	/*for(i=0;i<N;i++){
-		printf("%d-%s\n",num[i],*prod[i]);
-	}*/
-	converte(hp,gp,N);
+	for(i=0;i<N;i++)
+		free(prod[i]);
+	
 	return gp;
 }
 
-LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial){
+
+LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial,int** dados){
 	LISTA_STRINGS ls;
 	Heap hp=initHeap(1);
 	querie10Fact(fact,hp,filial);
-	ls=querie10Fil(f,hp,N);
+	ls=querie10Fil(f,hp,N,dados);
 	return ls;
 }
 
@@ -383,13 +413,17 @@ static int quant2(INFO_PRODUCT ip){
 }
 
 static Heap highCost2 (Avl a,Heap hp){
-	int r;void* x;
+	int r;
+	void* x;
+	char* copy;
 	if(a){
-	highCost2(getAvlLeft(a),hp);
-	x= (INFO_PRODUCT)getInfo(a);
-	r=quant2(x);
-	insertHeap(hp,r,getAvlCode(a));
-	highCost2(getAvlRight(a),hp);
+		highCost2(getAvlLeft(a),hp);
+		x= (INFO_PRODUCT)getInfo(a);
+		r=quant2(x);
+		copy=getAvlCode(a);
+		insertHeap(hp,r,copy);
+		free(copy);
+		highCost2(getAvlRight(a),hp);
 	}
 	return hp;
 }

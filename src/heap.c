@@ -7,7 +7,7 @@
 
 struct elem{
     int valor;
-    char c[SIZE_PRODUCTS];
+    char* c;
 };
 
 struct heap{
@@ -47,6 +47,7 @@ int  insertHeap (Heap h, int x,char* ct) {
     }
 
     h->values[h->used].valor= x;
+    h->values[h->used].c=malloc((strlen(ct)+1)*sizeof(char));
     strcpy(h->values[h->used].c,ct);
     (h->used)++;
     bubbleUp(h, h->used-1);
@@ -67,7 +68,7 @@ void bubbleDown (Heap h, int N) {
 char*  extractMax(Heap h){
    
     if (h->used > 0) {
-        char* r=malloc(SIZE_PRODUCTS);
+        char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
         strcpy(r,h->values[0].c);   
         h->values[0] = h->values[h->used-1]; 
         (h->used)--;
@@ -75,6 +76,29 @@ char*  extractMax(Heap h){
         return r;
     }
     else return NULL;
+}
+
+
+char* extractMaxQuantity(Heap h,int* res){
+if (h->used > 0) {
+        char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
+        strcpy(r,h->values[0].c);
+        *res=h->values[0].valor;   
+        h->values[0] = h->values[h->used-1]; 
+        (h->used)--;
+        bubbleDown(h, h->used);
+        return r;
+    }
+    else return NULL;
+}
+
+Heap cloneHeap (Heap hp){
+    int i;
+    Heap h=initHeap(hp->size);
+    for(i=0;i<hp->used;i++)
+        insertHeap(h,hp->values[i].valor,hp->values[i].c);
+
+    return h;
 }
 
 int getMax(Heap h){
@@ -86,5 +110,19 @@ int getHeapUsed(Heap h){
 }
 
 char* getString(Heap hp,int i){
-    return hp->values[i].c;
+    char* aux=malloc((strlen(hp->values[i].c)+1)*sizeof(char));
+    strcpy(aux,hp->values[i].c);
+    return aux;
 }
+
+char** getListString(Heap hp,int i){
+    Heap h;
+    int j;
+    char** aux=malloc(i*sizeof(char**));
+    h=cloneHeap(hp);
+    for(j=0;j<i;j++){
+        aux[j]=extractMax(h);
+    }
+    return aux;
+}
+

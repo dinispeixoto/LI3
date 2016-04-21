@@ -55,7 +55,6 @@ PAGE updatePage(LISTA_STRINGS lista,int begin,int end,int sizeElement,int page_s
 }
 
 
-
 LISTA_STRINGS reallocListaStrings(LISTA_STRINGS lista){	
 	int i;
 	if (lista->sp > (lista->size*3)/4) {

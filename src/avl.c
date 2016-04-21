@@ -281,7 +281,9 @@ void setInfo(Avl a,void* i){
 }
 
 char* getAvlCode(Avl a){
-	return a->code;
+	char* new = malloc((strlen(a->code)+1)*sizeof(char));
+	strcpy(new,a->code);
+	return new;
 }
 
 Avl setAv(Avl c, Avl d){
