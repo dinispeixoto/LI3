@@ -254,10 +254,10 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 
 	switch(infoP){
 		case 'P':	i->P[month][filial]->totalprice += total;
-					i->P[month][filial]->totalquant += quantity;	
+					i->P[month][filial]->totalquant ++;	
 					break;
 		case 'N':	i->N[month][filial]->totalprice += total;
-					i->N[month][filial]->totalquant += quantity;		
+					i->N[month][filial]->totalquant ++;		
 					break;
 	}
 

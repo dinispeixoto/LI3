@@ -358,7 +358,7 @@ static int pesq (Avl a, Heap hp,int filial){
 	return 1;
 }
 
-static int pesquisa2 (INFO_CLIENT ic,Heap hp,int N,int* num,char** prod){ /* NÃO USAS A HEAP */
+static int pesquisa2 (INFO_CLIENT ic,int N,int* num,char** prod){ /* NÃO USAS A HEAP */
 	int i,j;
 	int ind;
 	for(j=0;j<N;j++){
@@ -379,7 +379,7 @@ static int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
 	pesquisa(getAvlLeft(a),hp,N,num,prod);
 	
 	x = (INFO_CLIENT)getInfo(a);
-	pesquisa2(x,hp,N,num,prod);
+	pesquisa2(x,N,num,prod);
 
 	pesquisa(getAvlRight(a),hp,N,num,prod);
 	}

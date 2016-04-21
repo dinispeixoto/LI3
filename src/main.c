@@ -15,15 +15,16 @@
 int main(){	
 
 	int i;
+
 	CATALOG_CLIENTS CatClients = initClients();
 	CATALOG_PRODUCTS CatProducts = initProducts();
 	FACTURACAO Fact = initFact();
 	FILIAL Filiais[3];
-
+	
 	for(i=0;i<3;i++)
 		Filiais[i] = initFilial();
 
 	interpretador(CatClients,CatProducts,Filiais,Fact);
-
+	
 	return 0;
 }

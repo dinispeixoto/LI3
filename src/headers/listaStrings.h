@@ -10,7 +10,7 @@ typedef struct string *STRING;
 
 LISTA_STRINGS initListaStrings(int,int);
 PAGE initPage(int page_size,int sizeElement);
-PAGE updatePage(LISTA_STRINGS lista,int begin,int end,int sizeElement,int page_size);
+PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size);
 LISTA_STRINGS reallocListaStrings(LISTA_STRINGS);
 LISTA_STRINGS addListaStrings(LISTA_STRINGS,int,char*);
 LISTA_STRINGS removeListaStrings(LISTA_STRINGS,char*);

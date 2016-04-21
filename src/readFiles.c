@@ -181,17 +181,10 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 }
 
 void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
-	/* LIMPAR MEMÓRIA */
 	int i;
-	if(CatClients && CatProducts /*&& arrayFiliais && fact*/){
-		removeCatClients(CatClients);
-		removeCatProds(CatProducts);
-		freeFact(fact);
-		for(i=0;i<3;i++)
-			freeFilial(arrayFiliais[i]);
-	}
-	else{
-		printf("A MEMÓRIA JÁ ESTÁ VAZIA\n");
-	}
-		
+	removeCatClients(CatClients);
+	removeCatProds(CatProducts);
+	freeFact(fact);
+	for(i=0;i<3;i++)
+		freeFilial(arrayFiliais[i]);	
 } 

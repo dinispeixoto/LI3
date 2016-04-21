@@ -46,7 +46,7 @@ PAGE initPage(int page_size,int sizeElement){
 	return page;
 }
 
-PAGE updatePage(LISTA_STRINGS lista,int begin,int end,int sizeElement,int page_size){
+PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size){
 	int i,j = begin;
 	PAGE page = initPage(sizeElement,page_size);
 	for(i=0;i<page_size;i++,j++)

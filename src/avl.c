@@ -22,9 +22,7 @@ static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
-static void removeFromMY_AVL_AUX(Avl);
 static Avl insertINFO(Avl,STR,void*);
-/*static void insertArray(char**,Avl,int*);*/
 
 
 static int maior(int a, int b){
@@ -226,28 +224,6 @@ MY_AVL cloneMyAvl (MY_AVL estrutura){
 	else aux=NULL;
 	return aux;
 }
-/*
-void removeFromMY_AVL (MY_AVL* a, int x){
-	int i;
-	for(i=0;i<x;i++){
-		removeFromMY_AVL_AUX(a[i]->avl);
-		free(a[i]);
-	}
-	free(a);
-	a=NULL;
-}
-
-static void removeFromMY_AVL_AUX (Avl a){
-	if(a){
-		removeFromMY_AVL_AUX(a->left);
-		removeFromMY_AVL_AUX(a->right);
-		free(a->code);
-		free(a);
-	}
-	else free (a);
-	a=NULL;
-}
-*/
 
 void freeNodo(Avl a){
 	free(a->code);
