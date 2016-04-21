@@ -38,12 +38,12 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 	
 	
 	if(fileClients!=NULL){
-		begin_clients = clock();
+		time(&begin_clients);
 		invalidatedClients = valCli(fileClients,clients,&validatedClients);
 		for(i=0;i<3;i++)
 			f[i] = copyCPO(f[i],clients);
-		end_clients = clock();
-		time_elapsed_clients = (double) (end_clients - begin_clients) / CLOCKS_PER_SEC;
+		time(&end_clients);
+		time_elapsed_clients = difftime(end_clients,begin_clients);
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		CLIENTES 		|\n");
@@ -59,11 +59,11 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 
 
 	if(fileProducts!=NULL){
-		begin_products = clock();
+		time(&begin_products);
 		invalidatedProducts = valProd(fileProducts,products,&validatedProducts);
 		fact = copyProducts(fact,products);
-		end_products = clock();
-		time_elapsed_products = (double) (end_products - begin_products) / CLOCKS_PER_SEC;
+		time(&end_products);
+		time_elapsed_products = difftime(end_products,begin_products);
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		PRODUTOS 		|\n");
@@ -78,10 +78,10 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 
 	
 	if(fileSales!=NULL){
-		begin_sales = clock();
+		time(&begin_sales);
 		invalidatedSales = valSales(fileSales,clients,products,f,fact,&validatedSales);
-		end_sales = clock();
-		time_elapsed_sales = (double) (end_sales - begin_sales) / CLOCKS_PER_SEC;
+		time(&end_sales); 
+		time_elapsed_sales = difftime(end_sales,begin_sales);
 
 
 		printf("	 _______________________________________\n");

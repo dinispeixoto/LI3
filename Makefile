@@ -46,5 +46,8 @@ debug: $(OBJECTS)
 	$(CC) $(OBJECTS) -g -o debug
 	gdb debug
 
+.PHONY: doc
+doc:$(OBJECTS)
+		doxygen Doxyfile
 
 #  -pedantic -Wunused-parameter -Wall -Wextra 

@@ -36,7 +36,7 @@
 /**
  * @brief Ficheiro das Vendas.
  */
-#define SALES_FILE "files/Vendas.txt"
+#define SALES_FILE "files/Vendas_1M.txt"
 
 /**
  * @brief Tamanho de uma Página.
