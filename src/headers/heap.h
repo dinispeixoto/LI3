@@ -7,12 +7,13 @@
 typedef struct heap *Heap;
 
 Heap initHeap (int );
-Heap** initHeapMatriz(int ,int ,int);
-int insertHeap (Heap , int ,char*);
+int insertHeap (Heap , double ,int,char*);
 char*  extractMax (Heap );
+char* extractMaxQuantity(Heap ,double* ,int*);
 
 int getHeapUsed(Heap);
 int getMax(Heap );
 char* getString(Heap hp,int i);
+char** getListString(Heap hp,int i);
 
 #endif

@@ -6,6 +6,9 @@
 #include "heap.h"
 #include "listaStrings.h"
 
+#define SIZE_ABC 26
+#define SIZE_MONTH 12
+#define SIZE_FILIAIS 3
 #define SIZE_PRODUCT 6
 #define SIZE_CLIENT 5
 
@@ -17,7 +20,8 @@ DADOS querie6(FACTURACAO,int,int);
 LISTA_STRINGS querie7(FILIAL*);
 LISTA_STRINGS querie8(FILIAL,char*,LISTA_STRINGS*);
 LISTA_STRINGS querie9(FILIAL*,char*,int);
-LISTA_STRINGS querie10 (FILIAL ,FACTURACAO, int ,int );
-int querie12(FILIAL* f, FACTURACAO fact, int* sumClient);
+LISTA_STRINGS querie10(FILIAL,FACTURACAO,int,int,int**);
+LISTA_STRINGS querie11(FILIAL*,char*);
+int querie12(FILIAL*,FACTURACAO,int*);
 
 #endif

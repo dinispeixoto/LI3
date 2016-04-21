@@ -3,7 +3,7 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+
 
 #define TRUE 1
 #define FALSE 0
@@ -11,10 +11,9 @@
 typedef struct avl *Avl;
 typedef struct myAvl *MY_AVL;
 typedef char* STR;
-
 typedef int BOOL;
 
-typedef void (*Func)(void*);
+typedef void(*Func)(void*);
 
 Avl initAvl();
 MY_AVL initMyAvl();
@@ -23,6 +22,7 @@ int heightAvl(Avl);
 Avl insert(Avl,STR,void*);
 void removeAvl(Avl,Func);
 void removeMyAvl(MY_AVL,Func);
+void freeNodo(Avl a);
 BOOL existMyAvl(MY_AVL,STR);
 BOOL existAvl(Avl, STR);
 int totalElements(MY_AVL);
@@ -41,7 +41,6 @@ char* getAvlCode(Avl);
 void* getInfo(Avl a);
 int getSize(MY_AVL a);
 void setInfo(Avl a,void* i);
-Avl setAv(Avl,Avl);
 void setAvl(MY_AVL,Avl);
 
 #endif

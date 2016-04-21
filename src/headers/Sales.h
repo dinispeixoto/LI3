@@ -3,14 +3,11 @@
 
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 #include "CatClients.h"
 #include "CatProducts.h"
 
-#define SIZE_BUFFER 64
 #define SIZE_BUF_SALES 128
-#define SIZE_SALES 29 
 
 typedef struct sales *SALES;
 typedef int QUANTITY;
@@ -20,7 +17,7 @@ typedef int FILIAIS;
 typedef int MONTH;
 
 SALES initSales();
-SALES updateSales(CLIENT,PRODUCT,MONTH,FILIAIS,QUANTITY,PRICE,INFO_PROMO);
+SALES updateSales(SALES,CLIENT,PRODUCT,MONTH,FILIAIS,QUANTITY,PRICE,INFO_PROMO);
 int partCheck(char*,CATALOG_CLIENTS,CATALOG_PRODUCTS,CLIENT*,PRODUCT*,MONTH*,FILIAIS*,QUANTITY*,PRICE*,INFO_PROMO*); /*NÃO FICA BEM AQUI*/
 void freeSale(SALES);
 

@@ -3,18 +3,17 @@
 #define PARENT(i) (i-1)/2  /* os indices do array começam em 0 */
 #define LEFT(i) 2*i + 1
 #define RIGHT(i) 2*i + 2
-#define SIZE_PRODUCTS 7
 
 struct elem{
-    int valor;
+    double valor;
     int registo;
-    char c[SIZE_PRODUCTS];
+    char* c;
 };
 
 struct heap{
- int   size;
- int   used;
- struct elem *values;
+    int   size;
+    int   used;
+    struct elem *values;
 };
 
 
@@ -32,52 +31,26 @@ Heap initHeap (int size) {
     return h;
 }
 
-Heap** initHeapMatriz(int size,int x,int y){
-    int i,j;
-    Heap** hp=malloc(26*sizeof(struct heap***));
-
-    for(i=0;i<x;i++){
-        hp[i]=malloc(26*sizeof(struct heap*));
-        for(j=0;j<y;j++)
-            hp[i][j]=initHeap(1);
-    }
-    return hp;
-}
-
 void bubbleUp (Heap h, int i) {
 
     while (i!=0 && h->values[i].valor > h->values[PARENT(i)].valor) {
         swap(h, i, PARENT(i));
         i = PARENT(i);
     }    
-    
 }
 
-int  insertHeap (Heap h, int x,char* ct) {
-    int i;
+int  insertHeap (Heap h, double x,int y,char* ct) {
+    
     if (h->used == h->size) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
         h->size *= 2;
     }
-    /*if(r){
-        for(i=0;i<h->used;i++){
-          if(strcmp(h->values[i].c,ct)==0){  
-                h->values[i].valor+= x;
-                h->values[i].registo++;
-                r=0;
-                bubbleUp(h, i);
-                break;
-            }
-        }
-    } 
-    if(r){*/
-        h->values[h->used].valor= x;
-        h->values[h->used].registo++;
-        strcpy(h->values[h->used].c,ct);
-        (h->used)++;
-        bubbleUp(h, h->used-1);
-     
-
+    h->values[h->used].valor= x;
+    h->values[h->used].registo = y;
+    h->values[h->used].c=malloc((strlen(ct)+1)*sizeof(char));
+    strcpy(h->values[h->used].c,ct);
+    (h->used)++;
+    bubbleUp(h, h->used-1);
     return 1;
 }
 
@@ -92,10 +65,10 @@ void bubbleDown (Heap h, int N) {
         swap(h, i, LEFT(i)); 
 }
 
-char*  extractMax (Heap h) {
+char*  extractMax(Heap h){
    
     if (h->used > 0) {
-        char* r=malloc(SIZE_PRODUCTS);
+        char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
         strcpy(r,h->values[0].c);   
         h->values[0] = h->values[h->used-1]; 
         (h->used)--;
@@ -106,6 +79,29 @@ char*  extractMax (Heap h) {
 }
 
 
+char* extractMaxQuantity(Heap h,double* quant,int* resg ){
+if (h->used > 0) {
+        char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
+        strcpy(r,h->values[0].c);
+        *quant=h->values[0].valor;
+        *resg=h->values[0].registo;   
+        h->values[0] = h->values[h->used-1]; 
+        (h->used)--;
+        bubbleDown(h, h->used);
+        return r;
+    }
+    else return NULL;
+}
+
+Heap cloneHeap (Heap hp){
+    int i;
+    Heap h=initHeap(hp->size);
+    for(i=0;i<hp->used;i++)
+        insertHeap(h,hp->values[i].valor,hp->values[i].registo,hp->values[i].c);
+
+    return h;
+}
+
 int getMax(Heap h){
     return (h->values[0].valor);
 }
@@ -115,5 +111,19 @@ int getHeapUsed(Heap h){
 }
 
 char* getString(Heap hp,int i){
-    return hp->values[i].c;
+    char* aux=malloc((strlen(hp->values[i].c)+1)*sizeof(char));
+    strcpy(aux,hp->values[i].c);
+    return aux;
 }
+
+char** getListString(Heap hp,int i){
+    Heap h;
+    int j;
+    char** aux=malloc(i*sizeof(char**));
+    h=cloneHeap(hp);
+    for(j=0;j<i;j++){
+        aux[j]=extractMax(h);
+    }
+    return aux;
+}
+

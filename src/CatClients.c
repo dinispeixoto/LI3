@@ -12,9 +12,15 @@ struct client {
 CATALOG_CLIENTS initClients(){
 
 	int i;
-    CATALOG_CLIENTS Catalog = malloc (sizeof(struct catc));
+	CATALOG_CLIENTS Catalog = malloc (sizeof(struct catc));
 	for(i=0;i<SIZE_ABC;i++)	Catalog->CatClients[i] = initMyAvl();
 	return Catalog;
+}
+
+CLIENT initClie(){
+	CLIENT clie = malloc(sizeof(struct client));
+	clie->string = NULL;
+	return clie;
 }
 
 void freeClient(CLIENT clie){
@@ -76,21 +82,21 @@ BOOL testClient(CLIENT client){
 
 /* GETS E SETS */
 
-char* getClientIndex(CATALOG_CLIENTS c, int a){
-	return getAvlCode(getAvl(c->CatClients[a]));
-}
-
 char* getClient(CLIENT clie){
-	return clie->string;
+	char* new = malloc((strlen(clie->string)+1)*sizeof(char));
+	strcpy(new,clie->string);
+	return new;
 }
 
 MY_AVL getC(CATALOG_CLIENTS c, int i){
 	return c->CatClients[i];
 }
 
-CLIENT setClient(char* string){
-	CLIENT client = malloc(sizeof(struct client));
-	client->string = malloc(SIZE_CLIENTS);
-	strcpy(client->string,string);
-	return client;
+CLIENT setClient(CLIENT c,char* string){
+	if(!c->string)
+		c->string = malloc((strlen(string)+1)*sizeof(char));
+	
+	strcpy(c->string,string);
+
+	return c;
 }

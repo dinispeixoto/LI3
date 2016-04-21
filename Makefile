@@ -1,5 +1,5 @@
 CC = gcc 
-CFLAGS = -Wunreachable-code -ansi -O2
+CFLAGS = -Wunreachable-code -ansi -O2 -Wuninitialized 
 FILES = src/*.c
 
 default:
@@ -18,4 +18,4 @@ debug:
 	gdb debug
 
 
-# -Wuninitialized -pedantic -Wunused-parameter -Wall -Wextra -O2
+#  -pedantic -Wunused-parameter -Wall -Wextra 

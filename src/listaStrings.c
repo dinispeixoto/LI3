@@ -7,6 +7,13 @@ struct lista{
 	STRING* elements;
 };
 
+struct page{
+	int sp;
+	int pageSize;
+	int sizeElement;
+	STRING* elements;
+};
+
 struct string{
 	char* string;
 };
@@ -14,7 +21,7 @@ struct string{
 LISTA_STRINGS initListaStrings(int size,int sizeElement){
 	int i;
 	LISTA_STRINGS lista = malloc(sizeof(struct lista));	
-	lista->elements = malloc (sizeof(STRING) * size);
+	lista->elements = malloc(sizeof(STRING) * size);
 	for(i=0;i<size;i++){
 		lista->elements[i]=malloc(sizeof(struct string));
 		lista->elements[i]->string=malloc(sizeElement);
@@ -24,6 +31,29 @@ LISTA_STRINGS initListaStrings(int size,int sizeElement){
 	lista->sizeElement=sizeElement;
 	return lista;
 }
+
+PAGE initPage(int page_size,int sizeElement){
+	int i;
+	PAGE page = malloc(sizeof(struct page));	
+	page->elements = malloc(sizeof(STRING) * page_size);
+	for(i=0;i<page_size;i++){
+		page->elements[i]=malloc(sizeof(struct string));
+		page->elements[i]->string=malloc(sizeElement);
+	}
+	page->sp = 0;
+	page->pageSize = page_size;
+	page->sizeElement = sizeElement;
+	return page;
+}
+
+PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size){
+	int i,j = begin;
+	PAGE page = initPage(sizeElement,page_size);
+	for(i=0;i<page_size;i++,j++)
+		page->elements[i] = lista->elements[j];
+	return page;
+}
+
 
 LISTA_STRINGS reallocListaStrings(LISTA_STRINGS lista){	
 	int i;
@@ -80,9 +110,10 @@ void setListaSp(LISTA_STRINGS lista,int sp){
 	lista->sp = sp;
 }
 
+int getPageSize(PAGE page){
+	return page->pageSize;
+}
 
-void printLS(LISTA_STRINGS ls){
-	int i;
-	for(i=0;i<ls->sp;i++)
-		printf("%s\n",ls->elements[i]->string);
+char* getPageElement(PAGE page,int index){
+	return page->elements[index]->string;
 }
