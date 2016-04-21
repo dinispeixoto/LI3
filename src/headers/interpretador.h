@@ -8,7 +8,7 @@
 
 #include "CatClients.h"
 #include "CatProducts.h"
-#include "Sales.h"
+#include "filial.h"
 #include "facturacao.h"		
 #include "readFiles.h"
 #include "queries.h"
@@ -16,7 +16,7 @@
 
 #define CLIENTS_FILE "files/Clientes.txt"
 #define	PRODUCTS_FILE "files/Produtos.txt"
-#define SALES_FILE "files/Vendas.txt"
+#define SALES_FILE "files/Vendas_1M.txt"
 
 #define PAGE_SIZE 20
 

@@ -40,7 +40,7 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 			break;
 
 		case 1: 
-			if(!totalProducts(CatProducts)) res = runningReadFiles(CatClients,CatProducts,arrayFiliais,fact);
+			if(!totalProducts(CatProducts) && size_input) res = runningReadFiles(CatClients,CatProducts,arrayFiliais,fact);
 			else res = cleaningMemory();
 			break;
 
@@ -65,27 +65,27 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 			break;
 
 		case 7:
-			runningListClients(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningListClients(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 8:
-			runningClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningClientsProdFilial(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 9:
-			runningClientMonth(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningClientMonth(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 10:
-			nProductsMostSold(CatClients,CatProducts,arrayFiliais,fact);
+			res = nProductsMostSold(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 11:
-			runningThreeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
+			res = runningThreeMostPurchased(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 
 		case 12:
-			inactiveClientsProducts(CatClients,CatProducts,arrayFiliais,fact);
+			res = inactiveClientsProducts(CatClients,CatProducts,arrayFiliais,fact);
 			break;
 			
 		/*default:
@@ -107,14 +107,14 @@ int cleaningMemory(){
 	if((buffer[0] == 'S' || buffer[0] == 's') && input ){
 		printf("\e[2J\e[H"); 
 		printTop(1);
-		printf("	 _____________________________________________________\n");
-		printf("	|                                                     |\n");
-		printf("	|                                                     |\n");
-		printf("	|                                                     |\n");
-		printf("	|               A MEMÓRIA FOI LIBERTADA               |\n");
-		printf("	|                                                     |\n");
-		printf("	|                                                     |\n");
-		printf("	|_____________________________________________________|\n");
+		printf("		 _____________________________________________________\n");
+		printf("		|                                                     |\n");
+		printf("		|                                                     |\n");
+		printf("		|                                                     |\n");
+		printf("		|               A MEMÓRIA FOI LIBERTADA               |\n");
+		printf("		|                                                     |\n");
+		printf("		|                                                     |\n");
+		printf("		|_____________________________________________________|\n");
 		while(getchar()!='\n');
 		getchar();
 		res = -1;
@@ -125,15 +125,6 @@ int cleaningMemory(){
 		res = cleaningMemory();
 	return res;
 }
-
-
-void backInterpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
-	printf("\e[2J\e[H");
-	interpretador(CatClients,CatProducts,arrayFiliais,fact);
-	exit(0);
-}
-
-
 
 /* QUERIE 1 */
 
@@ -1064,7 +1055,7 @@ int nProductsMostSold(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FI
 	input = scanf("%s",buff_quant);
 	quant = atoi(buff_quant);
 
-	if(buff_quant[0] == '0') return 0;
+	if(buff_quant[0] == '0' && input) return 0;
 	if(quant <= 0 || quant > 171008){
 		printf("\n	Introduza uma quantidade válida!\n");
 		return 1;
@@ -1192,7 +1183,7 @@ int inactiveClientsProducts(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProdu
 
 	getchar();
 	getchar();
-	return 0;	
+	return 1;	
 }
 
 void printClientsProducts(int clients,int products){

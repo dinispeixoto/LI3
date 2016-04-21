@@ -2,11 +2,8 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "headers/avl.h"
-#include "headers/Sales.h"
 #include "headers/CatClients.h"
 #include "headers/CatProducts.h"
-#include "headers/readFiles.h"
 #include "headers/facturacao.h"
 #include "headers/interpretador.h"
 #include "headers/filial.h"

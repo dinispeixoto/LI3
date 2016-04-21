@@ -8,7 +8,6 @@
 
 #include "CatClients.h"
 #include "CatProducts.h"
-#include "Sales.h"
 #include "facturacao.h"		
 #include "filial.h"
 

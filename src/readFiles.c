@@ -47,7 +47,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		CLIENTES 		|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",clientsFile);
+		printf("	| Nome do ficheiro: %18s	|\n",clientsFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedClients+invalidatedClients);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedClients);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedClients);
@@ -67,7 +67,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		PRODUTOS 		|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",productsFile);
+		printf("	| Nome do ficheiro: %18s	|\n",productsFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedProducts+invalidatedProducts);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedProducts);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedProducts);
@@ -86,7 +86,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 
 		printf("	 _______________________________________\n");
 		printf("	| 		VENDAS 			|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",salesFile);
+		printf("	| Nome do ficheiro: %18s	|\n",salesFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedSales+invalidatedSales);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedSales);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedSales);
