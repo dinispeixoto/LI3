@@ -44,7 +44,16 @@
 #define PAGE_SIZE 20
 
 
-int interpretador(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+/** @brief Resposável por implementar o interpretador.
+ *
+ *  @param clients Catálogo de Clientes.
+ *  @param products Catálogo de Produtos.
+ *  @param f Filial.
+ *  @param fact Facturação.
+ *  @return Inteiro de informação para a main.
+ */
+
+int interpretador(CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact);
 
 
 #endif
