@@ -38,17 +38,12 @@ LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 
 
 DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
-	
 	void* x;
 	DADOS d = initDADOS();
-
 	int index = product[0]-'A';
 	x = (INFO)findInfo(getAvl(getProductIndex(f,index)),product,NULL);
-	
 	if(x) d = updatePriceQuantity(x,d,promo,mes);
-
 	return d;
-
 }
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
@@ -64,8 +59,7 @@ static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 
 LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
-	int i;
-		
+	int i;	
 	for(i=0;i<SIZE_ABC;i++){
 		group = found(getAvl(getProductIndex(f,i)),group,filial);
 	}
@@ -100,9 +94,7 @@ DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client){
 	void* x;
 	int index = client[0]-'A';
 	x = (INFO_CLIENT)findInfo(getClientIndexF(f,index),client,NULL);
-
 	df=addQ(df,x);
-	
 	return df;
 }
 
@@ -186,7 +178,6 @@ static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 		freeNodo(aux);
 		aux=NULL;
 		}
-
 	for(i=1;i<SIZE_FILIAIS;i++){
 		for(j=0;j<SIZE_ABC;j++){
 			aux=getClientIndexF(f[i],j);
@@ -243,7 +234,6 @@ static LISTA_STRINGS find2(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_
 }
 
 static LISTA_STRINGS find(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
-	
 	void* x;
 	if(a){
 		find(getAvlLeft(a),product,gcN,gcP);
@@ -271,7 +261,6 @@ LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 		x =(INFO_CLIENT)findInfo(getClientIndexF(f[i],index),client,NULL);
 		findProd(x,month,heap);
 	}
-
 	group = initListaStrings(1,SIZE_PRODUCT);
 	converte(heap,group,getHeapUsed(heap));
 	return group;
@@ -281,7 +270,7 @@ static int quant(INFO_PRODUCT ip){
 	return (getInfoProductQuantity(ip,0)+getInfoProductQuantity(ip,1));
 }
 
-static LISTA_STRINGS converte (Heap heap, LISTA_STRINGS group,int total){
+static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total){
 	while(0<total){
 		addListaStrings(group,getListaSp(group),extractMax(heap));
 		group=reallocListaStrings(group);
@@ -329,12 +318,12 @@ static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados)
 	return 1 ;
 }
 
-static int qua (PRODUCT_INFO info,int* registo){
+static int qua(PRODUCT_INFO info,int* registo){
 	*registo=getResg(info);
 	return getPiQuant(info);
 }
 
-static int pesq (Avl a, Heap hp){
+static int pesq(Avl a, Heap hp){
 	int r,resg; 
 	void* x;
 	char* aux;
@@ -381,7 +370,7 @@ static double quant2(INFO_PRODUCT ip){
 	return (getInfoProductPrice(ip,0)+getInfoProductPrice(ip,1));
 }
 
-static Heap highCost2 (Avl a,Heap hp){
+static Heap highCost2(Avl a,Heap hp){
 	double r;
 	void* x;
 	char* copy;
@@ -397,7 +386,7 @@ static Heap highCost2 (Avl a,Heap hp){
 	return hp;
 }
 
-static Heap highCost (INFO_CLIENT ic,Heap hp){
+static Heap highCost(INFO_CLIENT ic,Heap hp){
 	int i,j;
 	for(i=0;i<SIZE_MONTH;i++){
 		for(j=0;j<SIZE_ABC;j++){

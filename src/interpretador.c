@@ -61,8 +61,7 @@ static int inactiveClientsProducts(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 static void printClientsProducts(int,int);
 /* AUXILIARES */
 static int testMemory(CATALOG_PRODUCTS,char*);
-static int calculatePagesProducts(LISTA_STRINGS,int);
-static int calculatePagesClients(LISTA_STRINGS,int);
+static int calculatePages(LISTA_STRINGS,int);
 static void printTop(int);
 static int exitGereVendas();
 
@@ -291,7 +290,7 @@ static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 		printf("\e[2J\e[H");
 		printTop(2);
 		group = querie2(CatProducts,buffer[0]);
-		totalPages = calculatePagesProducts(group,PAGE_SIZE);
+		totalPages = calculatePages(group,PAGE_SIZE);
 		while(running){
 			running = searchPage(&actualPage,group,totalPages);
 		}
@@ -571,7 +570,7 @@ static int productsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 		return 1;
 	}
 
-	totalPages = calculatePagesProducts(group,PAGE_SIZE);
+	totalPages = calculatePages(group,PAGE_SIZE);
 	while(running){
 		if(running==-1) return 1;
 		running = printNSold(group,totalPages,&actualPage);
@@ -796,7 +795,7 @@ static void printDATA(DADOS data,int begin,int end){
 static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running=1,actualPage=1,totalPages;
 	LISTA_STRINGS group = querie7(arrayFiliais);
-	totalPages = calculatePagesClients(group,PAGE_SIZE);
+	totalPages = calculatePages(group,PAGE_SIZE);
 	while(running){
 		running = searchPageListClients(CatProducts,&actualPage,group,totalPages);
 	}
@@ -954,7 +953,7 @@ static int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group)
 	char string_page[BUFFER_SIZE];
 	int page,totalPages,size_input,page_begin;
 	PAGE page_list;
-	totalPages = calculatePagesClients(*group,PAGE_SIZE);	
+	totalPages = calculatePages(*group,PAGE_SIZE);	
 
 	page_begin = (PAGE_SIZE*(*actualPage-1));
 	page_list = updatePage(*group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
@@ -1071,7 +1070,7 @@ static int searchPageProducts(LISTA_STRINGS group,int *actualPage){
 	PAGE page_list;
 	char string_page[BUFFER_SIZE];
 
-	totalPages = calculatePagesProducts(group,PAGE_SIZE);		
+	totalPages = calculatePages(group,PAGE_SIZE);		
 
 	page_begin = (PAGE_SIZE*(*actualPage-1));
 	page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
@@ -1175,7 +1174,7 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
     }
 
 	group = querie10(arrayFiliais[filial-1],quant,dados);
-	totalPages = calculatePagesProducts(group,PAGE_SIZE);
+	totalPages = calculatePages(group,PAGE_SIZE);
 
 	while(running){
 		running = searchPageMostSold(&actualPage,group,totalPages,dados);
@@ -1360,13 +1359,7 @@ static int testMemory(CATALOG_PRODUCTS CatProducts,char* menuName){
 	return r;
 }
 
-static int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage){
-	int totalPages = (getListaSp(group)/elemPerPage);
-	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
-	return totalPages;
-}
-
-static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){ 
+static int calculatePages(LISTA_STRINGS group,int elemPerPage){
 	int totalPages = (getListaSp(group)/elemPerPage);
 	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;

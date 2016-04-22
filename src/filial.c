@@ -148,7 +148,7 @@ FILIAL copyP(FILIAL f,CATALOG_PRODUCTS p){
 }
 
 
-/*GET E SET*/
+/*GETS E SETS*/
 int getComp( INFO_CLIENT x){
 	return x->Comprou;
 }
