@@ -16,7 +16,6 @@ struct heap{
     struct elem *values;
 };
 
-
 void swap (Heap h, int a, int b) {
     struct elem t = h->values[a];
     h->values[a] = h->values[b];

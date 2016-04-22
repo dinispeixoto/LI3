@@ -13,7 +13,7 @@ struct infoMes{
 
 struct infoClient{
 	INFO_MES info_mes[SIZE_MONTH];
-	int Comprou;                           /* soma dos avl->size das 26 letras; dá o total de produtos comprados num ano */
+	int Comprou;                     
 };
 
 struct infoProduct{

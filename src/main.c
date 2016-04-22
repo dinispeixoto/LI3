@@ -32,5 +32,6 @@ int main(){
 			running = 1;
 		}
 	}
+	freeMemory(CatClients,CatProducts,Filiais,Fact);
 	return 0;
 }
