@@ -1,6 +1,6 @@
 CC = gcc 
 
-CFLAGS = -ansi -Wunreachable-code -O2 -Wuninitialized -Wunused-parameter -Wall
+CFLAGS = -ansi -Wunreachable-code -O2 -Wuninitialized -Wunused-parameter -Wall -Wextra 
 
 OBJECTS = obj/main.o obj/avl.o obj/CatClients.o obj/CatProducts.o obj/facturacao.o \
 		  obj/filial.o obj/heap.o obj/interpretador.o obj/listaStrings.o \
