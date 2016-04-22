@@ -22,7 +22,7 @@ struct infoProduct{
 };
 
 struct dadosFilial{
-	int quant[SIZE_FILIAIS][SIZE_MONTH];
+	int quant[SIZE_MONTH];
 };
 
 struct productInfo{
@@ -130,11 +130,10 @@ INFO_PRODUCT initInfoProduct(){
 }
 
 DADOS_FILIAL initDadosFilial(){
-	int i,j;
+	int j;
 	DADOS_FILIAL df = malloc(sizeof(struct dadosFilial));
-	for(i=0;i<SIZE_FILIAIS;i++)
-		for(j=0;j<SIZE_MONTH;j++)
-			df->quant[i][j]=0;
+	for(j=0;j<SIZE_MONTH;j++)
+			df->quant[j]=0;
 
 	return df;
 }
@@ -254,9 +253,6 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info, SALES s){
 }
 
 /*GET E SET*/
-int getDadosI(DADOS_FILIAL df,int i,int j){
-	return df->quant[i][j];
-}
 
 int getComp( INFO_CLIENT x){
 	return x->Comprou;
@@ -266,12 +262,12 @@ Avl getClientIndexF(FILIAL f,int index){
 	return getAvl(f->Clients[index]);
 }
 
-int getDadosFilialQuantity(DADOS_FILIAL df,int filial,int month){
-	return df->quant[filial-1][month-1];
+int getDadosFilialQuantity(DADOS_FILIAL df,int month){
+	return df->quant[month-1];
 }
 
-DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int filial,int month,int total){
-	df->quant[filial][month] += total;
+DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int month,int total){
+	df->quant[month] += total;
 	return df;
 }
 

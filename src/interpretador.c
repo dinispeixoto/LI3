@@ -2,7 +2,7 @@
 #include "headers/interpretador.h"
 
 #define PAGE_SIZE 20
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 512
 
 /* FUNÇÕES PRIVADAS AO MÓDULO */
 static void menu();
@@ -28,7 +28,7 @@ static int printNSold(LISTA_STRINGS,int,int*);
 /* QUERIE 5 */
 static int runningInfoClientPurchases(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int infoClientPurchases(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
-static void printClientPurchases(DADOS_FILIAL,char*);
+static void printClientPurchases(DADOS_FILIAL*,char*);
 /* QUERIE 6 */
 static int periodMonths(CATALOG_PRODUCTS,FACTURACAO);
 static int runningToPeriodMonths(CATALOG_PRODUCTS,FACTURACAO);
@@ -319,6 +319,7 @@ static int searchPage(int *actualPage,LISTA_STRINGS group,int totalPages){
 	do{
 		printf("	Escolha uma página: ");
 		size_input = scanf("%s",string_page);
+		printf("%s\n",string_page);
 		page = atoi(string_page);
 		
 		if(string_page[0]=='0' && size_input) return 0;
@@ -646,7 +647,10 @@ static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatPr
 	char clientString[BUFFER_SIZE];
 	CLIENT clie = initClie();
 
-	DADOS_FILIAL df_1 = initDadosFilial();
+	DADOS_FILIAL df_1[3];
+	
+	for(i=0;i<3;i++)
+		df_1[i]=initDadosFilial();
 
 	printf("\e[2J\e[H");
 
@@ -675,7 +679,7 @@ static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatPr
 	}
 
 	for(i=0;i<3;i++)
-		df_1 = querie5(arrayFiliais[i],df_1,clientString,i);
+		df_1[i] = querie5(arrayFiliais[i],df_1[i],clientString);
 
 	printClientPurchases(df_1,clientString);
 
@@ -691,7 +695,7 @@ static int infoClientPurchases(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatPr
 	else return 0;
 }
 
-static void printClientPurchases(DADOS_FILIAL df,char* clientString){
+static void printClientPurchases(DADOS_FILIAL* df,char* clientString){
 	int i;
 	printf("\e[2J\e[H");
 	printTop(5);
@@ -699,8 +703,8 @@ static void printClientPurchases(DADOS_FILIAL df,char* clientString){
 	printf("	----------------------------------------------\n");
 	printf("\t| Mês |  Filial 1  |  Filial 2  |  Filial 3  |\n");
 	for(i=0;i<12;i++)
-		printf(" \t| %2d  |\t   %5d   |    %5d   |    %5d   |\t\n",i+1,getDadosFilialQuantity(df,1,i+1),getDadosFilialQuantity(df,2,i+1),
-			getDadosFilialQuantity(df,3,i+1));
+		printf(" \t| %2d  |\t   %5d   |    %5d   |    %5d   |\t\n",i+1,getDadosFilialQuantity(df[0],i+1),getDadosFilialQuantity(df[1],i+1),
+			getDadosFilialQuantity(df[2],i+1));
 }
 
 
@@ -820,6 +824,7 @@ static int searchPageListClients(CATALOG_PRODUCTS CatProducts,int *actualPage,LI
 	do{
 		printf("	Escolha uma página: ");
 		size_input = scanf("%s",string_page);
+		printf("%s\n",string_page);
 		page = atoi(string_page);
 		if(string_page[0]=='0') return 0;
 		else if(page > 0 && page <= totalPages && size_input){

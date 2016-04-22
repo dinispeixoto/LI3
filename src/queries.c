@@ -1,19 +1,24 @@
 #include "headers/queries.h"
 
+
 #define index(i) i-'A'
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes);
 static int checkInfo(INFO i, int filial);
 static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic);
 
 /* ######################################### QUERIE 2 #################################### */
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
+	char* prod;
 	if(a){
 		travessia(getAvlLeft(a),ls);
-		addListaStrings(ls,getListaSp(ls),getAvlCode(a));
+		prod=getAvlCode(a);
+		addListaStrings(ls,getListaSp(ls),prod);
 		ls=reallocListaStrings(ls);
 		travessia(getAvlRight(a),ls);
+		free(prod);
+		freeNodo(a);
 	}
 	return ls;
 }
@@ -91,20 +96,20 @@ static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 
 /*#################################QUERIE 5##################################### FUNCIONA*/
 
-DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial){
+DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client){
 	void* x;
 	int index = client[0]-'A';
 	x = (INFO_CLIENT)findInfo(getClientIndexF(f,index),client,NULL);
 
-	df=addQ(df,x,filial);
+	df=addQ(df,x);
 	
 	return df;
 }
 
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial){
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
 	int i;
 	for(i=0;i<SIZE_MONTH;i++)
-		df = updateQuant_DadosFilial(df,filial,i,getInfoMesQuantity(getInfoMes(ic,i)));
+		df = updateQuant_DadosFilial(df,i,getInfoMesQuantity(getInfoMes(ic,i)));
 	return df;
 }
 

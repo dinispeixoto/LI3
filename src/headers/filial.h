@@ -172,16 +172,7 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info,SALES s);
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c);
 
-/** @brief Retorna a quantidade de produtos comprados num determinado mês, numa determinada Filial.
- *
- *  @param df Estrutura com os dados relativos a Filial.
- *  @param i Filial.
- *  @param j Mês.
- *
- *  @return Quantidade de Produtos.
- */
 
-int getDadosI(DADOS_FILIAL df,int i,int j);
 
 /** @brief Verifica se um Cliente comprou algum produto.
  *
@@ -212,7 +203,7 @@ Avl getClientIndexF(FILIAL f,int index);
  *  @return Estrutura com a informação relativa á Filial.
  */
 
-DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int filial,int month,int total);
+DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int month,int total);
 
 /** @brief Retorna a informação das compras realizadas por um determinado Cliente, num determinado Mês.
  *
@@ -272,7 +263,7 @@ MY_AVL getInfoMesProduct(INFO_MES info,int index);
  *  @return Quantidade de Produtos comprados.
  */
 
-int getDadosFilialQuantity(DADOS_FILIAL df,int filial,int month);
+int getDadosFilialQuantity(DADOS_FILIAL df,int month);
 
 Avl getProdInfo(FILIAL f,int index);
 

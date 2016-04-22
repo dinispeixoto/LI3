@@ -79,7 +79,7 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial);
  *  @return Dados relativos ás Filiais.
  */
 
-DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial);
+DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client);
 
 /** @brief Implementa a Querie 6. Retorna a informação relativa ao total de vendas registadas e o total facturado durante um intervalo de meses.
  *
