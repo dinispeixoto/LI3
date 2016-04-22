@@ -1228,7 +1228,7 @@ static void printMostSold(PAGE page_list,int** dados,int page,int totalPages,int
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i + (PAGE_SIZE*(page-1));
 		if(index < totalElements)
-			printf("\n 	|	%5d  |   %s    |    %5d     |   %5d        |",index+1,getPageElement(page_list,i),dados[1][index],dados[0][index]);
+			printf("\n 	|	%6d |   %s    |    %5d     |   %5d        |",index+1,getPageElement(page_list,i),dados[1][index],dados[0][index]);
 	}
 	printf("\n\n");
 	printf("								0.Sair\n");
