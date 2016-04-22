@@ -2,7 +2,7 @@
 #include "headers/interpretador.h"
 
 #define PAGE_SIZE 20
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 128
 
 /* FUNÇÕES PRIVADAS AO MÓDULO */
 static void menu();
@@ -13,7 +13,7 @@ static int readFiles(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 /* QUERIE 2 */
 static int runningReadCatalog(CATALOG_PRODUCTS);
 static int readCatalogIntro(CATALOG_PRODUCTS);
-static int searchPage(CATALOG_PRODUCTS,char*,int*);
+static int searchPage(int*,LISTA_STRINGS,int);
 static void printCatalogProds(PAGE,int,int,int);
 /* QUERIE 3 */
 static int runningProductMonth(CATALOG_PRODUCTS,FACTURACAO);
@@ -35,7 +35,7 @@ static int runningToPeriodMonths(CATALOG_PRODUCTS,FACTURACAO);
 static void printDATA(DADOS,int,int);
 /* QUERIE 7 */
 static int runningListClients(CATALOG_PRODUCTS,FILIAL*);
-static int searchPageListClients(CATALOG_PRODUCTS,FILIAL*,int*);
+static int searchPageListClients(CATALOG_PRODUCTS,int*,LISTA_STRINGS,int);
 static void printListClients(PAGE,int,int,int);
 /* QUERIE 8 */ 
 static int runningClientsProdFilial(CATALOG_PRODUCTS,FILIAL*);
@@ -273,7 +273,8 @@ static int runningReadCatalog(CATALOG_PRODUCTS CatProducts){
 static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 	
 	char buffer[BUFFER_SIZE];
-	int size_input,running=1,actualPage=1,test;
+	int size_input,running=1,actualPage=1,test,totalPages;
+	LISTA_STRINGS group;
 
 	printf("\e[2J\e[H");
 	test = testMemory(CatProducts,"O Catálogo de Produtos");
@@ -287,8 +288,10 @@ static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 	if(buffer[0] >= 'A' && buffer[0] <= 'Z' && size_input){
 		printf("\e[2J\e[H");
 		printTop(2);
+		group = querie2(CatProducts,buffer[0]);
+		totalPages = calculatePagesProducts(group,PAGE_SIZE);
 		while(running){
-			running = searchPage(CatProducts,buffer,&actualPage);
+			running = searchPage(&actualPage,group,totalPages);
 		}
 	}
 	else if(buffer[0] == '0' && size_input) return 0;
@@ -300,15 +303,11 @@ static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 	return 0;
 }
 
-static int searchPage(CATALOG_PRODUCTS CatProducts,char* buffer,int *actualPage){
+static int searchPage(int *actualPage,LISTA_STRINGS group,int totalPages){
 
-	int page,totalPages,size_input,page_begin;
+	int page,size_input,page_begin;
 	char string_page[BUFFER_SIZE];
-	LISTA_STRINGS group;
-	PAGE page_list;
-
-	group = querie2(CatProducts,buffer[0]);
-	totalPages = calculatePagesProducts(group,PAGE_SIZE);		
+	PAGE page_list;	
 
 	page_begin = (PAGE_SIZE*(*actualPage-1));
 	page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
@@ -790,27 +789,26 @@ static void printDATA(DADOS data,int begin,int end){
 /* QUERIE 7 */
 
 static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
-	int running=1,actualPage=1;
+	int running=1,actualPage=1,totalPages;
+	LISTA_STRINGS group = querie7(arrayFiliais);
+	totalPages = calculatePagesClients(group,PAGE_SIZE);
 	while(running){
-		running = searchPageListClients(CatProducts,arrayFiliais,&actualPage);
+		running = searchPageListClients(CatProducts,&actualPage,group,totalPages);
 	}
 	return 1;
 }
 
-static int searchPageListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,int *actualPage){
+static int searchPageListClients(CATALOG_PRODUCTS CatProducts,int *actualPage,LISTA_STRINGS group,int totalPages){
 
-	int page,totalPages,size_input,page_begin,test;
+	int page,size_input,page_begin,test;
 	char string_page[BUFFER_SIZE];
 	PAGE page_list;
-	LISTA_STRINGS group; 
 	
 	printf("\e[2J\e[H");
 	test = testMemory(CatProducts,"O Catálogo de clientes que compraram em todas as filiais");
 	if(test) return 0;
 
 	printTop(7);
-	group = querie7(arrayFiliais);
-	totalPages = calculatePagesClients(group,PAGE_SIZE);
 	page_begin = (PAGE_SIZE*(*actualPage-1));
 	page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);	
 
