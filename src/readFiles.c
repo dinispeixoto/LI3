@@ -62,6 +62,8 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		time(&begin_products);
 		invalidatedProducts = valProd(fileProducts,products,&validatedProducts);
 		fact = copyProducts(fact,products);
+		for(i=0;i<3;i++)
+			f[i] = copyP(f[i],products);
 		time(&end_products);
 		time_elapsed_products = difftime(end_products,begin_products);
 		

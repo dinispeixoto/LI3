@@ -55,6 +55,9 @@ typedef struct infoProduct *INFO_PRODUCT;
  */
 typedef struct dadosFilial *DADOS_FILIAL;
 
+/* FALTA ESTA */
+typedef struct productInfo *PRODUCT_INFO;
+
 
 /** @brief Inicia a estrutura da Filial, alocando espaço para a mesma.
  *
@@ -143,12 +146,16 @@ void freeInfoProduct(void* info);
  *  @return Estrutura com informação sobre os Clientes.
  */
 
-INFO_CLIENT updateInfoC(INFO_CLIENT infoC,SALES s);
+FILIAL copyP(FILIAL f,CATALOG_PRODUCTS cp); /* FALTA ESTA */
+
+
+INFO_CLIENT updateInfoC(INFO_CLIENT infoC,SALES s,int* exist);
 
 /** @brief Actualiza a estrutura INFO_PRODUCT após uma determinada venda.
  *
  *  @param info Estrutura com informação sobre os Produtos.
  *  @param s Venda.
+ *  @param exist indicador se numa dada venda o produto já existe na lista de produtos do cliente.
  *
  *  @return Estrutura com informação sobre os Produtos.
  */
@@ -193,7 +200,7 @@ int getComp(INFO_CLIENT x);
  *  @return MY_AVL que se encontra no índice.
  */
 
-MY_AVL getClientIndexF(FILIAL f,int index);
+Avl getClientIndexF(FILIAL f,int index);
 
 /** @brief Actualiza os dados relativos a uma dada Filial num dado mês.
  *
@@ -266,5 +273,11 @@ MY_AVL getInfoMesProduct(INFO_MES info,int index);
  */
 
 int getDadosFilialQuantity(DADOS_FILIAL df,int filial,int month);
+
+Avl getProdInfo(FILIAL f,int index);
+
+int getResg(PRODUCT_INFO info);
+
+int	getPiQuant(PRODUCT_INFO info);
 
 #endif

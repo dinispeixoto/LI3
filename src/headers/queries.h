@@ -120,7 +120,7 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P);
 LISTA_STRINGS querie9(FILIAL* f,char* client,int month);
 
 
-LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact,int N,int filial,int** dados);
+LISTA_STRINGS querie10(FILIAL f, int N,int** dados);
 
 /** @brief Implementa a Querie 11. Retorna os 3 Produtos em que um dado Cliente mais dinheiro gastou durante todo o ano.
  *

@@ -6,6 +6,7 @@
 
 struct elem{
     double valor;
+    int registo;
     char* c;
 };
 
@@ -38,7 +39,7 @@ void bubbleUp (Heap h, int i) {
     }    
 }
 
-int  insertHeap (Heap h, double x,char* ct) {
+int  insertHeap (Heap h, double x,int y,char* ct) {
     
     if (h->used == h->size) {
         h->values = realloc(h->values, 2*(h->size)*sizeof(struct elem)); 
@@ -46,6 +47,7 @@ int  insertHeap (Heap h, double x,char* ct) {
     }
 
     h->values[h->used].valor= x;
+    h->values[h->used].registo = y;
     h->values[h->used].c=malloc((strlen(ct)+1)*sizeof(char));
     strcpy(h->values[h->used].c,ct);
     (h->used)++;
@@ -78,11 +80,12 @@ char*  extractMax(Heap h){
 }
 
 
-char* extractMaxQuantity(Heap h,double* res){
+char* extractMaxQuantity(Heap h,double* quant,int* resg){
 if (h->used > 0) {
         char* r=malloc((strlen(h->values[0].c)+1)*sizeof(char));
         strcpy(r,h->values[0].c);
-        *res=h->values[0].valor;   
+        *quant=h->values[0].valor;
+        *resg=h->values[0].registo;    
         h->values[0] = h->values[h->used-1]; 
         (h->used)--;
         bubbleDown(h, h->used);
@@ -95,7 +98,7 @@ Heap cloneHeap (Heap hp){
     int i;
     Heap h=initHeap(hp->size);
     for(i=0;i<hp->used;i++)
-        insertHeap(h,hp->values[i].valor,hp->values[i].c);
+        insertHeap(h,hp->values[i].valor,hp->values[i].registo,hp->values[i].c);
 
     return h;
 }

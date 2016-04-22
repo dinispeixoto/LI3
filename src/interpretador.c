@@ -48,12 +48,14 @@ static int infoClientMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int searchPageProducts(LISTA_STRINGS,int*);
 static void printPageMostSold(PAGE,int,int,int);
 /* QUERIE 10 */
-static int runningMostSold(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
-static int nProductsMostSold(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
+static int runningMostSold(CATALOG_PRODUCTS,FILIAL*);
+static int nProductsMostSold(CATALOG_PRODUCTS,FILIAL*); 
+static int searchPageMostSold(int*,LISTA_STRINGS,int,int**);
 /* QUERIE 11 */
 static int runningThreeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int threeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static void printThreeMostPurchased(LISTA_STRINGS,char*);
+static void printMostSold(PAGE,int**,int,int,int);
 /* QUERIE 12 */
 static int inactiveClientsProducts(CATALOG_PRODUCTS,FILIAL*,FACTURACAO);
 static void printClientsProducts(int,int);
@@ -138,7 +140,7 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 			break;
 
 		case 10:
-			res = runningMostSold(CatProducts,arrayFiliais,fact);
+			res = runningMostSold(CatProducts,arrayFiliais);
 			break;
 
 		case 11:
@@ -1116,19 +1118,19 @@ static void printPageMostSold(PAGE page_list,int page,int totalPages,int totalEl
 
 /* QUERIE 10 */
 
-static int runningMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int runningMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	int running = 1;
 	while(running){
-		running = nProductsMostSold(CatProducts,arrayFiliais,fact);
+		running = nProductsMostSold(CatProducts,arrayFiliais);
 	}
 	return 1;
 }
 
-static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
+static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 
 	LISTA_STRINGS group;
-	int filial,input,quant,i,j,test;
-	char buff_quant[BUFFER_SIZE];
+	int filial,input,quant,i,j,test,actualPage=1,running=1,totalPages;
+	char buff_quant[BUFFER_SIZE],buff_filial[BUFFER_SIZE];
 	printf("\e[2J\e[H");
 
 	test = testMemory(CatProducts,"O Catálogo de produtos que um cliente mais comprou");
@@ -1138,19 +1140,28 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,F
 
 	printf("							0.Voltar\n");
 
-	printf("	Introduza a quantidade de produtos mais vendidos que deseja ver: ");
+	printf("\n	Introduza a quantidade de produtos mais vendidos que deseja ver: ");
 	input = scanf("%s",buff_quant);
 	quant = atoi(buff_quant);
 
 	if(buff_quant[0] == '0' && input) return 0;
 	if(quant <= 0 || quant > 171008){
-		printf("\n	Introduza uma quantidade válida!\n");
+		printf("\n	Introduza uma quantidade válida (1-171008)!\n");
+		getchar(); getchar();
 		return 1;
 	}
 
-	printf("	Introduza uma filial(1-3): ");
-	input = scanf("%s",buff_quant);
-	filial = atoi(buff_quant);
+	printf("\n	Introduza uma filial(1-3): ");
+	input = scanf("%s",buff_filial);
+	filial = atoi(buff_filial);
+
+	if(buff_quant[0] == '0' && input) return 0;
+	if(filial <= 0 || filial > 3){
+		printf("\n	Introduza um filial válido (1-3)!\n");
+		getchar(); getchar();
+		return 1;
+	}
+
 
 	int** dados=malloc(2*sizeof(int**));
 
@@ -1160,18 +1171,12 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,F
            dados[i][j]=0;
     }
 
-	group = querie10(arrayFiliais[filial-1],fact,quant,filial,dados);
+	group = querie10(arrayFiliais[filial-1],quant,dados);
+	totalPages = calculatePagesProducts(group,PAGE_SIZE);
 
-	for(i=0;i<quant;i++){
-	printf("\n\n");
-	printf(" Produto: %s Nº de Clientes:%d Quantidade:%d										\n",getListaString(group,i),dados[0][i],dados[1][i]);
+	while(running){
+		running = searchPageMostSold(&actualPage,group,totalPages,dados);
 	}
-	printf("\n\n");
-	printf("	Pressione qualquer tecla para continuar!		\n");
-	printf("________________________________________________________________________________\n");
-	printf("	>> ");
-	while(getchar()!='\n');
-	 getchar();
 
 	for(i=0;i<2;i++)
         free(dados[i]);
@@ -1179,7 +1184,55 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,F
 	return 0;
 }
 
+static int searchPageMostSold(int *actualPage,LISTA_STRINGS group,int totalPages,int **dados){
 
+	int page,size_input,page_begin;
+	char string_page[BUFFER_SIZE];
+	PAGE page_list;
+
+	printf("\e[2J\e[H");
+	printTop(10);
+	page_begin = (PAGE_SIZE*(*actualPage-1));
+	page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);	
+
+
+	printMostSold(page_list,dados,*actualPage,totalPages,getListaSp(group));
+
+	do{
+		printf("	Escolha uma página: ");
+		size_input = scanf("%s",string_page);
+		page = atoi(string_page);
+		if(string_page[0]=='0') return 0;
+		else if(page > 0 && page <= totalPages && size_input){
+			*actualPage = page;
+			page_begin = (PAGE_SIZE*(page-1));
+			page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
+			printf("\e[2J\e[H");
+			printTop(10);
+			printMostSold(page_list,dados,*actualPage,totalPages,getListaSp(group));
+		}
+		else{
+			printf("\n	Por favor insira uma página de 1 a %d.\n",totalPages);
+			getchar();getchar();
+			return 1;
+		}
+	}
+	while(page != 0);
+	return 0;
+}
+
+static void printMostSold(PAGE page_list,int** dados,int page,int totalPages,int totalElements){
+	int i,index;
+	printf("	Página %d de %d.\n\n",page,totalPages);
+	printf("	|   Posição    |   Produto   | 	Quantidade  | Nº de Clientes |\n");
+	for(i=0;i<PAGE_SIZE;i++){
+		index = i + (PAGE_SIZE*(page-1));
+		if(index < totalElements)
+			printf("\n 	|	%5d  |   %s    |    %5d     |   %5d        |",index+1,getPageElement(page_list,i),dados[1][index],dados[0][index]);
+	}
+	printf("\n\n");
+	printf("								0.Sair\n");
+}
 
 
 /* QUERIE 11 */
@@ -1365,7 +1418,7 @@ static void printTop(int i){
 			break;
 
 		case 10:
-			printf("\n                       OS N PRODUTOS MAIS COMPRADOS                          \n\n");
+			printf("\n                       OS PRODUTOS MAIS COMPRADOS                          \n\n");
 			break;
 
 		case 11:

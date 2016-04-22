@@ -34,7 +34,7 @@ Heap initHeap (int size);
  *  @return Heap.
  */
 
-int insertHeap (Heap h, double x,char* ct);
+int insertHeap (Heap h, double x,int y,char* ct);
 
 /** @brief Retorna a String associada ao maior valor da Heap.
  *
@@ -50,7 +50,7 @@ char*  extractMax (Heap h);
  *  @return String.
  */
 
-char* extractMaxQuantity(Heap h,double* res);
+char* extractMaxQuantity(Heap h,double* res,int*);
 
 /** @brief Retorna o tamanho da Heap utilizado até ao momento.
  *

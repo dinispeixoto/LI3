@@ -94,7 +94,7 @@ static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial){
 	void* x;
 	int index = client[0]-'A';
-	x = (INFO_CLIENT)findInfo(getAvl(getClientIndexF(f,index)),client,NULL);
+	x = (INFO_CLIENT)findInfo(getClientIndexF(f,index),client,NULL);
 
 	df=addQ(df,x,filial);
 	
@@ -176,15 +176,15 @@ static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
 	Avl aux;
 	for(j=0;j<SIZE_ABC;j++){
-		aux=getAvl(getClientIndexF(f[0],j));
-		insereList(getAvl(getClientIndexF(f[0],j)),list);
+		aux=getClientIndexF(f[0],j);
+		insereList(getClientIndexF(f[0],j),list);
 		freeNodo(aux);
 		aux=NULL;
 		}
 
 	for(i=1;i<SIZE_FILIAIS;i++){
 		for(j=0;j<SIZE_ABC;j++){
-			aux=getAvl(getClientIndexF(f[i],j));
+			aux=getClientIndexF(f[i],j);
 			removeList(aux,list);
 			freeNodo(aux);
 			aux=NULL;
@@ -203,7 +203,7 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	LISTA_STRINGS gcN = initListaStrings(1,SIZE_CLIENT);
 	LISTA_STRINGS gcP = initListaStrings(1,SIZE_CLIENT);
 	for(i=0;i<SIZE_ABC;i++){
-		find(getAvl(getClientIndexF(f,i)),product,gcN,gcP);
+		find(getClientIndexF(f,i),product,gcN,gcP);
 	}
 	(*P)=gcP;
 	return gcN;
@@ -263,7 +263,7 @@ LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 	Heap heap=initHeap(1);
 	int index=index(client[0]);
 	for(i=0;i<SIZE_FILIAIS;i++){
-		x =(INFO_CLIENT)findInfo(getAvl(getClientIndexF(f[i],index)),client,NULL);
+		x =(INFO_CLIENT)findInfo(getClientIndexF(f[i],index),client,NULL);
 		findProd(x,month,heap);
 	}
 
@@ -292,7 +292,7 @@ static Heap findProd2(Avl a,Heap heap){
 		findProd2(getAvlLeft(a),heap);
 		x = (INFO_PRODUCT)getInfo(a);
 		r=quant(x);
-		insertHeap(heap,r,getAvlCode(a));
+		insertHeap(heap,r,0,getAvlCode(a));
 		findProd2(getAvlRight(a),heap);
 	}
 	return heap;
@@ -308,120 +308,64 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 }
 
 /*#################################QUERIE 10#####################################*/
-static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados,int*num,char** prod){
-	int i,a=0,n=total;
-	double res;
-	char* aux;
-	while(0<total){
-		aux=getString(heap ,0);
-			for(i=0;i<n;i++){
-				if(strcmp(prod[i],aux)==0){
-					dados[0][a]=num[i];
-					i=n;
-
-				}
-		}
-			free(aux);
-			addListaStrings(group,getListaSp(group),extractMaxQuantity(heap,&res));
-			dados[1][a]=(int)res;
+static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados){
+	int a=0,limite=getHeapUsed(heap);
+	double quant;
+	int resg;
+	while(0<total && 0<limite){
+			addListaStrings(group,getListaSp(group),extractMaxQuantity(heap,&quant,&resg));
+			dados[1][a]=(int)quant;
+			dados[0][a]=resg;
 			group=reallocListaStrings(group);
 			total--;
+			limite--;
 			a++;
 	}
 	return 1 ;
 }
 
-static int qua (INFO info,int filial){
-	int i,sum=0;
-	for(i=0;i<SIZE_MONTH;i++){
-		sum+=(getTotalQuantPQ(getNormalPQ(info,i,filial))+getTotalQuantPQ(getPromoPQ(info,i,filial)));
-	}
-	return sum;
+static int qua (PRODUCT_INFO info,int* registo){
+	*registo=getResg(info);
+	return getPiQuant(info);
 }
 
-static int pesq (Avl a, Heap hp,int filial){
-	int r; 
+static int pesq (Avl a, Heap hp){
+	int r,resg; 
 	void* x;
 	char* aux;
 
 	if(a){
-	pesq(getAvlLeft(a),hp,filial);
-	x = (INFO)getInfo(a);
+	pesq(getAvlLeft(a),hp);
+	x = (PRODUCT_INFO)getInfo(a);
 	if(x){
 		aux=getAvlCode(a);
-		r=qua(x,filial);
-		insertHeap(hp,r,aux);
+		r=qua(x,&resg);
+		insertHeap(hp,r,resg,aux);
 		free(aux);
 	}
-	pesq(getAvlRight(a),hp,filial);
-	}
-	return 1;
-}
-
-static int pesquisa2 (INFO_CLIENT ic,int N,int* num,char** prod){ /* NÃO USAS A HEAP */
-	int i,j;
-	int ind;
-	for(j=0;j<N;j++){
-		ind= index(prod[j][0]);
-		for(i=0;i<SIZE_MONTH;i++){
-			if(getInfoMesProduct(getInfoMes(ic,i),ind)){
-				void* x=findInfo(getAvl(getInfoMesProduct(getInfoMes(ic,i),ind)),prod[j],NULL);
-				if(x){num[j]++;return 1;}
-			}	
-		}
-	}
-	return 1;
-}
-
-static int pesquisa (Avl a, Heap hp,int N,int* num,char** prod){
-	void* x;
-	if(a){
-	pesquisa(getAvlLeft(a),hp,N,num,prod);
-	
-	x = (INFO_CLIENT)getInfo(a);
-	pesquisa2(x,N,num,prod);
-
-	pesquisa(getAvlRight(a),hp,N,num,prod);
-	}
-	return 1;
-}
-
-static int querie10Fact (FACTURACAO f,Heap hp,int filial){
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		pesq(getAvl(getProductIndex(f,i)),hp,filial);
+	pesq(getAvlRight(a),hp);
 	}
 	return 1;
 }
 
 static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N,int** dados){
 	int i;
-	int num[N];
-	char** prod;
 	LISTA_STRINGS gp;
-	for(i=0;i<N;i++)
-		num[i]= 0;
-	
-	prod=getListString(hp,N);
 
-	for(i=0;i<26;i++){
-		pesquisa(getAvl(getClientIndexF(f,i)),hp,N,num,prod);
-	} 
+	for(i=0;i<SIZE_ABC;i++){
+		pesq(getProdInfo(f,i),hp);
+	}
+
 	gp = initListaStrings(1,SIZE_PRODUCT);
 
-	converteTransfer(hp,gp,N,dados,num,prod);
-	
-	for(i=0;i<N;i++)
-		free(prod[i]);
+	converteTransfer(hp,gp,N,dados);
 	
 	return gp;
 }
 
-
-LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial,int** dados){
+LISTA_STRINGS querie10(FILIAL f, int N,int** dados){
 	LISTA_STRINGS ls;
 	Heap hp=initHeap(1);
-	querie10Fact(fact,hp,filial);
 	ls=querie10Fil(f,hp,N,dados);
 	return ls;
 }
@@ -441,7 +385,7 @@ static Heap highCost2 (Avl a,Heap hp){
 		x= (INFO_PRODUCT)getInfo(a);
 		r=quant2(x);
 		copy=getAvlCode(a);
-		insertHeap(hp,r,copy);
+		insertHeap(hp,r,0,copy);
 		free(copy);
 		highCost2(getAvlRight(a),hp);
 	}
@@ -465,7 +409,7 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int in = index(client[0]);
 	Heap hp=initHeap(1);
 	for(i=0;i<SIZE_FILIAIS;i++){
-		void* x=findInfo(getAvl(getClientIndexF(f[i],in)),client,NULL);
+		void* x=findInfo(getClientIndexF(f[i],in),client,NULL);
 		highCost(x,hp);
 	}
 	gp = initListaStrings(1,SIZE_PRODUCT);
@@ -480,7 +424,7 @@ static int querie12Clients(FILIAL* f){
 	int i,j,sum=0,r;
 	for(i=0;i<SIZE_FILIAIS;i++)
 		for(j=0;j<SIZE_ABC;j++){
-			r=infoNULL(getAvl(getClientIndexF(f[i],j)));
+			r=infoNULL(getClientIndexF(f[i],j));
 			sum+=r;
 		}
 	return sum;
