@@ -1,12 +1,15 @@
 #include "headers/CatClients.h"
 
+/* Estrutura com um catálogo de clientes. */
 struct catc {
-	MY_AVL CatClients[SIZE_ABC];
+	MY_AVL CatClients[SIZE_ABC];						/* Array de 26 MY_AVL's cada indice deste array corresponde a uma letra do abecedário. */
 };
 
+/* Estrutura de um cliente. */
 struct client {
-	char* string;
+	char* string;										/* String com o código do cliente correspondente. */
 };
+
 
 /* Inicializa o Catálogo de Clientes. */
 CATALOG_CLIENTS initClients(){
@@ -17,15 +20,29 @@ CATALOG_CLIENTS initClients(){
 	return Catalog;
 }
 
+/* Inicializa a estrutura de um cliente. */
 CLIENT initClie(){
 	CLIENT clie = malloc(sizeof(struct client));
 	clie->string = NULL;
 	return clie;
 }
 
+/* Liberta a estrutura de um cliente */
 void freeClient(CLIENT clie){
 	free(clie->string);
 	free(clie);
+}
+
+/* Limpa o catálogo de clientes. */
+void removeCatClients(CATALOG_CLIENTS Catalog){
+	int i;
+	if(Catalog){
+		for(i=0;i<SIZE_ABC;i++) {
+			removeMyAvl(Catalog->CatClients[i],NULL);
+			Catalog->CatClients[i] = NULL;
+		}
+		free(Catalog);
+	}
 }
 
 /* Insere um cliente no respectivo catálogo. */
@@ -61,18 +78,6 @@ int totalClients(CATALOG_CLIENTS Catalog){
 	return total;
 }
 
-/* Limpa o catálogo de clientes. */
-void removeCatClients(CATALOG_CLIENTS Catalog){
-	int i;
-	if(Catalog){
-		for(i=0;i<SIZE_ABC;i++) {
-			removeMyAvl(Catalog->CatClients[i],NULL);
-			Catalog->CatClients[i] = NULL;
-		}
-		free(Catalog);
-	}
-}
-
 /* Testa se um cliente tem a estrutura correta.*/
 BOOL testClient(CLIENT client){
 	int num = atoi(client->string+LETRAS_C),r=0;
@@ -81,7 +86,6 @@ BOOL testClient(CLIENT client){
 }
 
 /* GETS E SETS */
-
 char* getClient(CLIENT clie){
 	char* new = malloc((strlen(clie->string)+1)*sizeof(char));
 	strcpy(new,clie->string);

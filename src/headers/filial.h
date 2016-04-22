@@ -75,27 +75,6 @@ FILIAL initFilial();
 
 FILIAL insertFilial(FILIAL f,SALES s);
 
-/** @brief Inicia a estrutura INFO_PRODUCT, alocando espaço para a mesma.
- *
- *  @return Estrutura com informação sobre os Produtos.
- */
-
-INFO_PRODUCT initInfoProduct();
-
-/** @brief Inicia a estrutura INFO_CLIENT, alocando espaço para a mesma.
- *
- *  @return Estrutura com informação sobre os Clientes.
- */
-
-INFO_CLIENT initInfoClient();
-
-/** @brief Inicia a estrutura INFO_MES, alocando espaço para a mesma.
- *
- *  @return Estrutura com informação sobre um Mês.
- */
-
-INFO_MES initInfoMes();
-
 /** @brief Inicia a estrutura DADOS_FILIAL, alocando espaço para a mesma.
  *
  *  @return Estrutura com informação sobre uma Filial.
@@ -112,55 +91,9 @@ DADOS_FILIAL initDadosFilial();
 
 void freeFilial(FILIAL f);
 
-/** @brief Remove a estrutura INFO_CLIENT, libertando o espaço ocupado por esta.
- *
- *  @param infoClient Informação de um Cliente.
- *
- *  @return Void.
- */
-
-void freeInfoClient(void* infoClient);
-
-/** @brief Remove a estrutura INFO_MES, libertando o espaço ocupado por esta.
- *
- *  @param info Informação de um Mês.
- *
- *  @return Void.
- */
-void freeInfoMes(INFO_MES info);
-
-/** @brief Remove a estrutura INFO_PRODUCT, libertando o espaço ocupado por esta.
- *
- *  @param info Informação de um Produto.
- *
- *  @return Void.
- */
-
-void freeInfoProduct(void* info);
-
-/** @brief Actualiza a estrutura INFO_CLIENT após uma determinada venda.
- *
- *  @param infoC Estrutura com informação sobre os Clientes.
- *  @param s Venda.
- *
- *  @return Estrutura com informação sobre os Clientes.
- */
 
 FILIAL copyP(FILIAL f,CATALOG_PRODUCTS cp); /* FALTA ESTA */
 
-
-INFO_CLIENT updateInfoC(INFO_CLIENT infoC,SALES s,int* exist);
-
-/** @brief Actualiza a estrutura INFO_PRODUCT após uma determinada venda.
- *
- *  @param info Estrutura com informação sobre os Produtos.
- *  @param s Venda.
- *  @param exist indicador se numa dada venda o produto já existe na lista de produtos do cliente.
- *
- *  @return Estrutura com informação sobre os Produtos.
- */
-
-INFO_PRODUCT updateInfoP(INFO_PRODUCT info,SALES s);
 
 /** @brief Copia os Clientes do Catálogo para a Filial.
  *
@@ -173,7 +106,6 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info,SALES s);
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c);
 
 
-
 /** @brief Verifica se um Cliente comprou algum produto.
  *
  *  @param x Estrutura com informação sobre um Cliente.
@@ -183,12 +115,12 @@ FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c);
 
 int getComp(INFO_CLIENT x);
 
-/** @brief Retorna a MY_AVL presente num determinado indice da estrutura Filial.
+/** @brief Retorna a Avl presente num determinado indice da estrutura Filial.
  *
  *  @param f Filial.
  *  @param index Índice.
  *
- *  @return MY_AVL que se encontra no índice.
+ *  @return Avl que se encontra no índice.
  */
 
 Avl getClientIndexF(FILIAL f,int index);

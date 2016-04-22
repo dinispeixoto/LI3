@@ -1,47 +1,47 @@
 #include "headers/facturacao.h"
 
+/* Estrutura principal da facturação. */
 struct fact{
-	TOTAL_MES total_mes[SIZE_MONTH];  
-	MY_AVL prod[SIZE_ABC];
+	TOTAL_MES total_mes[SIZE_MONTH];		/* Array de 12 de estruturas TOTAL_MES. */
+	MY_AVL prod[SIZE_ABC];					/* Catálogo de Produtos. */
 };
 
+/* Estrutura com informações sobre o preço e a quantidade. */
 struct priceQuantity {
-	double totalprice;
-	int totalquant;
+	double totalprice;						/* Preço. */
+	int totalquant;							/* Quantidade. */
 };
 
+/* Estrutura com os valores de um determinado mês. */
 struct totalMes{
-	double totalFacturado; 
-	int totalQuant;
-	int totalVendas;
+	double totalFacturado; 					/* Total facturado num determinado mês. */
+	int totalQuant;							/* Quantidade total vendida num determinado mês. */
+	int totalVendas;						/* Total de vendas num determinado mês. */
 };
 
+/* Informação em cada nodo das MY_AVL do Catalógo de Produtos. */
 struct info{
-	PRICE_QUANTITY N[SIZE_MONTH][SIZE_FILIAIS];
-	PRICE_QUANTITY P[SIZE_MONTH][SIZE_FILIAIS];
+	PRICE_QUANTITY N[SIZE_MONTH][SIZE_FILIAIS];	/* Matriz de estruturas PRICE_QUANTITY referentes às vendas sem promoção.*/
+	PRICE_QUANTITY P[SIZE_MONTH][SIZE_FILIAIS]; /* Matriz de estruturas PRICE_QUANTITY referentes às vendas com promoção.*/
 };
 
+/* Estrutura auxiliar à resolução de algumas queries. */
 struct dados{
-	double totalpriceF[SIZE_FILIAIS];
-	int totalquantF[SIZE_FILIAIS];
-	double totalMP;
-	int totalVendas;
+	double totalpriceF[SIZE_FILIAIS];			/* Array com o total facturado em cada filial. */			
+	int totalquantF[SIZE_FILIAIS];				/* Array com o total vendido em cada filial. */
+	double totalMP;								/* Total facturado. */
+	int totalVendas;							/* Total vendido. */
 };
 
+/* Funções privadas ao módulo. */
 static PRICE_QUANTITY initPQ();
 static INFO initINFO();
 static INFO copyInfoFact(SALES,INFO,FACTURACAO);
 static void freeTotalMes(TOTAL_MES m);
 static void freePQ(PRICE_QUANTITY x);
+static TOTAL_MES initTotalMes();
 
-TOTAL_MES initTotalMes(){
-	TOTAL_MES total_mes = malloc(sizeof(struct totalMes));
-	total_mes->totalFacturado=0; 
-	total_mes->totalQuant=0;
-	total_mes->totalVendas=0;
-	return total_mes;
-}
-
+/* Inicializa uma estrutura FACTURACAO. */
 FACTURACAO initFact(){
 	int i;
 	FACTURACAO f = malloc(sizeof(struct fact));
@@ -50,6 +50,7 @@ FACTURACAO initFact(){
 	return f;
 }
 
+/* Liberta uma estrutura FACTURACAO. */
 void freeFact(FACTURACAO f){
 	int i;
 	for(i=0;i<SIZE_MONTH;i++) freeTotalMes(f->total_mes[i]);
@@ -58,6 +59,7 @@ void freeFact(FACTURACAO f){
 	f=NULL;
 }
 
+/* Liberta uma estrutura com informação (da Avl). */
 void freeInfo(void* info){
 	INFO x = (INFO) info;
 	int i,j;
@@ -71,15 +73,7 @@ void freeInfo(void* info){
 	}
 }
 
-static void freePQ(PRICE_QUANTITY x){
-	free(x);
-}
-
-static void freeTotalMes(TOTAL_MES m){
-	free(m);
-}
-
-
+/* Inicializa uma estrutura DADOS. */
 DADOS initDADOS(){
 	int i;
 	DADOS d = malloc(sizeof(struct dados));
@@ -92,6 +86,7 @@ DADOS initDADOS(){
 	return d;
 }
 
+/* Função que copia o Catálogo de Produtos para a estrutura FACTURACAO. */
 FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 	int i;	
 	for(i=0;i<SIZE_ABC;i++)
@@ -99,8 +94,8 @@ FACTURACAO copyProducts(FACTURACAO f,CATALOG_PRODUCTS p){
 	return f;
 }
 
+/* Função que insere uma Venda na estrutura FACTURACAO. */
 FACTURACAO insereFact(FACTURACAO f,SALES s){
-
 	void* y;
 	char* prod = getProduct(getSalesProduct(s));
 	int index = prod[0]-'A';
@@ -120,8 +115,8 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	return f;
 }
 
-/*GET & SET*/
 
+/*GETS & SETS*/
 double* getDadosP(DADOS d){
 	return d->totalpriceF;
 }
@@ -223,8 +218,10 @@ int getTotalRegisto(TOTAL_MES m){
 	return m->totalVendas;
 }
 
+
 /* STATICS */
 
+/* Inicializa uma estrutura PRICE_QUANTITY. */
 static PRICE_QUANTITY initPQ(){
 	PRICE_QUANTITY x = malloc (sizeof (struct priceQuantity));
 	x->totalprice = 0;
@@ -232,6 +229,7 @@ static PRICE_QUANTITY initPQ(){
 	return x;
 }
 
+/* Inicializa uma estrutura INFO. */
 static INFO initINFO(){
 	int j,k;
 	INFO i=malloc(sizeof(struct info));
@@ -244,6 +242,16 @@ static INFO initINFO(){
 	return i;
 }
 
+/* Inicializa uma estrutura TOTAL_MES. */
+static TOTAL_MES initTotalMes(){
+	TOTAL_MES total_mes = malloc(sizeof(struct totalMes));
+	total_mes->totalFacturado=0; 
+	total_mes->totalQuant=0;
+	total_mes->totalVendas=0;
+	return total_mes;
+}
+
+/* Função que copia a informação da Venda. */
 static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 	double price=getSalesPrice(s);
 	int quantity=getSalesQuantity(s);
@@ -260,9 +268,18 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 					i->N[month][filial]->totalquant ++;		
 					break;
 	}
-
 	f->total_mes[month]->totalFacturado+=total;
 	f->total_mes[month]->totalQuant+=quantity;
 	f->total_mes[month]->totalVendas++; 
 	return i;
+}
+
+/* Liberta memória da estrutura PRICE_QUANTITY. */
+static void freePQ(PRICE_QUANTITY x){
+	free(x);
+}
+
+/* Liberta memória da estrutura TOTAL_MES. */
+static void freeTotalMes(TOTAL_MES m){
+	free(m);
 }

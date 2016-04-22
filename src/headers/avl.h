@@ -2,7 +2,7 @@
  *  @brief Protótipos das funções que trabalham com AVL's.
  *
  *  O ficheiro contem os prototipos das funçoes
- *  AVL e assim como a implementação das estruturas necessárias e macros.
+ *  AVL assim como a implementação das estruturas necessárias e macros.
  *
  *  @author Grupo 33
  */
@@ -28,7 +28,7 @@ typedef struct avl *Avl;
 typedef struct myAvl *MY_AVL;
 
 /**
- * @brief Declaração do tipo STRING, um tipo abstrato. 
+ * @brief Declaração do tipo STRING.
  */
 typedef char* STR;
 

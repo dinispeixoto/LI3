@@ -1,12 +1,13 @@
 #include "headers/readFiles.h"
 
+/* Funções privadas ao módulo. */
 static int valCli(FILE *,CATALOG_CLIENTS,int*);
 static int valProd(FILE *,CATALOG_PRODUCTS,int*);
 static int valSales(FILE *,CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*,FACTURACAO,int*);
 
 
 /* Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é
-validado em memória, na respectiva estrutura. */
+validado em memória, na respectiva estrutura, e calcula os tempos de cada uma destas validações. */
 int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,char* clientsFile,char* productsFile,char* salesFile){
 
 	int r=1;
@@ -44,7 +45,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 			f[i] = copyCPO(f[i],clients);
 		time(&end_clients);
 		time_elapsed_clients = difftime(end_clients,begin_clients);
-		
+
 		printf("	 _______________________________________\n");
 		printf("	| 		CLIENTES 		|\n");
 		printf("	| Nome do ficheiro: %18s	|\n",clientsFile);
@@ -55,7 +56,6 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		printf("	|_______________________________________|\n");
 	}
 	else return 0;
-
 
 
 	if(fileProducts!=NULL){
@@ -85,7 +85,6 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 		time(&end_sales); 
 		time_elapsed_sales = difftime(end_sales,begin_sales);
 
-
 		printf("	 _______________________________________\n");
 		printf("	| 		VENDAS 			|\n");
 		printf("	| Nome do ficheiro: %18s	|\n",salesFile);
@@ -104,7 +103,7 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 	return r;
 }
 
-/* Faz a validação dos clientes. */
+/* Faz a validação dos clientes, inserindo se válido no Catálogo de Clientes. */
 static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 
 	int invalidated = 0;
@@ -123,7 +122,7 @@ static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 	return invalidated;
 }
 
-/* Faz a validação dos produtos. */
+/* Faz a validação dos produtos, inserindo se válido no Catálogo de Produtos. */
 static int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 
 	int invalidated = 0;
@@ -142,7 +141,7 @@ static int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 	return invalidated;
 }
 
-/* Conta quantas linhas do ficheiro com as vendas são válidas. */
+/* Faz a validação das vendas, inserindo se válidas na estrutura Facturação e na estrutura do respectivo Filial. */
 static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products,FILIAL* f,FACTURACAO fact,int *validated){
 
 	char buffer[SIZE_BUF_SALES],*line;
@@ -182,6 +181,7 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 	return invalidated;
 }
 
+/* Liberta a memória ocupada por todas as estruturas criadas no processo de leitura. */
 void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
 	int i;
 	removeCatClients(CatClients);

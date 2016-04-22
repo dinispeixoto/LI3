@@ -319,7 +319,6 @@ static int searchPage(int *actualPage,LISTA_STRINGS group,int totalPages){
 	do{
 		printf("	Escolha uma página: ");
 		size_input = scanf("%s",string_page);
-		printf("%s\n",string_page);
 		page = atoi(string_page);
 		
 		if(string_page[0]=='0' && size_input) return 0;
@@ -824,7 +823,6 @@ static int searchPageListClients(CATALOG_PRODUCTS CatProducts,int *actualPage,LI
 	do{
 		printf("	Escolha uma página: ");
 		size_input = scanf("%s",string_page);
-		printf("%s\n",string_page);
 		page = atoi(string_page);
 		if(string_page[0]=='0') return 0;
 		else if(page > 0 && page <= totalPages && size_input){
@@ -962,7 +960,7 @@ static int searchPageListClientsProdFilial(int *actualPage,LISTA_STRINGS* group)
 	page_list = updatePage(*group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
 
 	printf("\e[2J\e[H");
-	printTop(7);
+	printTop(8);
 	printClientsProdFilial(page_list,*actualPage,totalPages,getListaSp(*group));
 
 	do{
@@ -1092,14 +1090,14 @@ static int searchPageProducts(LISTA_STRINGS group,int *actualPage){
 			page_begin = (PAGE_SIZE*(page-1));
 			page_list = updatePage(group,page_begin,SIZE_PRODUCT,PAGE_SIZE);
 			printf("\e[2J\e[H");
-			printTop(2);
+			printTop(9);
 			printPageMostSold(page_list,*actualPage,totalPages,getListaSp(group));
 		}
 		else{
 			printf("	Por favor insira uma página de 1 a %d.\n",totalPages);
 			getchar();getchar();
 			printf("\e[2J\e[H");
-			printTop(2);
+			printTop(9);
 			return 1;
 		}
 	}
@@ -1368,7 +1366,7 @@ static int calculatePagesProducts(LISTA_STRINGS group,int elemPerPage){
 	return totalPages;
 }
 
-static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){   /* ESTA AGORA É IGUAL À ANTERIOR!!! */
+static int calculatePagesClients(LISTA_STRINGS group,int elemPerPage){ 
 	int totalPages = (getListaSp(group)/elemPerPage);
 	if(totalPages*elemPerPage < getListaSp(group)) totalPages++;
 	return totalPages;
