@@ -93,11 +93,12 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 	size_input = scanf("%s",buffer);
 	num_commando = atoi(buffer);
 
-	switch(num_commando){
+	if(buffer[0]=='0'){
+		res = exitGereVendas();
+		return res;
+	}
 
-		case 0:
-			res = exitGereVendas();
-			break;
+	switch(num_commando){
 
 		case 1: 
 			if(!totalProducts(CatProducts) && size_input) res = runningReadFiles(CatClients,CatProducts,arrayFiliais,fact);
@@ -148,10 +149,10 @@ int interpretador(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL
 			res = inactiveClientsProducts(CatProducts,arrayFiliais,fact);
 			break;
 			
-		/*default:
+		default:
 			printf("	Este comando não é válido!\n");
-			while(getchar()!='\n');
-			backInterpretador(CatClients,CatProducts,arrayFiliais,fact);*/
+			getchar();getchar();
+			break;
 	}
 
 	return res;

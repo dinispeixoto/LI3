@@ -1,0 +1,90 @@
+\hypertarget{interpretador_8h}{\section{src/headers/interpretador.h File Reference}
+\label{interpretador_8h}\index{src/headers/interpretador.\+h@{src/headers/interpretador.\+h}}
+}
+
+
+Protótipos das funções que trabalham com o Interpretador.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Cat\+Clients.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cat\+Products.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}filial.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}facturacao.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}read\+Files.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queries.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lista\+Strings.\+h\char`\"{}}\\*
+Include dependency graph for interpretador.\+h\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{interpretador_8h_a525a72029ba63afae60556d2e34ce033}{C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E}~\char`\"{}files/Clientes.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Ficheiro dos Clientes. \end{DoxyCompactList}\item 
+\#define \hyperlink{interpretador_8h_a885e8a7d3a7c4c01b9d5aca6c3e9976e}{P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E}~\char`\"{}files/Produtos.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Ficheiro dos Produtos. \end{DoxyCompactList}\item 
+\#define \hyperlink{interpretador_8h_a2cb68328083eae290a685a04735e1d44}{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E}~\char`\"{}files/Vendas\+\_\+1\+M.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Ficheiro das Vendas. \end{DoxyCompactList}\item 
+\#define \hyperlink{interpretador_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E}~20
+\begin{DoxyCompactList}\small\item\em Tamanho de uma Página. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}{interpretador} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}, \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com o Interpretador. 
+
+O ficheiro contém os protótipos das funçoes que implemetam o Interpretador, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{interpretador_8h_a525a72029ba63afae60556d2e34ce033}{\index{interpretador.\+h@{interpretador.\+h}!C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E@{C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E}}
+\index{C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E@{C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+L\+I\+E\+N\+T\+S\+\_\+\+F\+I\+L\+E~\char`\"{}files/Clientes.\+txt\char`\"{}}}\label{interpretador_8h_a525a72029ba63afae60556d2e34ce033}
+
+
+Ficheiro dos Clientes. 
+
+\hypertarget{interpretador_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{\index{interpretador.\+h@{interpretador.\+h}!P\+A\+G\+E\+\_\+\+S\+I\+Z\+E@{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E}}
+\index{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E@{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+G\+E\+\_\+\+S\+I\+Z\+E~20}}\label{interpretador_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}
+
+
+Tamanho de uma Página. 
+
+\hypertarget{interpretador_8h_a885e8a7d3a7c4c01b9d5aca6c3e9976e}{\index{interpretador.\+h@{interpretador.\+h}!P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E@{P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E}}
+\index{P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E@{P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+D\+U\+C\+T\+S\+\_\+\+F\+I\+L\+E~\char`\"{}files/Produtos.\+txt\char`\"{}}}\label{interpretador_8h_a885e8a7d3a7c4c01b9d5aca6c3e9976e}
+
+
+Ficheiro dos Produtos. 
+
+\hypertarget{interpretador_8h_a2cb68328083eae290a685a04735e1d44}{\index{interpretador.\+h@{interpretador.\+h}!S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E@{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E}}
+\index{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E@{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E~\char`\"{}files/Vendas\+\_\+1\+M.\+txt\char`\"{}}}\label{interpretador_8h_a2cb68328083eae290a685a04735e1d44}
+
+
+Ficheiro das Vendas. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}{\index{interpretador.\+h@{interpretador.\+h}!interpretador@{interpretador}}
+\index{interpretador@{interpretador}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{interpretador}]{\setlength{\rightskip}{0pt plus 5cm}int interpretador (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{, }
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{}
+\end{DoxyParamCaption}
+)}}\label{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}

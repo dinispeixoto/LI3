@@ -1,0 +1,756 @@
+\hypertarget{facturacao_8h}{\section{src/headers/facturacao.h File Reference}
+\label{facturacao_8h}\index{src/headers/facturacao.\+h@{src/headers/facturacao.\+h}}
+}
+
+
+Protótipos das funções que trabalham com a facturacao.  
+
+
+{\ttfamily \#include \char`\"{}avl.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Sales.\+h\char`\"{}}\\*
+Include dependency graph for facturacao.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{facturacao_8h_a759225c6c5a74b53c8a8b031ce348991}{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}~12
+\begin{DoxyCompactList}\small\item\em Número de meses. \end{DoxyCompactList}\item 
+\#define \hyperlink{facturacao_8h_af4ad8fae5931ae81323e149b6cb69510}{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}~6
+\begin{DoxyCompactList}\small\item\em Tamanho do Código de um Cliente. \end{DoxyCompactList}\item 
+\#define \hyperlink{facturacao_8h_a727abfada19fbc91074056041c6ea8f6}{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}~3
+\begin{DoxyCompactList}\small\item\em Numero de Filiais. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct fact $\ast$ \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo F\+A\+C\+T\+U\+R\+A\+C\+A\+O, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct price\+Quantity $\ast$ \hyperlink{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct info $\ast$ \hyperlink{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{I\+N\+F\+O}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo I\+N\+F\+O, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct dados $\ast$ \hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo D\+A\+D\+O\+S, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct total\+Mes $\ast$ \hyperlink{facturacao_8h_aae3459296212647975459c13506c4881}{T\+O\+T\+A\+L\+\_\+\+M\+E\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo T\+O\+T\+A\+L\+\_\+\+M\+E\+S, um tipo abstrato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} \hyperlink{facturacao_8h_aa803aacc3804343193198e132870f322}{init\+Fact} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura da Facturação, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_a49a635a07acdf10dadb8fc132b070d65}{init\+D\+A\+D\+O\+S} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura dos dados, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} \hyperlink{facturacao_8h_af2a597f3fb4cdb83b0e5c03ba51a028e}{copy\+Products} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} p)
+\begin{DoxyCompactList}\small\item\em Copia os produtos do Catálogo de Produtos para a Facturação. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} \hyperlink{facturacao_8h_ac68e0bc0b0e256fae0e61c8aa128b643}{insere\+Fact} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} s)
+\begin{DoxyCompactList}\small\item\em Insere uma Venda na estrutura Facturação. \end{DoxyCompactList}\item 
+void \hyperlink{facturacao_8h_a123d58cd86df6a350b61d05bd670b633}{free\+Fact} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura da Facturação, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+void \hyperlink{facturacao_8h_a77ba98f4dcc66c22b0fba9225770338b}{free\+Info} (void $\ast$info)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura Info, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+double \hyperlink{facturacao_8h_a388e694abb37b0a59ef031594f0e8f47}{getnum\+Filial\+P} (\hyperlink{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{I\+N\+F\+O} i, int filial, int promo, int mes)
+\begin{DoxyCompactList}\small\item\em Retorna o numero total facturado de um Produto num determinado mês numa determinada filial. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_a2a6e4bfcf1522acbda8db2fc77822f6b}{getnum\+Filial\+Q} (\hyperlink{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{I\+N\+F\+O} i, int filial, int promo, int mes)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade comprada de um Produto num determinado mês numa determinada filial. \end{DoxyCompactList}\item 
+double $\ast$ \hyperlink{facturacao_8h_afaad22b5463a2cc71eb78c910d52252c}{get\+Dados\+P} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna um apontador para um array com a quantidade total facturada nas várias filiais. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{facturacao_8h_afc4ebf60d0b6eb4d59dce0b9a2e896f9}{get\+Dados\+Q} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna um apontador para um array com a quantidade total de produtos comprados nas várias filiais. \end{DoxyCompactList}\item 
+double \hyperlink{facturacao_8h_a496383d80ce89149ba1a028efa945534}{get\+Dados\+T\+P} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna o total facturado num Mês. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_a8ce60beb43582727fefa310daaf4dae6}{get\+Dados\+T\+V} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade total de produtos comprados num Mês. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_a06904d7444b1b24b763df844041077ba}{set\+Total\+Price} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, int index, double total)
+\begin{DoxyCompactList}\small\item\em Altera a quantidade total facturada numa determinada Filial. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_ae94eec75ba6365a3cc6f2cfba69c2a89}{set\+Total\+Quantity} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, int index, int total)
+\begin{DoxyCompactList}\small\item\em Altera a quantidade total de produtos comprados numa determinada Filial. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{facturacao_8h_aae5d7e3b17b6681155db98315bc1e7c6}{get\+Product\+Index} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a M\+Y\+\_\+\+A\+V\+L de produtos presente num determinado índice da Facturação. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y} \hyperlink{facturacao_8h_a80b5a876c4458aa180d72e0d882b167f}{get\+Normal\+P\+Q} (\hyperlink{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{I\+N\+F\+O} i, int month, int filial)
+\begin{DoxyCompactList}\small\item\em Retorna a informação relativa a um produto vendido em modo normal num determinado mês, numa determinada Filial. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y} \hyperlink{facturacao_8h_a83aa8893d76ad762d949dd101429bf0e}{get\+Promo\+P\+Q} (\hyperlink{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{I\+N\+F\+O} i, int month, int filial)
+\begin{DoxyCompactList}\small\item\em Retorna a informação relativa a um produto vendido em modo promoção num determinado mês, numa determinada Filial. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_a6ed4f97221542a2b056d1eb16ecc4604}{get\+Total\+Quant\+P\+Q} (\hyperlink{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y} a)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade total de um produto vendido. \end{DoxyCompactList}\item 
+double \hyperlink{facturacao_8h_ab6c3257e6ef774c45f5ed8ede889670f}{get\+Total\+M\+P} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade total facturada. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_a275e5f36747326d34732a77b5a5362ea}{get\+Total\+Vendas} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade total de produtos vendidos. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_ac88b163a9ca6863202eee92ca6bb99d0}{set\+Total\+M\+P} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, double total)
+\begin{DoxyCompactList}\small\item\em Altera a quantidade total facturada. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_a4a5690be5ff5188f3a6fd7094c4052f6}{set\+Total\+Vendas} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, int total)
+\begin{DoxyCompactList}\small\item\em Altera a quantidade total de produtos vendidos. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_a19ecb0a4c6a0a296e78a6f350bc82052}{update\+Total\+M\+P} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, double total)
+\begin{DoxyCompactList}\small\item\em Actualiza a quantidade total facturada. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{facturacao_8h_a2b4bb23b6f6f43e15dbcdd283d6cb48f}{update\+Total\+Vendas} (\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} d, int total)
+\begin{DoxyCompactList}\small\item\em Actualiza a quantidade total de produtos vendidos. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_aae3459296212647975459c13506c4881}{T\+O\+T\+A\+L\+\_\+\+M\+E\+S} \hyperlink{facturacao_8h_a071fb55bbc98cdd0230975bbc71ac075}{get\+Total\+Mes} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} i, int month)
+\begin{DoxyCompactList}\small\item\em Retorna uma estrutura com a informação relativa á facturação num determinado mês. \end{DoxyCompactList}\item 
+double \hyperlink{facturacao_8h_ad0210ed34dfd3b47365ad8bd190f02c6}{get\+Total\+Facturado\+M\+E\+S} (\hyperlink{facturacao_8h_aae3459296212647975459c13506c4881}{T\+O\+T\+A\+L\+\_\+\+M\+E\+S} m)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade total facturada num determinado mês. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_a40d71ad02e7f273283d4a7e1ef275326}{get\+Total\+Quant\+M\+E\+S} (\hyperlink{facturacao_8h_aae3459296212647975459c13506c4881}{T\+O\+T\+A\+L\+\_\+\+M\+E\+S} m)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de produtos comprados num determinado mês. \end{DoxyCompactList}\item 
+int \hyperlink{facturacao_8h_ad97ec647697e5e99cc52d40321fbd80a}{get\+Total\+Registo} (\hyperlink{facturacao_8h_aae3459296212647975459c13506c4881}{T\+O\+T\+A\+L\+\_\+\+M\+E\+S} m)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de vendas num determinado mês. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com a facturacao. 
+
+O ficheiro contem os protótipos das funçoes que implemetam a Facturacao, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{facturacao_8h_af4ad8fae5931ae81323e149b6cb69510}{\index{facturacao.\+h@{facturacao.\+h}!S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}}
+\index{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S~6}}\label{facturacao_8h_af4ad8fae5931ae81323e149b6cb69510}
+
+
+Tamanho do Código de um Cliente. 
+
+\hypertarget{facturacao_8h_a727abfada19fbc91074056041c6ea8f6}{\index{facturacao.\+h@{facturacao.\+h}!S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}}
+\index{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S~3}}\label{facturacao_8h_a727abfada19fbc91074056041c6ea8f6}
+
+
+Numero de Filiais. 
+
+\hypertarget{facturacao_8h_a759225c6c5a74b53c8a8b031ce348991}{\index{facturacao.\+h@{facturacao.\+h}!S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}}
+\index{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H~12}}\label{facturacao_8h_a759225c6c5a74b53c8a8b031ce348991}
+
+
+Número de meses. 
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{\index{facturacao.\+h@{facturacao.\+h}!D\+A\+D\+O\+S@{D\+A\+D\+O\+S}}
+\index{D\+A\+D\+O\+S@{D\+A\+D\+O\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{D\+A\+D\+O\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct dados$\ast$ {\bf D\+A\+D\+O\+S}}}\label{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}
+
+
+Declaração do tipo D\+A\+D\+O\+S, um tipo abstrato. 
+
+\hypertarget{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{\index{facturacao.\+h@{facturacao.\+h}!F\+A\+C\+T\+U\+R\+A\+C\+A\+O@{F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}
+\index{F\+A\+C\+T\+U\+R\+A\+C\+A\+O@{F\+A\+C\+T\+U\+R\+A\+C\+A\+O}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{F\+A\+C\+T\+U\+R\+A\+C\+A\+O}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct fact$\ast$ {\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}}\label{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}
+
+
+Declaração do tipo F\+A\+C\+T\+U\+R\+A\+C\+A\+O, um tipo abstrato. 
+
+\hypertarget{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}{\index{facturacao.\+h@{facturacao.\+h}!I\+N\+F\+O@{I\+N\+F\+O}}
+\index{I\+N\+F\+O@{I\+N\+F\+O}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{I\+N\+F\+O}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct info$\ast$ {\bf I\+N\+F\+O}}}\label{facturacao_8h_a1b75417d96e36e635a0302644a6c66fc}
+
+
+Declaração do tipo I\+N\+F\+O, um tipo abstrato. 
+
+\hypertarget{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}{\index{facturacao.\+h@{facturacao.\+h}!P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y@{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}}
+\index{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y@{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct price\+Quantity$\ast$ {\bf P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}}}\label{facturacao_8h_a72e3997a7cda8a2375a9c6a64c397b21}
+
+
+Declaração do tipo P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y, um tipo abstrato. 
+
+\hypertarget{facturacao_8h_aae3459296212647975459c13506c4881}{\index{facturacao.\+h@{facturacao.\+h}!T\+O\+T\+A\+L\+\_\+\+M\+E\+S@{T\+O\+T\+A\+L\+\_\+\+M\+E\+S}}
+\index{T\+O\+T\+A\+L\+\_\+\+M\+E\+S@{T\+O\+T\+A\+L\+\_\+\+M\+E\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{T\+O\+T\+A\+L\+\_\+\+M\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct total\+Mes$\ast$ {\bf T\+O\+T\+A\+L\+\_\+\+M\+E\+S}}}\label{facturacao_8h_aae3459296212647975459c13506c4881}
+
+
+Declaração do tipo T\+O\+T\+A\+L\+\_\+\+M\+E\+S, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{facturacao_8h_af2a597f3fb4cdb83b0e5c03ba51a028e}{\index{facturacao.\+h@{facturacao.\+h}!copy\+Products@{copy\+Products}}
+\index{copy\+Products@{copy\+Products}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{copy\+Products}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O} copy\+Products (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{p}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_af2a597f3fb4cdb83b0e5c03ba51a028e}
+
+
+Copia os produtos do Catálogo de Produtos para a Facturação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em p} & Catálogo de Produtos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Facturação. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a123d58cd86df6a350b61d05bd670b633}{\index{facturacao.\+h@{facturacao.\+h}!free\+Fact@{free\+Fact}}
+\index{free\+Fact@{free\+Fact}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{free\+Fact}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Fact (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a123d58cd86df6a350b61d05bd670b633}
+
+
+Remove a estrutura da Facturação, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a77ba98f4dcc66c22b0fba9225770338b}{\index{facturacao.\+h@{facturacao.\+h}!free\+Info@{free\+Info}}
+\index{free\+Info@{free\+Info}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{free\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Info (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{info}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a77ba98f4dcc66c22b0fba9225770338b}
+
+
+Remove a estrutura Info, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Info.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_afaad22b5463a2cc71eb78c910d52252c}{\index{facturacao.\+h@{facturacao.\+h}!get\+Dados\+P@{get\+Dados\+P}}
+\index{get\+Dados\+P@{get\+Dados\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Dados\+P}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ get\+Dados\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_afaad22b5463a2cc71eb78c910d52252c}
+
+
+Retorna um apontador para um array com a quantidade total facturada nas várias filiais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total facturado. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_afc4ebf60d0b6eb4d59dce0b9a2e896f9}{\index{facturacao.\+h@{facturacao.\+h}!get\+Dados\+Q@{get\+Dados\+Q}}
+\index{get\+Dados\+Q@{get\+Dados\+Q}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Dados\+Q}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ get\+Dados\+Q (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_afc4ebf60d0b6eb4d59dce0b9a2e896f9}
+
+
+Retorna um apontador para um array com a quantidade total de produtos comprados nas várias filiais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de produtos comprados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a496383d80ce89149ba1a028efa945534}{\index{facturacao.\+h@{facturacao.\+h}!get\+Dados\+T\+P@{get\+Dados\+T\+P}}
+\index{get\+Dados\+T\+P@{get\+Dados\+T\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Dados\+T\+P}]{\setlength{\rightskip}{0pt plus 5cm}double get\+Dados\+T\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a496383d80ce89149ba1a028efa945534}
+
+
+Retorna o total facturado num Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total facturada. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a8ce60beb43582727fefa310daaf4dae6}{\index{facturacao.\+h@{facturacao.\+h}!get\+Dados\+T\+V@{get\+Dados\+T\+V}}
+\index{get\+Dados\+T\+V@{get\+Dados\+T\+V}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Dados\+T\+V}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Dados\+T\+V (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a8ce60beb43582727fefa310daaf4dae6}
+
+
+Retorna a quantidade total de produtos comprados num Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total de Produtos. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a80b5a876c4458aa180d72e0d882b167f}{\index{facturacao.\+h@{facturacao.\+h}!get\+Normal\+P\+Q@{get\+Normal\+P\+Q}}
+\index{get\+Normal\+P\+Q@{get\+Normal\+P\+Q}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Normal\+P\+Q}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y} get\+Normal\+P\+Q (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O}}]{i, }
+\item[{int}]{month, }
+\item[{int}]{filial}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a80b5a876c4458aa180d72e0d882b167f}
+
+
+Retorna a informação relativa a um produto vendido em modo normal num determinado mês, numa determinada Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Info. \\
+\hline
+{\em month} & Mês. \\
+\hline
+{\em filial} & Filial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com a informação relativa ao mês e Filial. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a388e694abb37b0a59ef031594f0e8f47}{\index{facturacao.\+h@{facturacao.\+h}!getnum\+Filial\+P@{getnum\+Filial\+P}}
+\index{getnum\+Filial\+P@{getnum\+Filial\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{getnum\+Filial\+P}]{\setlength{\rightskip}{0pt plus 5cm}double getnum\+Filial\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O}}]{i, }
+\item[{int}]{filial, }
+\item[{int}]{promo, }
+\item[{int}]{mes}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a388e694abb37b0a59ef031594f0e8f47}
+
+
+Retorna o numero total facturado de um Produto num determinado mês numa determinada filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Info. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em promo} & Informação relativa á compra(promoção ou normal). \\
+\hline
+{\em mes} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numero total facturado. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a2a6e4bfcf1522acbda8db2fc77822f6b}{\index{facturacao.\+h@{facturacao.\+h}!getnum\+Filial\+Q@{getnum\+Filial\+Q}}
+\index{getnum\+Filial\+Q@{getnum\+Filial\+Q}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{getnum\+Filial\+Q}]{\setlength{\rightskip}{0pt plus 5cm}int getnum\+Filial\+Q (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O}}]{i, }
+\item[{int}]{filial, }
+\item[{int}]{promo, }
+\item[{int}]{mes}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a2a6e4bfcf1522acbda8db2fc77822f6b}
+
+
+Retorna a quantidade comprada de um Produto num determinado mês numa determinada filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Info. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em promo} & Informação relativa á compra(promoção ou normal). \\
+\hline
+{\em mes} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numero total facturado. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_aae5d7e3b17b6681155db98315bc1e7c6}{\index{facturacao.\+h@{facturacao.\+h}!get\+Product\+Index@{get\+Product\+Index}}
+\index{get\+Product\+Index@{get\+Product\+Index}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Product\+Index}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} get\+Product\+Index (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_aae5d7e3b17b6681155db98315bc1e7c6}
+
+
+Retorna a M\+Y\+\_\+\+A\+V\+L de produtos presente num determinado índice da Facturação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em index} & Índice.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a83aa8893d76ad762d949dd101429bf0e}{\index{facturacao.\+h@{facturacao.\+h}!get\+Promo\+P\+Q@{get\+Promo\+P\+Q}}
+\index{get\+Promo\+P\+Q@{get\+Promo\+P\+Q}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Promo\+P\+Q}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y} get\+Promo\+P\+Q (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O}}]{i, }
+\item[{int}]{month, }
+\item[{int}]{filial}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a83aa8893d76ad762d949dd101429bf0e}
+
+
+Retorna a informação relativa a um produto vendido em modo promoção num determinado mês, numa determinada Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Info. \\
+\hline
+{\em month} & Mês. \\
+\hline
+{\em filial} & Filial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com a informação relativa ao mês e Filial. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ad0210ed34dfd3b47365ad8bd190f02c6}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Facturado\+M\+E\+S@{get\+Total\+Facturado\+M\+E\+S}}
+\index{get\+Total\+Facturado\+M\+E\+S@{get\+Total\+Facturado\+M\+E\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Facturado\+M\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}double get\+Total\+Facturado\+M\+E\+S (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+O\+T\+A\+L\+\_\+\+M\+E\+S}}]{m}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ad0210ed34dfd3b47365ad8bd190f02c6}
+
+
+Retorna a quantidade total facturada num determinado mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Estrutura com facturação relativa a um determinado mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total facturada num determinado mês. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a071fb55bbc98cdd0230975bbc71ac075}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Mes@{get\+Total\+Mes}}
+\index{get\+Total\+Mes@{get\+Total\+Mes}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Mes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+O\+T\+A\+L\+\_\+\+M\+E\+S} get\+Total\+Mes (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{i, }
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a071fb55bbc98cdd0230975bbc71ac075}
+
+
+Retorna uma estrutura com a informação relativa á facturação num determinado mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Facturação. \\
+\hline
+{\em month} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura de dados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ab6c3257e6ef774c45f5ed8ede889670f}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+M\+P@{get\+Total\+M\+P}}
+\index{get\+Total\+M\+P@{get\+Total\+M\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+M\+P}]{\setlength{\rightskip}{0pt plus 5cm}double get\+Total\+M\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ab6c3257e6ef774c45f5ed8ede889670f}
+
+
+Retorna a quantidade total facturada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Facturação total. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a40d71ad02e7f273283d4a7e1ef275326}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Quant\+M\+E\+S@{get\+Total\+Quant\+M\+E\+S}}
+\index{get\+Total\+Quant\+M\+E\+S@{get\+Total\+Quant\+M\+E\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Quant\+M\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Total\+Quant\+M\+E\+S (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+O\+T\+A\+L\+\_\+\+M\+E\+S}}]{m}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a40d71ad02e7f273283d4a7e1ef275326}
+
+
+Retorna a quantidade de produtos comprados num determinado mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Estrutura com facturação relativa a um determinado mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de produtos comprados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a6ed4f97221542a2b056d1eb16ecc4604}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Quant\+P\+Q@{get\+Total\+Quant\+P\+Q}}
+\index{get\+Total\+Quant\+P\+Q@{get\+Total\+Quant\+P\+Q}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Quant\+P\+Q}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Total\+Quant\+P\+Q (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+I\+C\+E\+\_\+\+Q\+U\+A\+N\+T\+I\+T\+Y}}]{a}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a6ed4f97221542a2b056d1eb16ecc4604}
+
+
+Retorna a quantidade total de um produto vendido. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Estrutura relativa a um determinado mês e determinada filial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ad97ec647697e5e99cc52d40321fbd80a}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Registo@{get\+Total\+Registo}}
+\index{get\+Total\+Registo@{get\+Total\+Registo}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Registo}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Total\+Registo (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+O\+T\+A\+L\+\_\+\+M\+E\+S}}]{m}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ad97ec647697e5e99cc52d40321fbd80a}
+
+
+Retorna a quantidade de vendas num determinado mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Estrutura com facturação relativa a um determinado mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de vendas. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a275e5f36747326d34732a77b5a5362ea}{\index{facturacao.\+h@{facturacao.\+h}!get\+Total\+Vendas@{get\+Total\+Vendas}}
+\index{get\+Total\+Vendas@{get\+Total\+Vendas}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{get\+Total\+Vendas}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Total\+Vendas (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a275e5f36747326d34732a77b5a5362ea}
+
+
+Retorna a quantidade total de produtos vendidos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a49a635a07acdf10dadb8fc132b070d65}{\index{facturacao.\+h@{facturacao.\+h}!init\+D\+A\+D\+O\+S@{init\+D\+A\+D\+O\+S}}
+\index{init\+D\+A\+D\+O\+S@{init\+D\+A\+D\+O\+S}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{init\+D\+A\+D\+O\+S}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} init\+D\+A\+D\+O\+S (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a49a635a07acdf10dadb8fc132b070d65}
+
+
+Inicia a estrutura dos dados, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Facturação. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_aa803aacc3804343193198e132870f322}{\index{facturacao.\+h@{facturacao.\+h}!init\+Fact@{init\+Fact}}
+\index{init\+Fact@{init\+Fact}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{init\+Fact}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O} init\+Fact (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_aa803aacc3804343193198e132870f322}
+
+
+Inicia a estrutura da Facturação, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Facturação. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ac68e0bc0b0e256fae0e61c8aa128b643}{\index{facturacao.\+h@{facturacao.\+h}!insere\+Fact@{insere\+Fact}}
+\index{insere\+Fact@{insere\+Fact}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{insere\+Fact}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O} insere\+Fact (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{{\bf S\+A\+L\+E\+S}}]{s}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ac68e0bc0b0e256fae0e61c8aa128b643}
+
+
+Insere uma Venda na estrutura Facturação. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em s} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Facturação. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ac88b163a9ca6863202eee92ca6bb99d0}{\index{facturacao.\+h@{facturacao.\+h}!set\+Total\+M\+P@{set\+Total\+M\+P}}
+\index{set\+Total\+M\+P@{set\+Total\+M\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{set\+Total\+M\+P}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} set\+Total\+M\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{double}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ac88b163a9ca6863202eee92ca6bb99d0}
+
+
+Altera a quantidade total facturada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral. \\
+\hline
+{\em total} & Facturação total.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Facturação total. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a06904d7444b1b24b763df844041077ba}{\index{facturacao.\+h@{facturacao.\+h}!set\+Total\+Price@{set\+Total\+Price}}
+\index{set\+Total\+Price@{set\+Total\+Price}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{set\+Total\+Price}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} set\+Total\+Price (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{int}]{index, }
+\item[{double}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a06904d7444b1b24b763df844041077ba}
+
+
+Altera a quantidade total facturada numa determinada Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados. \\
+\hline
+{\em index} & Filial. \\
+\hline
+{\em total} & Total facturado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_ae94eec75ba6365a3cc6f2cfba69c2a89}{\index{facturacao.\+h@{facturacao.\+h}!set\+Total\+Quantity@{set\+Total\+Quantity}}
+\index{set\+Total\+Quantity@{set\+Total\+Quantity}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{set\+Total\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} set\+Total\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{int}]{index, }
+\item[{int}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_ae94eec75ba6365a3cc6f2cfba69c2a89}
+
+
+Altera a quantidade total de produtos comprados numa determinada Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Dados. \\
+\hline
+{\em index} & Filial. \\
+\hline
+{\em total} & Quantidade total.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a4a5690be5ff5188f3a6fd7094c4052f6}{\index{facturacao.\+h@{facturacao.\+h}!set\+Total\+Vendas@{set\+Total\+Vendas}}
+\index{set\+Total\+Vendas@{set\+Total\+Vendas}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{set\+Total\+Vendas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} set\+Total\+Vendas (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{int}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a4a5690be5ff5188f3a6fd7094c4052f6}
+
+
+Altera a quantidade total de produtos vendidos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral. \\
+\hline
+{\em total} & Quantidade total.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade total. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a19ecb0a4c6a0a296e78a6f350bc82052}{\index{facturacao.\+h@{facturacao.\+h}!update\+Total\+M\+P@{update\+Total\+M\+P}}
+\index{update\+Total\+M\+P@{update\+Total\+M\+P}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{update\+Total\+M\+P}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} update\+Total\+M\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{double}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a19ecb0a4c6a0a296e78a6f350bc82052}
+
+
+Actualiza a quantidade total facturada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral. \\
+\hline
+{\em total} & Facturação total.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura de dados. 
+\end{DoxyReturn}
+\hypertarget{facturacao_8h_a2b4bb23b6f6f43e15dbcdd283d6cb48f}{\index{facturacao.\+h@{facturacao.\+h}!update\+Total\+Vendas@{update\+Total\+Vendas}}
+\index{update\+Total\+Vendas@{update\+Total\+Vendas}!facturacao.\+h@{facturacao.\+h}}
+\subsubsection[{update\+Total\+Vendas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} update\+Total\+Vendas (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S}}]{d, }
+\item[{int}]{total}
+\end{DoxyParamCaption}
+)}}\label{facturacao_8h_a2b4bb23b6f6f43e15dbcdd283d6cb48f}
+
+
+Actualiza a quantidade total de produtos vendidos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & Estrutura com informação geral. \\
+\hline
+{\em total} & Quantidade total.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura de dados. 
+\end{DoxyReturn}

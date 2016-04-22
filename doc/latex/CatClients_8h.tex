@@ -1,0 +1,342 @@
+\hypertarget{CatClients_8h}{\section{src/headers/\+Cat\+Clients.h File Reference}
+\label{CatClients_8h}\index{src/headers/\+Cat\+Clients.\+h@{src/headers/\+Cat\+Clients.\+h}}
+}
+
+
+Protótipos do Catálogo dos Clientes.  
+
+
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}avl.\+h\char`\"{}}\\*
+Include dependency graph for Cat\+Clients.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{CatClients_8h_af4ad8fae5931ae81323e149b6cb69510}{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}~6
+\begin{DoxyCompactList}\small\item\em Tamanho do Código de um Cliente. \end{DoxyCompactList}\item 
+\#define \hyperlink{CatClients_8h_a60e8bf8d915d3e61b420f0f79337acf1}{L\+E\+T\+R\+A\+S\+\_\+\+C}~1
+\begin{DoxyCompactList}\small\item\em Número de letras de um Cliente. \end{DoxyCompactList}\item 
+\#define \hyperlink{CatClients_8h_a812fd54dedce019cd179e894ad904f37}{S\+I\+Z\+E\+\_\+\+A\+B\+C}~26
+\begin{DoxyCompactList}\small\item\em Tamanho do Abecedário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct client $\ast$ \hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo C\+L\+I\+E\+N\+T, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct catc $\ast$ \hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T, um tipo abstrato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} \hyperlink{CatClients_8h_a72c07d3fe2cdabc3b760a414210bfb06}{init\+Clients} ()
+\begin{DoxyCompactList}\small\item\em Inicia o Catálogo dos Clientes, alocando espaço para o mesmo. \end{DoxyCompactList}\item 
+\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} \hyperlink{CatClients_8h_a172697693b79720f274404577332d884}{init\+Clie} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura do Cliente, alocando espaço para a mesmo. \end{DoxyCompactList}\item 
+\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} \hyperlink{CatClients_8h_a9ae3be71fa05ac51b4bc2dbaa66811b2}{insert\+Client} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Catalog, \hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} clie)
+\begin{DoxyCompactList}\small\item\em Insere um Cliente no respetivo Catálogo. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{CatClients_8h_a277279719ac9fc1c9034cd2bb807910f}{test\+Client} (\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} client)
+\begin{DoxyCompactList}\small\item\em Testa se um Cliente tem uma estrutura correta. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{CatClients_8h_acd60b104414c383f15257fb9ef692f08}{exist\+Client} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Catalog, \hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} clie)
+\begin{DoxyCompactList}\small\item\em Verifica se um determinado Cliente existe num Catálogo de Clientes. \end{DoxyCompactList}\item 
+void \hyperlink{CatClients_8h_af83a8b095b1d8e4b215b5bab0cbd0237}{free\+Client} (\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} clie)
+\begin{DoxyCompactList}\small\item\em Remove um Cliente, libertando o espaço ocupado por este. \end{DoxyCompactList}\item 
+void \hyperlink{CatClients_8h_ace34d7158e99d9f4b29df1a0d7ebf99c}{remove\+Cat\+Clients} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Catalog)
+\begin{DoxyCompactList}\small\item\em Limpa o Catálogo de Clientes, removendo as várias M\+Y\+\_\+\+A\+V\+L's. \end{DoxyCompactList}\item 
+int \hyperlink{CatClients_8h_af901720772d380f13ee41d723888dc5a}{total\+Clients\+Letter} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Catalog, char letter)
+\begin{DoxyCompactList}\small\item\em Calcula quantos Clientes, começados por uma determinada letra, existem num Catálogo de Clientes. \end{DoxyCompactList}\item 
+int \hyperlink{CatClients_8h_a988c28f6e5534c6b4544e3c054afea97}{total\+Clients} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Catalog)
+\begin{DoxyCompactList}\small\item\em Calcula quantos Clientes existem num Catálogo de Clientes. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{CatClients_8h_a8e8fd6764a5b29dab0dcdd5a2d43da0c}{get\+Client} (\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} clie)
+\begin{DoxyCompactList}\small\item\em Retorna o código de um Cliente. \end{DoxyCompactList}\item 
+\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} \hyperlink{CatClients_8h_a3dd7bb5a72fb8b8d13244197aa2e310e}{set\+Client} (\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} c, char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Cria um Cliente a partir de uma String. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{CatClients_8h_ae534c6184b307466000d80ba18b96890}{get\+C} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} c, int i)
+\begin{DoxyCompactList}\small\item\em Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado índice do Catálogo de Clientes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos do Catálogo dos Clientes. 
+
+O ficheiro contem os protótipos das funçoes que implemetam o Catálogo dos Clientes, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{CatClients_8h_a60e8bf8d915d3e61b420f0f79337acf1}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!L\+E\+T\+R\+A\+S\+\_\+\+C@{L\+E\+T\+R\+A\+S\+\_\+\+C}}
+\index{L\+E\+T\+R\+A\+S\+\_\+\+C@{L\+E\+T\+R\+A\+S\+\_\+\+C}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{L\+E\+T\+R\+A\+S\+\_\+\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+T\+R\+A\+S\+\_\+\+C~1}}\label{CatClients_8h_a60e8bf8d915d3e61b420f0f79337acf1}
+
+
+Número de letras de um Cliente. 
+
+\hypertarget{CatClients_8h_a812fd54dedce019cd179e894ad904f37}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}}
+\index{S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+A\+B\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+A\+B\+C~26}}\label{CatClients_8h_a812fd54dedce019cd179e894ad904f37}
+
+
+Tamanho do Abecedário. 
+
+\hypertarget{CatClients_8h_af4ad8fae5931ae81323e149b6cb69510}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}}
+\index{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T\+S~6}}\label{CatClients_8h_af4ad8fae5931ae81323e149b6cb69510}
+
+
+Tamanho do Código de um Cliente. 
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S@{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}
+\index{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S@{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct catc$\ast$ {\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}}\label{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}
+
+
+Declaração do tipo C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T, um tipo abstrato. 
+
+\hypertarget{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!C\+L\+I\+E\+N\+T@{C\+L\+I\+E\+N\+T}}
+\index{C\+L\+I\+E\+N\+T@{C\+L\+I\+E\+N\+T}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{C\+L\+I\+E\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct client$\ast$ {\bf C\+L\+I\+E\+N\+T}}}\label{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}
+
+
+Declaração do tipo C\+L\+I\+E\+N\+T, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{CatClients_8h_acd60b104414c383f15257fb9ef692f08}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!exist\+Client@{exist\+Client}}
+\index{exist\+Client@{exist\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{exist\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} exist\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Catalog, }
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{clie}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_acd60b104414c383f15257fb9ef692f08}
+
+
+Verifica se um determinado Cliente existe num Catálogo de Clientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Clientes. \\
+\hline
+{\em clie} & Cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_af83a8b095b1d8e4b215b5bab0cbd0237}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!free\+Client@{free\+Client}}
+\index{free\+Client@{free\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{free\+Client}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{clie}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_af83a8b095b1d8e4b215b5bab0cbd0237}
+
+
+Remove um Cliente, libertando o espaço ocupado por este. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clie} & Cliente a ser removido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_ae534c6184b307466000d80ba18b96890}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!get\+C@{get\+C}}
+\index{get\+C@{get\+C}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{get\+C}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} get\+C (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{c, }
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_ae534c6184b307466000d80ba18b96890}
+
+
+Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado índice do Catálogo de Clientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Catálogo de Clientes. \\
+\hline
+{\em i} & Índice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+Y\+\_\+\+A\+V\+L presente no Índice. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a8e8fd6764a5b29dab0dcdd5a2d43da0c}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!get\+Client@{get\+Client}}
+\index{get\+Client@{get\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{get\+Client}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{clie}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a8e8fd6764a5b29dab0dcdd5a2d43da0c}
+
+
+Retorna o código de um Cliente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clie} & Cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String do Cliente. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a172697693b79720f274404577332d884}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!init\+Clie@{init\+Clie}}
+\index{init\+Clie@{init\+Clie}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{init\+Clie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+L\+I\+E\+N\+T} init\+Clie (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a172697693b79720f274404577332d884}
+
+
+Inicia a estrutura do Cliente, alocando espaço para a mesmo. 
+
+\begin{DoxyReturn}{Returns}
+Cliente. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a72c07d3fe2cdabc3b760a414210bfb06}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!init\+Clients@{init\+Clients}}
+\index{init\+Clients@{init\+Clients}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{init\+Clients}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} init\+Clients (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a72c07d3fe2cdabc3b760a414210bfb06}
+
+
+Inicia o Catálogo dos Clientes, alocando espaço para o mesmo. 
+
+\begin{DoxyReturn}{Returns}
+Catálogo de Clientes. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a9ae3be71fa05ac51b4bc2dbaa66811b2}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!insert\+Client@{insert\+Client}}
+\index{insert\+Client@{insert\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{insert\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} insert\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Catalog, }
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{clie}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a9ae3be71fa05ac51b4bc2dbaa66811b2}
+
+
+Insere um Cliente no respetivo Catálogo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Clientes. \\
+\hline
+{\em clie} & Cliente a inserir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Catálogo de Clientes que já contém o Cliente. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_ace34d7158e99d9f4b29df1a0d7ebf99c}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!remove\+Cat\+Clients@{remove\+Cat\+Clients}}
+\index{remove\+Cat\+Clients@{remove\+Cat\+Clients}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{remove\+Cat\+Clients}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+Cat\+Clients (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Catalog}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_ace34d7158e99d9f4b29df1a0d7ebf99c}
+
+
+Limpa o Catálogo de Clientes, removendo as várias M\+Y\+\_\+\+A\+V\+L's. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Clientes a limpar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a3dd7bb5a72fb8b8d13244197aa2e310e}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!set\+Client@{set\+Client}}
+\index{set\+Client@{set\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{set\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+L\+I\+E\+N\+T} set\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{c, }
+\item[{char $\ast$}]{string}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a3dd7bb5a72fb8b8d13244197aa2e310e}
+
+
+Cria um Cliente a partir de uma String. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Cliente. \\
+\hline
+{\em string} & String. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cliente. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a277279719ac9fc1c9034cd2bb807910f}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!test\+Client@{test\+Client}}
+\index{test\+Client@{test\+Client}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{test\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} test\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{client}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a277279719ac9fc1c9034cd2bb807910f}
+
+
+Testa se um Cliente tem uma estrutura correta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & Cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_a988c28f6e5534c6b4544e3c054afea97}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!total\+Clients@{total\+Clients}}
+\index{total\+Clients@{total\+Clients}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{total\+Clients}]{\setlength{\rightskip}{0pt plus 5cm}int total\+Clients (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Catalog}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_a988c28f6e5534c6b4544e3c054afea97}
+
+
+Calcula quantos Clientes existem num Catálogo de Clientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catálogo de Clientes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total de Clientes no Catálogo. 
+\end{DoxyReturn}
+\hypertarget{CatClients_8h_af901720772d380f13ee41d723888dc5a}{\index{Cat\+Clients.\+h@{Cat\+Clients.\+h}!total\+Clients\+Letter@{total\+Clients\+Letter}}
+\index{total\+Clients\+Letter@{total\+Clients\+Letter}!Cat\+Clients.\+h@{Cat\+Clients.\+h}}
+\subsubsection[{total\+Clients\+Letter}]{\setlength{\rightskip}{0pt plus 5cm}int total\+Clients\+Letter (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Catalog, }
+\item[{char}]{letter}
+\end{DoxyParamCaption}
+)}}\label{CatClients_8h_af901720772d380f13ee41d723888dc5a}
+
+
+Calcula quantos Clientes, começados por uma determinada letra, existem num Catálogo de Clientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Clientes. \\
+\hline
+{\em letter} & Letra. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total de Clientes começados pela Letra. 
+\end{DoxyReturn}

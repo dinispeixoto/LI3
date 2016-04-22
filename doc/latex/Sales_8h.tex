@@ -1,0 +1,547 @@
+\hypertarget{Sales_8h}{\section{src/headers/\+Sales.h File Reference}
+\label{Sales_8h}\index{src/headers/\+Sales.\+h@{src/headers/\+Sales.\+h}}
+}
+
+
+Protótipos das Vendas.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Cat\+Clients.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cat\+Products.\+h\char`\"{}}\\*
+Include dependency graph for Sales.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Sales_8h_ab3c188ad902d3f593741bcbd0cfd6f93}{S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S}~128
+\begin{DoxyCompactList}\small\item\em Tamanho do Buffer das Vendas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct sales $\ast$ \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo S\+A\+L\+E\+S, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef int \hyperlink{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{Q\+U\+A\+N\+T\+I\+T\+Y}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo Q\+U\+A\+N\+T\+I\+T\+Y. \end{DoxyCompactList}\item 
+typedef double \hyperlink{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{P\+R\+I\+C\+E}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo P\+R\+I\+C\+E. \end{DoxyCompactList}\item 
+typedef char \hyperlink{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O. \end{DoxyCompactList}\item 
+typedef int \hyperlink{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{F\+I\+L\+I\+A\+I\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo F\+I\+L\+I\+A\+I\+S. \end{DoxyCompactList}\item 
+typedef int \hyperlink{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{M\+O\+N\+T\+H}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo M\+O\+N\+T\+H. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a33d3d54d8cac6054bebdb33e81f08cf9}{init\+Sales} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura de uma Venda, alocando espaço para a mesmo. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a65b7258d90c9dfc6506dcbf378d35620}{update\+Sales} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} sale, \hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} clie, \hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod, \hyperlink{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{M\+O\+N\+T\+H} month, \hyperlink{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{F\+I\+L\+I\+A\+I\+S} filial, \hyperlink{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{Q\+U\+A\+N\+T\+I\+T\+Y} quant, \hyperlink{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{P\+R\+I\+C\+E} price, \hyperlink{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} info\+P)
+\begin{DoxyCompactList}\small\item\em Actualiza uma estrutura de Venda com os parametros dados. \end{DoxyCompactList}\item 
+int \hyperlink{Sales_8h_a237bad5a4540d6f0b67d939e8c7c00b7}{part\+Check} (char $\ast$line, \hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} clients, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} products, \hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} $\ast$clie, \hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} $\ast$prod, \hyperlink{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{M\+O\+N\+T\+H} $\ast$month, \hyperlink{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{F\+I\+L\+I\+A\+I\+S} $\ast$filial, \hyperlink{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{Q\+U\+A\+N\+T\+I\+T\+Y} $\ast$quant, \hyperlink{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{P\+R\+I\+C\+E} $\ast$price, \hyperlink{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} $\ast$info\+P)
+\begin{DoxyCompactList}\small\item\em Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente são válidos e exitem nos Catálogos, e se os outros parametros estao corretos. Coloca todos esses valores em variáveis que recebe como argumento. \end{DoxyCompactList}\item 
+void \hyperlink{Sales_8h_a185558a4e5bba9096339f11d9dcf81b1}{free\+Sale} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Remove uma Venda, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} \hyperlink{Sales_8h_af72092f46b10b23c6f15305c1906efcc}{get\+Sales\+Client} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna o Cliente de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} \hyperlink{Sales_8h_ab3693dfe4946c07571e80b234283ef31}{get\+Sales\+Product} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna o Produto de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{P\+R\+I\+C\+E} \hyperlink{Sales_8h_aef8ab391a6b6594d707bcd673dbab762}{get\+Sales\+Price} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna o Preço do produto de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{Q\+U\+A\+N\+T\+I\+T\+Y} \hyperlink{Sales_8h_affa2e52a35c22a4749170b8301a8de52}{get\+Sales\+Quantity} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de produtos de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} \hyperlink{Sales_8h_a5115034ad57c8db7ea952e2dbe1752f4}{get\+Sales\+Info\+Promo} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna a Informação sobre o tipo de compra(Promoção ou normal) de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{M\+O\+N\+T\+H} \hyperlink{Sales_8h_abf718669de97d153eb9f3546a4645419}{get\+Sales\+Month} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna o mês de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{F\+I\+L\+I\+A\+I\+S} \hyperlink{Sales_8h_a5d5c104890db42fb6e4cf4a4d144120d}{get\+Sales\+Filial} (\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Retorna a Filial onde ocorreu uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_abbc148dc5f4b64dd6a113e4890d59ab9}{set\+Sales\+Client} (\hyperlink{CatClients_8h_a98d8be4bc3c16a409b617553ba3f8dac}{C\+L\+I\+E\+N\+T} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera o Cliente de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_ad2ab65e6a39a24d2067e6a69bb81bd4b}{set\+Sales\+Product} (\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera o Produto de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a3e698ace6064f770aa638cf862526053}{set\+Sales\+Price} (\hyperlink{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{P\+R\+I\+C\+E} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera o Preço do Produto de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_adf19e56bb54899e0373dd441fa2cedc9}{set\+Sales\+Quantity} (\hyperlink{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{Q\+U\+A\+N\+T\+I\+T\+Y} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera a quantidade de Produtos de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a4453a02ef077de30ceb277867e740f60}{set\+Sales\+Info\+Promo} (\hyperlink{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera a informação de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a9070ed690e7236b55d2ef22328bebf77}{set\+Sales\+Month} (\hyperlink{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{M\+O\+N\+T\+H} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera o mês de uma dada Venda. \end{DoxyCompactList}\item 
+\hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} \hyperlink{Sales_8h_a23d512413c10c74f26abdfa84d98f2df}{set\+Sales\+Filial} (\hyperlink{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{F\+I\+L\+I\+A\+I\+S} c, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} a)
+\begin{DoxyCompactList}\small\item\em Altera a Filial de uma dada Venda. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das Vendas. 
+
+O ficheiro contem os protótipos das funçoes que implemetam as Vendas, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{Sales_8h_ab3c188ad902d3f593741bcbd0cfd6f93}{\index{Sales.\+h@{Sales.\+h}!S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S@{S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S}}
+\index{S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S@{S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+B\+U\+F\+\_\+\+S\+A\+L\+E\+S~128}}\label{Sales_8h_ab3c188ad902d3f593741bcbd0cfd6f93}
+
+
+Tamanho do Buffer das Vendas. 
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}{\index{Sales.\+h@{Sales.\+h}!F\+I\+L\+I\+A\+I\+S@{F\+I\+L\+I\+A\+I\+S}}
+\index{F\+I\+L\+I\+A\+I\+S@{F\+I\+L\+I\+A\+I\+S}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{F\+I\+L\+I\+A\+I\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf F\+I\+L\+I\+A\+I\+S}}}\label{Sales_8h_a3d39a4da16b449db5b9b0adbc99ef51f}
+
+
+Declaração do tipo F\+I\+L\+I\+A\+I\+S. 
+
+\hypertarget{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}{\index{Sales.\+h@{Sales.\+h}!I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O@{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}}
+\index{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O@{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}]{\setlength{\rightskip}{0pt plus 5cm}typedef char {\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}}}\label{Sales_8h_ac316209ae2ea20f4fd4b823d3a27cf56}
+
+
+Declaração do tipo I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O. 
+
+\hypertarget{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}{\index{Sales.\+h@{Sales.\+h}!M\+O\+N\+T\+H@{M\+O\+N\+T\+H}}
+\index{M\+O\+N\+T\+H@{M\+O\+N\+T\+H}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{M\+O\+N\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf M\+O\+N\+T\+H}}}\label{Sales_8h_aea2983d615dbd87cd384ef4aed7fdea1}
+
+
+Declaração do tipo M\+O\+N\+T\+H. 
+
+\hypertarget{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}{\index{Sales.\+h@{Sales.\+h}!P\+R\+I\+C\+E@{P\+R\+I\+C\+E}}
+\index{P\+R\+I\+C\+E@{P\+R\+I\+C\+E}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{P\+R\+I\+C\+E}]{\setlength{\rightskip}{0pt plus 5cm}typedef double {\bf P\+R\+I\+C\+E}}}\label{Sales_8h_a7887ecf91a9f6a0419d074ebdd9d0036}
+
+
+Declaração do tipo P\+R\+I\+C\+E. 
+
+\hypertarget{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}{\index{Sales.\+h@{Sales.\+h}!Q\+U\+A\+N\+T\+I\+T\+Y@{Q\+U\+A\+N\+T\+I\+T\+Y}}
+\index{Q\+U\+A\+N\+T\+I\+T\+Y@{Q\+U\+A\+N\+T\+I\+T\+Y}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{Q\+U\+A\+N\+T\+I\+T\+Y}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf Q\+U\+A\+N\+T\+I\+T\+Y}}}\label{Sales_8h_a9e3a4164fb177c0c9c9296c739462b13}
+
+
+Declaração do tipo Q\+U\+A\+N\+T\+I\+T\+Y. 
+
+\hypertarget{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{\index{Sales.\+h@{Sales.\+h}!S\+A\+L\+E\+S@{S\+A\+L\+E\+S}}
+\index{S\+A\+L\+E\+S@{S\+A\+L\+E\+S}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{S\+A\+L\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct sales$\ast$ {\bf S\+A\+L\+E\+S}}}\label{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}
+
+
+Declaração do tipo S\+A\+L\+E\+S, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{Sales_8h_a185558a4e5bba9096339f11d9dcf81b1}{\index{Sales.\+h@{Sales.\+h}!free\+Sale@{free\+Sale}}
+\index{free\+Sale@{free\+Sale}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{free\+Sale}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Sale (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a185558a4e5bba9096339f11d9dcf81b1}
+
+
+Remove uma Venda, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda a ser removida.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_af72092f46b10b23c6f15305c1906efcc}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Client@{get\+Sales\+Client}}
+\index{get\+Sales\+Client@{get\+Sales\+Client}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+L\+I\+E\+N\+T} get\+Sales\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_af72092f46b10b23c6f15305c1906efcc}
+
+
+Retorna o Cliente de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cliente. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a5d5c104890db42fb6e4cf4a4d144120d}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Filial@{get\+Sales\+Filial}}
+\index{get\+Sales\+Filial@{get\+Sales\+Filial}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+I\+L\+I\+A\+I\+S} get\+Sales\+Filial (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a5d5c104890db42fb6e4cf4a4d144120d}
+
+
+Retorna a Filial onde ocorreu uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filial. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a5115034ad57c8db7ea952e2dbe1752f4}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Info\+Promo@{get\+Sales\+Info\+Promo}}
+\index{get\+Sales\+Info\+Promo@{get\+Sales\+Info\+Promo}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Info\+Promo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} get\+Sales\+Info\+Promo (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a5115034ad57c8db7ea952e2dbe1752f4}
+
+
+Retorna a Informação sobre o tipo de compra(Promoção ou normal) de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Informação de compra. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_abf718669de97d153eb9f3546a4645419}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Month@{get\+Sales\+Month}}
+\index{get\+Sales\+Month@{get\+Sales\+Month}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Month}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+O\+N\+T\+H} get\+Sales\+Month (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_abf718669de97d153eb9f3546a4645419}
+
+
+Retorna o mês de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mês. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_aef8ab391a6b6594d707bcd673dbab762}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Price@{get\+Sales\+Price}}
+\index{get\+Sales\+Price@{get\+Sales\+Price}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Price}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+I\+C\+E} get\+Sales\+Price (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_aef8ab391a6b6594d707bcd673dbab762}
+
+
+Retorna o Preço do produto de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Preço. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_ab3693dfe4946c07571e80b234283ef31}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Product@{get\+Sales\+Product}}
+\index{get\+Sales\+Product@{get\+Sales\+Product}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+O\+D\+U\+C\+T} get\+Sales\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_ab3693dfe4946c07571e80b234283ef31}
+
+
+Retorna o Produto de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Produto. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_affa2e52a35c22a4749170b8301a8de52}{\index{Sales.\+h@{Sales.\+h}!get\+Sales\+Quantity@{get\+Sales\+Quantity}}
+\index{get\+Sales\+Quantity@{get\+Sales\+Quantity}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{get\+Sales\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+U\+A\+N\+T\+I\+T\+Y} get\+Sales\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_affa2e52a35c22a4749170b8301a8de52}
+
+
+Retorna a quantidade de produtos de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a33d3d54d8cac6054bebdb33e81f08cf9}{\index{Sales.\+h@{Sales.\+h}!init\+Sales@{init\+Sales}}
+\index{init\+Sales@{init\+Sales}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{init\+Sales}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} init\+Sales (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a33d3d54d8cac6054bebdb33e81f08cf9}
+
+
+Inicia a estrutura de uma Venda, alocando espaço para a mesmo. 
+
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a237bad5a4540d6f0b67d939e8c7c00b7}{\index{Sales.\+h@{Sales.\+h}!part\+Check@{part\+Check}}
+\index{part\+Check@{part\+Check}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{part\+Check}]{\setlength{\rightskip}{0pt plus 5cm}int part\+Check (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{line, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{clients, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{products, }
+\item[{{\bf C\+L\+I\+E\+N\+T} $\ast$}]{clie, }
+\item[{{\bf P\+R\+O\+D\+U\+C\+T} $\ast$}]{prod, }
+\item[{{\bf M\+O\+N\+T\+H} $\ast$}]{month, }
+\item[{{\bf F\+I\+L\+I\+A\+I\+S} $\ast$}]{filial, }
+\item[{{\bf Q\+U\+A\+N\+T\+I\+T\+Y} $\ast$}]{quant, }
+\item[{{\bf P\+R\+I\+C\+E} $\ast$}]{price, }
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O} $\ast$}]{info\+P}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a237bad5a4540d6f0b67d939e8c7c00b7}
+
+
+Função que reparte um linha de venda, e verifica se a linha é válida,ou seja, se o produto e cliente são válidos e exitem nos Catálogos, e se os outros parametros estao corretos. Coloca todos esses valores em variáveis que recebe como argumento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & Registo de uma Venda. \\
+\hline
+{\em clients} & Catálogo de Clientes. \\
+\hline
+{\em products} & Catálogo de Produtos. \\
+\hline
+{\em clie} & Cliente. \\
+\hline
+{\em prod} & Produto. \\
+\hline
+{\em month} & Mês. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em quant} & Quantidade comprada. \\
+\hline
+{\em price} & Preço do Produto. \\
+\hline
+{\em info\+P} & Informação sobre o tipo de compra(Promoção ou normal). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_abbc148dc5f4b64dd6a113e4890d59ab9}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Client@{set\+Sales\+Client}}
+\index{set\+Sales\+Client@{set\+Sales\+Client}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Client (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_abbc148dc5f4b64dd6a113e4890d59ab9}
+
+
+Altera o Cliente de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Cliente. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a23d512413c10c74f26abdfa84d98f2df}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Filial@{set\+Sales\+Filial}}
+\index{set\+Sales\+Filial@{set\+Sales\+Filial}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Filial (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+I\+S}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a23d512413c10c74f26abdfa84d98f2df}
+
+
+Altera a Filial de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Filial. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a4453a02ef077de30ceb277867e740f60}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Info\+Promo@{set\+Sales\+Info\+Promo}}
+\index{set\+Sales\+Info\+Promo@{set\+Sales\+Info\+Promo}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Info\+Promo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Info\+Promo (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a4453a02ef077de30ceb277867e740f60}
+
+
+Altera a informação de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Informação. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a9070ed690e7236b55d2ef22328bebf77}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Month@{set\+Sales\+Month}}
+\index{set\+Sales\+Month@{set\+Sales\+Month}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Month}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Month (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+O\+N\+T\+H}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a9070ed690e7236b55d2ef22328bebf77}
+
+
+Altera o mês de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Mês. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a3e698ace6064f770aa638cf862526053}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Price@{set\+Sales\+Price}}
+\index{set\+Sales\+Price@{set\+Sales\+Price}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Price}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Price (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+I\+C\+E}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a3e698ace6064f770aa638cf862526053}
+
+
+Altera o Preço do Produto de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Preço. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_ad2ab65e6a39a24d2067e6a69bb81bd4b}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Product@{set\+Sales\+Product}}
+\index{set\+Sales\+Product@{set\+Sales\+Product}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_ad2ab65e6a39a24d2067e6a69bb81bd4b}
+
+
+Altera o Produto de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Produto. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_adf19e56bb54899e0373dd441fa2cedc9}{\index{Sales.\+h@{Sales.\+h}!set\+Sales\+Quantity@{set\+Sales\+Quantity}}
+\index{set\+Sales\+Quantity@{set\+Sales\+Quantity}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{set\+Sales\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} set\+Sales\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+U\+A\+N\+T\+I\+T\+Y}}]{c, }
+\item[{{\bf S\+A\+L\+E\+S}}]{a}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_adf19e56bb54899e0373dd441fa2cedc9}
+
+
+Altera a quantidade de Produtos de uma dada Venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Quantidade. \\
+\hline
+{\em a} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}
+\hypertarget{Sales_8h_a65b7258d90c9dfc6506dcbf378d35620}{\index{Sales.\+h@{Sales.\+h}!update\+Sales@{update\+Sales}}
+\index{update\+Sales@{update\+Sales}!Sales.\+h@{Sales.\+h}}
+\subsubsection[{update\+Sales}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+A\+L\+E\+S} update\+Sales (
+\begin{DoxyParamCaption}
+\item[{{\bf S\+A\+L\+E\+S}}]{sale, }
+\item[{{\bf C\+L\+I\+E\+N\+T}}]{clie, }
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod, }
+\item[{{\bf M\+O\+N\+T\+H}}]{month, }
+\item[{{\bf F\+I\+L\+I\+A\+I\+S}}]{filial, }
+\item[{{\bf Q\+U\+A\+N\+T\+I\+T\+Y}}]{quant, }
+\item[{{\bf P\+R\+I\+C\+E}}]{price, }
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+M\+O}}]{info\+P}
+\end{DoxyParamCaption}
+)}}\label{Sales_8h_a65b7258d90c9dfc6506dcbf378d35620}
+
+
+Actualiza uma estrutura de Venda com os parametros dados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sale} & Venda. \\
+\hline
+{\em clie} & Cliente. \\
+\hline
+{\em prod} & Produto. \\
+\hline
+{\em month} & Mês. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em quant} & Quantidade comprada. \\
+\hline
+{\em price} & Preço do Produto. \\
+\hline
+{\em info\+P} & Informação sobre o tipo de compra(Promoção ou normal). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Venda. 
+\end{DoxyReturn}

@@ -1,0 +1,631 @@
+\hypertarget{avl_8h}{\section{src/headers/avl.h File Reference}
+\label{avl_8h}\index{src/headers/avl.\+h@{src/headers/avl.\+h}}
+}
+
+
+Protótipos das funções que trabalham com A\+V\+L's.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for avl.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{avl_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+U\+E}~1
+\item 
+\#define \hyperlink{avl_8h_aa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+S\+E}~0
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct avl $\ast$ \hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo Avl, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct my\+Avl $\ast$ \hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo M\+Y\+\_\+\+A\+V\+L, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef char $\ast$ \hyperlink{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{S\+T\+R}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo S\+T\+R\+I\+N\+G, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef int \hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo B\+O\+O\+L. \end{DoxyCompactList}\item 
+typedef void($\ast$ \hyperlink{avl_8h_a28f7c45fcfe36f14243654946063a076}{Func} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em Declaração do tipo Func, apontador para uma função. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a1e171f825990998ef6e0c34145927c97}{init\+Avl} ()
+\begin{DoxyCompactList}\small\item\em Inicia a Avl, colocando-\/a a N\+U\+L\+L. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{avl_8h_ab037378ecdb118df761f070314391be4}{init\+My\+Avl} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura M\+Y\+\_\+\+A\+V\+L, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{avl_8h_a6ec648e46202d086036f822a3e13ec17}{insert\+My\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} a, char $\ast$line, void $\ast$info, int aux)
+\begin{DoxyCompactList}\small\item\em Insere uma string e uma info numa M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+int \hyperlink{avl_8h_a4b97895cf0c668d0b8379d3739f23e54}{height\+Avl} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Retorna a altura de uma dada Avl. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a6432aaa76636f3eb385178856aaeee11}{insert} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} estrutura, \hyperlink{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{S\+T\+R} line, void $\ast$info)
+\begin{DoxyCompactList}\small\item\em Insere uma string e uma info num dado nodo de uma Avl. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_abc1cec36759849f8e6c90d320a5b89ba}{remove\+Avl} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} estrutura, \hyperlink{avl_8h_a28f7c45fcfe36f14243654946063a076}{Func} \hyperlink{facturacao_8h_a77ba98f4dcc66c22b0fba9225770338b}{free\+Info})
+\begin{DoxyCompactList}\small\item\em Remove uma dada Avl, libertando o espaço ocupado pela mesma. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_af23c34105cc6f457c6565d4d5084f9eb}{remove\+My\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} estrutura, \hyperlink{avl_8h_a28f7c45fcfe36f14243654946063a076}{Func} f)
+\begin{DoxyCompactList}\small\item\em Remove uma estrutura M\+Y\+\_\+\+A\+V\+L, libertando o espaço ocupado pela mesma. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_a9bcfb69e7fe14d9df0b0a901f37ae58c}{free\+Nodo} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Remove um nodo de uma Avl, libertando o espaço ocupado por este. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{avl_8h_a3bd672f02d0bb99a01d14c820e7e1ca8}{exist\+My\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} estrutura, \hyperlink{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{S\+T\+R} line)
+\begin{DoxyCompactList}\small\item\em Verifica se uma dada String existe numa dada estrutura M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{avl_8h_a953894c30be2f898ebea4c552e9dde8d}{exist\+Avl} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} estrutura, \hyperlink{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{S\+T\+R} line)
+\begin{DoxyCompactList}\small\item\em Verifica se uma dada String existe numa dada Avl. \end{DoxyCompactList}\item 
+int \hyperlink{avl_8h_a768c19a790554ab1fa6ecef5e6ef58ad}{total\+Elements} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} estrutura)
+\begin{DoxyCompactList}\small\item\em Retorna o numero de elementos de uma dada estrutura M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{avl_8h_abe50b947db87574bbd95545e50d61669}{find\+Info} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a, \hyperlink{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{S\+T\+R} line, int $\ast$x)
+\begin{DoxyCompactList}\small\item\em Procura uma String que exista num dado nodo de uma Avl e retorna a info que lá se encontra retorna N\+U\+L\+L caso nao exista. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a011d56eeab96035711decafcf024c0cb}{clone\+Avl} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} estrutura)
+\begin{DoxyCompactList}\small\item\em Faz um clone de uma dada Avl. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{avl_8h_adf5d9d84decc59fbfaf5cb49fdaff657}{clone\+My\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} estrutura)
+\begin{DoxyCompactList}\small\item\em Faz um clone de uma dada M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_a5ac548790c25b62c257b11d2d2d774e7}{remove\+From\+M\+Y\+\_\+\+A\+V\+L} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} $\ast$estrutura, int x)
+\begin{DoxyCompactList}\small\item\em Remove x nodos de uma dada M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+int \hyperlink{avl_8h_aa1adeb67d366fd5c5e9b792bca519b80}{info\+N\+U\+L\+L} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Conta em quantos nodos de uma Avl nao existe Info. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a0940c9a726c13c5fe2b2b07757e0b8d2}{get\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} estrutura)
+\begin{DoxyCompactList}\small\item\em Retorna a Avl que se encontra numa estrutura M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a66dd8902bddf6453215faeb2fed7649b}{get\+Avl\+Left} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Retorna a Sub-\/arvore do lado esquerdo de uma dada Avl. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} \hyperlink{avl_8h_a224a3bac24b257106a65761a1c2687d4}{get\+Avl\+Right} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Retorna a Sub-\/arvore do lado direito de uma dada Avl. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{avl_8h_a23d6a3a1335cd3ff7ba7a5434eea5969}{get\+Avl\+Code} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Retorna a String presente no nodo de uma dada Avl. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{avl_8h_af3b92dc76e754e239185902acf96f3fb}{get\+Info} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a)
+\begin{DoxyCompactList}\small\item\em Retorna a Info presente no nodo de uma dada Avl. \end{DoxyCompactList}\item 
+int \hyperlink{avl_8h_ae228aab069af18f59a6e6565c47d7569}{get\+Size} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} a)
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho de uma dada estrutura M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_a36594c0348d2cb0d7b1d11b26e0f77ec}{set\+Info} (\hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} a, void $\ast$i)
+\begin{DoxyCompactList}\small\item\em Altera a Info presente no nodo de uma dada Avl. \end{DoxyCompactList}\item 
+void \hyperlink{avl_8h_a457b983b21935dcae5d5be1e22f6fe2d}{set\+Avl} (\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} a, \hyperlink{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{Avl} b)
+\begin{DoxyCompactList}\small\item\em Coloca a Avl b numa M\+Y\+\_\+\+A\+V\+L. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com A\+V\+L's. 
+
+O ficheiro contem os prototipos das funçoes A\+V\+L e assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{avl_8h_aa93f0eb578d23995850d61f7d61c55c1}{\index{avl.\+h@{avl.\+h}!F\+A\+L\+S\+E@{F\+A\+L\+S\+E}}
+\index{F\+A\+L\+S\+E@{F\+A\+L\+S\+E}!avl.\+h@{avl.\+h}}
+\subsubsection[{F\+A\+L\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+L\+S\+E~0}}\label{avl_8h_aa93f0eb578d23995850d61f7d61c55c1}
+\hypertarget{avl_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{\index{avl.\+h@{avl.\+h}!T\+R\+U\+E@{T\+R\+U\+E}}
+\index{T\+R\+U\+E@{T\+R\+U\+E}!avl.\+h@{avl.\+h}}
+\subsubsection[{T\+R\+U\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+U\+E~1}}\label{avl_8h_aa8cecfc5c5c054d2875c03e77b7be15d}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}{\index{avl.\+h@{avl.\+h}!Avl@{Avl}}
+\index{Avl@{Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{Avl}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct avl$\ast$ {\bf Avl}}}\label{avl_8h_a43b9b89e8466949fc480c0bf3b678c0f}
+
+
+Declaração do tipo Avl, um tipo abstrato. 
+
+\hypertarget{avl_8h_a050c65e107f0c828f856a231f4b4e788}{\index{avl.\+h@{avl.\+h}!B\+O\+O\+L@{B\+O\+O\+L}}
+\index{B\+O\+O\+L@{B\+O\+O\+L}!avl.\+h@{avl.\+h}}
+\subsubsection[{B\+O\+O\+L}]{\setlength{\rightskip}{0pt plus 5cm}typedef int {\bf B\+O\+O\+L}}}\label{avl_8h_a050c65e107f0c828f856a231f4b4e788}
+
+
+Declaração do tipo B\+O\+O\+L. 
+
+\hypertarget{avl_8h_a28f7c45fcfe36f14243654946063a076}{\index{avl.\+h@{avl.\+h}!Func@{Func}}
+\index{Func@{Func}!avl.\+h@{avl.\+h}}
+\subsubsection[{Func}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ Func)(void $\ast$)}}\label{avl_8h_a28f7c45fcfe36f14243654946063a076}
+
+
+Declaração do tipo Func, apontador para uma função. 
+
+\hypertarget{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{\index{avl.\+h@{avl.\+h}!M\+Y\+\_\+\+A\+V\+L@{M\+Y\+\_\+\+A\+V\+L}}
+\index{M\+Y\+\_\+\+A\+V\+L@{M\+Y\+\_\+\+A\+V\+L}!avl.\+h@{avl.\+h}}
+\subsubsection[{M\+Y\+\_\+\+A\+V\+L}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct my\+Avl$\ast$ {\bf M\+Y\+\_\+\+A\+V\+L}}}\label{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}
+
+
+Declaração do tipo M\+Y\+\_\+\+A\+V\+L, um tipo abstrato. 
+
+\hypertarget{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}{\index{avl.\+h@{avl.\+h}!S\+T\+R@{S\+T\+R}}
+\index{S\+T\+R@{S\+T\+R}!avl.\+h@{avl.\+h}}
+\subsubsection[{S\+T\+R}]{\setlength{\rightskip}{0pt plus 5cm}typedef char$\ast$ {\bf S\+T\+R}}}\label{avl_8h_aba0652aa53ceb4404f77e13a0c993b0e}
+
+
+Declaração do tipo S\+T\+R\+I\+N\+G, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{avl_8h_a011d56eeab96035711decafcf024c0cb}{\index{avl.\+h@{avl.\+h}!clone\+Avl@{clone\+Avl}}
+\index{clone\+Avl@{clone\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{clone\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} clone\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{estrutura}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a011d56eeab96035711decafcf024c0cb}
+
+
+Faz um clone de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Avl a ser clonada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arvore clonada. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_adf5d9d84decc59fbfaf5cb49fdaff657}{\index{avl.\+h@{avl.\+h}!clone\+My\+Avl@{clone\+My\+Avl}}
+\index{clone\+My\+Avl@{clone\+My\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{clone\+My\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} clone\+My\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{estrutura}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_adf5d9d84decc59fbfaf5cb49fdaff657}
+
+
+Faz um clone de uma dada M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & M\+Y\+\_\+\+A\+V\+L a ser clonada. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+Y\+\_\+\+A\+V\+L clonada. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a953894c30be2f898ebea4c552e9dde8d}{\index{avl.\+h@{avl.\+h}!exist\+Avl@{exist\+Avl}}
+\index{exist\+Avl@{exist\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{exist\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} exist\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{estrutura, }
+\item[{{\bf S\+T\+R}}]{line}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a953894c30be2f898ebea4c552e9dde8d}
+
+
+Verifica se uma dada String existe numa dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Arvore que contém ou nao a String em questao. \\
+\hline
+{\em line} & String que será procurada na Avl. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a3bd672f02d0bb99a01d14c820e7e1ca8}{\index{avl.\+h@{avl.\+h}!exist\+My\+Avl@{exist\+My\+Avl}}
+\index{exist\+My\+Avl@{exist\+My\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{exist\+My\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} exist\+My\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{estrutura, }
+\item[{{\bf S\+T\+R}}]{line}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a3bd672f02d0bb99a01d14c820e7e1ca8}
+
+
+Verifica se uma dada String existe numa dada estrutura M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Estrutura M\+Y\+\_\+\+A\+V\+L que contém ou nao a String em questao. \\
+\hline
+{\em line} & String que será procurada na M\+Y\+\_\+\+A\+V\+L. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_abe50b947db87574bbd95545e50d61669}{\index{avl.\+h@{avl.\+h}!find\+Info@{find\+Info}}
+\index{find\+Info@{find\+Info}!avl.\+h@{avl.\+h}}
+\subsubsection[{find\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ find\+Info (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a, }
+\item[{{\bf S\+T\+R}}]{line, }
+\item[{int $\ast$}]{x}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_abe50b947db87574bbd95545e50d61669}
+
+
+Procura uma String que exista num dado nodo de uma Avl e retorna a info que lá se encontra retorna N\+U\+L\+L caso nao exista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore que contém ou nao uma dada String. \\
+\hline
+{\em line} & String que pretendemos encontrar. \\
+\hline
+{\em x} & Incrementa caso nao encontre. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$\ast$\+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a9bcfb69e7fe14d9df0b0a901f37ae58c}{\index{avl.\+h@{avl.\+h}!free\+Nodo@{free\+Nodo}}
+\index{free\+Nodo@{free\+Nodo}!avl.\+h@{avl.\+h}}
+\subsubsection[{free\+Nodo}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Nodo (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a9bcfb69e7fe14d9df0b0a901f37ae58c}
+
+
+Remove um nodo de uma Avl, libertando o espaço ocupado por este. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Árvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a0940c9a726c13c5fe2b2b07757e0b8d2}{\index{avl.\+h@{avl.\+h}!get\+Avl@{get\+Avl}}
+\index{get\+Avl@{get\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} get\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{estrutura}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a0940c9a726c13c5fe2b2b07757e0b8d2}
+
+
+Retorna a Avl que se encontra numa estrutura M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Estrutura M\+Y\+\_\+\+A\+V\+L que contem uma Avl. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arvore que se encontra na M\+Y\+\_\+\+A\+V\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a23d6a3a1335cd3ff7ba7a5434eea5969}{\index{avl.\+h@{avl.\+h}!get\+Avl\+Code@{get\+Avl\+Code}}
+\index{get\+Avl\+Code@{get\+Avl\+Code}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Avl\+Code}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Avl\+Code (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a23d6a3a1335cd3ff7ba7a5434eea5969}
+
+
+Retorna a String presente no nodo de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String do nodo da Avl. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a66dd8902bddf6453215faeb2fed7649b}{\index{avl.\+h@{avl.\+h}!get\+Avl\+Left@{get\+Avl\+Left}}
+\index{get\+Avl\+Left@{get\+Avl\+Left}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Avl\+Left}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} get\+Avl\+Left (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a66dd8902bddf6453215faeb2fed7649b}
+
+
+Retorna a Sub-\/arvore do lado esquerdo de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sub-\/arvore esquerda da Avl. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a224a3bac24b257106a65761a1c2687d4}{\index{avl.\+h@{avl.\+h}!get\+Avl\+Right@{get\+Avl\+Right}}
+\index{get\+Avl\+Right@{get\+Avl\+Right}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Avl\+Right}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} get\+Avl\+Right (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a224a3bac24b257106a65761a1c2687d4}
+
+
+Retorna a Sub-\/arvore do lado direito de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sub-\/arvore direita da Avl. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_af3b92dc76e754e239185902acf96f3fb}{\index{avl.\+h@{avl.\+h}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ get\+Info (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_af3b92dc76e754e239185902acf96f3fb}
+
+
+Retorna a Info presente no nodo de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Info do nodo da Avl. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_ae228aab069af18f59a6e6565c47d7569}{\index{avl.\+h@{avl.\+h}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!avl.\+h@{avl.\+h}}
+\subsubsection[{get\+Size}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_ae228aab069af18f59a6e6565c47d7569}
+
+
+Retorna o tamanho de uma dada estrutura M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Estrutura M\+Y\+\_\+\+A\+V\+L com um dado numero de elementos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numero de elementos da M\+Y\+\_\+\+A\+V\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a4b97895cf0c668d0b8379d3739f23e54}{\index{avl.\+h@{avl.\+h}!height\+Avl@{height\+Avl}}
+\index{height\+Avl@{height\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{height\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}int height\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a4b97895cf0c668d0b8379d3739f23e54}
+
+
+Retorna a altura de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore com uma dada altura. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Altura da Avl. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_aa1adeb67d366fd5c5e9b792bca519b80}{\index{avl.\+h@{avl.\+h}!info\+N\+U\+L\+L@{info\+N\+U\+L\+L}}
+\index{info\+N\+U\+L\+L@{info\+N\+U\+L\+L}!avl.\+h@{avl.\+h}}
+\subsubsection[{info\+N\+U\+L\+L}]{\setlength{\rightskip}{0pt plus 5cm}int info\+N\+U\+L\+L (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_aa1adeb67d366fd5c5e9b792bca519b80}
+
+
+Conta em quantos nodos de uma Avl nao existe Info. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Árvore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Número de nodos sem Info. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a1e171f825990998ef6e0c34145927c97}{\index{avl.\+h@{avl.\+h}!init\+Avl@{init\+Avl}}
+\index{init\+Avl@{init\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{init\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} init\+Avl (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a1e171f825990998ef6e0c34145927c97}
+
+
+Inicia a Avl, colocando-\/a a N\+U\+L\+L. 
+
+\begin{DoxyReturn}{Returns}
+N\+U\+L\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_ab037378ecdb118df761f070314391be4}{\index{avl.\+h@{avl.\+h}!init\+My\+Avl@{init\+My\+Avl}}
+\index{init\+My\+Avl@{init\+My\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{init\+My\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} init\+My\+Avl (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_ab037378ecdb118df761f070314391be4}
+
+
+Inicia a estrutura M\+Y\+\_\+\+A\+V\+L, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Estrutura M\+Y\+\_\+\+A\+V\+L. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a6432aaa76636f3eb385178856aaeee11}{\index{avl.\+h@{avl.\+h}!insert@{insert}}
+\index{insert@{insert}!avl.\+h@{avl.\+h}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Avl} insert (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{estrutura, }
+\item[{{\bf S\+T\+R}}]{line, }
+\item[{void $\ast$}]{info}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a6432aaa76636f3eb385178856aaeee11}
+
+
+Insere uma string e uma info num dado nodo de uma Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Arvore na qual será inserida a string. \\
+\hline
+{\em line} & String que será inserida. \\
+\hline
+{\em info} & Informaçao que será inserida. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arvore que já contem a respetiva string. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a6ec648e46202d086036f822a3e13ec17}{\index{avl.\+h@{avl.\+h}!insert\+My\+Avl@{insert\+My\+Avl}}
+\index{insert\+My\+Avl@{insert\+My\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{insert\+My\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} insert\+My\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{a, }
+\item[{char $\ast$}]{line, }
+\item[{void $\ast$}]{info, }
+\item[{int}]{aux}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a6ec648e46202d086036f822a3e13ec17}
+
+
+Insere uma string e uma info numa M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & M\+Y\+\_\+\+A\+V\+L na qual será inserida a string. \\
+\hline
+{\em line} & String que será inserida. \\
+\hline
+{\em info} & Informaçao que será inserida. \\
+\hline
+{\em aux} & Informação acerca da info do nodo(aux=1 se já existe uma info no nodo). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Arvore que já contem a respetiva string. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_abc1cec36759849f8e6c90d320a5b89ba}{\index{avl.\+h@{avl.\+h}!remove\+Avl@{remove\+Avl}}
+\index{remove\+Avl@{remove\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{remove\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{estrutura, }
+\item[{{\bf Func}}]{free\+Info}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_abc1cec36759849f8e6c90d320a5b89ba}
+
+
+Remove uma dada Avl, libertando o espaço ocupado pela mesma. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Arvore que se pretende remover. \\
+\hline
+{\em free\+Info} & Apontador para uma Função que vai libertar o espaço ocupado pela Info. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a5ac548790c25b62c257b11d2d2d774e7}{\index{avl.\+h@{avl.\+h}!remove\+From\+M\+Y\+\_\+\+A\+V\+L@{remove\+From\+M\+Y\+\_\+\+A\+V\+L}}
+\index{remove\+From\+M\+Y\+\_\+\+A\+V\+L@{remove\+From\+M\+Y\+\_\+\+A\+V\+L}!avl.\+h@{avl.\+h}}
+\subsubsection[{remove\+From\+M\+Y\+\_\+\+A\+V\+L}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+From\+M\+Y\+\_\+\+A\+V\+L (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L} $\ast$}]{estrutura, }
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a5ac548790c25b62c257b11d2d2d774e7}
+
+
+Remove x nodos de uma dada M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & M\+Y\+\_\+\+A\+V\+L a ser removida. \\
+\hline
+{\em x} & Numero de nodos a ser removidos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_af23c34105cc6f457c6565d4d5084f9eb}{\index{avl.\+h@{avl.\+h}!remove\+My\+Avl@{remove\+My\+Avl}}
+\index{remove\+My\+Avl@{remove\+My\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{remove\+My\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+My\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{estrutura, }
+\item[{{\bf Func}}]{f}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_af23c34105cc6f457c6565d4d5084f9eb}
+
+
+Remove uma estrutura M\+Y\+\_\+\+A\+V\+L, libertando o espaço ocupado pela mesma. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Estrutura M\+Y\+\_\+\+A\+V\+L que se pretende remover. \\
+\hline
+{\em f} & Apontador para uma Função que vai libertar o espaço ocupado pela Info. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a457b983b21935dcae5d5be1e22f6fe2d}{\index{avl.\+h@{avl.\+h}!set\+Avl@{set\+Avl}}
+\index{set\+Avl@{set\+Avl}!avl.\+h@{avl.\+h}}
+\subsubsection[{set\+Avl}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Avl (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{a, }
+\item[{{\bf Avl}}]{b}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a457b983b21935dcae5d5be1e22f6fe2d}
+
+
+Coloca a Avl b numa M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & M\+Y\+\_\+\+A\+V\+L com uma dada Avl. \\
+\hline
+{\em b} & Avl. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a36594c0348d2cb0d7b1d11b26e0f77ec}{\index{avl.\+h@{avl.\+h}!set\+Info@{set\+Info}}
+\index{set\+Info@{set\+Info}!avl.\+h@{avl.\+h}}
+\subsubsection[{set\+Info}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Info (
+\begin{DoxyParamCaption}
+\item[{{\bf Avl}}]{a, }
+\item[{void $\ast$}]{i}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a36594c0348d2cb0d7b1d11b26e0f77ec}
+
+
+Altera a Info presente no nodo de uma dada Avl. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Arvore. \\
+\hline
+{\em i} & Info. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{avl_8h_a768c19a790554ab1fa6ecef5e6ef58ad}{\index{avl.\+h@{avl.\+h}!total\+Elements@{total\+Elements}}
+\index{total\+Elements@{total\+Elements}!avl.\+h@{avl.\+h}}
+\subsubsection[{total\+Elements}]{\setlength{\rightskip}{0pt plus 5cm}int total\+Elements (
+\begin{DoxyParamCaption}
+\item[{{\bf M\+Y\+\_\+\+A\+V\+L}}]{estrutura}
+\end{DoxyParamCaption}
+)}}\label{avl_8h_a768c19a790554ab1fa6ecef5e6ef58ad}
+
+
+Retorna o numero de elementos de uma dada estrutura M\+Y\+\_\+\+A\+V\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em estrutura} & Estrutura M\+Y\+\_\+\+A\+V\+L com um dado numero de elementos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numero de elementos da M\+Y\+\_\+\+A\+V\+L. 
+\end{DoxyReturn}

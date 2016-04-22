@@ -6,6 +6,8 @@ OBJECTS = obj/main.o obj/avl.o obj/CatClients.o obj/CatProducts.o obj/facturacao
 		  obj/filial.o obj/heap.o obj/interpretador.o obj/listaStrings.o \
 		  obj/queries.o obj/readFiles.o obj/Sales.o 
 
+DOC = doc/Doxyfile
+
 compile: $(OBJECTS)
 	$(CC) $(CFLAGS) -o gereVendas $(OBJECTS)
 
@@ -48,6 +50,6 @@ debug: $(OBJECTS)
 
 .PHONY: doc
 doc:$(OBJECTS)
-		doxygen Doxyfile
+		doxygen $(DOC)
 
 #  -pedantic -Wunused-parameter -Wall -Wextra 
