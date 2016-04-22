@@ -1105,7 +1105,7 @@ static int searchPageProducts(LISTA_STRINGS group,int *actualPage){
 static void printPageMostSold(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
 	printf("\e[2J\e[H");
-	printTop(4);
+	printTop(9);
 	printf("							  0.Voltar\n");
 	printf("\n	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
