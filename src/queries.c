@@ -165,7 +165,8 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 }
 
 /*#################################QUERIE 12#####################################*/
-
+/*Função que cria 3 LISTA_STRINGS, uma para cada filial, controi listas com os clients que nunca compraram em cada filial, e no fim, 
+faz a junção das listas, removendo os clients iguais.*/
 static int querie12Clients(FILIAL* f){
 	int i,sum=0,r;
 

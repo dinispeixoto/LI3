@@ -1,4 +1,3 @@
-
 #include "headers/interpretador.h"
 
 #define PAGE_SIZE 20
@@ -48,10 +47,10 @@ static int infoClientMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int searchPageProducts(LISTA_STRINGS,int*);
 static void printPageMostSold(PAGE,int,int,int);
 /* QUERIE 10 */
-static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3);
+static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3,int quant);
 static int runningMostSold(CATALOG_PRODUCTS,FILIAL*);
 static int nProductsMostSold(CATALOG_PRODUCTS,FILIAL*); 
-static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS group2,LISTA_STRINGS group3,int totalPages,int **dados1,int **dados2,int **dados3);
+static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS group2,LISTA_STRINGS group3,int totalPages,int **dados1,int **dados2,int **dados3,int quant);
 /* QUERIE 11 */
 static int runningThreeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int threeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
@@ -294,6 +293,7 @@ static int readCatalogIntro(CATALOG_PRODUCTS CatProducts){
 		while(running){
 			running = searchPage(&actualPage,group,totalPages);
 		}
+		freeListaStr(group);
 	}
 	else if(buffer[0] == '0' && size_input) return 0;
 	else{
@@ -575,7 +575,7 @@ static int productsNSold(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 		if(running==-1) return 1;
 		running = printNSold(group,totalPages,&actualPage);
 	}
-
+	freeListaStr(group);
 	return 0;
 }
 
@@ -799,6 +799,7 @@ static int runningListClients(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais)
 	while(running){
 		running = searchPageListClients(CatProducts,&actualPage,group,totalPages);
 	}
+	freeListaStr(group);
 	return 1;
 }
 
@@ -945,6 +946,8 @@ static int listClientsProdFilial(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFilia
 		getchar();getchar();
 		return 1;
 	}
+	freeListaStr(group_N);
+	freeListaStr(group_P);
 	return 0;
 }
 
@@ -1061,6 +1064,7 @@ static int infoClientMonth(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProduc
 		if(running == -1) return 1;
 		running	= searchPageProducts(group,&actualPage); 
 	}
+	freeListaStr(group);
 	return 0;
 }
 
@@ -1182,7 +1186,7 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	if(totalPages < totalPages3) totalPages = totalPages3;
 
 	while(running){
-		running = searchPageMostSold(&actualPage,group1,group2,group3,totalPages,dados1,dados2,dados3);
+		running = searchPageMostSold(&actualPage,group1,group2,group3,totalPages,dados1,dados2,dados3,quant);
 	}
 
 	for(i=0;i<2;i++){
@@ -1194,11 +1198,13 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	free(dados2);
 	free(dados3);
 
-
+	freeListaStr(group1);
+	freeListaStr(group2);
+	freeListaStr(group3);
 	return 0;
 }
 
-static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS group2,LISTA_STRINGS group3,int totalPages,int **dados1,int **dados2,int **dados3){
+static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS group2,LISTA_STRINGS group3,int totalPages,int **dados1,int **dados2,int **dados3,int quant){
 
 	int page,size_input,page_begin_1,page_begin_2,page_begin_3;
 	char string_page[BUFFER_SIZE];
@@ -1214,7 +1220,7 @@ static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS
 	page_list_3 = updatePage(group3,page_begin_3,SIZE_PRODUCT,PAGE_SIZE);
 
 
-	printMostSold(page_list_1,page_list_2,page_list_3,dados1,dados2,dados3,*actualPage,totalPages,getListaSp(group1),getListaSp(group2),getListaSp(group3));
+	printMostSold(page_list_1,page_list_2,page_list_3,dados1,dados2,dados3,*actualPage,totalPages,getListaSp(group1),getListaSp(group2),getListaSp(group3),quant);
 
 	do{
 		printf("	Escolha uma página: ");
@@ -1231,9 +1237,9 @@ static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS
 			page_list_3 = updatePage(group3,page_begin_3,SIZE_PRODUCT,PAGE_SIZE);
 			printf("\e[2J\e[H");
 			printTop(10);
-			printMostSold(page_list_1,page_list_2,page_list_3,dados1,dados2,dados3,*actualPage,totalPages,getListaSp(group1),getListaSp(group2),getListaSp(group3));
+			printMostSold(page_list_1,page_list_2,page_list_3,dados1,dados2,dados3,*actualPage,totalPages,getListaSp(group1),getListaSp(group2),getListaSp(group3),quant);
 		}
-		else{
+		else {
 			printf("\n	Por favor insira uma página de 1 a %d.\n",totalPages);
 			getchar();getchar();
 			return 1;
@@ -1243,7 +1249,7 @@ static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS
 	return 0;
 }
 
-static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3){
+static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3,int quant){
 	int i,index;
 	char produto_1[BUFFER_SIZE]= "      ";
 	char produto_2[BUFFER_SIZE]= "      ";
@@ -1260,6 +1266,7 @@ static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int
 	printf(" |   #   || Produto | Qt  | #C || Produto | Qt  | #C || Produto | Qt  | #C ||\n");
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i + (PAGE_SIZE*(page-1));
+		if(index >= quant) break;
 		if(index < totalElements1){
 			strcpy(produto_1,getPageElement(page_list_1,i));
 			sprintf(qt_1, "%d",dados1[1][index]);
@@ -1329,7 +1336,7 @@ static int threeMostPurchased(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatPro
 	printf("	Pressione qualquer tecla para continuar!		0.Voltar\n");
 	printf("________________________________________________________________________________\n");
 	printf("	>> ");
-
+	freeListaStr(group);
 	getchar();
 	c = getchar();
 	if(c =='0') return 0;
