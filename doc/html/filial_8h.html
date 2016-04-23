@@ -97,6 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="CatClients_8h_source.html">CatClients.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CatProducts_8h_source.html">CatProducts.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Sales_8h_source.html">Sales.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="heap_8h_source.html">heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="listaStrings_8h_source.html">listaStrings.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for filial.h:</div>
 <div class="dyncontent">
@@ -125,21 +127,15 @@ Macros</h2></td></tr>
 <tr class="memitem:aacddce754c7fa2e23ad6784e583c505e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#aacddce754c7fa2e23ad6784e583c505e">SIZE_INFOP</a>&#160;&#160;&#160;2</td></tr>
 <tr class="memdesc:aacddce754c7fa2e23ad6784e583c505e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipos de Venda(normal ou promoção).  <a href="#aacddce754c7fa2e23ad6784e583c505e">More...</a><br /></td></tr>
 <tr class="separator:aacddce754c7fa2e23ad6784e583c505e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f9c5f473c5df2aeca175ce3a7b14de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a07f9c5f473c5df2aeca175ce3a7b14de">SIZE_PRODUCTS</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memdesc:a07f9c5f473c5df2aeca175ce3a7b14de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho do Código de um Produto.  <a href="#a07f9c5f473c5df2aeca175ce3a7b14de">More...</a><br /></td></tr>
+<tr class="separator:a07f9c5f473c5df2aeca175ce3a7b14de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a33b5527a812e12d7c5424317f33cb747"><td class="memItemLeft" align="right" valign="top">typedef struct filial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a></td></tr>
 <tr class="memdesc:a33b5527a812e12d7c5424317f33cb747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo FILIAL, um tipo abstrato.  <a href="#a33b5527a812e12d7c5424317f33cb747">More...</a><br /></td></tr>
 <tr class="separator:a33b5527a812e12d7c5424317f33cb747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f8575a24d192e221b1f6e8289bb10e9"><td class="memItemLeft" align="right" valign="top">typedef struct infoMes *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a></td></tr>
-<tr class="memdesc:a2f8575a24d192e221b1f6e8289bb10e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo INFO_MES, um tipo abstrato.  <a href="#a2f8575a24d192e221b1f6e8289bb10e9">More...</a><br /></td></tr>
-<tr class="separator:a2f8575a24d192e221b1f6e8289bb10e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba096daa9252ddb9c6070d77336d5add"><td class="memItemLeft" align="right" valign="top">typedef struct infoClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a></td></tr>
-<tr class="memdesc:aba096daa9252ddb9c6070d77336d5add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo INFO_CLIENT, um tipo abstrato.  <a href="#aba096daa9252ddb9c6070d77336d5add">More...</a><br /></td></tr>
-<tr class="separator:aba096daa9252ddb9c6070d77336d5add"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcfed94bf71673f76beabee44768624"><td class="memItemLeft" align="right" valign="top">typedef struct infoProduct *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a></td></tr>
-<tr class="memdesc:a4fcfed94bf71673f76beabee44768624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo INFO_PRODUCT, um tipo abstrato.  <a href="#a4fcfed94bf71673f76beabee44768624">More...</a><br /></td></tr>
-<tr class="separator:a4fcfed94bf71673f76beabee44768624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6237adb3e8c18460dbfbc6eacf1b3f9c"><td class="memItemLeft" align="right" valign="top">typedef struct dadosFilial *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a></td></tr>
 <tr class="memdesc:a6237adb3e8c18460dbfbc6eacf1b3f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo DADOS_FILIAL, um tipo abstrato.  <a href="#a6237adb3e8c18460dbfbc6eacf1b3f9c">More...</a><br /></td></tr>
 <tr class="separator:a6237adb3e8c18460dbfbc6eacf1b3f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,69 +148,45 @@ Functions</h2></td></tr>
 <tr class="memitem:a202fb767bc00fcc9fda6972dbe0e9def"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a202fb767bc00fcc9fda6972dbe0e9def">insertFilial</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="Sales_8h.html#af8f76607a2a158f4d90c5dc5e9e2824d">SALES</a> s)</td></tr>
 <tr class="memdesc:a202fb767bc00fcc9fda6972dbe0e9def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insere uma Venda na estrutura Filial.  <a href="#a202fb767bc00fcc9fda6972dbe0e9def">More...</a><br /></td></tr>
 <tr class="separator:a202fb767bc00fcc9fda6972dbe0e9def"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bb6dda94955d776c5b82c0c03e0e867"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a6bb6dda94955d776c5b82c0c03e0e867">initInfoProduct</a> ()</td></tr>
-<tr class="memdesc:a6bb6dda94955d776c5b82c0c03e0e867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia a estrutura INFO_PRODUCT, alocando espaço para a mesma.  <a href="#a6bb6dda94955d776c5b82c0c03e0e867">More...</a><br /></td></tr>
-<tr class="separator:a6bb6dda94955d776c5b82c0c03e0e867"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89d080b4a14abb17212c90f5b0a222a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a89d080b4a14abb17212c90f5b0a222a9">initInfoClient</a> ()</td></tr>
-<tr class="memdesc:a89d080b4a14abb17212c90f5b0a222a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia a estrutura INFO_CLIENT, alocando espaço para a mesma.  <a href="#a89d080b4a14abb17212c90f5b0a222a9">More...</a><br /></td></tr>
-<tr class="separator:a89d080b4a14abb17212c90f5b0a222a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9c33b3157012c87f1cd2e01dbb6b8ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#ac9c33b3157012c87f1cd2e01dbb6b8ec">initInfoMes</a> ()</td></tr>
-<tr class="memdesc:ac9c33b3157012c87f1cd2e01dbb6b8ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia a estrutura INFO_MES, alocando espaço para a mesma.  <a href="#ac9c33b3157012c87f1cd2e01dbb6b8ec">More...</a><br /></td></tr>
-<tr class="separator:ac9c33b3157012c87f1cd2e01dbb6b8ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f1c1bc07c5218c82416b1191e2355b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a6f1c1bc07c5218c82416b1191e2355b3">initDadosFilial</a> ()</td></tr>
 <tr class="memdesc:a6f1c1bc07c5218c82416b1191e2355b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia a estrutura DADOS_FILIAL, alocando espaço para a mesma.  <a href="#a6f1c1bc07c5218c82416b1191e2355b3">More...</a><br /></td></tr>
 <tr class="separator:a6f1c1bc07c5218c82416b1191e2355b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a757374036ae02d8d1482ca372f16f723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a757374036ae02d8d1482ca372f16f723">freeFilial</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f)</td></tr>
 <tr class="memdesc:a757374036ae02d8d1482ca372f16f723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a estrutura Filial, libertando o espaço ocupado por esta.  <a href="#a757374036ae02d8d1482ca372f16f723">More...</a><br /></td></tr>
 <tr class="separator:a757374036ae02d8d1482ca372f16f723"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07aab0740f7921a847287244b7916ed6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a07aab0740f7921a847287244b7916ed6">freeInfoClient</a> (void *infoClient)</td></tr>
-<tr class="memdesc:a07aab0740f7921a847287244b7916ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a estrutura INFO_CLIENT, libertando o espaço ocupado por esta.  <a href="#a07aab0740f7921a847287244b7916ed6">More...</a><br /></td></tr>
-<tr class="separator:a07aab0740f7921a847287244b7916ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a489f5e3913e3eee003993d9100350cb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a489f5e3913e3eee003993d9100350cb0">freeInfoMes</a> (<a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a> info)</td></tr>
-<tr class="memdesc:a489f5e3913e3eee003993d9100350cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a estrutura INFO_MES, libertando o espaço ocupado por esta.  <a href="#a489f5e3913e3eee003993d9100350cb0">More...</a><br /></td></tr>
-<tr class="separator:a489f5e3913e3eee003993d9100350cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a321b988b84eda616d255ae8f790238c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a321b988b84eda616d255ae8f790238c7">freeInfoProduct</a> (void *info)</td></tr>
-<tr class="memdesc:a321b988b84eda616d255ae8f790238c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a estrutura INFO_PRODUCT, libertando o espaço ocupado por esta.  <a href="#a321b988b84eda616d255ae8f790238c7">More...</a><br /></td></tr>
-<tr class="separator:a321b988b84eda616d255ae8f790238c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb3396fef7d76665f81a4cbbf20036f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#abb3396fef7d76665f81a4cbbf20036f3">updateInfoC</a> (<a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a> infoC, <a class="el" href="Sales_8h.html#af8f76607a2a158f4d90c5dc5e9e2824d">SALES</a> s)</td></tr>
-<tr class="memdesc:abb3396fef7d76665f81a4cbbf20036f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza a estrutura INFO_CLIENT após uma determinada venda.  <a href="#abb3396fef7d76665f81a4cbbf20036f3">More...</a><br /></td></tr>
-<tr class="separator:abb3396fef7d76665f81a4cbbf20036f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547e256fd55d34f48966625ec9cdcc01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a547e256fd55d34f48966625ec9cdcc01">updateInfoP</a> (<a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a> info, <a class="el" href="Sales_8h.html#af8f76607a2a158f4d90c5dc5e9e2824d">SALES</a> s)</td></tr>
-<tr class="memdesc:a547e256fd55d34f48966625ec9cdcc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza a estrutura INFO_PRODUCT após uma determinada venda.  <a href="#a547e256fd55d34f48966625ec9cdcc01">More...</a><br /></td></tr>
-<tr class="separator:a547e256fd55d34f48966625ec9cdcc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed568aa4454317c6ab2ddf7b55798174"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#aed568aa4454317c6ab2ddf7b55798174">copyP</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a> cp)</td></tr>
+<tr class="memdesc:aed568aa4454317c6ab2ddf7b55798174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia os Produtos do Catálogo para a Filial.  <a href="#aed568aa4454317c6ab2ddf7b55798174">More...</a><br /></td></tr>
+<tr class="separator:aed568aa4454317c6ab2ddf7b55798174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4e313f1dd90288b9e3e574c8a3134eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#ae4e313f1dd90288b9e3e574c8a3134eb">copyCPO</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a> c)</td></tr>
 <tr class="memdesc:ae4e313f1dd90288b9e3e574c8a3134eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia os Clientes do Catálogo para a Filial.  <a href="#ae4e313f1dd90288b9e3e574c8a3134eb">More...</a><br /></td></tr>
 <tr class="separator:ae4e313f1dd90288b9e3e574c8a3134eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51f6a82c7fe6d68771ab50e22ef0dfb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a51f6a82c7fe6d68771ab50e22ef0dfb3">getDadosI</a> (<a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, int i, int j)</td></tr>
-<tr class="memdesc:a51f6a82c7fe6d68771ab50e22ef0dfb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de produtos comprados num determinado mês, numa determinada Filial.  <a href="#a51f6a82c7fe6d68771ab50e22ef0dfb3">More...</a><br /></td></tr>
-<tr class="separator:a51f6a82c7fe6d68771ab50e22ef0dfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4719db41992002bff9f632acfa8e42b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a4719db41992002bff9f632acfa8e42b2">getComp</a> (<a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a> x)</td></tr>
-<tr class="memdesc:a4719db41992002bff9f632acfa8e42b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se um Cliente comprou algum produto.  <a href="#a4719db41992002bff9f632acfa8e42b2">More...</a><br /></td></tr>
-<tr class="separator:a4719db41992002bff9f632acfa8e42b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c5f9deec0a0983b3579e8fec17aeff5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a0c5f9deec0a0983b3579e8fec17aeff5">getClientIndexF</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, int index)</td></tr>
-<tr class="memdesc:a0c5f9deec0a0983b3579e8fec17aeff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a MY_AVL presente num determinado indice da estrutura Filial.  <a href="#a0c5f9deec0a0983b3579e8fec17aeff5">More...</a><br /></td></tr>
-<tr class="separator:a0c5f9deec0a0983b3579e8fec17aeff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc8a27394934eda8be909a347624f449"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#adc8a27394934eda8be909a347624f449">updateQuant_DadosFilial</a> (<a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, int filial, int month, int total)</td></tr>
-<tr class="memdesc:adc8a27394934eda8be909a347624f449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza os dados relativos a uma dada Filial num dado mês.  <a href="#adc8a27394934eda8be909a347624f449">More...</a><br /></td></tr>
-<tr class="separator:adc8a27394934eda8be909a347624f449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b47e62b84f5b7fc3b935d1dcadf0479"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a0b47e62b84f5b7fc3b935d1dcadf0479">getInfoMes</a> (<a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a> info, int month)</td></tr>
-<tr class="memdesc:a0b47e62b84f5b7fc3b935d1dcadf0479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a informação das compras realizadas por um determinado Cliente, num determinado Mês.  <a href="#a0b47e62b84f5b7fc3b935d1dcadf0479">More...</a><br /></td></tr>
-<tr class="separator:a0b47e62b84f5b7fc3b935d1dcadf0479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad22319574b1de5b5dae3e20470f0849c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#ad22319574b1de5b5dae3e20470f0849c">getInfoMesQuantity</a> (<a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a> info)</td></tr>
-<tr class="memdesc:ad22319574b1de5b5dae3e20470f0849c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de produtos comprados num determinado Mês.  <a href="#ad22319574b1de5b5dae3e20470f0849c">More...</a><br /></td></tr>
-<tr class="separator:ad22319574b1de5b5dae3e20470f0849c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e960ff2461413c74492909937da7b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#ac9e960ff2461413c74492909937da7b9">getInfoProductQuantity</a> (<a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a> info, int index)</td></tr>
-<tr class="memdesc:ac9e960ff2461413c74492909937da7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade comprada de um determinado produto em preço normal ou em promoção.  <a href="#ac9e960ff2461413c74492909937da7b9">More...</a><br /></td></tr>
-<tr class="separator:ac9e960ff2461413c74492909937da7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f78b45de0e48ad26b52b91aa55c3f50"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a1f78b45de0e48ad26b52b91aa55c3f50">getInfoProductPrice</a> (<a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a> info, int index)</td></tr>
-<tr class="memdesc:a1f78b45de0e48ad26b52b91aa55c3f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o dinheiro total gasto num determinado produto em preço normal ou em promoção.  <a href="#a1f78b45de0e48ad26b52b91aa55c3f50">More...</a><br /></td></tr>
-<tr class="separator:a1f78b45de0e48ad26b52b91aa55c3f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a539c178668342d12f4eb6ef82628a608"><td class="memItemLeft" align="right" valign="top"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a539c178668342d12f4eb6ef82628a608">getInfoMesProduct</a> (<a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a> info, int index)</td></tr>
-<tr class="memdesc:a539c178668342d12f4eb6ef82628a608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a MY_AVL presente na estrutura INFO_MES, num determinado índice.  <a href="#a539c178668342d12f4eb6ef82628a608">More...</a><br /></td></tr>
-<tr class="separator:a539c178668342d12f4eb6ef82628a608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22b569cb28378bff852bad0cfe22302f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a22b569cb28378bff852bad0cfe22302f">getDadosFilialQuantity</a> (<a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, int filial, int month)</td></tr>
-<tr class="memdesc:a22b569cb28378bff852bad0cfe22302f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de produtos comprados numa dada Filial, num dado Mês.  <a href="#a22b569cb28378bff852bad0cfe22302f">More...</a><br /></td></tr>
-<tr class="separator:a22b569cb28378bff852bad0cfe22302f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6639555c750de778580a3cec5927ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a2b6639555c750de778580a3cec5927ed">updateQuant_DadosFilial</a> (<a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, int month, int total)</td></tr>
+<tr class="memdesc:a2b6639555c750de778580a3cec5927ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza os dados relativos a uma dada Filial num dado mês.  <a href="#a2b6639555c750de778580a3cec5927ed">More...</a><br /></td></tr>
+<tr class="separator:a2b6639555c750de778580a3cec5927ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b07b371c359ea49ebc03e287adbae2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a28b07b371c359ea49ebc03e287adbae2">getDadosFilialQuantity</a> (<a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, int month)</td></tr>
+<tr class="memdesc:a28b07b371c359ea49ebc03e287adbae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de produtos comprados numa dada Filial, num dado Mês.  <a href="#a28b07b371c359ea49ebc03e287adbae2">More...</a><br /></td></tr>
+<tr class="separator:a28b07b371c359ea49ebc03e287adbae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba87adb53cc9c98fec461a6d0b397b91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#aba87adb53cc9c98fec461a6d0b397b91">dontBuyClient</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls)</td></tr>
+<tr class="memdesc:aba87adb53cc9c98fec461a6d0b397b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma lista de Strings, com os clientes que nunca compraram nada.  <a href="#aba87adb53cc9c98fec461a6d0b397b91">More...</a><br /></td></tr>
+<tr class="separator:aba87adb53cc9c98fec461a6d0b397b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a213b911551f28fc13f8531658ddb7a78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a213b911551f28fc13f8531658ddb7a78">highCostProd</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> hp, char *client)</td></tr>
+<tr class="memdesc:a213b911551f28fc13f8531658ddb7a78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma Heap, ordenada por os produtos com maior facturação.  <a href="#a213b911551f28fc13f8531658ddb7a78">More...</a><br /></td></tr>
+<tr class="separator:a213b911551f28fc13f8531658ddb7a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4ef76073601eaffbbdac62aeb88d3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a8d4ef76073601eaffbbdac62aeb88d3e">querie10Fil</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> hp)</td></tr>
+<tr class="memdesc:a8d4ef76073601eaffbbdac62aeb88d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma Heap, ordenada pelos produtos mais vendidos em quantidade.  <a href="#a8d4ef76073601eaffbbdac62aeb88d3e">More...</a><br /></td></tr>
+<tr class="separator:a8d4ef76073601eaffbbdac62aeb88d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adda72c02e0326d9a270fa3d7df26e924"><td class="memItemLeft" align="right" valign="top"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#adda72c02e0326d9a270fa3d7df26e924">moreBuy</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> hp, char *client, int month)</td></tr>
+<tr class="memdesc:adda72c02e0326d9a270fa3d7df26e924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma Heap, ordenada pelos produtos com maior gastos.  <a href="#adda72c02e0326d9a270fa3d7df26e924">More...</a><br /></td></tr>
+<tr class="separator:adda72c02e0326d9a270fa3d7df26e924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab938e2dbf41c4f8529515b9c95b0fbb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#ab938e2dbf41c4f8529515b9c95b0fbb5">productNeP</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, char *product, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> gcN, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> gcP)</td></tr>
+<tr class="memdesc:ab938e2dbf41c4f8529515b9c95b0fbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói duas Listas de Strings, tendo uma os produtos que um cliente comprou sem promoção e outra com promoção.  <a href="#ab938e2dbf41c4f8529515b9c95b0fbb5">More...</a><br /></td></tr>
+<tr class="separator:ab938e2dbf41c4f8529515b9c95b0fbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4447136b294501493d416e9f74010994"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a4447136b294501493d416e9f74010994">checkClientsValeN</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls)</td></tr>
+<tr class="memdesc:a4447136b294501493d416e9f74010994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma Lista de Strings, com os Clientes que compraram numa filial.  <a href="#a4447136b294501493d416e9f74010994">More...</a><br /></td></tr>
+<tr class="separator:a4447136b294501493d416e9f74010994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eafb183ed8881dedae755622b1d01d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="filial_8h.html#a8eafb183ed8881dedae755622b1d01d1">valoresFilial</a> (<a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> f, <a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> df, char *client)</td></tr>
+<tr class="memdesc:a8eafb183ed8881dedae755622b1d01d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recolhe os dados de uma filial, sobre um dado cliente.  <a href="#a8eafb183ed8881dedae755622b1d01d1">More...</a><br /></td></tr>
+<tr class="separator:a8eafb183ed8881dedae755622b1d01d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Protótipos das funções que trabalham com a Filial. </p>
@@ -263,6 +235,20 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a07f9c5f473c5df2aeca175ce3a7b14de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_PRODUCTS&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho do Código de um Produto. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="a6237adb3e8c18460dbfbc6eacf1b3f9c"></a>
 <div class="memitem">
@@ -292,49 +278,43 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aba096daa9252ddb9c6070d77336d5add"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct infoClient* <a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo INFO_CLIENT, um tipo abstrato. </p>
-
-</div>
-</div>
-<a class="anchor" id="a2f8575a24d192e221b1f6e8289bb10e9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct infoMes* <a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo INFO_MES, um tipo abstrato. </p>
-
-</div>
-</div>
-<a class="anchor" id="a4fcfed94bf71673f76beabee44768624"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct infoProduct* <a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo INFO_PRODUCT, um tipo abstrato. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a4447136b294501493d416e9f74010994"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> checkClientsValeN </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>ls</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constrói uma Lista de Strings, com os Clientes que compraram numa filial. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">ls</td><td>Lista de Strings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Lista de Strings. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae4e313f1dd90288b9e3e574c8a3134eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -371,6 +351,78 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aed568aa4454317c6ab2ddf7b55798174"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> copyP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a>&#160;</td>
+          <td class="paramname"><em>cp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copia os Produtos do Catálogo para a Filial. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">c</td><td>Catálogo de Produtos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Void. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba87adb53cc9c98fec461a6d0b397b91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> dontBuyClient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>ls</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constrói uma lista de Strings, com os clientes que nunca compraram nada. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">ls</td><td>Lista de Strings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a757374036ae02d8d1482ca372f16f723"></a>
 <div class="memitem">
 <div class="memproto">
@@ -396,143 +448,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a07aab0740f7921a847287244b7916ed6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void freeInfoClient </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>infoClient</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove a estrutura INFO_CLIENT, libertando o espaço ocupado por esta. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">infoClient</td><td>Informação de um Cliente.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Void. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a489f5e3913e3eee003993d9100350cb0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void freeInfoMes </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a>&#160;</td>
-          <td class="paramname"><em>info</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove a estrutura INFO_MES, libertando o espaço ocupado por esta. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Informação de um Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Void. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a321b988b84eda616d255ae8f790238c7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void freeInfoProduct </td>
-          <td>(</td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>info</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove a estrutura INFO_PRODUCT, libertando o espaço ocupado por esta. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Informação de um Produto.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Void. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a0c5f9deec0a0983b3579e8fec17aeff5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a> getClientIndexF </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a MY_AVL presente num determinado indice da estrutura Filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">f</td><td>Filial. </td></tr>
-    <tr><td class="paramname">index</td><td>Índice.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>MY_AVL que se encontra no índice. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4719db41992002bff9f632acfa8e42b2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getComp </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a>&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Verifica se um Cliente comprou algum produto. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>Estrutura com informação sobre um Cliente.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Retorna 1 caso tenha comprado algum produto. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a22b569cb28378bff852bad0cfe22302f"></a>
+<a class="anchor" id="a28b07b371c359ea49ebc03e287adbae2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -541,12 +457,6 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td>
           <td class="paramname"><em>df</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -575,27 +485,27 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a51f6a82c7fe6d68771ab50e22ef0dfb3"></a>
+<a class="anchor" id="a213b911551f28fc13f8531658ddb7a78"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int getDadosI </td>
+          <td class="memname"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> highCostProd </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td>
-          <td class="paramname"><em>df</em>, </td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
+          <td class="paramtype"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>j</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>client</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -605,185 +515,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Retorna a quantidade de produtos comprados num determinado mês, numa determinada Filial. </p>
+<p>Constrói uma Heap, ordenada por os produtos com maior facturação. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">df</td><td>Estrutura com os dados relativos a Filial. </td></tr>
-    <tr><td class="paramname">i</td><td>Filial. </td></tr>
-    <tr><td class="paramname">j</td><td>Mês.</td></tr>
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">hp</td><td>Heap. </td></tr>
+    <tr><td class="paramname">client</td><td>Cliente.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade de Produtos. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a0b47e62b84f5b7fc3b935d1dcadf0479"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a> getInfoMes </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a>&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a informação das compras realizadas por um determinado Cliente, num determinado Mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com a informação sobre um Cliente. </td></tr>
-    <tr><td class="paramname">month</td><td>Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com a informação relativa ao Mês. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a539c178668342d12f4eb6ef82628a608"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a> getInfoMesProduct </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a>&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a MY_AVL presente na estrutura INFO_MES, num determinado índice. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com a informação sobre um determinado Mês. </td></tr>
-    <tr><td class="paramname">index</td><td>Índice.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>MY_AVL presente no índice. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad22319574b1de5b5dae3e20470f0849c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getInfoMesQuantity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a>&#160;</td>
-          <td class="paramname"><em>info</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade de produtos comprados num determinado Mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com a informação sobre um determinado Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade de Produtos comprados. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1f78b45de0e48ad26b52b91aa55c3f50"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double getInfoProductPrice </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a>&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna o dinheiro total gasto num determinado produto em preço normal ou em promoção. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com a informação sobre um determinado Produto. </td></tr>
-    <tr><td class="paramname">index</td><td>Tipo de compra (normal ou promoção).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Dinheiro total gasto. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac9e960ff2461413c74492909937da7b9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getInfoProductQuantity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a>&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade comprada de um determinado produto em preço normal ou em promoção. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com a informação sobre um determinado Produto. </td></tr>
-    <tr><td class="paramname">index</td><td>Tipo de compra (normal ou promoção).</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade do produto comprada. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Heap. </dd></dl>
 
 </div>
 </div>
@@ -823,60 +564,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a89d080b4a14abb17212c90f5b0a222a9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a> initInfoClient </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inicia a estrutura INFO_CLIENT, alocando espaço para a mesma. </p>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com informação sobre os Clientes. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac9c33b3157012c87f1cd2e01dbb6b8ec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#a2f8575a24d192e221b1f6e8289bb10e9">INFO_MES</a> initInfoMes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inicia a estrutura INFO_MES, alocando espaço para a mesma. </p>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com informação sobre um Mês. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a6bb6dda94955d776c5b82c0c03e0e867"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a> initInfoProduct </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inicia a estrutura INFO_PRODUCT, alocando espaço para a mesma. </p>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com informação sobre os Produtos. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a202fb767bc00fcc9fda6972dbe0e9def"></a>
 <div class="memitem">
 <div class="memproto">
@@ -913,21 +600,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abb3396fef7d76665f81a4cbbf20036f3"></a>
+<a class="anchor" id="adda72c02e0326d9a270fa3d7df26e924"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a> updateInfoC </td>
+          <td class="memname"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> moreBuy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#aba096daa9252ddb9c6070d77336d5add">INFO_CLIENT</a>&#160;</td>
-          <td class="paramname"><em>infoC</em>, </td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Sales_8h.html#af8f76607a2a158f4d90c5dc5e9e2824d">SALES</a>&#160;</td>
-          <td class="paramname"><em>s</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -937,33 +636,47 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Actualiza a estrutura INFO_CLIENT após uma determinada venda. </p>
+<p>Constrói uma Heap, ordenada pelos produtos com maior gastos. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">infoC</td><td>Estrutura com informação sobre os Clientes. </td></tr>
-    <tr><td class="paramname">s</td><td>Venda.</td></tr>
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">hp</td><td>Heap. </td></tr>
+    <tr><td class="paramname">client</td><td>Cliente. </td></tr>
+    <tr><td class="paramname">month</td><td>Mes.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com informação sobre os Clientes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Heap. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a547e256fd55d34f48966625ec9cdcc01"></a>
+<a class="anchor" id="ab938e2dbf41c4f8529515b9c95b0fbb5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a> updateInfoP </td>
+          <td class="memname"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> productNeP </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="filial_8h.html#a4fcfed94bf71673f76beabee44768624">INFO_PRODUCT</a>&#160;</td>
-          <td class="paramname"><em>info</em>, </td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Sales_8h.html#af8f76607a2a158f4d90c5dc5e9e2824d">SALES</a>&#160;</td>
-          <td class="paramname"><em>s</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>product</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>gcN</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>gcP</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -973,19 +686,56 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Actualiza a estrutura INFO_PRODUCT após uma determinada venda. </p>
+<p>Constrói duas Listas de Strings, tendo uma os produtos que um cliente comprou sem promoção e outra com promoção. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">info</td><td>Estrutura com informação sobre os Produtos. </td></tr>
-    <tr><td class="paramname">s</td><td>Venda.</td></tr>
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">product.</td><td></td></tr>
+    <tr><td class="paramname">gcN</td><td>Lista de Strings de promoção N. @param gcP Lista de Strings de promoção P.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com informação sobre os Produtos. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Lista de Strings. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="adc8a27394934eda8be909a347624f449"></a>
+<a class="anchor" id="a8d4ef76073601eaffbbdac62aeb88d3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a> querie10Fil </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="heap_8h.html#a87cb3746dc4bfdc65c8918206c5c0c17">Heap</a>&#160;</td>
+          <td class="paramname"><em>hp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constrói uma Heap, ordenada pelos produtos mais vendidos em quantidade. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">hp</td><td>Heap.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Heap. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b6639555c750de778580a3cec5927ed"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -994,12 +744,6 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td>
           <td class="paramname"><em>df</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1035,10 +779,53 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8eafb183ed8881dedae755622b1d01d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a> valoresFilial </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="filial_8h.html#a6237adb3e8c18460dbfbc6eacf1b3f9c">DADOS_FILIAL</a>&#160;</td>
+          <td class="paramname"><em>df</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>client</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recolhe os dados de uma filial, sobre um dado cliente. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">df</td><td>Dados sobre uma filial. </td></tr>
+    <tr><td class="paramname">client</td><td>CLiente.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Estrutura com a informação relativa á Filial. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 22 2016 01:10:00 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 23 2016 21:43:36 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -159,7 +159,7 @@ int getDadosTQ(DADOS d);
 
 int getTotalVendas(DADOS d);
 
-/** @brief Retorna a quantidade total de produtos vendidos.
+/** @brief Retorna a quantidade total de produtos vendidos, na estrutura DADOS.
  *
  *  @param f Facturação.
  *  @param d Estrutura de dados.

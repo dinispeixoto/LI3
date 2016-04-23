@@ -12,7 +12,7 @@ typedef struct totalMes *TOTAL_MES;
 /* Estrutura com informações sobre o preço e a quantidade. */
 struct priceQuantity {
 	double totalprice;						/* Preço. */
-	int totalquant;							/* Quantidade. */
+	int totalVendas;						/* Vendas. */
 };
 
 typedef struct priceQuantity *PRICE_QUANTITY;
@@ -36,8 +36,8 @@ struct dados{
 	double totalpriceF[SIZE_FILIAIS];			/* Array com o total facturado em cada filial. */			
 	int totalquantF[SIZE_FILIAIS];				/* Array com o total vendido em cada filial. */
 	double totalMP;								/* Total facturado. */
-	int totalVendas;
-	int totalMQ;							/* Total vendido. */
+	int totalVendas;							/* Total de vendas. */
+	int totalMQ;								/* Total vendido. */
 };
 
 /* Funções privadas ao módulo. */
@@ -177,7 +177,7 @@ DADOS updateTotalVendas(DADOS d, int total){
 static PRICE_QUANTITY initPQ(){
 	PRICE_QUANTITY x = malloc (sizeof (struct priceQuantity));
 	x->totalprice = 0;
-	x->totalquant = 0;
+	x->totalVendas = 0;
 	return x;
 }
 
@@ -214,10 +214,10 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 
 	switch(infoP){
 		case 'P':	i->P[month][filial]->totalprice += total;
-					i->P[month][filial]->totalquant += quantity;	
+					i->P[month][filial]->totalVendas++;	
 					break;
 		case 'N':	i->N[month][filial]->totalprice += total;
-					i->N[month][filial]->totalquant += quantity;	
+					i->N[month][filial]->totalVendas++;	
 					break;
 	}
 	f->total_mes[month]->totalFacturado+=total;
@@ -246,17 +246,17 @@ DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product){
 	return d;
 }
 
-/*Função que calcula os valores provenientes de um porduto, dado um mês e uma Promoção.*/
+/* Função que calcula os valores provenientes de um produto, dado um mês e uma promoção.*/
 static DADOS updatePQ(INFO inf,DADOS d,int promo,int mes){
 	int i;
 	for(i=0;i<SIZE_FILIAIS;i++){
 		if(promo){
 			d->totalpriceF[i] = inf->P[mes-1][i]->totalprice;
-			d->totalquantF[i] = inf->P[mes-1][i]->totalquant;
+			d->totalquantF[i] = inf->P[mes-1][i]->totalVendas;
 		}
 		else {
 			d->totalpriceF[i] = inf->N[mes-1][i]->totalprice;
-			d->totalquantF[i] = inf->N[mes-1][i]->totalquant;
+			d->totalquantF[i] = inf->N[mes-1][i]->totalVendas;
 		}
 	}
 	return d;
@@ -272,15 +272,15 @@ LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group, int filial){
 	return group;
 }
 
-/*Função que verifica se um produto comprou numa dada filial. */
+/* Função que verifica se um produto comprou numa dada filial. */
 static int checkInfo(INFO i, int filial){
 	int j;
 	for(j=0;j<SIZE_MONTH;j++)
-		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
+		if((i->N[j][filial-1]->totalVendas)>0 || (i->P[j][filial-1]->totalVendas)>0 ) return 1;
 	return 0;
 }
 
-/*Função que procura e insere numa Lista de Strings os produtos que nunca foram comprados numa dada filial ou em geral. */
+/* Função que procura e insere numa Lista de Strings os produtos que nunca foram comprados numa dada filial ou em geral. */
 static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 	void* w;
 	if(a){

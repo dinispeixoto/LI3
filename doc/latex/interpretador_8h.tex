@@ -28,12 +28,14 @@ Include dependency graph for interpretador.\+h\+:
 \#define \hyperlink{interpretador_8h_a2cb68328083eae290a685a04735e1d44}{S\+A\+L\+E\+S\+\_\+\+F\+I\+L\+E}~\char`\"{}files/Vendas\+\_\+1\+M.\+txt\char`\"{}
 \begin{DoxyCompactList}\small\item\em Ficheiro das Vendas. \end{DoxyCompactList}\item 
 \#define \hyperlink{interpretador_8h_a7d467c1d283fdfa1f2081ba1e0d01b6e}{P\+A\+G\+E\+\_\+\+S\+I\+Z\+E}~20
-\begin{DoxyCompactList}\small\item\em Tamanho de uma Página. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Tamanho de uma Página. \end{DoxyCompactList}\item 
+\#define \hyperlink{interpretador_8h_ab1a90521ff8192efe9e96194bd709f3b}{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}~7
+\begin{DoxyCompactList}\small\item\em Tamanho do Código de um Produto. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}{interpretador} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}, \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O})
-\end{DoxyCompactItemize}
+int \hyperlink{interpretador_8h_ae851f54c7ca7ab0f6a3bcec47f85fbaa}{interpretador} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} clients, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} products, \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} fact)
+\begin{DoxyCompactList}\small\item\em Resposável por implementar o interpretador. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -75,16 +77,41 @@ Ficheiro dos Produtos.
 
 Ficheiro das Vendas. 
 
+\hypertarget{interpretador_8h_ab1a90521ff8192efe9e96194bd709f3b}{\index{interpretador.\+h@{interpretador.\+h}!S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}}
+\index{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}!interpretador.\+h@{interpretador.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T~7}}\label{interpretador_8h_ab1a90521ff8192efe9e96194bd709f3b}
+
+
+Tamanho do Código de um Produto. 
+
 
 
 \subsection{Function Documentation}
-\hypertarget{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}{\index{interpretador.\+h@{interpretador.\+h}!interpretador@{interpretador}}
+\hypertarget{interpretador_8h_ae851f54c7ca7ab0f6a3bcec47f85fbaa}{\index{interpretador.\+h@{interpretador.\+h}!interpretador@{interpretador}}
 \index{interpretador@{interpretador}!interpretador.\+h@{interpretador.\+h}}
 \subsubsection[{interpretador}]{\setlength{\rightskip}{0pt plus 5cm}int interpretador (
 \begin{DoxyParamCaption}
-\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{, }
-\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{, }
-\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{, }
-\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{clients, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{products, }
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{fact}
 \end{DoxyParamCaption}
-)}}\label{interpretador_8h_a0c3b6715e5083605653967a2a981fe0e}
+)}}\label{interpretador_8h_ae851f54c7ca7ab0f6a3bcec47f85fbaa}
+
+
+Resposável por implementar o interpretador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clients} & Catálogo de Clientes. \\
+\hline
+{\em products} & Catálogo de Produtos. \\
+\hline
+{\em f} & Filial. \\
+\hline
+{\em fact} & Facturação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inteiro de informação para a main. 
+\end{DoxyReturn}

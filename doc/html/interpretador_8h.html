@@ -127,11 +127,15 @@ Macros</h2></td></tr>
 <tr class="memitem:a7d467c1d283fdfa1f2081ba1e0d01b6e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interpretador_8h.html#a7d467c1d283fdfa1f2081ba1e0d01b6e">PAGE_SIZE</a>&#160;&#160;&#160;20</td></tr>
 <tr class="memdesc:a7d467c1d283fdfa1f2081ba1e0d01b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho de uma Página.  <a href="#a7d467c1d283fdfa1f2081ba1e0d01b6e">More...</a><br /></td></tr>
 <tr class="separator:a7d467c1d283fdfa1f2081ba1e0d01b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a90521ff8192efe9e96194bd709f3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interpretador_8h.html#ab1a90521ff8192efe9e96194bd709f3b">SIZE_PRODUCT</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memdesc:ab1a90521ff8192efe9e96194bd709f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho do Código de um Produto.  <a href="#ab1a90521ff8192efe9e96194bd709f3b">More...</a><br /></td></tr>
+<tr class="separator:ab1a90521ff8192efe9e96194bd709f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0c3b6715e5083605653967a2a981fe0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interpretador_8h.html#a0c3b6715e5083605653967a2a981fe0e">interpretador</a> (<a class="el" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a>, <a class="el" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a>, <a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> *, <a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>)</td></tr>
-<tr class="separator:a0c3b6715e5083605653967a2a981fe0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae851f54c7ca7ab0f6a3bcec47f85fbaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interpretador_8h.html#ae851f54c7ca7ab0f6a3bcec47f85fbaa">interpretador</a> (<a class="el" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a> clients, <a class="el" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a> products, <a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> *f, <a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> fact)</td></tr>
+<tr class="memdesc:ae851f54c7ca7ab0f6a3bcec47f85fbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resposável por implementar o interpretador.  <a href="#ae851f54c7ca7ab0f6a3bcec47f85fbaa">More...</a><br /></td></tr>
+<tr class="separator:ae851f54c7ca7ab0f6a3bcec47f85fbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Protótipos das funções que trabalham com o Interpretador. </p>
@@ -194,8 +198,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab1a90521ff8192efe9e96194bd709f3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_PRODUCT&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho do Código de um Produto. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a0c3b6715e5083605653967a2a981fe0e"></a>
+<a class="anchor" id="ae851f54c7ca7ab0f6a3bcec47f85fbaa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -203,25 +221,25 @@ Functions</h2></td></tr>
           <td class="memname">int interpretador </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a>&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>clients</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a>&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>products</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a> *&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>fact</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -231,12 +249,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Resposável por implementar o interpretador. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clients</td><td>Catálogo de Clientes. </td></tr>
+    <tr><td class="paramname">products</td><td>Catálogo de Produtos. </td></tr>
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">fact</td><td>Facturação. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Inteiro de informação para a main. </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 22 2016 01:10:00 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 23 2016 21:43:36 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

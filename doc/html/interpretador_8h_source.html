@@ -111,18 +111,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="interpretador_8h.html#a7d467c1d283fdfa1f2081ba1e0d01b6e">   44</a></span>&#160;<span class="preprocessor">#define PAGE_SIZE 20</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="interpretador_8h.html#a0c3b6715e5083605653967a2a981fe0e">interpretador</a>(<a class="code" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a>,<a class="code" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a>,<a class="code" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>*,<a class="code" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="interpretador_8h.html#ab1a90521ff8192efe9e96194bd709f3b">   49</a></span>&#160;<span class="preprocessor">#define SIZE_PRODUCT 7</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">int</span> <a class="code" href="interpretador_8h.html#ae851f54c7ca7ab0f6a3bcec47f85fbaa">interpretador</a>(<a class="code" href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a> clients,<a class="code" href="CatProducts_8h.html#a67ee501cce88b135cf1f2f187e114c73">CATALOG_PRODUCTS</a> products,<a class="code" href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a>* f,<a class="code" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> fact);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="CatClients_8h_html"><div class="ttname"><a href="CatClients_8h.html">CatClients.h</a></div><div class="ttdoc">Protótipos do Catálogo dos Clientes. </div></div>
 <div class="ttc" id="CatProducts_8h_html"><div class="ttname"><a href="CatProducts_8h.html">CatProducts.h</a></div><div class="ttdoc">Protótipos do Catálogo dos Produtos. </div></div>
 <div class="ttc" id="queries_8h_html"><div class="ttname"><a href="queries_8h.html">queries.h</a></div><div class="ttdoc">Protótipos das funções que trabalham com as Queries. </div></div>
-<div class="ttc" id="filial_8h_html_a33b5527a812e12d7c5424317f33cb747"><div class="ttname"><a href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a></div><div class="ttdeci">struct filial * FILIAL</div><div class="ttdoc">Declaração do tipo FILIAL, um tipo abstrato. </div><div class="ttdef"><b>Definition:</b> filial.h:36</div></div>
-<div class="ttc" id="interpretador_8h_html_a0c3b6715e5083605653967a2a981fe0e"><div class="ttname"><a href="interpretador_8h.html#a0c3b6715e5083605653967a2a981fe0e">interpretador</a></div><div class="ttdeci">int interpretador(CATALOG_CLIENTS, CATALOG_PRODUCTS, FILIAL *, FACTURACAO)</div></div>
+<div class="ttc" id="filial_8h_html_a33b5527a812e12d7c5424317f33cb747"><div class="ttname"><a href="filial_8h.html#a33b5527a812e12d7c5424317f33cb747">FILIAL</a></div><div class="ttdeci">struct filial * FILIAL</div><div class="ttdoc">Declaração do tipo FILIAL, um tipo abstrato. </div><div class="ttdef"><b>Definition:</b> filial.h:44</div></div>
 <div class="ttc" id="readFiles_8h_html"><div class="ttname"><a href="readFiles_8h.html">readFiles.h</a></div><div class="ttdoc">Protótipos das Funções resposáveis por tratar dos ficheiros. </div></div>
-<div class="ttc" id="facturacao_8h_html_abcd022918df9ee4719abc1b4d25d21d7"><div class="ttname"><a href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a></div><div class="ttdeci">struct fact * FACTURACAO</div><div class="ttdoc">Declaração do tipo FACTURACAO, um tipo abstrato. </div><div class="ttdef"><b>Definition:</b> facturacao.h:37</div></div>
+<div class="ttc" id="interpretador_8h_html_ae851f54c7ca7ab0f6a3bcec47f85fbaa"><div class="ttname"><a href="interpretador_8h.html#ae851f54c7ca7ab0f6a3bcec47f85fbaa">interpretador</a></div><div class="ttdeci">int interpretador(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products, FILIAL *f, FACTURACAO fact)</div><div class="ttdoc">Resposável por implementar o interpretador. </div></div>
+<div class="ttc" id="facturacao_8h_html_abcd022918df9ee4719abc1b4d25d21d7"><div class="ttname"><a href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a></div><div class="ttdeci">struct fact * FACTURACAO</div><div class="ttdoc">Declaração do tipo FACTURACAO, um tipo abstrato. </div><div class="ttdef"><b>Definition:</b> facturacao.h:38</div></div>
 <div class="ttc" id="filial_8h_html"><div class="ttname"><a href="filial_8h.html">filial.h</a></div><div class="ttdoc">Protótipos das funções que trabalham com a Filial. </div></div>
 <div class="ttc" id="CatClients_8h_html_aede3b88bbcf4b490cf411fb72b13b970"><div class="ttname"><a href="CatClients_8h.html#aede3b88bbcf4b490cf411fb72b13b970">CATALOG_CLIENTS</a></div><div class="ttdeci">struct catc * CATALOG_CLIENTS</div><div class="ttdoc">Declaração do tipo CATALOG_CLIENT, um tipo abstrato. </div><div class="ttdef"><b>Definition:</b> CatClients.h:39</div></div>
 <div class="ttc" id="facturacao_8h_html"><div class="ttname"><a href="facturacao_8h.html">facturacao.h</a></div><div class="ttdoc">Protótipos das funções que trabalham com a facturacao. </div></div>
@@ -131,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 22 2016 01:10:00 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 23 2016 21:43:36 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

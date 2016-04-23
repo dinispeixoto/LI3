@@ -5,5 +5,5 @@ var searchData=
   ['existmyavl',['existMyAvl',['../avl_8h.html#a3bd672f02d0bb99a01d14c820e7e1ca8',1,'avl.h']]],
   ['existproduct',['existProduct',['../CatProducts_8h.html#a256595d38aa3a10d84acc1a8ece3714f',1,'CatProducts.h']]],
   ['extractmax',['extractMax',['../heap_8h.html#a6387f2a230468451b1d3dd7172ec417d',1,'heap.h']]],
-  ['extractmaxquantity',['extractMaxQuantity',['../heap_8h.html#a28393b1e354e78a75f78cb83ca0ff3ba',1,'heap.h']]]
+  ['extractmaxquantity',['extractMaxQuantity',['../heap_8h.html#a5a7e2f1c3323fd7cad91b69d1cf69f76',1,'heap.h']]]
 ];

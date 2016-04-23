@@ -125,6 +125,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a5ce7f71d40a1491cd97afd25fc0c9561"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="listaStrings_8h.html#a5ce7f71d40a1491cd97afd25fc0c9561">freeListaStr</a> (<a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls)</td></tr>
+<tr class="memdesc:a5ce7f71d40a1491cd97afd25fc0c9561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apaga a estrutura Lista de Strings, libertando espaço da mesma.  <a href="#a5ce7f71d40a1491cd97afd25fc0c9561">More...</a><br /></td></tr>
+<tr class="separator:a5ce7f71d40a1491cd97afd25fc0c9561"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aed2785ef837a36ecdac05b216ed4db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="listaStrings_8h.html#a6aed2785ef837a36ecdac05b216ed4db">initListaStrings</a> (int size, int sizeElement)</td></tr>
 <tr class="memdesc:a6aed2785ef837a36ecdac05b216ed4db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia a estrutura Lista de Strings, alocando espaço para a mesma.  <a href="#a6aed2785ef837a36ecdac05b216ed4db">More...</a><br /></td></tr>
 <tr class="separator:a6aed2785ef837a36ecdac05b216ed4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:acb7684e279e09eac296eb17fd39678da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="listaStrings_8h.html#acb7684e279e09eac296eb17fd39678da">removeListaStrings</a> (<a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls, char *elem)</td></tr>
 <tr class="memdesc:acb7684e279e09eac296eb17fd39678da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove uma String da Lista de Strings.  <a href="#acb7684e279e09eac296eb17fd39678da">More...</a><br /></td></tr>
 <tr class="separator:acb7684e279e09eac296eb17fd39678da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5afce97959536a24ced1a201ff6304b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="listaStrings_8h.html#a5afce97959536a24ced1a201ff6304b1">mergeList</a> (<a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls1, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> ls2)</td></tr>
+<tr class="memdesc:a5afce97959536a24ced1a201ff6304b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Junta duas listas de Strings, removendo elementos iguais.  <a href="#a5afce97959536a24ced1a201ff6304b1">More...</a><br /></td></tr>
+<tr class="separator:a5afce97959536a24ced1a201ff6304b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7aa239e2d331c23b59f5123daedb4ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="listaStrings_8h.html#ae7aa239e2d331c23b59f5123daedb4ca">getListaSize</a> (<a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> lista)</td></tr>
 <tr class="memdesc:ae7aa239e2d331c23b59f5123daedb4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o tamanho de uma Lista de Strings.  <a href="#ae7aa239e2d331c23b59f5123daedb4ca">More...</a><br /></td></tr>
 <tr class="separator:ae7aa239e2d331c23b59f5123daedb4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,6 +255,31 @@ Functions</h2></td></tr>
     <tr><td class="paramname">ls</td><td>Lista de Strings. </td></tr>
     <tr><td class="paramname">posicao</td><td>Posição. </td></tr>
     <tr><td class="paramname">elem</td><td>String. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Lista de Strings. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5ce7f71d40a1491cd97afd25fc0c9561"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeListaStr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>ls</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apaga a estrutura Lista de Strings, libertando espaço da mesma. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ls</td><td>Lista de Strings.</td></tr>
   </table>
   </dd>
 </dl>
@@ -499,6 +530,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5afce97959536a24ced1a201ff6304b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> mergeList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>ls1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>ls2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Junta duas listas de Strings, removendo elementos iguais. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ls1</td><td>Lista de Strings. </td></tr>
+    <tr><td class="paramname">ls2</td><td>Lista de Strings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Lista de Strings. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a76ed369c2e8c2a8129d1a072684aa90f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -649,7 +716,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 22 2016 01:10:00 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 23 2016 21:43:36 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

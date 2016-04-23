@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="avl_8h_source.html">avl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Sales_8h_source.html">Sales.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="listaStrings_8h_source.html">listaStrings.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for facturacao.h:</div>
 <div class="dyncontent">
@@ -117,9 +118,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a759225c6c5a74b53c8a8b031ce348991"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a759225c6c5a74b53c8a8b031ce348991">SIZE_MONTH</a>&#160;&#160;&#160;12</td></tr>
 <tr class="memdesc:a759225c6c5a74b53c8a8b031ce348991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de meses.  <a href="#a759225c6c5a74b53c8a8b031ce348991">More...</a><br /></td></tr>
 <tr class="separator:a759225c6c5a74b53c8a8b031ce348991"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4ad8fae5931ae81323e149b6cb69510"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#af4ad8fae5931ae81323e149b6cb69510">SIZE_CLIENTS</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:af4ad8fae5931ae81323e149b6cb69510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho do Código de um Cliente.  <a href="#af4ad8fae5931ae81323e149b6cb69510">More...</a><br /></td></tr>
-<tr class="separator:af4ad8fae5931ae81323e149b6cb69510"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a90521ff8192efe9e96194bd709f3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ab1a90521ff8192efe9e96194bd709f3b">SIZE_PRODUCT</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memdesc:ab1a90521ff8192efe9e96194bd709f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho do Código de um Produto.  <a href="#ab1a90521ff8192efe9e96194bd709f3b">More...</a><br /></td></tr>
+<tr class="separator:ab1a90521ff8192efe9e96194bd709f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a727abfada19fbc91074056041c6ea8f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a727abfada19fbc91074056041c6ea8f6">SIZE_FILIAIS</a>&#160;&#160;&#160;3</td></tr>
 <tr class="memdesc:a727abfada19fbc91074056041c6ea8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numero de Filiais.  <a href="#a727abfada19fbc91074056041c6ea8f6">More...</a><br /></td></tr>
 <tr class="separator:a727abfada19fbc91074056041c6ea8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,18 +130,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:abcd022918df9ee4719abc1b4d25d21d7"><td class="memItemLeft" align="right" valign="top">typedef struct fact *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a></td></tr>
 <tr class="memdesc:abcd022918df9ee4719abc1b4d25d21d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo FACTURACAO, um tipo abstrato.  <a href="#abcd022918df9ee4719abc1b4d25d21d7">More...</a><br /></td></tr>
 <tr class="separator:abcd022918df9ee4719abc1b4d25d21d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e3997a7cda8a2375a9c6a64c397b21"><td class="memItemLeft" align="right" valign="top">typedef struct priceQuantity *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a></td></tr>
-<tr class="memdesc:a72e3997a7cda8a2375a9c6a64c397b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo PRICE_QUANTITY, um tipo abstrato.  <a href="#a72e3997a7cda8a2375a9c6a64c397b21">More...</a><br /></td></tr>
-<tr class="separator:a72e3997a7cda8a2375a9c6a64c397b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b75417d96e36e635a0302644a6c66fc"><td class="memItemLeft" align="right" valign="top">typedef struct info *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a></td></tr>
-<tr class="memdesc:a1b75417d96e36e635a0302644a6c66fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo INFO, um tipo abstrato.  <a href="#a1b75417d96e36e635a0302644a6c66fc">More...</a><br /></td></tr>
-<tr class="separator:a1b75417d96e36e635a0302644a6c66fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00f163b4e21f8b623e0b009da83d68c8"><td class="memItemLeft" align="right" valign="top">typedef struct dados *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a></td></tr>
 <tr class="memdesc:a00f163b4e21f8b623e0b009da83d68c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo DADOS, um tipo abstrato.  <a href="#a00f163b4e21f8b623e0b009da83d68c8">More...</a><br /></td></tr>
 <tr class="separator:a00f163b4e21f8b623e0b009da83d68c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae3459296212647975459c13506c4881"><td class="memItemLeft" align="right" valign="top">typedef struct totalMes *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a></td></tr>
-<tr class="memdesc:aae3459296212647975459c13506c4881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declaração do tipo TOTAL_MES, um tipo abstrato.  <a href="#aae3459296212647975459c13506c4881">More...</a><br /></td></tr>
-<tr class="separator:aae3459296212647975459c13506c4881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -162,12 +154,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a77ba98f4dcc66c22b0fba9225770338b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a77ba98f4dcc66c22b0fba9225770338b">freeInfo</a> (void *info)</td></tr>
 <tr class="memdesc:a77ba98f4dcc66c22b0fba9225770338b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a estrutura Info, libertando o espaço ocupado por esta.  <a href="#a77ba98f4dcc66c22b0fba9225770338b">More...</a><br /></td></tr>
 <tr class="separator:a77ba98f4dcc66c22b0fba9225770338b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a388e694abb37b0a59ef031594f0e8f47"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a388e694abb37b0a59ef031594f0e8f47">getnumFilialP</a> (<a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a> i, int filial, int promo, int mes)</td></tr>
-<tr class="memdesc:a388e694abb37b0a59ef031594f0e8f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna o numero total facturado de um Produto num determinado mês numa determinada filial.  <a href="#a388e694abb37b0a59ef031594f0e8f47">More...</a><br /></td></tr>
-<tr class="separator:a388e694abb37b0a59ef031594f0e8f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a6e4bfcf1522acbda8db2fc77822f6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a2a6e4bfcf1522acbda8db2fc77822f6b">getnumFilialQ</a> (<a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a> i, int filial, int promo, int mes)</td></tr>
-<tr class="memdesc:a2a6e4bfcf1522acbda8db2fc77822f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade comprada de um Produto num determinado mês numa determinada filial.  <a href="#a2a6e4bfcf1522acbda8db2fc77822f6b">More...</a><br /></td></tr>
-<tr class="separator:a2a6e4bfcf1522acbda8db2fc77822f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaad22b5463a2cc71eb78c910d52252c"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#afaad22b5463a2cc71eb78c910d52252c">getDadosP</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d)</td></tr>
 <tr class="memdesc:afaad22b5463a2cc71eb78c910d52252c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna um apontador para um array com a quantidade total facturada nas várias filiais.  <a href="#afaad22b5463a2cc71eb78c910d52252c">More...</a><br /></td></tr>
 <tr class="separator:afaad22b5463a2cc71eb78c910d52252c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,74 +166,33 @@ Functions</h2></td></tr>
 <tr class="memitem:a8ce60beb43582727fefa310daaf4dae6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a8ce60beb43582727fefa310daaf4dae6">getDadosTV</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d)</td></tr>
 <tr class="memdesc:a8ce60beb43582727fefa310daaf4dae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total de produtos comprados num Mês.  <a href="#a8ce60beb43582727fefa310daaf4dae6">More...</a><br /></td></tr>
 <tr class="separator:a8ce60beb43582727fefa310daaf4dae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06904d7444b1b24b763df844041077ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a06904d7444b1b24b763df844041077ba">setTotalPrice</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int index, double total)</td></tr>
-<tr class="memdesc:a06904d7444b1b24b763df844041077ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altera a quantidade total facturada numa determinada Filial.  <a href="#a06904d7444b1b24b763df844041077ba">More...</a><br /></td></tr>
-<tr class="separator:a06904d7444b1b24b763df844041077ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae94eec75ba6365a3cc6f2cfba69c2a89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ae94eec75ba6365a3cc6f2cfba69c2a89">setTotalQuantity</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int index, int total)</td></tr>
-<tr class="memdesc:ae94eec75ba6365a3cc6f2cfba69c2a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altera a quantidade total de produtos comprados numa determinada Filial.  <a href="#ae94eec75ba6365a3cc6f2cfba69c2a89">More...</a><br /></td></tr>
-<tr class="separator:ae94eec75ba6365a3cc6f2cfba69c2a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae5d7e3b17b6681155db98315bc1e7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#aae5d7e3b17b6681155db98315bc1e7c6">getProductIndex</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> f, int index)</td></tr>
-<tr class="memdesc:aae5d7e3b17b6681155db98315bc1e7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a MY_AVL de produtos presente num determinado índice da Facturação.  <a href="#aae5d7e3b17b6681155db98315bc1e7c6">More...</a><br /></td></tr>
-<tr class="separator:aae5d7e3b17b6681155db98315bc1e7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b5a876c4458aa180d72e0d882b167f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a80b5a876c4458aa180d72e0d882b167f">getNormalPQ</a> (<a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a> i, int month, int filial)</td></tr>
-<tr class="memdesc:a80b5a876c4458aa180d72e0d882b167f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a informação relativa a um produto vendido em modo normal num determinado mês, numa determinada Filial.  <a href="#a80b5a876c4458aa180d72e0d882b167f">More...</a><br /></td></tr>
-<tr class="separator:a80b5a876c4458aa180d72e0d882b167f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83aa8893d76ad762d949dd101429bf0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a83aa8893d76ad762d949dd101429bf0e">getPromoPQ</a> (<a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a> i, int month, int filial)</td></tr>
-<tr class="memdesc:a83aa8893d76ad762d949dd101429bf0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a informação relativa a um produto vendido em modo promoção num determinado mês, numa determinada Filial.  <a href="#a83aa8893d76ad762d949dd101429bf0e">More...</a><br /></td></tr>
-<tr class="separator:a83aa8893d76ad762d949dd101429bf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ed4f97221542a2b056d1eb16ecc4604"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a6ed4f97221542a2b056d1eb16ecc4604">getTotalQuantPQ</a> (<a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a> a)</td></tr>
-<tr class="memdesc:a6ed4f97221542a2b056d1eb16ecc4604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total de um produto vendido.  <a href="#a6ed4f97221542a2b056d1eb16ecc4604">More...</a><br /></td></tr>
-<tr class="separator:a6ed4f97221542a2b056d1eb16ecc4604"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6c3257e6ef774c45f5ed8ede889670f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ab6c3257e6ef774c45f5ed8ede889670f">getTotalMP</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d)</td></tr>
 <tr class="memdesc:ab6c3257e6ef774c45f5ed8ede889670f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total facturada.  <a href="#ab6c3257e6ef774c45f5ed8ede889670f">More...</a><br /></td></tr>
 <tr class="separator:ab6c3257e6ef774c45f5ed8ede889670f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ad269e8d3fdd11b644e3691f8d85b09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a3ad269e8d3fdd11b644e3691f8d85b09">getDadosTQ</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d)</td></tr>
+<tr class="memdesc:a3ad269e8d3fdd11b644e3691f8d85b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total .  <a href="#a3ad269e8d3fdd11b644e3691f8d85b09">More...</a><br /></td></tr>
+<tr class="separator:a3ad269e8d3fdd11b644e3691f8d85b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a275e5f36747326d34732a77b5a5362ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a275e5f36747326d34732a77b5a5362ea">getTotalVendas</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d)</td></tr>
 <tr class="memdesc:a275e5f36747326d34732a77b5a5362ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total de produtos vendidos.  <a href="#a275e5f36747326d34732a77b5a5362ea">More...</a><br /></td></tr>
 <tr class="separator:a275e5f36747326d34732a77b5a5362ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac88b163a9ca6863202eee92ca6bb99d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ac88b163a9ca6863202eee92ca6bb99d0">setTotalMP</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, double total)</td></tr>
-<tr class="memdesc:ac88b163a9ca6863202eee92ca6bb99d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altera a quantidade total facturada.  <a href="#ac88b163a9ca6863202eee92ca6bb99d0">More...</a><br /></td></tr>
-<tr class="separator:ac88b163a9ca6863202eee92ca6bb99d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5690be5ff5188f3a6fd7094c4052f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a4a5690be5ff5188f3a6fd7094c4052f6">setTotalVendas</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int total)</td></tr>
-<tr class="memdesc:a4a5690be5ff5188f3a6fd7094c4052f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Altera a quantidade total de produtos vendidos.  <a href="#a4a5690be5ff5188f3a6fd7094c4052f6">More...</a><br /></td></tr>
-<tr class="separator:a4a5690be5ff5188f3a6fd7094c4052f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ecb0a4c6a0a296e78a6f350bc82052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a19ecb0a4c6a0a296e78a6f350bc82052">updateTotalMP</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, double total)</td></tr>
-<tr class="memdesc:a19ecb0a4c6a0a296e78a6f350bc82052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza a quantidade total facturada.  <a href="#a19ecb0a4c6a0a296e78a6f350bc82052">More...</a><br /></td></tr>
-<tr class="separator:a19ecb0a4c6a0a296e78a6f350bc82052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b4bb23b6f6f43e15dbcdd283d6cb48f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a2b4bb23b6f6f43e15dbcdd283d6cb48f">updateTotalVendas</a> (<a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int total)</td></tr>
-<tr class="memdesc:a2b4bb23b6f6f43e15dbcdd283d6cb48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza a quantidade total de produtos vendidos.  <a href="#a2b4bb23b6f6f43e15dbcdd283d6cb48f">More...</a><br /></td></tr>
-<tr class="separator:a2b4bb23b6f6f43e15dbcdd283d6cb48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a071fb55bbc98cdd0230975bbc71ac075"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a071fb55bbc98cdd0230975bbc71ac075">getTotalMes</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> i, int month)</td></tr>
-<tr class="memdesc:a071fb55bbc98cdd0230975bbc71ac075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna uma estrutura com a informação relativa á facturação num determinado mês.  <a href="#a071fb55bbc98cdd0230975bbc71ac075">More...</a><br /></td></tr>
-<tr class="separator:a071fb55bbc98cdd0230975bbc71ac075"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0210ed34dfd3b47365ad8bd190f02c6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ad0210ed34dfd3b47365ad8bd190f02c6">getTotalFacturadoMES</a> (<a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a> m)</td></tr>
-<tr class="memdesc:ad0210ed34dfd3b47365ad8bd190f02c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total facturada num determinado mês.  <a href="#ad0210ed34dfd3b47365ad8bd190f02c6">More...</a><br /></td></tr>
-<tr class="separator:ad0210ed34dfd3b47365ad8bd190f02c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40d71ad02e7f273283d4a7e1ef275326"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a40d71ad02e7f273283d4a7e1ef275326">getTotalQuantMES</a> (<a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a> m)</td></tr>
-<tr class="memdesc:a40d71ad02e7f273283d4a7e1ef275326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de produtos comprados num determinado mês.  <a href="#a40d71ad02e7f273283d4a7e1ef275326">More...</a><br /></td></tr>
-<tr class="separator:a40d71ad02e7f273283d4a7e1ef275326"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad97ec647697e5e99cc52d40321fbd80a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ad97ec647697e5e99cc52d40321fbd80a">getTotalRegisto</a> (<a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a> m)</td></tr>
-<tr class="memdesc:ad97ec647697e5e99cc52d40321fbd80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade de vendas num determinado mês.  <a href="#ad97ec647697e5e99cc52d40321fbd80a">More...</a><br /></td></tr>
-<tr class="separator:ad97ec647697e5e99cc52d40321fbd80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab12003eb8403a256fc28757e77d84bc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ab12003eb8403a256fc28757e77d84bc9">totalM</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> f, <a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int inicio, int fim)</td></tr>
+<tr class="memdesc:ab12003eb8403a256fc28757e77d84bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retorna a quantidade total de produtos vendidos, na estrutura DADOS.  <a href="#ab12003eb8403a256fc28757e77d84bc9">More...</a><br /></td></tr>
+<tr class="separator:ab12003eb8403a256fc28757e77d84bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab527e1af44987c93c1ea60d6a04a7011"><td class="memItemLeft" align="right" valign="top"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#ab527e1af44987c93c1ea60d6a04a7011">listaProducts</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> f, <a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> group, int filial)</td></tr>
+<tr class="memdesc:ab527e1af44987c93c1ea60d6a04a7011"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrói uma lista dos produtos, nunca comprados, de forma Total ou por Filial.  <a href="#ab527e1af44987c93c1ea60d6a04a7011">More...</a><br /></td></tr>
+<tr class="separator:ab527e1af44987c93c1ea60d6a04a7011"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae93b871ff6b4832bb2105ae24a8587"><td class="memItemLeft" align="right" valign="top"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#a8ae93b871ff6b4832bb2105ae24a8587">updatePriceQuantity</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> f, <a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> d, int promo, int mes, char *product)</td></tr>
+<tr class="memdesc:a8ae93b871ff6b4832bb2105ae24a8587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recolhe os dados sobre um produto, num dado mês e promoção.  <a href="#a8ae93b871ff6b4832bb2105ae24a8587">More...</a><br /></td></tr>
+<tr class="separator:a8ae93b871ff6b4832bb2105ae24a8587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb94512704fa97b2d95720439342413f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="facturacao_8h.html#abb94512704fa97b2d95720439342413f">querie12Products</a> (<a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a> f)</td></tr>
+<tr class="memdesc:abb94512704fa97b2d95720439342413f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula o número de produtos nunca comprados.  <a href="#abb94512704fa97b2d95720439342413f">More...</a><br /></td></tr>
+<tr class="separator:abb94512704fa97b2d95720439342413f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Protótipos das funções que trabalham com a facturacao. </p>
 <p>O ficheiro contem os protótipos das funçoes que implemetam a Facturacao, assim como a implementação das estruturas necessárias e macros.</p>
 <dl class="section author"><dt>Author</dt><dd>Grupo 33 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="af4ad8fae5931ae81323e149b6cb69510"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SIZE_CLIENTS&#160;&#160;&#160;6</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tamanho do Código de um Cliente. </p>
-
-</div>
-</div>
 <a class="anchor" id="a727abfada19fbc91074056041c6ea8f6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -273,6 +218,20 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Número de meses. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab1a90521ff8192efe9e96194bd709f3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_PRODUCT&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho do Código de um Produto. </p>
 
 </div>
 </div>
@@ -302,48 +261,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Declaração do tipo FACTURACAO, um tipo abstrato. </p>
-
-</div>
-</div>
-<a class="anchor" id="a1b75417d96e36e635a0302644a6c66fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct info* <a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo INFO, um tipo abstrato. </p>
-
-</div>
-</div>
-<a class="anchor" id="a72e3997a7cda8a2375a9c6a64c397b21"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct priceQuantity* <a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo PRICE_QUANTITY, um tipo abstrato. </p>
-
-</div>
-</div>
-<a class="anchor" id="aae3459296212647975459c13506c4881"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct totalMes* <a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Declaração do tipo TOTAL_MES, um tipo abstrato. </p>
 
 </div>
 </div>
@@ -509,6 +426,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a3ad269e8d3fdd11b644e3691f8d85b09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int getDadosTQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retorna a quantidade total . </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>Estrutura com informação geral.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Qunatidade total. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a8ce60beb43582727fefa310daaf4dae6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -534,289 +476,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a80b5a876c4458aa180d72e0d882b167f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a> getNormalPQ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a>&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a informação relativa a um produto vendido em modo normal num determinado mês, numa determinada Filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>Info. </td></tr>
-    <tr><td class="paramname">month</td><td>Mês. </td></tr>
-    <tr><td class="paramname">filial</td><td>Filial.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com a informação relativa ao mês e Filial. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a388e694abb37b0a59ef031594f0e8f47"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double getnumFilialP </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a>&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>promo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>mes</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna o numero total facturado de um Produto num determinado mês numa determinada filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>Info. </td></tr>
-    <tr><td class="paramname">filial</td><td>Filial. </td></tr>
-    <tr><td class="paramname">promo</td><td>Informação relativa á compra(promoção ou normal). </td></tr>
-    <tr><td class="paramname">mes</td><td>Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Numero total facturado. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a2a6e4bfcf1522acbda8db2fc77822f6b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getnumFilialQ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a>&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>promo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>mes</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade comprada de um Produto num determinado mês numa determinada filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>Info. </td></tr>
-    <tr><td class="paramname">filial</td><td>Filial. </td></tr>
-    <tr><td class="paramname">promo</td><td>Informação relativa á compra(promoção ou normal). </td></tr>
-    <tr><td class="paramname">mes</td><td>Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Numero total facturado. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aae5d7e3b17b6681155db98315bc1e7c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="avl_8h.html#a56c24c5694d0a34492f4aa3acb474dd8">MY_AVL</a> getProductIndex </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a MY_AVL de produtos presente num determinado índice da Facturação. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">f</td><td>Facturação. </td></tr>
-    <tr><td class="paramname">index</td><td>Índice.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Dados. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a83aa8893d76ad762d949dd101429bf0e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a> getPromoPQ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a1b75417d96e36e635a0302644a6c66fc">INFO</a>&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>filial</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a informação relativa a um produto vendido em modo promoção num determinado mês, numa determinada Filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>Info. </td></tr>
-    <tr><td class="paramname">month</td><td>Mês. </td></tr>
-    <tr><td class="paramname">filial</td><td>Filial.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura com a informação relativa ao mês e Filial. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad0210ed34dfd3b47365ad8bd190f02c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double getTotalFacturadoMES </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a>&#160;</td>
-          <td class="paramname"><em>m</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade total facturada num determinado mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m</td><td>Estrutura com facturação relativa a um determinado mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade total facturada num determinado mês. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a071fb55bbc98cdd0230975bbc71ac075"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a> getTotalMes </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
-          <td class="paramname"><em>i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna uma estrutura com a informação relativa á facturação num determinado mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>Facturação. </td></tr>
-    <tr><td class="paramname">month</td><td>Mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura de dados. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="ab6c3257e6ef774c45f5ed8ede889670f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -839,81 +498,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Facturação total. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a40d71ad02e7f273283d4a7e1ef275326"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getTotalQuantMES </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a>&#160;</td>
-          <td class="paramname"><em>m</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade de produtos comprados num determinado mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m</td><td>Estrutura com facturação relativa a um determinado mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade de produtos comprados. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a6ed4f97221542a2b056d1eb16ecc4604"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getTotalQuantPQ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a72e3997a7cda8a2375a9c6a64c397b21">PRICE_QUANTITY</a>&#160;</td>
-          <td class="paramname"><em>a</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade total de um produto vendido. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">a</td><td>Estrutura relativa a um determinado mês e determinada filial.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade total. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad97ec647697e5e99cc52d40321fbd80a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getTotalRegisto </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#aae3459296212647975459c13506c4881">TOTAL_MES</a>&#160;</td>
-          <td class="paramname"><em>m</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retorna a quantidade de vendas num determinado mês. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m</td><td>Estrutura com facturação relativa a um determinado mês.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Quantidade de vendas. </dd></dl>
 
 </div>
 </div>
@@ -956,7 +540,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inicia a estrutura dos dados, alocando espaço para a mesma. </p>
-<dl class="section return"><dt>Returns</dt><dd>Facturação. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Estrutura de dados. </dd></dl>
 
 </div>
 </div>
@@ -1014,21 +598,27 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac88b163a9ca6863202eee92ca6bb99d0"></a>
+<a class="anchor" id="ab527e1af44987c93c1ea60d6a04a7011"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> setTotalMP </td>
+          <td class="memname"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a> listaProducts </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="listaStrings_8h.html#a52b112fee5797667faa73ddf836a6f07">LISTA_STRINGS</a>&#160;</td>
+          <td class="paramname"><em>group</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>filial</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1038,133 +628,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Altera a quantidade total facturada. </p>
+<p>Constrói uma lista dos produtos, nunca comprados, de forma Total ou por Filial. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>Estrutura com informação geral. </td></tr>
-    <tr><td class="paramname">total</td><td>Facturação total.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Facturação total. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a06904d7444b1b24b763df844041077ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> setTotalPrice </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Altera a quantidade total facturada numa determinada Filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">d</td><td>Dados. </td></tr>
-    <tr><td class="paramname">index</td><td>Filial. </td></tr>
-    <tr><td class="paramname">total</td><td>Total facturado.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Dados. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ae94eec75ba6365a3cc6f2cfba69c2a89"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> setTotalQuantity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Altera a quantidade total de produtos comprados numa determinada Filial. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">d</td><td>Dados. </td></tr>
-    <tr><td class="paramname">index</td><td>Filial. </td></tr>
-    <tr><td class="paramname">total</td><td>Quantidade total.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Dados. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4a5690be5ff5188f3a6fd7094c4052f6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> setTotalVendas </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Altera a quantidade total de produtos vendidos. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">d</td><td>Estrutura com informação geral. </td></tr>
-    <tr><td class="paramname">total</td><td>Quantidade total.</td></tr>
+    <tr><td class="paramname">f</td><td>Facturação. </td></tr>
+    <tr><td class="paramname">ls</td><td>Lista de Strings. </td></tr>
+    <tr><td class="paramname">filial</td><td>Nº da Filial.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1172,49 +641,44 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a19ecb0a4c6a0a296e78a6f350bc82052"></a>
+<a class="anchor" id="abb94512704fa97b2d95720439342413f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> updateTotalMP </td>
+          <td class="memname">int querie12Products </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Actualiza a quantidade total facturada. </p>
+<p>Calcula o número de produtos nunca comprados. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>Estrutura com informação geral. </td></tr>
-    <tr><td class="paramname">total</td><td>Facturação total.</td></tr>
+    <tr><td class="paramname">f</td><td>Facturação.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Estrutura de dados. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Quantidade total. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a2b4bb23b6f6f43e15dbcdd283d6cb48f"></a>
+<a class="anchor" id="ab12003eb8403a256fc28757e77d84bc9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> updateTotalVendas </td>
+          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> totalM </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
           <td class="paramname"><em>d</em>, </td>
         </tr>
@@ -1222,7 +686,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>total</em>&#160;</td>
+          <td class="paramname"><em>inicio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fim</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1232,11 +702,70 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Actualiza a quantidade total de produtos vendidos. </p>
+<p>Retorna a quantidade total de produtos vendidos, na estrutura DADOS. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>Estrutura com informação geral. </td></tr>
-    <tr><td class="paramname">total</td><td>Quantidade total.</td></tr>
+    <tr><td class="paramname">f</td><td>Facturação. </td></tr>
+    <tr><td class="paramname">d</td><td>Estrutura de dados. </td></tr>
+    <tr><td class="paramname">inicio</td><td>Mês inicial. </td></tr>
+    <tr><td class="paramname">fim</td><td>Mês final.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Quantidade total. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8ae93b871ff6b4832bb2105ae24a8587"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a> updatePriceQuantity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#abcd022918df9ee4719abc1b4d25d21d7">FACTURACAO</a>&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="facturacao_8h.html#a00f163b4e21f8b623e0b009da83d68c8">DADOS</a>&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>promo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>product</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recolhe os dados sobre um produto, num dado mês e promoção. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Filial. </td></tr>
+    <tr><td class="paramname">d</td><td>Estrutura de dados. </td></tr>
+    <tr><td class="paramname">promo</td><td>Tipo de promoção. </td></tr>
+    <tr><td class="paramname">mes</td><td>Mês. </td></tr>
+    <tr><td class="paramname">product</td><td>Produto.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1247,7 +776,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 22 2016 01:10:00 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 23 2016 21:43:36 for GereVendas by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

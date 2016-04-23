@@ -7,6 +7,5 @@ var searchData=
   ['totalelements',['totalElements',['../avl_8h.html#a768c19a790554ab1fa6ecef5e6ef58ad',1,'avl.h']]],
   ['totalm',['totalM',['../facturacao_8h.html#ab12003eb8403a256fc28757e77d84bc9',1,'facturacao.h']]],
   ['totalproducts',['totalProducts',['../CatProducts_8h.html#a8eb62d98eaa32e9811de5233ff684f87',1,'CatProducts.h']]],
-  ['totalproductsletter',['totalProductsLetter',['../CatProducts_8h.html#ab70ef64cf9a2b56ce50b4b33fafad30b',1,'CatProducts.h']]],
-  ['true',['TRUE',['../avl_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d',1,'avl.h']]]
+  ['totalproductsletter',['totalProductsLetter',['../CatProducts_8h.html#ab70ef64cf9a2b56ce50b4b33fafad30b',1,'CatProducts.h']]]
 ];

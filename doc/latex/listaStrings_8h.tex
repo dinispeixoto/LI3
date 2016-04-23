@@ -22,6 +22,8 @@ typedef struct string $\ast$ \hyperlink{listaStrings_8h_a9302c91a328419e92b8bcb9
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{listaStrings_8h_a5ce7f71d40a1491cd97afd25fc0c9561}{free\+Lista\+Str} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls)
+\begin{DoxyCompactList}\small\item\em Apaga a estrutura Lista de Strings, libertando espaço da mesma. \end{DoxyCompactList}\item 
 \hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_a6aed2785ef837a36ecdac05b216ed4db}{init\+Lista\+Strings} (int size, int size\+Element)
 \begin{DoxyCompactList}\small\item\em Inicia a estrutura Lista de Strings, alocando espaço para a mesma. \end{DoxyCompactList}\item 
 \hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E} \hyperlink{listaStrings_8h_a402a1b6f6b4cd2950a169cf07907d03e}{init\+Page} (int page\+\_\+size, int size\+Element)
@@ -34,6 +36,8 @@ typedef struct string $\ast$ \hyperlink{listaStrings_8h_a9302c91a328419e92b8bcb9
 \begin{DoxyCompactList}\small\item\em Adiciona uma String á Lista de Strings numa determinada posição. \end{DoxyCompactList}\item 
 \hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_acb7684e279e09eac296eb17fd39678da}{remove\+Lista\+Strings} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls, char $\ast$elem)
 \begin{DoxyCompactList}\small\item\em Remove uma String da Lista de Strings. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_a5afce97959536a24ced1a201ff6304b1}{merge\+List} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls1, \hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls2)
+\begin{DoxyCompactList}\small\item\em Junta duas listas de Strings, removendo elementos iguais. \end{DoxyCompactList}\item 
 int \hyperlink{listaStrings_8h_ae7aa239e2d331c23b59f5123daedb4ca}{get\+Lista\+Size} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
 \begin{DoxyCompactList}\small\item\em Retorna o tamanho de uma Lista de Strings. \end{DoxyCompactList}\item 
 int \hyperlink{listaStrings_8h_ac465e82884103166cb704ab7fe3398a5}{get\+Lista\+Sp} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
@@ -105,6 +109,25 @@ Adiciona uma String á Lista de Strings numa determinada posição.
 {\em posicao} & Posição. \\
 \hline
 {\em elem} & String. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a5ce7f71d40a1491cd97afd25fc0c9561}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!free\+Lista\+Str@{free\+Lista\+Str}}
+\index{free\+Lista\+Str@{free\+Lista\+Str}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{free\+Lista\+Str}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Lista\+Str (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{ls}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a5ce7f71d40a1491cd97afd25fc0c9561}
+
+
+Apaga a estrutura Lista de Strings, libertando espaço da mesma. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ls} & Lista de Strings.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -271,6 +294,28 @@ Inicia a estrutura Página, alocando espaço para a mesma.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Página. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a5afce97959536a24ced1a201ff6304b1}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!merge\+List@{merge\+List}}
+\index{merge\+List@{merge\+List}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{merge\+List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} merge\+List (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{ls1, }
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{ls2}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a5afce97959536a24ced1a201ff6304b1}
+
+
+Junta duas listas de Strings, removendo elementos iguais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ls1} & Lista de Strings. \\
+\hline
+{\em ls2} & Lista de Strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
 \end{DoxyReturn}
 \hypertarget{listaStrings_8h_a76ed369c2e8c2a8129d1a072684aa90f}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!realloc\+Lista\+Strings@{realloc\+Lista\+Strings}}
 \index{realloc\+Lista\+Strings@{realloc\+Lista\+Strings}!lista\+Strings.\+h@{lista\+Strings.\+h}}

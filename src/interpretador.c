@@ -586,7 +586,7 @@ static void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElem
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
-	printf("	Total de elemetos: %6d				0.Voltar\n",totalElements);
+	printf("	Total de elementos: %6d				0.Voltar\n",totalElements);
 	printf("\n	Página %d de %d.\n",actualPage,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i+(PAGE_SIZE*(actualPage-1));
@@ -788,7 +788,7 @@ static void printDATA(DADOS data,int begin,int end){
 
 	printf("	No intervalo de meses (%d-%d):\n\n",begin,end);
 	printf("	Foi facturado: %f.\n",getDadosTP(data));
-	printf("	Foi vendido: %d\n",getDadosTQ(data));
+	printf("	Foram vendidas %d unidades.\n",getDadosTQ(data));
 	printf("	Foram registadas %d vendas.\n",getDadosTV(data));
 
 }
@@ -1257,15 +1257,15 @@ static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS
 
 static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3,int quant){
 	int i,index;
-	char produto_1[BUFFER_SIZE]= "      ";
-	char produto_2[BUFFER_SIZE]= "      ";
-	char produto_3[BUFFER_SIZE]= "      ";
-	char qt_1[BUFFER_SIZE] = "     ";
-	char c_1[BUFFER_SIZE] = "   ";
-	char qt_2[BUFFER_SIZE] = "     ";
-	char c_2[BUFFER_SIZE] = "   ";
-	char qt_3[BUFFER_SIZE] = "     ";
-	char c_3[BUFFER_SIZE] = "   ";
+	char produto_1[BUFFER_SIZE];
+	char produto_2[BUFFER_SIZE];
+	char produto_3[BUFFER_SIZE];
+	char qt_1[BUFFER_SIZE];
+	char c_1[BUFFER_SIZE];
+	char qt_2[BUFFER_SIZE];
+	char c_2[BUFFER_SIZE];
+	char qt_3[BUFFER_SIZE];	
+	char c_3[BUFFER_SIZE];
 
  	printf("	Página %d de %d.\n\n",page,totalPages);
  	printf("	 ||     FILIAL 1       ||     FILIAL 2       ||     FILIAL 3       ||\n");
@@ -1273,6 +1273,15 @@ static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i + (PAGE_SIZE*(page-1));
 		if(index >= quant) break;
+		strcpy(produto_1,"      ");
+		strcpy(produto_2,"      ");
+		strcpy(produto_3,"      ");
+		strcpy(qt_1,"     ");
+		strcpy(c_1,"   ");
+		strcpy(qt_2,"     ");
+		strcpy(c_2,"   ");
+		strcpy(qt_3,"     ");
+		strcpy(c_3,"   ");
 		if(index < totalElements1){
 			strcpy(produto_1,getPageElement(page_list_1,i));
 			sprintf(qt_1, "%d",dados1[1][index]);

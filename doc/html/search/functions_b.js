@@ -1,10 +1,16 @@
 var searchData=
 [
-  ['testclient',['testClient',['../CatClients_8h.html#a277279719ac9fc1c9034cd2bb807910f',1,'CatClients.h']]],
-  ['testproduct',['testProduct',['../CatProducts_8h.html#a7a82da3ca5ad09834cd81af7e11e1cc4',1,'CatProducts.h']]],
-  ['totalclients',['totalClients',['../CatClients_8h.html#a988c28f6e5534c6b4544e3c054afea97',1,'CatClients.h']]],
-  ['totalclientsletter',['totalClientsLetter',['../CatClients_8h.html#af901720772d380f13ee41d723888dc5a',1,'CatClients.h']]],
-  ['totalelements',['totalElements',['../avl_8h.html#a768c19a790554ab1fa6ecef5e6ef58ad',1,'avl.h']]],
-  ['totalproducts',['totalProducts',['../CatProducts_8h.html#a8eb62d98eaa32e9811de5233ff684f87',1,'CatProducts.h']]],
-  ['totalproductsletter',['totalProductsLetter',['../CatProducts_8h.html#ab70ef64cf9a2b56ce50b4b33fafad30b',1,'CatProducts.h']]]
+  ['querie10',['querie10',['../queries_8h.html#a2b2a458c8f52f12f7fdd32cf0b2837ed',1,'queries.h']]],
+  ['querie10fil',['querie10Fil',['../filial_8h.html#a8d4ef76073601eaffbbdac62aeb88d3e',1,'filial.h']]],
+  ['querie11',['querie11',['../queries_8h.html#a416cfefe39517802e1f84346ae584537',1,'queries.h']]],
+  ['querie12',['querie12',['../queries_8h.html#a51741c987193b955b29ba2c281dddc17',1,'queries.h']]],
+  ['querie12products',['querie12Products',['../facturacao_8h.html#abb94512704fa97b2d95720439342413f',1,'facturacao.h']]],
+  ['querie2',['querie2',['../queries_8h.html#a92b4dc5ca9c08dbe3418fa7b024f155c',1,'queries.h']]],
+  ['querie3',['querie3',['../queries_8h.html#aff62fe70b57a1eeb7728d3bbf1c60b5e',1,'queries.h']]],
+  ['querie4',['querie4',['../queries_8h.html#a4e71789ad8545c59c9a9ab9e3caa2bbb',1,'queries.h']]],
+  ['querie5',['querie5',['../queries_8h.html#a6c2c59a8d8e39b9b944397b175d63852',1,'queries.h']]],
+  ['querie6',['querie6',['../queries_8h.html#aac54b6d109f50d7e9f0dce58ea5a438d',1,'queries.h']]],
+  ['querie7',['querie7',['../queries_8h.html#aa65753a77b3143316e841e9cd48e8324',1,'queries.h']]],
+  ['querie8',['querie8',['../queries_8h.html#a3ed52fab4b08c568fe0f820957f4cbb6',1,'queries.h']]],
+  ['querie9',['querie9',['../queries_8h.html#a49a6605d24e0b34bd3ced62a3f6ebb72',1,'queries.h']]]
 ];

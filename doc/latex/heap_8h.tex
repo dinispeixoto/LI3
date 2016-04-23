@@ -20,11 +20,11 @@ typedef struct heap $\ast$ \hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}
 \item 
 \hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} \hyperlink{heap_8h_ad5e95f6d8aecc65d8221eff272ea6beb}{init\+Heap} (int size)
 \begin{DoxyCompactList}\small\item\em Inicia a estrutura Heap com um dado tamanho, alocando espaço para a mesma. \end{DoxyCompactList}\item 
-int \hyperlink{heap_8h_ae8cdb42e043ecf78eb741127795cb783}{insert\+Heap} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h, double x, char $\ast$ct)
+int \hyperlink{heap_8h_ad329c5283cd19aa6512a5cc14d9ac749}{insert\+Heap} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h, double x, int y, char $\ast$ct)
 \begin{DoxyCompactList}\small\item\em Insere numa Heap um determinado valor e uma string. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{heap_8h_a6387f2a230468451b1d3dd7172ec417d}{extract\+Max} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h)
 \begin{DoxyCompactList}\small\item\em Retorna a String associada ao maior valor da Heap. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{heap_8h_a28393b1e354e78a75f78cb83ca0ff3ba}{extract\+Max\+Quantity} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h, double $\ast$res)
+char $\ast$ \hyperlink{heap_8h_a5a7e2f1c3323fd7cad91b69d1cf69f76}{extract\+Max\+Quantity} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h, double $\ast$res, int $\ast$)
 \begin{DoxyCompactList}\small\item\em Retorna a String associada ao maior valor da Heap e coloca esse valor no segundo argumento. \end{DoxyCompactList}\item 
 int \hyperlink{heap_8h_a1916bb28436fce28d4e06f05e25e3875}{get\+Heap\+Used} (\hyperlink{heap_8h_a87cb3746dc4bfdc65c8918206c5c0c17}{Heap} h)
 \begin{DoxyCompactList}\small\item\em Retorna o tamanho da Heap utilizado até ao momento. \end{DoxyCompactList}\item 
@@ -76,14 +76,15 @@ Retorna a String associada ao maior valor da Heap.
 \begin{DoxyReturn}{Returns}
 String. 
 \end{DoxyReturn}
-\hypertarget{heap_8h_a28393b1e354e78a75f78cb83ca0ff3ba}{\index{heap.\+h@{heap.\+h}!extract\+Max\+Quantity@{extract\+Max\+Quantity}}
+\hypertarget{heap_8h_a5a7e2f1c3323fd7cad91b69d1cf69f76}{\index{heap.\+h@{heap.\+h}!extract\+Max\+Quantity@{extract\+Max\+Quantity}}
 \index{extract\+Max\+Quantity@{extract\+Max\+Quantity}!heap.\+h@{heap.\+h}}
 \subsubsection[{extract\+Max\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ extract\+Max\+Quantity (
 \begin{DoxyParamCaption}
 \item[{{\bf Heap}}]{h, }
-\item[{double $\ast$}]{res}
+\item[{double $\ast$}]{res, }
+\item[{int $\ast$}]{}
 \end{DoxyParamCaption}
-)}}\label{heap_8h_a28393b1e354e78a75f78cb83ca0ff3ba}
+)}}\label{heap_8h_a5a7e2f1c3323fd7cad91b69d1cf69f76}
 
 
 Retorna a String associada ao maior valor da Heap e coloca esse valor no segundo argumento. 
@@ -197,15 +198,16 @@ Inicia a estrutura Heap com um dado tamanho, alocando espaço para a mesma.
 \begin{DoxyReturn}{Returns}
 Heap. 
 \end{DoxyReturn}
-\hypertarget{heap_8h_ae8cdb42e043ecf78eb741127795cb783}{\index{heap.\+h@{heap.\+h}!insert\+Heap@{insert\+Heap}}
+\hypertarget{heap_8h_ad329c5283cd19aa6512a5cc14d9ac749}{\index{heap.\+h@{heap.\+h}!insert\+Heap@{insert\+Heap}}
 \index{insert\+Heap@{insert\+Heap}!heap.\+h@{heap.\+h}}
 \subsubsection[{insert\+Heap}]{\setlength{\rightskip}{0pt plus 5cm}int insert\+Heap (
 \begin{DoxyParamCaption}
 \item[{{\bf Heap}}]{h, }
 \item[{double}]{x, }
+\item[{int}]{y, }
 \item[{char $\ast$}]{ct}
 \end{DoxyParamCaption}
-)}}\label{heap_8h_ae8cdb42e043ecf78eb741127795cb783}
+)}}\label{heap_8h_ad329c5283cd19aa6512a5cc14d9ac749}
 
 
 Insere numa Heap um determinado valor e uma string. 
