@@ -48,9 +48,11 @@ PAGE initPage(int page_size,int sizeElement){
 
 PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size){
 	int i,j = begin;
-	PAGE page = initPage(sizeElement,page_size);
+	PAGE page = initPage(page_size,sizeElement);
 	for(i=0;i<page_size;i++,j++)
-		page->elements[i] = lista->elements[j];
+		if(lista->elements[j]!=NULL)
+			page->elements[i] = lista->elements[j];
+		else break;
 	return page;
 }
 

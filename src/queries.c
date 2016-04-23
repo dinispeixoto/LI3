@@ -1,31 +1,24 @@
 #include "headers/queries.h"
 
+
 #define index(i) i-'A'
 
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes);
 static int checkInfo(INFO i, int filial);
 static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial);
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic);
 
 /* ######################################### QUERIE 2 #################################### */
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
-	Avl nodo;
 	char* prod;
 	if(a){
-		nodo=getAvlLeft(a);
-		travessia(nodo,ls);
+		travessia(getAvlLeft(a),ls);
 		prod=getAvlCode(a);
-
 		addListaStrings(ls,getListaSp(ls),prod);
 		ls=reallocListaStrings(ls);
+		travessia(getAvlRight(a),ls);
 		free(prod);
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
-		nodo=getAvlRight(a);
-		travessia(nodo,ls);
-		if(nodo)freeNodo(nodo);
+		freeNodo(a);
 	}
 	return ls;
 }
@@ -36,11 +29,8 @@ LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	int index = letter - 'A';
 	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
 	MY_AVL a = getP(Catalog,index);
-	Avl nodo = getAvl(a);
-	travessia(nodo,group);
-	
-	if(nodo)freeNodo(nodo);
-	
+	Avl tree = getAvl(a);
+	travessia(tree,group);
 	return group;
 }
 
@@ -56,7 +46,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 	x = (INFO)findInfo(nodo,product,NULL);
 	
 	if(x) d = updatePriceQuantity(x,d,promo,mes);
-	if(nodo)free(nodo);
+	if(nodo)freeNodo(nodo);
 	return d;
 
 }
@@ -75,12 +65,9 @@ static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
 	int i;
-	Avl nodo;
-
+	
 	for(i=0;i<SIZE_ABC;i++){
-		nodo=getProductIndex(f,i);
 		group = found(getProductIndex(f,i),group,filial);
-		if(nodo)freeNodo(nodo);
 	}
 	return group;
 }
@@ -94,45 +81,41 @@ static int checkInfo(INFO i, int filial){
 
 static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 	void* w;
-	char* prod=NULL;
+	char* prod;
 	if(a){
-		prod=getAvlCode(a);
-		Avl nodo=getAvlLeft(a);
 		w = (INFO)getInfo(a);	
-		list=found(nodo,list,filial);
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
+		list=found(getAvlLeft(a),list,filial);
 		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
+			prod=getAvlCode(a);
 			addListaStrings(list,getListaSp(list),prod);
 			list=reallocListaStrings(list);
+			free(prod);
 		}
-		nodo=getAvlRight(a);
 		list=found(getAvlRight(a),list,filial);
-		if(nodo)freeNodo(nodo);
+
+		freeNodo(a);
 	}
-	if(prod)free(prod);
+	
 	return list;
 }
 
 /*#################################QUERIE 5##################################### FUNCIONA*/
 
-DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client,int filial){
+DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df,char* client){
 	void* x;
 	int index = client[0]-'A';
 	Avl nodo=getClientIndexF(f,index);
-	x = (INFO_CLIENT)findInfo(getClientIndexF(f,index),client,NULL);
+	x = (INFO_CLIENT)findInfo(nodo,client,NULL);
 
-	df=addQ(df,x,filial);
+	df=addQ(df,x);
 	freeNodo(nodo);
 	return df;
 }
 
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic,int filial){
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
 	int i;
 	for(i=0;i<SIZE_MONTH;i++)
-		df = updateQuant_DadosFilial(df,filial,i,getInfoMesQuantity(getInfoMes(ic,i)));
+		df = updateQuant_DadosFilial(df,i,getInfoMesQuantity(getInfoMes(ic,i)));
 	return df;
 }
 
@@ -163,72 +146,47 @@ LISTA_STRINGS querie7 (FILIAL* f){
 static LISTA_STRINGS removeList(Avl a,LISTA_STRINGS list ){
 	void* x;
 	char* client;
-	Avl nodo;
 	if(a){
-		nodo=getAvlLeft(a);
-		removeList(nodo,list);
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
+		removeList(getAvlLeft(a),list);
 		client=getAvlCode(a);
 		x = (INFO_CLIENT)findInfo(a,client,NULL);
 		if(!getComp(x)){
 			removeListaStrings(list,client);
 		}
+		removeList(getAvlRight(a),list);
 		free(client);
-		nodo=getAvlRight(a);
-		removeList(nodo,list);
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
+		freeNodo(a);
 	}
 	return list;
 }
 
 static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS list){
 	void* x;
-	Avl aux;
 	char* client;
 	if(a){
-		aux=getAvlLeft(a);
-		insereList(aux,list);
-		if(aux){freeNodo(aux);
-				aux=NULL;}
+		insereList(getAvlLeft(a),list);
 		client=getAvlCode(a);
 		x = (INFO_CLIENT)findInfo(a,client,NULL);
-		
 		if(getComp(x)){
-
 			addListaStrings(list,getListaSp(list),client);
 			list=reallocListaStrings(list);
 		}
+		insereList(getAvlRight(a),list);
 		free(client);
-		aux=getAvlRight(a);
-		insereList(aux,list);
-		if(aux){freeNodo(aux);
-				aux=NULL;}
+		freeNodo(a);
 	}
 	return list;
 }
 
 static LISTA_STRINGS checkClientsValeN (FILIAL* f,LISTA_STRINGS list){
 	int i,j;
-	Avl aux;
 	for(j=0;j<SIZE_ABC;j++){
-		aux=getClientIndexF(f[0],j);
 		insereList(getClientIndexF(f[0],j),list);
-		freeNodo(aux);
-		aux=NULL;
 		}
 
 	for(i=1;i<SIZE_FILIAIS;i++){
 		for(j=0;j<SIZE_ABC;j++){
-			aux=getClientIndexF(f[i],j);
-			removeList(aux,list);
-			freeNodo(aux);
-			aux=NULL;
+			removeList(getClientIndexF(f[i],j),list);
 			}
 		}
 	return list;
@@ -243,11 +201,8 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	int i;
 	LISTA_STRINGS gcN = initListaStrings(1,SIZE_CLIENT);
 	LISTA_STRINGS gcP = initListaStrings(1,SIZE_CLIENT);
-	Avl nodo=NULL;
 	for(i=0;i<SIZE_ABC;i++){
-		nodo=getClientIndexF(f,i);
-		find(nodo,product,gcN,gcP);
-		freeNodo(nodo);
+		find(getClientIndexF(f,i),product,gcN,gcP);
 	}
 	(*P)=gcP;
 	return gcN;
@@ -269,35 +224,33 @@ static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS g
 static LISTA_STRINGS find2(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
 	int i;
 	int index=product[0]-'A';
-	Avl nodo=NULL;
+	Avl nodo;
 	for(i=0;i<SIZE_MONTH;i++){
-		Avl nodo=getInfoMesProduct(getInfoMes(ic,i),index);
-			if(nodo){
-				void* x=(INFO_PRODUCT)findInfo(nodo,product,NULL);
+		nodo=getInfoMesProduct(getInfoMes(ic,i),index);
+		if(getInfoMesProduct(getInfoMes(ic,i),index)){
+				void* x=(INFO_PRODUCT)findInfo(getInfoMesProduct(getInfoMes(ic,i),index),product,NULL);
 				if(x) checkProd(x,gcN,gcP,client);
-			}
-	}
-	if(nodo)freeNodo(nodo);	
+				freeNodo(nodo);
+		}
+	}	
 	return gcN;
 }
 
 static LISTA_STRINGS find(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
-	
 	void* x;
-
+	char* prod;
 	if(a){
-		Avl nodo=getAvlLeft(a);
-		find(nodo,product,gcN,gcP);
+		find(getAvlLeft(a),product,gcN,gcP);
 		x = (INFO_CLIENT)getInfo(a);
-		find2(x,product,gcN,gcP,getAvlCode(a));
-		if(nodo)freeNodo(nodo);
-		nodo=NULL;
-		nodo=getAvlRight(a);
-		find(nodo,product,gcN,gcP);
-		if(nodo)freeNodo(nodo);
+		prod=getAvlCode(a);
+		find2(x,product,gcN,gcP,prod);
+		find(getAvlRight(a),product,gcN,gcP);
+		free(prod);
+		freeNodo(a);
 	}
 	return gcN;
 }
+
 
 /*#################################QUERIE 9#####################################*/
 
@@ -316,9 +269,8 @@ LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 		nodo=getClientIndexF(f[i],index);
 		x =(INFO_CLIENT)findInfo(nodo,client,NULL);
 		findProd(x,month,heap);
-		if(nodo)freeNodo(nodo);
+		freeNodo(nodo);
 	}
-
 	group = initListaStrings(1,SIZE_PRODUCT);
 	converte(heap,group,getHeapUsed(heap));
 	return group;
@@ -329,12 +281,13 @@ static int quant(INFO_PRODUCT ip){
 }
 
 static LISTA_STRINGS converte (Heap heap, LISTA_STRINGS group,int total){
-	int limite = getHeapUsed(heap);
-	while(0<total && 0<limite){
-		addListaStrings(group,getListaSp(group),extractMax(heap));
+	char* prod;
+	while(0<total){
+		prod=extractMax(heap);
+		addListaStrings(group,getListaSp(group),prod);
 		group=reallocListaStrings(group);
 		total--;
-		limite--;
+		free(prod);
 	}
 	return group;
 }
@@ -343,21 +296,16 @@ static LISTA_STRINGS converte (Heap heap, LISTA_STRINGS group,int total){
 static Heap findProd2(Avl a,Heap heap){
 	int r; 
 	void* x;
-	Avl nodo;
 	char* prod;
 	if(a){
-		nodo = getAvlLeft(a);
-		findProd2(nodo,heap);
+		findProd2(getAvlLeft(a),heap);
 		x = (INFO_PRODUCT)getInfo(a);
 		r=quant(x);
-		freeNodo(nodo);
-		nodo=NULL;
 		prod=getAvlCode(a);
 		insertHeap(heap,r,0,prod);
+		findProd2(getAvlRight(a),heap);
 		free(prod);
-		nodo=getAvlRight(a);
-		findProd2(nodo,heap);
-		freeNodo(nodo);
+		freeNodo(a);
 	}
 	return heap;
 }
@@ -370,7 +318,6 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 		if(nodo)
 			findProd2(nodo,heap);
 	}
-	freeNodo(nodo);
 	return heap;
 }
 
@@ -379,60 +326,62 @@ static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados)
 	int a=0,limite=getHeapUsed(heap);
 	double quant;
 	int resg;
+	char* prod;
 	while(0<total && 0<limite){
-			addListaStrings(group,getListaSp(group),extractMaxQuantity(heap,&quant,&resg));
+			prod=extractMaxQuantity(heap,&quant,&resg);
+			addListaStrings(group,getListaSp(group),prod);
 			dados[1][a]=(int)quant;
 			dados[0][a]=resg;
 			group=reallocListaStrings(group);
 			total--;
 			limite--;
 			a++;
+			free(prod);
 	}
 	return 1 ;
 }
 
-static int qua (CENA info,int* registo){
-	int i,sum=0;
+static int qua (PRODUCT_INFO info,int* registo){
 	*registo=getResg(info);
-	return getCenaQuant(info);
+	return getPiQuant(info);
 }
 
 static int pesq (Avl a, Heap hp){
-	int r,ww; 
+	int r,resg; 
 	void* x;
 	char* aux;
 
 	if(a){
-		pesq(getAvlLeft(a),hp);
-		x = (CENA)getInfo(a);
-		if(x){
-			aux=getAvlCode(a);
-			r=qua(x,&ww);
-			insertHeap(hp,r,ww,aux);
-			free(aux);
-		}
-		pesq(getAvlRight(a),hp);
+	pesq(getAvlLeft(a),hp);
+	x = (PRODUCT_INFO)getInfo(a);
+	if(x){
+		aux=getAvlCode(a);
+		r=qua(x,&resg);
+		insertHeap(hp,r,resg,aux);
+		free(aux);
+	}
+	pesq(getAvlRight(a),hp);
+	freeNodo(a);
 	}
 	return 1;
 }
 
-
-
-static LISTA_STRINGS  querie10Fact (FILIAL f,Heap hp,int N,int** dados){
+static LISTA_STRINGS querie10Fil(FILIAL f,Heap hp,int N,int** dados){
 	int i;
 	LISTA_STRINGS gp;
+
 	for(i=0;i<SIZE_ABC;i++){
-		pesq(getProd10(f,i),hp);
+		pesq(getProdInfo(f,i),hp);
 	}
 	gp = initListaStrings(1,SIZE_PRODUCT);
 	converteTransfer(hp,gp,N,dados);
 	return gp;
 }
 
-LISTA_STRINGS querie10(FILIAL f,FACTURACAO fact, int N,int filial,int** dados){
+LISTA_STRINGS querie10(FILIAL f, int N,int** dados){
 	LISTA_STRINGS ls;
 	Heap hp=initHeap(1);
-	ls=querie10Fact(f,hp,N,dados);
+	ls=querie10Fil(f,hp,N,dados);
 	return ls;
 }
 
@@ -445,24 +394,16 @@ static double quant2(INFO_PRODUCT ip){
 static Heap highCost2 (Avl a,Heap hp){
 	double r;
 	void* x;
-	char* copy;
-	Avl nodo;
+	char* prod;
 	if(a){
-		nodo =getAvlLeft(a);
-		highCost2(nodo,hp);
+		highCost2(getAvlLeft(a),hp);
 		x= (INFO_PRODUCT)getInfo(a);
 		r=quant2(x);
-		copy=getAvlCode(a);
-		insertHeap(hp,r,0,copy);
-		free(copy);
-		
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
-		nodo=getAvlRight(a);
-		highCost2(nodo,hp);
-		if(nodo)freeNodo(nodo);
+		prod=getAvlCode(a);
+		insertHeap(hp,r,0,prod);
+		free(prod);
+		highCost2(getAvlRight(a),hp);
+		freeNodo(a);
 	}
 	return hp;
 }
@@ -473,11 +414,8 @@ static Heap highCost (INFO_CLIENT ic,Heap hp){
 	for(i=0;i<SIZE_MONTH;i++){
 		for(j=0;j<SIZE_ABC;j++){
 			nodo=getInfoMesProduct(getInfoMes(ic,i),j);
-			if(nodo){	
+			if(nodo)	
 				highCost2(nodo,hp);
-				freeNodo(nodo);
-				nodo=NULL;
-			}
 		}
 	}
 	return hp;
@@ -489,17 +427,16 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int in = index(client[0]);
 	Heap hp=initHeap(1);
 	Avl nodo;
+	char* string;
 	for(i=0;i<SIZE_FILIAIS;i++){
 		nodo=getClientIndexF(f[i],in);
 		void* x=findInfo(nodo,client,NULL);
 		highCost(x,hp);
-		if(nodo){
-			freeNodo(nodo);
-			nodo=NULL;
-		}
+		freeNodo(nodo);
 	}
-	gp = initListaStrings(1,SIZE_PRODUCT);
-	
+	string=getString(hp,0);
+	gp = initListaStrings(1, (strlen(string)+1)*sizeof(char));
+	free(string);
 	converte(hp,gp,3);
 	return gp;
 }
@@ -513,9 +450,8 @@ static int querie12Clients(FILIAL* f){
 		for(j=0;j<SIZE_ABC;j++){
 			nodo=getClientIndexF(f[i],j);
 			r=infoNULL(nodo);
+			if(nodo)freeNodo(nodo);
 			sum+=r;
-			free(nodo);
-			nodo=NULL;
 		}
 	return sum;
 }
@@ -525,10 +461,9 @@ static int querie12Products(FACTURACAO f){
 	Avl nodo;
 	for(i=0;i<SIZE_ABC;i++){
 		nodo=getProductIndex(f,i);
-		r=infoNULL(nodo);			
+		r=infoNULL(nodo);	
+		if(nodo)freeNodo(nodo);		
 		sum+=r;
-		free(nodo);
-		nodo=NULL;
 	}
 	return sum;
 }

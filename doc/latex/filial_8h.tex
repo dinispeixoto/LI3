@@ -1,0 +1,620 @@
+\hypertarget{filial_8h}{\section{src/headers/filial.h File Reference}
+\label{filial_8h}\index{src/headers/filial.\+h@{src/headers/filial.\+h}}
+}
+
+
+Protótipos das funções que trabalham com a Filial.  
+
+
+{\ttfamily \#include \char`\"{}avl.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cat\+Clients.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cat\+Products.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Sales.\+h\char`\"{}}\\*
+Include dependency graph for filial.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{filial_8h_a759225c6c5a74b53c8a8b031ce348991}{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}~12
+\begin{DoxyCompactList}\small\item\em Número de meses. \end{DoxyCompactList}\item 
+\#define \hyperlink{filial_8h_a727abfada19fbc91074056041c6ea8f6}{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}~3
+\begin{DoxyCompactList}\small\item\em Número de Filiais. \end{DoxyCompactList}\item 
+\#define \hyperlink{filial_8h_aacddce754c7fa2e23ad6784e583c505e}{S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P}~2
+\begin{DoxyCompactList}\small\item\em Tipos de Venda(normal ou promoção). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct filial $\ast$ \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo F\+I\+L\+I\+A\+L, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct info\+Mes $\ast$ \hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo I\+N\+F\+O\+\_\+\+M\+E\+S, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct info\+Client $\ast$ \hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct info\+Product $\ast$ \hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct dados\+Filial $\ast$ \hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L, um tipo abstrato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} \hyperlink{filial_8h_a3898c1ff5b7d614fafa8ff54bc43fb72}{init\+Filial} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura da Filial, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} \hyperlink{filial_8h_a202fb767bc00fcc9fda6972dbe0e9def}{insert\+Filial} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} s)
+\begin{DoxyCompactList}\small\item\em Insere uma Venda na estrutura Filial. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} \hyperlink{filial_8h_a6bb6dda94955d776c5b82c0c03e0e867}{init\+Info\+Product} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} \hyperlink{filial_8h_a89d080b4a14abb17212c90f5b0a222a9}{init\+Info\+Client} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S} \hyperlink{filial_8h_ac9c33b3157012c87f1cd2e01dbb6b8ec}{init\+Info\+Mes} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} \hyperlink{filial_8h_a6f1c1bc07c5218c82416b1191e2355b3}{init\+Dados\+Filial} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+void \hyperlink{filial_8h_a757374036ae02d8d1482ca372f16f723}{free\+Filial} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura Filial, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+void \hyperlink{filial_8h_a07aab0740f7921a847287244b7916ed6}{free\+Info\+Client} (void $\ast$info\+Client)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+void \hyperlink{filial_8h_a489f5e3913e3eee003993d9100350cb0}{free\+Info\+Mes} (\hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S} info)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+void \hyperlink{filial_8h_a321b988b84eda616d255ae8f790238c7}{free\+Info\+Product} (void $\ast$info)
+\begin{DoxyCompactList}\small\item\em Remove a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, libertando o espaço ocupado por esta. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} \hyperlink{filial_8h_abb3396fef7d76665f81a4cbbf20036f3}{update\+Info\+C} (\hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} info\+C, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} s)
+\begin{DoxyCompactList}\small\item\em Actualiza a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T após uma determinada venda. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} \hyperlink{filial_8h_a547e256fd55d34f48966625ec9cdcc01}{update\+Info\+P} (\hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} info, \hyperlink{Sales_8h_af8f76607a2a158f4d90c5dc5e9e2824d}{S\+A\+L\+E\+S} s)
+\begin{DoxyCompactList}\small\item\em Actualiza a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T após uma determinada venda. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} \hyperlink{filial_8h_ae4e313f1dd90288b9e3e574c8a3134eb}{copy\+C\+P\+O} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, \hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} c)
+\begin{DoxyCompactList}\small\item\em Copia os Clientes do Catálogo para a Filial. \end{DoxyCompactList}\item 
+int \hyperlink{filial_8h_a51f6a82c7fe6d68771ab50e22ef0dfb3}{get\+Dados\+I} (\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} df, int i, int j)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de produtos comprados num determinado mês, numa determinada Filial. \end{DoxyCompactList}\item 
+int \hyperlink{filial_8h_a4719db41992002bff9f632acfa8e42b2}{get\+Comp} (\hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} x)
+\begin{DoxyCompactList}\small\item\em Verifica se um Cliente comprou algum produto. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{filial_8h_a0c5f9deec0a0983b3579e8fec17aeff5}{get\+Client\+Index\+F} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado indice da estrutura Filial. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} \hyperlink{filial_8h_adc8a27394934eda8be909a347624f449}{update\+Quant\+\_\+\+Dados\+Filial} (\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} df, int filial, int month, int total)
+\begin{DoxyCompactList}\small\item\em Actualiza os dados relativos a uma dada Filial num dado mês. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S} \hyperlink{filial_8h_a0b47e62b84f5b7fc3b935d1dcadf0479}{get\+Info\+Mes} (\hyperlink{filial_8h_aba096daa9252ddb9c6070d77336d5add}{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} info, int month)
+\begin{DoxyCompactList}\small\item\em Retorna a informação das compras realizadas por um determinado Cliente, num determinado Mês. \end{DoxyCompactList}\item 
+int \hyperlink{filial_8h_ad22319574b1de5b5dae3e20470f0849c}{get\+Info\+Mes\+Quantity} (\hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S} info)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de produtos comprados num determinado Mês. \end{DoxyCompactList}\item 
+int \hyperlink{filial_8h_ac9e960ff2461413c74492909937da7b9}{get\+Info\+Product\+Quantity} (\hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} info, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade comprada de um determinado produto em preço normal ou em promoção. \end{DoxyCompactList}\item 
+double \hyperlink{filial_8h_a1f78b45de0e48ad26b52b91aa55c3f50}{get\+Info\+Product\+Price} (\hyperlink{filial_8h_a4fcfed94bf71673f76beabee44768624}{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} info, int index)
+\begin{DoxyCompactList}\small\item\em Retorna o dinheiro total gasto num determinado produto em preço normal ou em promoção. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{filial_8h_a539c178668342d12f4eb6ef82628a608}{get\+Info\+Mes\+Product} (\hyperlink{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{I\+N\+F\+O\+\_\+\+M\+E\+S} info, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a M\+Y\+\_\+\+A\+V\+L presente na estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, num determinado índice. \end{DoxyCompactList}\item 
+int \hyperlink{filial_8h_a22b569cb28378bff852bad0cfe22302f}{get\+Dados\+Filial\+Quantity} (\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} df, int filial, int month)
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de produtos comprados numa dada Filial, num dado Mês. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com a Filial. 
+
+O ficheiro contem os protótipos das funçoes que implemetam a Filial, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{filial_8h_a727abfada19fbc91074056041c6ea8f6}{\index{filial.\+h@{filial.\+h}!S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}}
+\index{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}!filial.\+h@{filial.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S~3}}\label{filial_8h_a727abfada19fbc91074056041c6ea8f6}
+
+
+Número de Filiais. 
+
+\hypertarget{filial_8h_aacddce754c7fa2e23ad6784e583c505e}{\index{filial.\+h@{filial.\+h}!S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P@{S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P}}
+\index{S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P@{S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P}!filial.\+h@{filial.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+I\+N\+F\+O\+P~2}}\label{filial_8h_aacddce754c7fa2e23ad6784e583c505e}
+
+
+Tipos de Venda(normal ou promoção). 
+
+\hypertarget{filial_8h_a759225c6c5a74b53c8a8b031ce348991}{\index{filial.\+h@{filial.\+h}!S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}}
+\index{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}!filial.\+h@{filial.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H~12}}\label{filial_8h_a759225c6c5a74b53c8a8b031ce348991}
+
+
+Número de meses. 
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{\index{filial.\+h@{filial.\+h}!D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L@{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}
+\index{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L@{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}!filial.\+h@{filial.\+h}}
+\subsubsection[{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct dados\+Filial$\ast$ {\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}}\label{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}
+
+
+Declaração do tipo D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L, um tipo abstrato. 
+
+\hypertarget{filial_8h_a33b5527a812e12d7c5424317f33cb747}{\index{filial.\+h@{filial.\+h}!F\+I\+L\+I\+A\+L@{F\+I\+L\+I\+A\+L}}
+\index{F\+I\+L\+I\+A\+L@{F\+I\+L\+I\+A\+L}!filial.\+h@{filial.\+h}}
+\subsubsection[{F\+I\+L\+I\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct filial$\ast$ {\bf F\+I\+L\+I\+A\+L}}}\label{filial_8h_a33b5527a812e12d7c5424317f33cb747}
+
+
+Declaração do tipo F\+I\+L\+I\+A\+L, um tipo abstrato. 
+
+\hypertarget{filial_8h_aba096daa9252ddb9c6070d77336d5add}{\index{filial.\+h@{filial.\+h}!I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T@{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}}
+\index{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T@{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}!filial.\+h@{filial.\+h}}
+\subsubsection[{I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct info\+Client$\ast$ {\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}}}\label{filial_8h_aba096daa9252ddb9c6070d77336d5add}
+
+
+Declaração do tipo I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, um tipo abstrato. 
+
+\hypertarget{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}{\index{filial.\+h@{filial.\+h}!I\+N\+F\+O\+\_\+\+M\+E\+S@{I\+N\+F\+O\+\_\+\+M\+E\+S}}
+\index{I\+N\+F\+O\+\_\+\+M\+E\+S@{I\+N\+F\+O\+\_\+\+M\+E\+S}!filial.\+h@{filial.\+h}}
+\subsubsection[{I\+N\+F\+O\+\_\+\+M\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct info\+Mes$\ast$ {\bf I\+N\+F\+O\+\_\+\+M\+E\+S}}}\label{filial_8h_a2f8575a24d192e221b1f6e8289bb10e9}
+
+
+Declaração do tipo I\+N\+F\+O\+\_\+\+M\+E\+S, um tipo abstrato. 
+
+\hypertarget{filial_8h_a4fcfed94bf71673f76beabee44768624}{\index{filial.\+h@{filial.\+h}!I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T@{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}}
+\index{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T@{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}!filial.\+h@{filial.\+h}}
+\subsubsection[{I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct info\+Product$\ast$ {\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}}}\label{filial_8h_a4fcfed94bf71673f76beabee44768624}
+
+
+Declaração do tipo I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{filial_8h_ae4e313f1dd90288b9e3e574c8a3134eb}{\index{filial.\+h@{filial.\+h}!copy\+C\+P\+O@{copy\+C\+P\+O}}
+\index{copy\+C\+P\+O@{copy\+C\+P\+O}!filial.\+h@{filial.\+h}}
+\subsubsection[{copy\+C\+P\+O}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+I\+L\+I\+A\+L} copy\+C\+P\+O (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{c}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_ae4e313f1dd90288b9e3e574c8a3134eb}
+
+
+Copia os Clientes do Catálogo para a Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em c} & Catálogo de Clientes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filial. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a757374036ae02d8d1482ca372f16f723}{\index{filial.\+h@{filial.\+h}!free\+Filial@{free\+Filial}}
+\index{free\+Filial@{free\+Filial}!filial.\+h@{filial.\+h}}
+\subsubsection[{free\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Filial (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a757374036ae02d8d1482ca372f16f723}
+
+
+Remove a estrutura Filial, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a07aab0740f7921a847287244b7916ed6}{\index{filial.\+h@{filial.\+h}!free\+Info\+Client@{free\+Info\+Client}}
+\index{free\+Info\+Client@{free\+Info\+Client}!filial.\+h@{filial.\+h}}
+\subsubsection[{free\+Info\+Client}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Info\+Client (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{info\+Client}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a07aab0740f7921a847287244b7916ed6}
+
+
+Remove a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info\+Client} & Informação de um Cliente.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a489f5e3913e3eee003993d9100350cb0}{\index{filial.\+h@{filial.\+h}!free\+Info\+Mes@{free\+Info\+Mes}}
+\index{free\+Info\+Mes@{free\+Info\+Mes}!filial.\+h@{filial.\+h}}
+\subsubsection[{free\+Info\+Mes}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Info\+Mes (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+M\+E\+S}}]{info}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a489f5e3913e3eee003993d9100350cb0}
+
+
+Remove a estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Informação de um Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a321b988b84eda616d255ae8f790238c7}{\index{filial.\+h@{filial.\+h}!free\+Info\+Product@{free\+Info\+Product}}
+\index{free\+Info\+Product@{free\+Info\+Product}!filial.\+h@{filial.\+h}}
+\subsubsection[{free\+Info\+Product}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Info\+Product (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{info}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a321b988b84eda616d255ae8f790238c7}
+
+
+Remove a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, libertando o espaço ocupado por esta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Informação de um Produto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a0c5f9deec0a0983b3579e8fec17aeff5}{\index{filial.\+h@{filial.\+h}!get\+Client\+Index\+F@{get\+Client\+Index\+F}}
+\index{get\+Client\+Index\+F@{get\+Client\+Index\+F}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Client\+Index\+F}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} get\+Client\+Index\+F (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a0c5f9deec0a0983b3579e8fec17aeff5}
+
+
+Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado indice da estrutura Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em index} & Índice.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+Y\+\_\+\+A\+V\+L que se encontra no índice. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a4719db41992002bff9f632acfa8e42b2}{\index{filial.\+h@{filial.\+h}!get\+Comp@{get\+Comp}}
+\index{get\+Comp@{get\+Comp}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Comp}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Comp (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}}]{x}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a4719db41992002bff9f632acfa8e42b2}
+
+
+Verifica se um Cliente comprou algum produto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Estrutura com informação sobre um Cliente.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna 1 caso tenha comprado algum produto. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a22b569cb28378bff852bad0cfe22302f}{\index{filial.\+h@{filial.\+h}!get\+Dados\+Filial\+Quantity@{get\+Dados\+Filial\+Quantity}}
+\index{get\+Dados\+Filial\+Quantity@{get\+Dados\+Filial\+Quantity}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Dados\+Filial\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Dados\+Filial\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}]{df, }
+\item[{int}]{filial, }
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a22b569cb28378bff852bad0cfe22302f}
+
+
+Retorna a quantidade de produtos comprados numa dada Filial, num dado Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em df} & Estrutura com a informação sobre a Filial. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em month} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de Produtos comprados. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a51f6a82c7fe6d68771ab50e22ef0dfb3}{\index{filial.\+h@{filial.\+h}!get\+Dados\+I@{get\+Dados\+I}}
+\index{get\+Dados\+I@{get\+Dados\+I}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Dados\+I}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Dados\+I (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}]{df, }
+\item[{int}]{i, }
+\item[{int}]{j}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a51f6a82c7fe6d68771ab50e22ef0dfb3}
+
+
+Retorna a quantidade de produtos comprados num determinado mês, numa determinada Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em df} & Estrutura com os dados relativos a Filial. \\
+\hline
+{\em i} & Filial. \\
+\hline
+{\em j} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de Produtos. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a0b47e62b84f5b7fc3b935d1dcadf0479}{\index{filial.\+h@{filial.\+h}!get\+Info\+Mes@{get\+Info\+Mes}}
+\index{get\+Info\+Mes@{get\+Info\+Mes}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Info\+Mes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+M\+E\+S} get\+Info\+Mes (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}}]{info, }
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a0b47e62b84f5b7fc3b935d1dcadf0479}
+
+
+Retorna a informação das compras realizadas por um determinado Cliente, num determinado Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com a informação sobre um Cliente. \\
+\hline
+{\em month} & Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com a informação relativa ao Mês. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a539c178668342d12f4eb6ef82628a608}{\index{filial.\+h@{filial.\+h}!get\+Info\+Mes\+Product@{get\+Info\+Mes\+Product}}
+\index{get\+Info\+Mes\+Product@{get\+Info\+Mes\+Product}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Info\+Mes\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} get\+Info\+Mes\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+M\+E\+S}}]{info, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a539c178668342d12f4eb6ef82628a608}
+
+
+Retorna a M\+Y\+\_\+\+A\+V\+L presente na estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, num determinado índice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com a informação sobre um determinado Mês. \\
+\hline
+{\em index} & Índice.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+Y\+\_\+\+A\+V\+L presente no índice. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_ad22319574b1de5b5dae3e20470f0849c}{\index{filial.\+h@{filial.\+h}!get\+Info\+Mes\+Quantity@{get\+Info\+Mes\+Quantity}}
+\index{get\+Info\+Mes\+Quantity@{get\+Info\+Mes\+Quantity}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Info\+Mes\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Info\+Mes\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+M\+E\+S}}]{info}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_ad22319574b1de5b5dae3e20470f0849c}
+
+
+Retorna a quantidade de produtos comprados num determinado Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com a informação sobre um determinado Mês.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade de Produtos comprados. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a1f78b45de0e48ad26b52b91aa55c3f50}{\index{filial.\+h@{filial.\+h}!get\+Info\+Product\+Price@{get\+Info\+Product\+Price}}
+\index{get\+Info\+Product\+Price@{get\+Info\+Product\+Price}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Info\+Product\+Price}]{\setlength{\rightskip}{0pt plus 5cm}double get\+Info\+Product\+Price (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}}]{info, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a1f78b45de0e48ad26b52b91aa55c3f50}
+
+
+Retorna o dinheiro total gasto num determinado produto em preço normal ou em promoção. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com a informação sobre um determinado Produto. \\
+\hline
+{\em index} & Tipo de compra (normal ou promoção).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dinheiro total gasto. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_ac9e960ff2461413c74492909937da7b9}{\index{filial.\+h@{filial.\+h}!get\+Info\+Product\+Quantity@{get\+Info\+Product\+Quantity}}
+\index{get\+Info\+Product\+Quantity@{get\+Info\+Product\+Quantity}!filial.\+h@{filial.\+h}}
+\subsubsection[{get\+Info\+Product\+Quantity}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Info\+Product\+Quantity (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}}]{info, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_ac9e960ff2461413c74492909937da7b9}
+
+
+Retorna a quantidade comprada de um determinado produto em preço normal ou em promoção. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com a informação sobre um determinado Produto. \\
+\hline
+{\em index} & Tipo de compra (normal ou promoção).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Quantidade do produto comprada. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a6f1c1bc07c5218c82416b1191e2355b3}{\index{filial.\+h@{filial.\+h}!init\+Dados\+Filial@{init\+Dados\+Filial}}
+\index{init\+Dados\+Filial@{init\+Dados\+Filial}!filial.\+h@{filial.\+h}}
+\subsubsection[{init\+Dados\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} init\+Dados\+Filial (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a6f1c1bc07c5218c82416b1191e2355b3}
+
+
+Inicia a estrutura D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre uma Filial. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a3898c1ff5b7d614fafa8ff54bc43fb72}{\index{filial.\+h@{filial.\+h}!init\+Filial@{init\+Filial}}
+\index{init\+Filial@{init\+Filial}!filial.\+h@{filial.\+h}}
+\subsubsection[{init\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+I\+L\+I\+A\+L} init\+Filial (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a3898c1ff5b7d614fafa8ff54bc43fb72}
+
+
+Inicia a estrutura da Filial, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Filial. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a89d080b4a14abb17212c90f5b0a222a9}{\index{filial.\+h@{filial.\+h}!init\+Info\+Client@{init\+Info\+Client}}
+\index{init\+Info\+Client@{init\+Info\+Client}!filial.\+h@{filial.\+h}}
+\subsubsection[{init\+Info\+Client}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} init\+Info\+Client (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a89d080b4a14abb17212c90f5b0a222a9}
+
+
+Inicia a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre os Clientes. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_ac9c33b3157012c87f1cd2e01dbb6b8ec}{\index{filial.\+h@{filial.\+h}!init\+Info\+Mes@{init\+Info\+Mes}}
+\index{init\+Info\+Mes@{init\+Info\+Mes}!filial.\+h@{filial.\+h}}
+\subsubsection[{init\+Info\+Mes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+M\+E\+S} init\+Info\+Mes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_ac9c33b3157012c87f1cd2e01dbb6b8ec}
+
+
+Inicia a estrutura I\+N\+F\+O\+\_\+\+M\+E\+S, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre um Mês. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a6bb6dda94955d776c5b82c0c03e0e867}{\index{filial.\+h@{filial.\+h}!init\+Info\+Product@{init\+Info\+Product}}
+\index{init\+Info\+Product@{init\+Info\+Product}!filial.\+h@{filial.\+h}}
+\subsubsection[{init\+Info\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} init\+Info\+Product (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a6bb6dda94955d776c5b82c0c03e0e867}
+
+
+Inicia a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre os Produtos. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a202fb767bc00fcc9fda6972dbe0e9def}{\index{filial.\+h@{filial.\+h}!insert\+Filial@{insert\+Filial}}
+\index{insert\+Filial@{insert\+Filial}!filial.\+h@{filial.\+h}}
+\subsubsection[{insert\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+I\+L\+I\+A\+L} insert\+Filial (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{{\bf S\+A\+L\+E\+S}}]{s}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a202fb767bc00fcc9fda6972dbe0e9def}
+
+
+Insere uma Venda na estrutura Filial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em s} & Venda. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filial. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_abb3396fef7d76665f81a4cbbf20036f3}{\index{filial.\+h@{filial.\+h}!update\+Info\+C@{update\+Info\+C}}
+\index{update\+Info\+C@{update\+Info\+C}!filial.\+h@{filial.\+h}}
+\subsubsection[{update\+Info\+C}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T} update\+Info\+C (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T}}]{info\+C, }
+\item[{{\bf S\+A\+L\+E\+S}}]{s}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_abb3396fef7d76665f81a4cbbf20036f3}
+
+
+Actualiza a estrutura I\+N\+F\+O\+\_\+\+C\+L\+I\+E\+N\+T após uma determinada venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info\+C} & Estrutura com informação sobre os Clientes. \\
+\hline
+{\em s} & Venda.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre os Clientes. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_a547e256fd55d34f48966625ec9cdcc01}{\index{filial.\+h@{filial.\+h}!update\+Info\+P@{update\+Info\+P}}
+\index{update\+Info\+P@{update\+Info\+P}!filial.\+h@{filial.\+h}}
+\subsubsection[{update\+Info\+P}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T} update\+Info\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T}}]{info, }
+\item[{{\bf S\+A\+L\+E\+S}}]{s}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_a547e256fd55d34f48966625ec9cdcc01}
+
+
+Actualiza a estrutura I\+N\+F\+O\+\_\+\+P\+R\+O\+D\+U\+C\+T após uma determinada venda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Estrutura com informação sobre os Produtos. \\
+\hline
+{\em s} & Venda.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com informação sobre os Produtos. 
+\end{DoxyReturn}
+\hypertarget{filial_8h_adc8a27394934eda8be909a347624f449}{\index{filial.\+h@{filial.\+h}!update\+Quant\+\_\+\+Dados\+Filial@{update\+Quant\+\_\+\+Dados\+Filial}}
+\index{update\+Quant\+\_\+\+Dados\+Filial@{update\+Quant\+\_\+\+Dados\+Filial}!filial.\+h@{filial.\+h}}
+\subsubsection[{update\+Quant\+\_\+\+Dados\+Filial}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} update\+Quant\+\_\+\+Dados\+Filial (
+\begin{DoxyParamCaption}
+\item[{{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}]{df, }
+\item[{int}]{filial, }
+\item[{int}]{month, }
+\item[{int}]{total}
+\end{DoxyParamCaption}
+)}}\label{filial_8h_adc8a27394934eda8be909a347624f449}
+
+
+Actualiza os dados relativos a uma dada Filial num dado mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em df} & Estrutura com a informação relativa á Filial. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+{\em month} & Mês. \\
+\hline
+{\em total} & Quantidade de produtos comprados\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura com a informação relativa á Filial. 
+\end{DoxyReturn}

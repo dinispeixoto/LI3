@@ -1,0 +1,26 @@
+digraph "src/headers/CatClients.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/headers/CatClients.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="src/headers/Sales.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Sales_8h.html",tooltip="Protótipos das Vendas. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="src/headers/facturacao.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$facturacao_8h.html",tooltip="Protótipos das funções que trabalham com a facturacao. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="src/headers/interpretador.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$interpretador_8h.html",tooltip="Protótipos das funções que trabalham com o Interpretador. "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="src/headers/readFiles.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$readFiles_8h.html",tooltip="Protótipos das Funções resposáveis por tratar dos ficheiros. "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="src/headers/queries.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$queries_8h.html",tooltip="Protótipos das funções que trabalham com as Queries. "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="src/headers/filial.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$filial_8h.html",tooltip="Protótipos das funções que trabalham com a Filial. "];
+  Node7 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

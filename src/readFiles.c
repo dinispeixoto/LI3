@@ -38,16 +38,16 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 	
 	
 	if(fileClients!=NULL){
-		begin_clients = clock();
+		time(&begin_clients);
 		invalidatedClients = valCli(fileClients,clients,&validatedClients);
 		for(i=0;i<3;i++)
 			f[i] = copyCPO(f[i],clients);
-		end_clients = clock();
-		time_elapsed_clients = (double) (end_clients - begin_clients) / CLOCKS_PER_SEC;
+		time(&end_clients);
+		time_elapsed_clients = difftime(end_clients,begin_clients);
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		CLIENTES 		|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",clientsFile);
+		printf("	| Nome do ficheiro: %18s	|\n",clientsFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedClients+invalidatedClients);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedClients);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedClients);
@@ -59,17 +59,17 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 
 
 	if(fileProducts!=NULL){
-		begin_products = clock();
+		time(&begin_products);
 		invalidatedProducts = valProd(fileProducts,products,&validatedProducts);
 		fact = copyProducts(fact,products);
 		for(i=0;i<3;i++)
 			f[i] = copyP(f[i],products);
-		end_products = clock();
-		time_elapsed_products = (double) (end_products - begin_products) / CLOCKS_PER_SEC;
+		time(&end_products);
+		time_elapsed_products = difftime(end_products,begin_products);
 		
 		printf("	 _______________________________________\n");
 		printf("	| 		PRODUTOS 		|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",productsFile);
+		printf("	| Nome do ficheiro: %18s	|\n",productsFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedProducts+invalidatedProducts);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedProducts);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedProducts);
@@ -80,15 +80,15 @@ int getFile(CATALOG_CLIENTS clients, CATALOG_PRODUCTS products,FILIAL* f,FACTURA
 
 	
 	if(fileSales!=NULL){
-		begin_sales = clock();
+		time(&begin_sales);
 		invalidatedSales = valSales(fileSales,clients,products,f,fact,&validatedSales);
-		end_sales = clock();
-		time_elapsed_sales = (double) (end_sales - begin_sales) / CLOCKS_PER_SEC;
+		time(&end_sales); 
+		time_elapsed_sales = difftime(end_sales,begin_sales);
 
 
 		printf("	 _______________________________________\n");
 		printf("	| 		VENDAS 			|\n");
-		printf("	| Nome do ficheiro: %15s.	|\n",salesFile);
+		printf("	| Nome do ficheiro: %18s	|\n",salesFile);
 		printf("	| Foram lidas %7d linhas.		|\n",validatedSales+invalidatedSales);
 		printf("	| Foram validadas %7d linhas.	|\n",validatedSales);
 		printf("	| Não foram validadas %7d linhas.	|\n",invalidatedSales);
@@ -119,7 +119,7 @@ static int valCli(FILE *file, CATALOG_CLIENTS Catalog ,int *validated){
 		}
 		else invalidated++;
 	}
-	freeClient(line);
+		
 	return invalidated;
 }
 
@@ -138,7 +138,7 @@ static int valProd(FILE *file, CATALOG_PRODUCTS Catalog ,int *validated){
 		}
 		else invalidated++;
 	}
-	freeProduct(line);
+		
 	return invalidated;
 }
 
@@ -183,17 +183,10 @@ static int valSales(FILE *file,CATALOG_CLIENTS clients,CATALOG_PRODUCTS products
 }
 
 void freeMemory(CATALOG_CLIENTS CatClients,CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais,FACTURACAO fact){
-	/* LIMPAR MEMÓRIA */
 	int i;
-	if(CatClients && CatProducts /*&& arrayFiliais && fact*/){
-		removeCatClients(CatClients);
-		removeCatProds(CatProducts);
-		freeFact(fact);
-		for(i=0;i<3;i++)
-			freeFilial(arrayFiliais[i]);
-	}
-	else{
-		printf("A MEMÓRIA JÁ ESTÁ VAZIA\n");
-	}
-		
+	removeCatClients(CatClients);
+	removeCatProds(CatProducts);
+	freeFact(fact);
+	for(i=0;i<3;i++)
+		freeFilial(arrayFiliais[i]);	
 } 

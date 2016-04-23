@@ -1,0 +1,355 @@
+\hypertarget{queries_8h}{\section{src/headers/queries.h File Reference}
+\label{queries_8h}\index{src/headers/queries.\+h@{src/headers/queries.\+h}}
+}
+
+
+Protótipos das funções que trabalham com as Queries.  
+
+
+{\ttfamily \#include \char`\"{}facturacao.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}filial.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}heap.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lista\+Strings.\+h\char`\"{}}\\*
+Include dependency graph for queries.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{queries_8h_a812fd54dedce019cd179e894ad904f37}{S\+I\+Z\+E\+\_\+\+A\+B\+C}~26
+\begin{DoxyCompactList}\small\item\em Tamanho do Abecedário. \end{DoxyCompactList}\item 
+\#define \hyperlink{queries_8h_a759225c6c5a74b53c8a8b031ce348991}{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}~12
+\begin{DoxyCompactList}\small\item\em Número de mêses. \end{DoxyCompactList}\item 
+\#define \hyperlink{queries_8h_a727abfada19fbc91074056041c6ea8f6}{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}~3
+\begin{DoxyCompactList}\small\item\em Número de Filiais. \end{DoxyCompactList}\item 
+\#define \hyperlink{queries_8h_ab1a90521ff8192efe9e96194bd709f3b}{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}~6
+\begin{DoxyCompactList}\small\item\em Tamanho do Produto. \end{DoxyCompactList}\item 
+\#define \hyperlink{queries_8h_a4bbfeb53290e00c1b520948d1f492997}{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T}~5
+\begin{DoxyCompactList}\small\item\em Tamanho do Cliente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a92b4dc5ca9c08dbe3418fa7b024f155c}{querie2} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog, char letter)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 2. Retorna todos os produtos que se iniciam com uma dada letra. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{queries_8h_aff62fe70b57a1eeb7728d3bbf1c60b5e}{querie3} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, int mes, char $\ast$product, int promo)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 3. Retorna a informação relativa a um determinado produto num determinado mês, em modo normal e promoção. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a4e71789ad8545c59c9a9ab9e3caa2bbb}{querie4} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, int filial)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 4. Retorna os Produtos que ninguem comprou nas várias Filiais. \end{DoxyCompactList}\item 
+\hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} \hyperlink{queries_8h_a55fdbe6f7cc94d04cbeaf6b2895d88e6}{querie5} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, \hyperlink{filial_8h_a6237adb3e8c18460dbfbc6eacf1b3f9c}{D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} df, char $\ast$client, int filial)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 5. Retorna a informação relativa à quantidade total comprada nos vários meses, dado um Cliente. \end{DoxyCompactList}\item 
+\hyperlink{facturacao_8h_a00f163b4e21f8b623e0b009da83d68c8}{D\+A\+D\+O\+S} \hyperlink{queries_8h_aac54b6d109f50d7e9f0dce58ea5a438d}{querie6} (\hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} f, int inicio, int fim)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 6. Retorna a informação relativa ao total de vendas registadas e o total facturado durante um intervalo de meses. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_aa65753a77b3143316e841e9cd48e8324}{querie7} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 7. Retorna todos os Clientes que realizaram compras em todas as Filiais. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a3ed52fab4b08c568fe0f820957f4cbb6}{querie8} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, char $\ast$product, \hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} $\ast$P)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 8. Retorna todos os Clientes(e o seu número total) que compraram um determinado produto num determinada Filial, em promoção e em venda normal. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a49a6605d24e0b34bd3ced62a3f6ebb72}{querie9} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f, char $\ast$client, int month)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 9. Retorna os Produtos mais comprados por ordem decrescente dado um determinado Cliente e um Mês. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a449d83dfb2fa19a5eb512f68e7d50867}{querie10} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} f, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} fact, int N, int filial, int $\ast$$\ast$dados)
+\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{queries_8h_a416cfefe39517802e1f84346ae584537}{querie11} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f, char $\ast$client)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 11. Retorna os 3 Produtos em que um dado Cliente mais dinheiro gastou durante todo o ano. \end{DoxyCompactList}\item 
+int \hyperlink{queries_8h_a51741c987193b955b29ba2c281dddc17}{querie12} (\hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} fact, int $\ast$sum\+Client)
+\begin{DoxyCompactList}\small\item\em Implementa a Querie 12. Retorna o número de Clientes que não realizaram compras bem como o número de Produtos que ninguém comprou. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com as Queries. 
+
+O ficheiro contem os protótipos das funçoes que implemetam as Queries, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{queries_8h_a812fd54dedce019cd179e894ad904f37}{\index{queries.\+h@{queries.\+h}!S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}}
+\index{S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}!queries.\+h@{queries.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+A\+B\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+A\+B\+C~26}}\label{queries_8h_a812fd54dedce019cd179e894ad904f37}
+
+
+Tamanho do Abecedário. 
+
+\hypertarget{queries_8h_a4bbfeb53290e00c1b520948d1f492997}{\index{queries.\+h@{queries.\+h}!S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T}}
+\index{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T@{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T}!queries.\+h@{queries.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+C\+L\+I\+E\+N\+T~5}}\label{queries_8h_a4bbfeb53290e00c1b520948d1f492997}
+
+
+Tamanho do Cliente. 
+
+\hypertarget{queries_8h_a727abfada19fbc91074056041c6ea8f6}{\index{queries.\+h@{queries.\+h}!S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}}
+\index{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S@{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}!queries.\+h@{queries.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+F\+I\+L\+I\+A\+I\+S~3}}\label{queries_8h_a727abfada19fbc91074056041c6ea8f6}
+
+
+Número de Filiais. 
+
+\hypertarget{queries_8h_a759225c6c5a74b53c8a8b031ce348991}{\index{queries.\+h@{queries.\+h}!S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}}
+\index{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H@{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}!queries.\+h@{queries.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+M\+O\+N\+T\+H~12}}\label{queries_8h_a759225c6c5a74b53c8a8b031ce348991}
+
+
+Número de mêses. 
+
+\hypertarget{queries_8h_ab1a90521ff8192efe9e96194bd709f3b}{\index{queries.\+h@{queries.\+h}!S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}}
+\index{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}!queries.\+h@{queries.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T~6}}\label{queries_8h_ab1a90521ff8192efe9e96194bd709f3b}
+
+
+Tamanho do Produto. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{queries_8h_a449d83dfb2fa19a5eb512f68e7d50867}{\index{queries.\+h@{queries.\+h}!querie10@{querie10}}
+\index{querie10@{querie10}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie10}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie10 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{fact, }
+\item[{int}]{N, }
+\item[{int}]{filial, }
+\item[{int $\ast$$\ast$}]{dados}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a449d83dfb2fa19a5eb512f68e7d50867}
+\hypertarget{queries_8h_a416cfefe39517802e1f84346ae584537}{\index{queries.\+h@{queries.\+h}!querie11@{querie11}}
+\index{querie11@{querie11}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie11}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie11 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f, }
+\item[{char $\ast$}]{client}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a416cfefe39517802e1f84346ae584537}
+
+
+Implementa a Querie 11. Retorna os 3 Produtos em que um dado Cliente mais dinheiro gastou durante todo o ano. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em client} & Cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os Produtos. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a51741c987193b955b29ba2c281dddc17}{\index{queries.\+h@{queries.\+h}!querie12@{querie12}}
+\index{querie12@{querie12}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie12}]{\setlength{\rightskip}{0pt plus 5cm}int querie12 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{fact, }
+\item[{int $\ast$}]{sum\+Client}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a51741c987193b955b29ba2c281dddc17}
+
+
+Implementa a Querie 12. Retorna o número de Clientes que não realizaram compras bem como o número de Produtos que ninguém comprou. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em fact} & Facturação. \\
+\hline
+{\em sum\+Client} & Somatório dos Clientes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Somatório dos Produtos. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a92b4dc5ca9c08dbe3418fa7b024f155c}{\index{queries.\+h@{queries.\+h}!querie2@{querie2}}
+\index{querie2@{querie2}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie2 (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog, }
+\item[{char}]{letter}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a92b4dc5ca9c08dbe3418fa7b024f155c}
+
+
+Implementa a Querie 2. Retorna todos os produtos que se iniciam com uma dada letra. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catálogo de Produtos. \\
+\hline
+{\em letter} & Letra. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os Produtos. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_aff62fe70b57a1eeb7728d3bbf1c60b5e}{\index{queries.\+h@{queries.\+h}!querie3@{querie3}}
+\index{querie3@{querie3}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie3}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} querie3 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{int}]{mes, }
+\item[{char $\ast$}]{product, }
+\item[{int}]{promo}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_aff62fe70b57a1eeb7728d3bbf1c60b5e}
+
+
+Implementa a Querie 3. Retorna a informação relativa a um determinado produto num determinado mês, em modo normal e promoção. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em mes} & Mês. \\
+\hline
+{\em product} & Produto. \\
+\hline
+{\em promo} & Informação relativa á compra(normal ou promoção). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Estrutura de dados sobre um Produto. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a4e71789ad8545c59c9a9ab9e3caa2bbb}{\index{queries.\+h@{queries.\+h}!querie4@{querie4}}
+\index{querie4@{querie4}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie4}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie4 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{int}]{filial}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a4e71789ad8545c59c9a9ab9e3caa2bbb}
+
+
+Implementa a Querie 4. Retorna os Produtos que ninguem comprou nas várias Filiais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os Produtos. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a55fdbe6f7cc94d04cbeaf6b2895d88e6}{\index{queries.\+h@{queries.\+h}!querie5@{querie5}}
+\index{querie5@{querie5}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie5}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L} querie5 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{{\bf D\+A\+D\+O\+S\+\_\+\+F\+I\+L\+I\+A\+L}}]{df, }
+\item[{char $\ast$}]{client, }
+\item[{int}]{filial}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a55fdbe6f7cc94d04cbeaf6b2895d88e6}
+
+
+Implementa a Querie 5. Retorna a informação relativa à quantidade total comprada nos vários meses, dado um Cliente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em df} & Dados relativos ás Filiais. \\
+\hline
+{\em client} & Cliente. \\
+\hline
+{\em filial} & Filial. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dados relativos ás Filiais. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_aac54b6d109f50d7e9f0dce58ea5a438d}{\index{queries.\+h@{queries.\+h}!querie6@{querie6}}
+\index{querie6@{querie6}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie6}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+D\+O\+S} querie6 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{f, }
+\item[{int}]{inicio, }
+\item[{int}]{fim}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_aac54b6d109f50d7e9f0dce58ea5a438d}
+
+
+Implementa a Querie 6. Retorna a informação relativa ao total de vendas registadas e o total facturado durante um intervalo de meses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+{\em inicio} & Mês inicial. \\
+\hline
+{\em fim} & Mês final. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dados relativos aos vários meses. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_aa65753a77b3143316e841e9cd48e8324}{\index{queries.\+h@{queries.\+h}!querie7@{querie7}}
+\index{querie7@{querie7}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie7}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie7 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_aa65753a77b3143316e841e9cd48e8324}
+
+
+Implementa a Querie 7. Retorna todos os Clientes que realizaram compras em todas as Filiais. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facturação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os vários Clientes. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a3ed52fab4b08c568fe0f820957f4cbb6}{\index{queries.\+h@{queries.\+h}!querie8@{querie8}}
+\index{querie8@{querie8}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie8 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L}}]{f, }
+\item[{char $\ast$}]{product, }
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} $\ast$}]{P}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a3ed52fab4b08c568fe0f820957f4cbb6}
+
+
+Implementa a Querie 8. Retorna todos os Clientes(e o seu número total) que compraram um determinado produto num determinada Filial, em promoção e em venda normal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em product} & Produto. \\
+\hline
+{\em P} & Lista de Strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os vários Clientes. 
+\end{DoxyReturn}
+\hypertarget{queries_8h_a49a6605d24e0b34bd3ced62a3f6ebb72}{\index{queries.\+h@{queries.\+h}!querie9@{querie9}}
+\index{querie9@{querie9}!queries.\+h@{queries.\+h}}
+\subsubsection[{querie9}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} querie9 (
+\begin{DoxyParamCaption}
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f, }
+\item[{char $\ast$}]{client, }
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{queries_8h_a49a6605d24e0b34bd3ced62a3f6ebb72}
+
+
+Implementa a Querie 9. Retorna os Produtos mais comprados por ordem decrescente dado um determinado Cliente e um Mês. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Filial. \\
+\hline
+{\em client} & Cliente. \\
+\hline
+{\em month} & Mês. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings com os vários Produtos. 
+\end{DoxyReturn}

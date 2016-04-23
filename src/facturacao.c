@@ -19,7 +19,6 @@ struct totalMes{
 struct info{
 	PRICE_QUANTITY N[SIZE_MONTH][SIZE_FILIAIS];
 	PRICE_QUANTITY P[SIZE_MONTH][SIZE_FILIAIS];
-	int num;
 };
 
 struct dados{
@@ -108,9 +107,8 @@ FACTURACAO insereFact(FACTURACAO f,SALES s){
 	Avl nodo=getAvl(f->prod[index]);
 	void* x = (INFO)findInfo(nodo,prod,NULL);
 	
-	if(x){
+	if(x)
 		x = copyInfoFact(s,x,f);
-	}
 	else {
 		INFO i = initINFO();
 		i = copyInfoFact(s,i,f);
@@ -166,12 +164,7 @@ DADOS setTotalQuantity(DADOS d,int index,int total){
 }
 
 Avl getProductIndex(FACTURACAO f,int index){
-	
 	return getAvl(f->prod[index]);
-}
-
-int getNum (INFO i){
-	return i->num;
 }
 
 PRICE_QUANTITY getNormalPQ(INFO i,int month,int filial){
@@ -248,7 +241,6 @@ static INFO initINFO(){
 			i->P[j][k] = initPQ();
 		}
 	}
-	i->num=0;
 	return i;
 }
 
@@ -271,7 +263,6 @@ static INFO copyInfoFact(SALES s, INFO i,FACTURACAO f){
 
 	f->total_mes[month]->totalFacturado+=total;
 	f->total_mes[month]->totalQuant+=quantity;
-	f->total_mes[month]->totalVendas++;
-	i->num++; 
+	f->total_mes[month]->totalVendas++; 
 	return i;
 }

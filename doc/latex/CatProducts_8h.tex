@@ -1,0 +1,351 @@
+\hypertarget{CatProducts_8h}{\section{src/headers/\+Cat\+Products.h File Reference}
+\label{CatProducts_8h}\index{src/headers/\+Cat\+Products.\+h@{src/headers/\+Cat\+Products.\+h}}
+}
+
+
+Protótipos do Catálogo dos Produtos.  
+
+
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}avl.\+h\char`\"{}}\\*
+Include dependency graph for Cat\+Products.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{CatProducts_8h_a07f9c5f473c5df2aeca175ce3a7b14de}{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}~7
+\begin{DoxyCompactList}\small\item\em Tamanho do Código de um Produto. \end{DoxyCompactList}\item 
+\#define \hyperlink{CatProducts_8h_af03c5740082cadc5244e85c992e3b341}{L\+E\+T\+R\+A\+S\+\_\+\+P}~2
+\begin{DoxyCompactList}\small\item\em Número de letras de um Produto. \end{DoxyCompactList}\item 
+\#define \hyperlink{CatProducts_8h_a812fd54dedce019cd179e894ad904f37}{S\+I\+Z\+E\+\_\+\+A\+B\+C}~26
+\begin{DoxyCompactList}\small\item\em Tamanho do Abecedário. \end{DoxyCompactList}\item 
+\#define \hyperlink{CatProducts_8h_a4dea39042071768c1e115b0ebbfc52f2}{S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R}~64
+\begin{DoxyCompactList}\small\item\em Tamanho do Buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct product $\ast$ \hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo P\+R\+O\+D\+U\+C\+T, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct catp $\ast$ \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S, um tipo abstrato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} \hyperlink{CatProducts_8h_a927406fbf8e014dee9590382611e3417}{init\+Products} ()
+\begin{DoxyCompactList}\small\item\em Inicia o Catálogo dos Produtos, alocando espaço para o mesmo. \end{DoxyCompactList}\item 
+\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} \hyperlink{CatProducts_8h_a60c613cf7a146384732e9ee5b468b2b7}{init\+Prod} ()
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura do Produto, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} \hyperlink{CatProducts_8h_a4240ba16e9e8e034c120afaa0521763b}{insert\+Product} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog, \hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod)
+\begin{DoxyCompactList}\small\item\em Insere um Produto no respetivo Catálogo. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{CatProducts_8h_a7a82da3ca5ad09834cd81af7e11e1cc4}{test\+Product} (\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod)
+\begin{DoxyCompactList}\small\item\em Testa se um Produto tem uma estrutura correta. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a050c65e107f0c828f856a231f4b4e788}{B\+O\+O\+L} \hyperlink{CatProducts_8h_a256595d38aa3a10d84acc1a8ece3714f}{exist\+Product} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog, \hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod)
+\begin{DoxyCompactList}\small\item\em Verifica se um determinado Produto existe num Catálogo de Produtos. \end{DoxyCompactList}\item 
+void \hyperlink{CatProducts_8h_a214926a1a825477b09976beb7897a2ef}{free\+Product} (\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod)
+\begin{DoxyCompactList}\small\item\em Remove um Produto, libertando o espaço ocupado por este. \end{DoxyCompactList}\item 
+void \hyperlink{CatProducts_8h_aaf58c4a00a734953469ba7b3fd4b49c5}{remove\+Cat\+Prods} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog)
+\begin{DoxyCompactList}\small\item\em Limpa o Catálogo de Produtos, removendo as várias M\+Y\+\_\+\+A\+V\+L's. \end{DoxyCompactList}\item 
+int \hyperlink{CatProducts_8h_ab70ef64cf9a2b56ce50b4b33fafad30b}{total\+Products\+Letter} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog, char Letra)
+\begin{DoxyCompactList}\small\item\em Calcula quantos Produtos, começados por uma determinada letra, existem num Catálogo de Produtos. \end{DoxyCompactList}\item 
+int \hyperlink{CatProducts_8h_a8eb62d98eaa32e9811de5233ff684f87}{total\+Products} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Catalog)
+\begin{DoxyCompactList}\small\item\em Calcula quantos Produtos existem num Catálogo de Produtos. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{CatProducts_8h_abb88de00ecf1a1bcf63c17ec9adb602c}{get\+Product} (\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod)
+\begin{DoxyCompactList}\small\item\em Retorna a String de um Produto. \end{DoxyCompactList}\item 
+\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} \hyperlink{CatProducts_8h_acca7c6e5015cb1d978d7bee4d1b60c3d}{set\+Product} (\hyperlink{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{P\+R\+O\+D\+U\+C\+T} prod, char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Cria um Produto a partir de uma String. \end{DoxyCompactList}\item 
+\hyperlink{avl_8h_a56c24c5694d0a34492f4aa3acb474dd8}{M\+Y\+\_\+\+A\+V\+L} \hyperlink{CatProducts_8h_ad714a6752f6c1287022c8e52fcb5afaa}{get\+P} (\hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} c, int i)
+\begin{DoxyCompactList}\small\item\em Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado índice do Catálogo de Produtos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos do Catálogo dos Produtos. 
+
+O ficheiro contem os protótipos das funçoes que implemetam o Catálogo dos Produtos, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{CatProducts_8h_af03c5740082cadc5244e85c992e3b341}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!L\+E\+T\+R\+A\+S\+\_\+\+P@{L\+E\+T\+R\+A\+S\+\_\+\+P}}
+\index{L\+E\+T\+R\+A\+S\+\_\+\+P@{L\+E\+T\+R\+A\+S\+\_\+\+P}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{L\+E\+T\+R\+A\+S\+\_\+\+P}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+E\+T\+R\+A\+S\+\_\+\+P~2}}\label{CatProducts_8h_af03c5740082cadc5244e85c992e3b341}
+
+
+Número de letras de um Produto. 
+
+\hypertarget{CatProducts_8h_a812fd54dedce019cd179e894ad904f37}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}}
+\index{S\+I\+Z\+E\+\_\+\+A\+B\+C@{S\+I\+Z\+E\+\_\+\+A\+B\+C}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+A\+B\+C}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+A\+B\+C~26}}\label{CatProducts_8h_a812fd54dedce019cd179e894ad904f37}
+
+
+Tamanho do Abecedário. 
+
+\hypertarget{CatProducts_8h_a4dea39042071768c1e115b0ebbfc52f2}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R@{S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R}}
+\index{S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R@{S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+B\+U\+F\+F\+E\+R~64}}\label{CatProducts_8h_a4dea39042071768c1e115b0ebbfc52f2}
+
+
+Tamanho do Buffer. 
+
+\hypertarget{CatProducts_8h_a07f9c5f473c5df2aeca175ce3a7b14de}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}
+\index{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S@{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S~7}}\label{CatProducts_8h_a07f9c5f473c5df2aeca175ce3a7b14de}
+
+
+Tamanho do Código de um Produto. 
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S@{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}
+\index{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S@{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct catp$\ast$ {\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}}\label{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}
+
+
+Declaração do tipo C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S, um tipo abstrato. 
+
+\hypertarget{CatProducts_8h_ae62a7054803c3a2b176046151393d452}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!P\+R\+O\+D\+U\+C\+T@{P\+R\+O\+D\+U\+C\+T}}
+\index{P\+R\+O\+D\+U\+C\+T@{P\+R\+O\+D\+U\+C\+T}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{P\+R\+O\+D\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct product$\ast$ {\bf P\+R\+O\+D\+U\+C\+T}}}\label{CatProducts_8h_ae62a7054803c3a2b176046151393d452}
+
+
+Declaração do tipo P\+R\+O\+D\+U\+C\+T, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{CatProducts_8h_a256595d38aa3a10d84acc1a8ece3714f}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!exist\+Product@{exist\+Product}}
+\index{exist\+Product@{exist\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{exist\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} exist\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog, }
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a256595d38aa3a10d84acc1a8ece3714f}
+
+
+Verifica se um determinado Produto existe num Catálogo de Produtos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Produtos. \\
+\hline
+{\em prod} & Produto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a214926a1a825477b09976beb7897a2ef}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!free\+Product@{free\+Product}}
+\index{free\+Product@{free\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{free\+Product}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a214926a1a825477b09976beb7897a2ef}
+
+
+Remove um Produto, libertando o espaço ocupado por este. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prod} & Produto a ser removido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_ad714a6752f6c1287022c8e52fcb5afaa}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!get\+P@{get\+P}}
+\index{get\+P@{get\+P}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{get\+P}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+Y\+\_\+\+A\+V\+L} get\+P (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{c, }
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_ad714a6752f6c1287022c8e52fcb5afaa}
+
+
+Retorna a M\+Y\+\_\+\+A\+V\+L presente num determinado índice do Catálogo de Produtos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Catálogo de Produtos. \\
+\hline
+{\em i} & Índice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+M\+Y\+\_\+\+A\+V\+L presente no Índice. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_abb88de00ecf1a1bcf63c17ec9adb602c}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!get\+Product@{get\+Product}}
+\index{get\+Product@{get\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{get\+Product}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_abb88de00ecf1a1bcf63c17ec9adb602c}
+
+
+Retorna a String de um Produto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prod} & Produto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String do Produto. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a60c613cf7a146384732e9ee5b468b2b7}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!init\+Prod@{init\+Prod}}
+\index{init\+Prod@{init\+Prod}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{init\+Prod}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+O\+D\+U\+C\+T} init\+Prod (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a60c613cf7a146384732e9ee5b468b2b7}
+
+
+Inicia a estrutura do Produto, alocando espaço para a mesma. 
+
+\begin{DoxyReturn}{Returns}
+Produto. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a927406fbf8e014dee9590382611e3417}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!init\+Products@{init\+Products}}
+\index{init\+Products@{init\+Products}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{init\+Products}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} init\+Products (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a927406fbf8e014dee9590382611e3417}
+
+
+Inicia o Catálogo dos Produtos, alocando espaço para o mesmo. 
+
+\begin{DoxyReturn}{Returns}
+Catálogo de Produtos. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a4240ba16e9e8e034c120afaa0521763b}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!insert\+Product@{insert\+Product}}
+\index{insert\+Product@{insert\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{insert\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} insert\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog, }
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a4240ba16e9e8e034c120afaa0521763b}
+
+
+Insere um Produto no respetivo Catálogo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Clientes. \\
+\hline
+{\em prod} & Cliente a inserir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Catálogo de Produtos que já contém o Produto. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_aaf58c4a00a734953469ba7b3fd4b49c5}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!remove\+Cat\+Prods@{remove\+Cat\+Prods}}
+\index{remove\+Cat\+Prods@{remove\+Cat\+Prods}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{remove\+Cat\+Prods}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+Cat\+Prods (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_aaf58c4a00a734953469ba7b3fd4b49c5}
+
+
+Limpa o Catálogo de Produtos, removendo as várias M\+Y\+\_\+\+A\+V\+L's. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Produtos a limpar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_acca7c6e5015cb1d978d7bee4d1b60c3d}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!set\+Product@{set\+Product}}
+\index{set\+Product@{set\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{set\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+O\+D\+U\+C\+T} set\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod, }
+\item[{char $\ast$}]{string}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_acca7c6e5015cb1d978d7bee4d1b60c3d}
+
+
+Cria um Produto a partir de uma String. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prod} & Produto. \\
+\hline
+{\em string} & String. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Produto. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a7a82da3ca5ad09834cd81af7e11e1cc4}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!test\+Product@{test\+Product}}
+\index{test\+Product@{test\+Product}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{test\+Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+O\+O\+L} test\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+R\+O\+D\+U\+C\+T}}]{prod}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a7a82da3ca5ad09834cd81af7e11e1cc4}
+
+
+Testa se um Produto tem uma estrutura correta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prod} & Produto. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+B\+O\+O\+L. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_a8eb62d98eaa32e9811de5233ff684f87}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!total\+Products@{total\+Products}}
+\index{total\+Products@{total\+Products}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{total\+Products}]{\setlength{\rightskip}{0pt plus 5cm}int total\+Products (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_a8eb62d98eaa32e9811de5233ff684f87}
+
+
+Calcula quantos Produtos existem num Catálogo de Produtos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catálogo de Produtos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total de Produtos no Catálogo. 
+\end{DoxyReturn}
+\hypertarget{CatProducts_8h_ab70ef64cf9a2b56ce50b4b33fafad30b}{\index{Cat\+Products.\+h@{Cat\+Products.\+h}!total\+Products\+Letter@{total\+Products\+Letter}}
+\index{total\+Products\+Letter@{total\+Products\+Letter}!Cat\+Products.\+h@{Cat\+Products.\+h}}
+\subsubsection[{total\+Products\+Letter}]{\setlength{\rightskip}{0pt plus 5cm}int total\+Products\+Letter (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Catalog, }
+\item[{char}]{Letra}
+\end{DoxyParamCaption}
+)}}\label{CatProducts_8h_ab70ef64cf9a2b56ce50b4b33fafad30b}
+
+
+Calcula quantos Produtos, começados por uma determinada letra, existem num Catálogo de Produtos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Catalog} & Catalogo de Produtos. \\
+\hline
+{\em letter} & Letra. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total de Produtos começados pela Letra. 
+\end{DoxyReturn}

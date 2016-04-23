@@ -1,0 +1,365 @@
+\hypertarget{listaStrings_8h}{\section{src/headers/lista\+Strings.h File Reference}
+\label{listaStrings_8h}\index{src/headers/lista\+Strings.\+h@{src/headers/lista\+Strings.\+h}}
+}
+
+
+Protótipos das funções que trabalham com a Lista de Strings.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for lista\+Strings.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct lista $\ast$ \hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct page $\ast$ \hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo P\+A\+G\+E, um tipo abstrato. \end{DoxyCompactList}\item 
+typedef struct string $\ast$ \hyperlink{listaStrings_8h_a9302c91a328419e92b8bcb9b9c8e266c}{S\+T\+R\+I\+N\+G}
+\begin{DoxyCompactList}\small\item\em Declaração do tipo S\+T\+R\+I\+N\+G, um tipo abstrato. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_a6aed2785ef837a36ecdac05b216ed4db}{init\+Lista\+Strings} (int size, int size\+Element)
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura Lista de Strings, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E} \hyperlink{listaStrings_8h_a402a1b6f6b4cd2950a169cf07907d03e}{init\+Page} (int page\+\_\+size, int size\+Element)
+\begin{DoxyCompactList}\small\item\em Inicia a estrutura Página, alocando espaço para a mesma. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E} \hyperlink{listaStrings_8h_a858ae944b1f67b38901b1ba86c54d7c4}{update\+Page} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista, int begin, int size\+Element, int page\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Cria uma página a partir de uma Lista de Strings, começando num determinado índice. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_a76ed369c2e8c2a8129d1a072684aa90f}{realloc\+Lista\+Strings} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
+\begin{DoxyCompactList}\small\item\em Realoca espaço na Lista de Strings caso esta tenha uma ocupação superior a 75\%. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_a7b2ca504524ae358884bc5a757a0c67c}{add\+Lista\+Strings} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls, int posicao, char $\ast$elem)
+\begin{DoxyCompactList}\small\item\em Adiciona uma String á Lista de Strings numa determinada posição. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} \hyperlink{listaStrings_8h_acb7684e279e09eac296eb17fd39678da}{remove\+Lista\+Strings} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} ls, char $\ast$elem)
+\begin{DoxyCompactList}\small\item\em Remove uma String da Lista de Strings. \end{DoxyCompactList}\item 
+int \hyperlink{listaStrings_8h_ae7aa239e2d331c23b59f5123daedb4ca}{get\+Lista\+Size} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho de uma Lista de Strings. \end{DoxyCompactList}\item 
+int \hyperlink{listaStrings_8h_ac465e82884103166cb704ab7fe3398a5}{get\+Lista\+Sp} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
+\begin{DoxyCompactList}\small\item\em Retorna o número de posições ocupadas na Lista de Strings. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{listaStrings_8h_a9bf42089f2639da84dfb9fe854dd024d}{get\+Lista\+String} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a String presente numa dada posição da Lista de Strings. \end{DoxyCompactList}\item 
+void \hyperlink{listaStrings_8h_ad54c6fc5a21a8e20f592436332cb6aa4}{set\+Lista\+Size} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista, int size)
+\begin{DoxyCompactList}\small\item\em Altera o tamanho da Lista de Strings. \end{DoxyCompactList}\item 
+\hyperlink{listaStrings_8h_a9302c91a328419e92b8bcb9b9c8e266c}{S\+T\+R\+I\+N\+G} $\ast$ \hyperlink{listaStrings_8h_a8394b7d8a3da18680ffe1ed1a2cbb21e}{get\+Lista\+Elements} (\hyperlink{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} lista)
+\begin{DoxyCompactList}\small\item\em Retorna o apontador para os elementos da Lista de Strings. \end{DoxyCompactList}\item 
+int \hyperlink{listaStrings_8h_a391aeb152d076c7876bc8d805277e936}{get\+Page\+Size} (\hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E} page)
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho de uma Página. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{listaStrings_8h_a3efa62323d61153ec9209c0c720bea6f}{get\+Page\+Element} (\hyperlink{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{P\+A\+G\+E} page, int index)
+\begin{DoxyCompactList}\small\item\em Retorna a String numa determinada posição da Página. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das funções que trabalham com a Lista de Strings. 
+
+O ficheiro contem os protótipos das funçoes que implemetam a Lista de Strings, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S@{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}
+\index{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S@{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct lista$\ast$ {\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}}\label{listaStrings_8h_a52b112fee5797667faa73ddf836a6f07}
+
+
+Declaração do tipo L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S, um tipo abstrato. 
+
+\hypertarget{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!P\+A\+G\+E@{P\+A\+G\+E}}
+\index{P\+A\+G\+E@{P\+A\+G\+E}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{P\+A\+G\+E}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct page$\ast$ {\bf P\+A\+G\+E}}}\label{listaStrings_8h_a9321bbb3be3dc5fe9de588ce0b20eea4}
+
+
+Declaração do tipo P\+A\+G\+E, um tipo abstrato. 
+
+\hypertarget{listaStrings_8h_a9302c91a328419e92b8bcb9b9c8e266c}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!S\+T\+R\+I\+N\+G@{S\+T\+R\+I\+N\+G}}
+\index{S\+T\+R\+I\+N\+G@{S\+T\+R\+I\+N\+G}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{S\+T\+R\+I\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct string$\ast$ {\bf S\+T\+R\+I\+N\+G}}}\label{listaStrings_8h_a9302c91a328419e92b8bcb9b9c8e266c}
+
+
+Declaração do tipo S\+T\+R\+I\+N\+G, um tipo abstrato. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{listaStrings_8h_a7b2ca504524ae358884bc5a757a0c67c}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!add\+Lista\+Strings@{add\+Lista\+Strings}}
+\index{add\+Lista\+Strings@{add\+Lista\+Strings}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{add\+Lista\+Strings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} add\+Lista\+Strings (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{ls, }
+\item[{int}]{posicao, }
+\item[{char $\ast$}]{elem}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a7b2ca504524ae358884bc5a757a0c67c}
+
+
+Adiciona uma String á Lista de Strings numa determinada posição. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ls} & Lista de Strings. \\
+\hline
+{\em posicao} & Posição. \\
+\hline
+{\em elem} & String. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a8394b7d8a3da18680ffe1ed1a2cbb21e}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Lista\+Elements@{get\+Lista\+Elements}}
+\index{get\+Lista\+Elements@{get\+Lista\+Elements}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Lista\+Elements}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+T\+R\+I\+N\+G}$\ast$ get\+Lista\+Elements (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a8394b7d8a3da18680ffe1ed1a2cbb21e}
+
+
+Retorna o apontador para os elementos da Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Apontador para a Lista. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_ae7aa239e2d331c23b59f5123daedb4ca}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Lista\+Size@{get\+Lista\+Size}}
+\index{get\+Lista\+Size@{get\+Lista\+Size}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Lista\+Size}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Lista\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_ae7aa239e2d331c23b59f5123daedb4ca}
+
+
+Retorna o tamanho de uma Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tamanho da Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_ac465e82884103166cb704ab7fe3398a5}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Lista\+Sp@{get\+Lista\+Sp}}
+\index{get\+Lista\+Sp@{get\+Lista\+Sp}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Lista\+Sp}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Lista\+Sp (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_ac465e82884103166cb704ab7fe3398a5}
+
+
+Retorna o número de posições ocupadas na Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Posições ocupadas da Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a9bf42089f2639da84dfb9fe854dd024d}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Lista\+String@{get\+Lista\+String}}
+\index{get\+Lista\+String@{get\+Lista\+String}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Lista\+String}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Lista\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a9bf42089f2639da84dfb9fe854dd024d}
+
+
+Retorna a String presente numa dada posição da Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+{\em index} & Posição. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String que se encontra na posição. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a3efa62323d61153ec9209c0c720bea6f}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Page\+Element@{get\+Page\+Element}}
+\index{get\+Page\+Element@{get\+Page\+Element}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Page\+Element}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Page\+Element (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+A\+G\+E}}]{page, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a3efa62323d61153ec9209c0c720bea6f}
+
+
+Retorna a String numa determinada posição da Página. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & Página. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a391aeb152d076c7876bc8d805277e936}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!get\+Page\+Size@{get\+Page\+Size}}
+\index{get\+Page\+Size@{get\+Page\+Size}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{get\+Page\+Size}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Page\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+A\+G\+E}}]{page}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a391aeb152d076c7876bc8d805277e936}
+
+
+Retorna o tamanho de uma Página. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & Página. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tamanho da Página. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a6aed2785ef837a36ecdac05b216ed4db}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!init\+Lista\+Strings@{init\+Lista\+Strings}}
+\index{init\+Lista\+Strings@{init\+Lista\+Strings}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{init\+Lista\+Strings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} init\+Lista\+Strings (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{size\+Element}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a6aed2785ef837a36ecdac05b216ed4db}
+
+
+Inicia a estrutura Lista de Strings, alocando espaço para a mesma. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Tamanho da Lista. \\
+\hline
+{\em size\+Element} & Tamanho dos elementos da Lista(\+Clientes ou Produtos). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a402a1b6f6b4cd2950a169cf07907d03e}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!init\+Page@{init\+Page}}
+\index{init\+Page@{init\+Page}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{init\+Page}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+A\+G\+E} init\+Page (
+\begin{DoxyParamCaption}
+\item[{int}]{page\+\_\+size, }
+\item[{int}]{size\+Element}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a402a1b6f6b4cd2950a169cf07907d03e}
+
+
+Inicia a estrutura Página, alocando espaço para a mesma. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page\+\_\+size} & Tamanho da Página. \\
+\hline
+{\em size\+Element} & Tamanho dos elementos da Página(\+Clientes ou Produtos). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Página. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a76ed369c2e8c2a8129d1a072684aa90f}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!realloc\+Lista\+Strings@{realloc\+Lista\+Strings}}
+\index{realloc\+Lista\+Strings@{realloc\+Lista\+Strings}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{realloc\+Lista\+Strings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} realloc\+Lista\+Strings (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a76ed369c2e8c2a8129d1a072684aa90f}
+
+
+Realoca espaço na Lista de Strings caso esta tenha uma ocupação superior a 75\%. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_acb7684e279e09eac296eb17fd39678da}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!remove\+Lista\+Strings@{remove\+Lista\+Strings}}
+\index{remove\+Lista\+Strings@{remove\+Lista\+Strings}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{remove\+Lista\+Strings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S} remove\+Lista\+Strings (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{ls, }
+\item[{char $\ast$}]{elem}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_acb7684e279e09eac296eb17fd39678da}
+
+
+Remove uma String da Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ls} & Lista de Strings. \\
+\hline
+{\em elem} & String. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista de Strings. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_ad54c6fc5a21a8e20f592436332cb6aa4}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!set\+Lista\+Size@{set\+Lista\+Size}}
+\index{set\+Lista\+Size@{set\+Lista\+Size}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{set\+Lista\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void set\+Lista\+Size (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_ad54c6fc5a21a8e20f592436332cb6aa4}
+
+
+Altera o tamanho da Lista de Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+{\em size} & Tamanho. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{listaStrings_8h_a858ae944b1f67b38901b1ba86c54d7c4}{\index{lista\+Strings.\+h@{lista\+Strings.\+h}!update\+Page@{update\+Page}}
+\index{update\+Page@{update\+Page}!lista\+Strings.\+h@{lista\+Strings.\+h}}
+\subsubsection[{update\+Page}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+A\+G\+E} update\+Page (
+\begin{DoxyParamCaption}
+\item[{{\bf L\+I\+S\+T\+A\+\_\+\+S\+T\+R\+I\+N\+G\+S}}]{lista, }
+\item[{int}]{begin, }
+\item[{int}]{size\+Element, }
+\item[{int}]{page\+\_\+size}
+\end{DoxyParamCaption}
+)}}\label{listaStrings_8h_a858ae944b1f67b38901b1ba86c54d7c4}
+
+
+Cria uma página a partir de uma Lista de Strings, começando num determinado índice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lista} & Lista de Strings. \\
+\hline
+{\em begin} & Índice da String inicial. \\
+\hline
+{\em size\+Element} & Tamanho dos elementos da Página(\+Clientes ou Produtos). \\
+\hline
+{\em page\+\_\+size} & Tamanho da Página. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Página. 
+\end{DoxyReturn}

@@ -1,0 +1,103 @@
+\hypertarget{readFiles_8h}{\section{src/headers/read\+Files.h File Reference}
+\label{readFiles_8h}\index{src/headers/read\+Files.\+h@{src/headers/read\+Files.\+h}}
+}
+
+
+Protótipos das Funções resposáveis por tratar dos ficheiros.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Cat\+Clients.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Cat\+Products.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}facturacao.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}filial.\+h\char`\"{}}\\*
+Include dependency graph for read\+Files.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{readFiles_8h_a267fcac19f1832d28d2c49c594bbf391}{get\+File} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} clients, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} products, \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$f, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} fact, char $\ast$clients\+File, char $\ast$products\+File, char $\ast$sales\+File)
+\begin{DoxyCompactList}\small\item\em Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é validado em memória, na respectiva estrutura. \end{DoxyCompactList}\item 
+void \hyperlink{readFiles_8h_a9672a2741b3b18036ff9483bd07518e4}{free\+Memory} (\hyperlink{CatClients_8h_aede3b88bbcf4b490cf411fb72b13b970}{C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S} Cat\+Clients, \hyperlink{CatProducts_8h_a67ee501cce88b135cf1f2f187e114c73}{C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S} Cat\+Products, \hyperlink{filial_8h_a33b5527a812e12d7c5424317f33cb747}{F\+I\+L\+I\+A\+L} $\ast$array\+Filiais, \hyperlink{facturacao_8h_abcd022918df9ee4719abc1b4d25d21d7}{F\+A\+C\+T\+U\+R\+A\+C\+A\+O} fact)
+\begin{DoxyCompactList}\small\item\em Remove todas as estruturas, libertando a memória ocupada por todas ela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Protótipos das Funções resposáveis por tratar dos ficheiros. 
+
+O ficheiro contem os protótipos das funçoes que trabalham com os ficheiros de entrada, assim como a implementação das estruturas necessárias e macros.
+
+\begin{DoxyAuthor}{Author}
+Grupo 33 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{readFiles_8h_a9672a2741b3b18036ff9483bd07518e4}{\index{read\+Files.\+h@{read\+Files.\+h}!free\+Memory@{free\+Memory}}
+\index{free\+Memory@{free\+Memory}!read\+Files.\+h@{read\+Files.\+h}}
+\subsubsection[{free\+Memory}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Memory (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{Cat\+Clients, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{Cat\+Products, }
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{array\+Filiais, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{fact}
+\end{DoxyParamCaption}
+)}}\label{readFiles_8h_a9672a2741b3b18036ff9483bd07518e4}
+
+
+Remove todas as estruturas, libertando a memória ocupada por todas ela. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cat\+Clients} & Catálogo de Clients. \\
+\hline
+{\em Cat\+Products} & Catálogo de Produtos. \\
+\hline
+{\em array\+Filiais} & Filiais. \\
+\hline
+{\em fact} & Facturação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\hypertarget{readFiles_8h_a267fcac19f1832d28d2c49c594bbf391}{\index{read\+Files.\+h@{read\+Files.\+h}!get\+File@{get\+File}}
+\index{get\+File@{get\+File}!read\+Files.\+h@{read\+Files.\+h}}
+\subsubsection[{get\+File}]{\setlength{\rightskip}{0pt plus 5cm}int get\+File (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+C\+L\+I\+E\+N\+T\+S}}]{clients, }
+\item[{{\bf C\+A\+T\+A\+L\+O\+G\+\_\+\+P\+R\+O\+D\+U\+C\+T\+S}}]{products, }
+\item[{{\bf F\+I\+L\+I\+A\+L} $\ast$}]{f, }
+\item[{{\bf F\+A\+C\+T\+U\+R\+A\+C\+A\+O}}]{fact, }
+\item[{char $\ast$}]{clients\+File, }
+\item[{char $\ast$}]{products\+File, }
+\item[{char $\ast$}]{sales\+File}
+\end{DoxyParamCaption}
+)}}\label{readFiles_8h_a267fcac19f1832d28d2c49c594bbf391}
+
+
+Faz o cálculo do número de validações em cada um dos ficheiros, em simultâneo guarda o que é validado em memória, na respectiva estrutura. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clients} & Catálogo de Clientes. \\
+\hline
+{\em products} & Catálogo de Produtos. \\
+\hline
+{\em f} & Filiais. \\
+\hline
+{\em fact} & Facturação. \\
+\hline
+{\em clients\+File} & Ficheiro dos Clientes. \\
+\hline
+{\em products\+File} & Ficheiro dos Produtos. \\
+\hline
+{\em sales\+File} & Ficheiro das Vendas. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 caso consiga abrir todos os ficheiros, 0 caso contrário. 
+\end{DoxyReturn}

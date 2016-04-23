@@ -1,5 +1,6 @@
 #include "headers/filial.h"
 
+
 struct filial{
 	MY_AVL Clients[SIZE_ABC];
 	MY_AVL Products[SIZE_ABC];
@@ -12,7 +13,7 @@ struct infoMes{
 
 struct infoClient{
 	INFO_MES info_mes[SIZE_MONTH];
-	int Comprou;                           
+	int Comprou;                     
 };
 
 struct infoProduct{
@@ -21,25 +22,19 @@ struct infoProduct{
 };
 
 struct dadosFilial{
-	int quant[SIZE_FILIAIS][SIZE_MONTH];
+	int quant[SIZE_MONTH];
 };
 
-struct cena{
+struct productInfo{
 	int quant;
 	int registo;
 };
 
-CENA initCena(){
-	CENA c = malloc(sizeof(struct cena));
-	c->quant=0;
-	c->registo=0;
-	return c;
-}
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c){
 	int j;	
 	for(j=0;j<SIZE_ABC;j++)
-		f->Clients[j] = cloneMyAvl(getC(c,j));	
+		f->Clients[j] = cloneMyAvl(getC(c,j));
 	return f;
 }
 
@@ -48,6 +43,16 @@ FILIAL copyP(FILIAL f,CATALOG_PRODUCTS p){
 	for(j=0;j<SIZE_ABC;j++)
 		f->Products[j] = cloneMyAvl(getP(p,j));	
 	return f;
+}
+
+FILIAL initFilial(){
+	int i;
+	FILIAL filial = malloc(sizeof(struct filial));
+	for(i=0;i<SIZE_ABC;i++){
+		filial->Clients[i] = NULL;
+		filial->Products[i] = NULL;
+	}
+	return filial;
 }
 
 void freeFilial(FILIAL f){
@@ -69,6 +74,7 @@ void freeInfoClient(void* infoClient){
 	free(x);
 }
 
+
 void freeInfoMes(INFO_MES info){
 	int i;
 	if(info){
@@ -86,14 +92,11 @@ void freeInfoProduct(void* infoProduct){
 	}
 }
 
-FILIAL initFilial(){
-	int i;
-	FILIAL filial = malloc(sizeof(struct filial));
-	for(i=0;i<SIZE_ABC;i++){
-		filial->Clients[i] = NULL;
-		filial->Products[i] = NULL;
-	}
-	return filial;
+PRODUCT_INFO initProductInfo(){
+	PRODUCT_INFO pi = malloc(sizeof(struct productInfo));
+	pi->quant=0;
+	pi->registo=0;
+	return pi;
 }
 
 INFO_MES initInfoMes(){
@@ -127,24 +130,27 @@ INFO_PRODUCT initInfoProduct(){
 }
 
 DADOS_FILIAL initDadosFilial(){
-	int i,j;
+	int j;
 	DADOS_FILIAL df = malloc(sizeof(struct dadosFilial));
-	for(i=0;i<SIZE_FILIAIS;i++)
-		for(j=0;j<SIZE_MONTH;j++)
-			df->quant[i][j]=0;
+	for(j=0;j<SIZE_MONTH;j++)
+			df->quant[j]=0;
 
 	return df;
 }
 
-CENA updateCena (CENA c,SALES s){
-	c->quant+=getSalesQuantity(s);
-	c->registo++;
-	return c;
+PRODUCT_INFO updatePi(PRODUCT_INFO pi,SALES s){
+	pi->quant+=getSalesQuantity(s);
+	pi->registo++;
+	return pi;
+}
+
+PRODUCT_INFO updatePiQ(PRODUCT_INFO pi,SALES s){
+	pi->quant+=getSalesQuantity(s);
+	return pi;
 }
 
 FILIAL insertFilial(FILIAL f,SALES s){
-	int exist=0,aux=0;
-
+	int exist=0;
 	CLIENT client = getSalesClient(s);
 	char* cli = getClient(client);
 	PRODUCT product= getSalesProduct(s);
@@ -157,40 +163,41 @@ FILIAL insertFilial(FILIAL f,SALES s){
 	Avl nodoP=NULL;
 
 	INFO_CLIENT infoC = (INFO_CLIENT) findInfo(nodoC,cli,NULL);
-	
+
 	if(!infoC){
 		infoC = initInfoClient();
 		infoC = updateInfoC(infoC,s,&exist);
 		f->Clients[index_client] = insertMyAvl(f->Clients[index_client],cli,infoC,1);
 	}
 	else infoC = updateInfoC(infoC,s,&exist);
-	
+
 	nodoP=getAvl(f->Products[index_product]);
-	CENA infoCena;
+	PRODUCT_INFO pinfo;
 
 	if(!exist){
-			infoCena= (CENA) findInfo(nodoP,prod,NULL);
-			if(!infoCena){
-				infoCena = initCena();
-				infoCena = updateCena(infoCena,s);
-				f->Products[index_product] = insertMyAvl(f->Products[index_product],prod,infoCena,1);
+			pinfo= (PRODUCT_INFO) findInfo(nodoP,prod,NULL);
+			if(!pinfo){
+				pinfo = initProductInfo();
+				pinfo = updatePi(pinfo,s);
+				f->Products[index_product] = insertMyAvl(f->Products[index_product],prod,pinfo,1);
 			}
-			else infoCena = updateCena(infoCena,s);
+			else pinfo = updatePi(pinfo,s);
 		}
 	else {
 		if(nodoP){
-			infoCena = (CENA) findInfo(nodoP,prod,&aux);
-			infoCena = updateCena(infoCena,s);	
+			pinfo = (PRODUCT_INFO) findInfo(nodoP,prod,NULL);
+			pinfo = updatePiQ(pinfo,s);	
 		}
 	}
 
 	infoC->Comprou=1;
-
+	
 	if(nodoC)freeNodo(nodoC);
 	if(nodoP)freeNodo(nodoP);
 	free(cli);
 	free(prod);
 	return f;
+
 }
 
 INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s,int* exist){
@@ -213,10 +220,9 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s,int* exist){
 			infoP = updateInfoP(infoP,s);
 			a = insertMyAvl(a,prod,infoP,aux);
 		}
-		else {
-			infoP = updateInfoP(infoP,s);
-			*exist=1;
-		}
+		else {infoP = updateInfoP(infoP,s);
+			  *exist=1;
+			}
 	}
 	else{ 
 		infoC->info_mes[month-1]->Products[index_product]=initMyAvl();
@@ -225,7 +231,6 @@ INFO_CLIENT updateInfoC(INFO_CLIENT infoC, SALES s,int* exist){
 		infoC->info_mes[month-1]->Products[index_product]= insertMyAvl(infoC->info_mes[month-1]->Products[index_product],prod,infoP,1);
 	}
 	
-
 	infoC->info_mes[month-1]->quantity+=getSalesQuantity(s);
 	if(nodo)freeNodo(nodo);
 	free(prod);
@@ -247,28 +252,22 @@ INFO_PRODUCT updateInfoP(INFO_PRODUCT info, SALES s){
 	return info;
 }
 
-
-
 /*GET E SET*/
-int getDadosI(DADOS_FILIAL df,int i,int j){
-	return df->quant[i][j];
-}
 
 int getComp( INFO_CLIENT x){
 	return x->Comprou;
 }
 
 Avl getClientIndexF(FILIAL f,int index){
-	Avl nodo = getAvl(f->Clients[index]);
-	return nodo;
+	return getAvl(f->Clients[index]);
 }
 
-int getDadosFilialQuantity(DADOS_FILIAL df,int filial,int month){
-	return df->quant[filial-1][month-1];
+int getDadosFilialQuantity(DADOS_FILIAL df,int month){
+	return df->quant[month-1];
 }
 
-DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int filial,int month,int total){
-	df->quant[filial][month] += total;
+DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int month,int total){
+	df->quant[month] += total;
 	return df;
 }
 
@@ -292,14 +291,19 @@ double getInfoProductPrice(INFO_PRODUCT info,int index){
 	return info->price[index];
 }
 
-Avl getProd10(FILIAL f,int index){
+Avl getProdInfo(FILIAL f,int index){
 	return getAvl(f->Products[index]);
 }
 
-int getResg(CENA info){
+int getResg(PRODUCT_INFO info){
 	return info->registo;
 } 
 
-int	getCenaQuant(CENA info){
+int	getPiQuant(PRODUCT_INFO info){
 	return info->quant;
 }
+
+
+
+
+
