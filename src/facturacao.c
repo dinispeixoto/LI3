@@ -145,6 +145,10 @@ int getDadosTV(DADOS d){
 	return d->totalVendas;
 }
 
+int getDadosTQ(DADOS d){
+	return d->totalMQ;
+}
+
 Avl getProductIndex(FACTURACAO f,int index){
 	return getAvl(f->prod[index]);
 }

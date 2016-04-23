@@ -141,6 +141,15 @@ int getDadosTV(DADOS d);
 
 double getTotalMP(DADOS d);
 
+/** @brief Retorna a quantidade total .
+ *
+ *  @param d Estrutura com informação geral.
+ *
+ *  @return Qunatidade total.
+ */
+
+int getDadosTQ(DADOS d);
+
 /** @brief Retorna a quantidade total de produtos vendidos.
  *
  *  @param d Estrutura com informação geral.

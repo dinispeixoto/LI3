@@ -788,7 +788,9 @@ static void printDATA(DADOS data,int begin,int end){
 
 	printf("	No intervalo de meses (%d-%d):\n\n",begin,end);
 	printf("	Foi facturado: %f.\n",getDadosTP(data));
+	printf("	Foi vendido: %d\n",getDadosTQ(data));
 	printf("	Foram registadas %d vendas.\n",getDadosTV(data));
+
 }
 
 
