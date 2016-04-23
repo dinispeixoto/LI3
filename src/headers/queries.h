@@ -115,6 +115,13 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P);
 
 LISTA_STRINGS querie9(FILIAL* f,char* client,int month);
 
+/** @brief Implementa a Querie 10. Retorna os Produtos mais comprados por ordem decrescente.
+ *
+ *  @param f Filial.
+ *  @param N Número de Produtos.
+ *  @param dados Estrutura Dados.
+ *  @return Lista de Strings com os vários Produtos.
+ */
 
 LISTA_STRINGS querie10(FILIAL f, int N,int** dados);
 

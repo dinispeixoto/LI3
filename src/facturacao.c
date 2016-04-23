@@ -167,83 +167,7 @@ DADOS updateTotalVendas(DADOS d, int total){
 	return d;
 }
 
-/*12*/
-int querie12Products(FACTURACAO f){
-	int i,sum=0,r;
 
-	for(i=0;i<SIZE_ABC;i++){
-		r=infoNULL(getAvl(f->prod[i]));			
-		sum+=r;
-	}
-	return sum;
-}
-
-/*6*/
-DADOS totalM(FACTURACAO f,DADOS d,int inicio, int fim){
-	int i;
-	for(i=(inicio-1);i<fim;i++){
-		d->totalMP += f->total_mes[i]->totalFacturado;
-		d->totalVendas += f->total_mes[i]->totalVendas;
-		d->totalMQ += f->total_mes[i]->totalQuant;
-	}
-	return d;
-}
-
-static int checkInfo(INFO i, int filial){
-	int j;
-	for(j=0;j<SIZE_MONTH;j++)
-		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
-	return 0;
-}
-
-static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
-	void* w;
-	if(a){
-		w = (INFO)getInfo(a);	
-		list=found(getAvlLeft(a),list,filial);
-		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
-			addListaStrings(list,getListaSp(list),getAvlCode(a));
-			list=reallocListaStrings(list);
-		}
-		list=found(getAvlRight(a),list,filial);
-	}
-	return list;
-}
-
-/*4*/
-LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group, int filial){
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		group = found(getAvl(f->prod[i]),group,filial);
-	}
-	return group;
-}
-
-
-/*Função que calcula os valores provenientes de um porduto, dado um mês e uma Promoção.*/
-static DADOS updatePQ(INFO inf,DADOS d,int promo,int mes){
-	int i;
-	for(i=0;i<SIZE_FILIAIS;i++){
-		if(promo){
-			d->totalpriceF[i] = inf->P[mes-1][i]->totalprice;
-			d->totalquantF[i] = inf->P[mes-1][i]->totalquant;
-		}
-		else {
-			d->totalpriceF[i] = inf->N[mes-1][i]->totalprice;
-			d->totalquantF[i] = inf->N[mes-1][i]->totalquant;
-		}
-	}
-	return d;
-}
-
-/*3*/
-DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product){
-	void* x;
-	int index = product[0]-'A';
-	x = (INFO)findInfo(getAvl(f->prod[index]),product,NULL);
-	d=updatePQ(x,d,promo,mes);
-	return d;
-}
 
 /* Inicializa uma estrutura PRICE_QUANTITY. */
 static PRICE_QUANTITY initPQ(){
@@ -307,3 +231,92 @@ static void freePQ(PRICE_QUANTITY x){
 static void freeTotalMes(TOTAL_MES m){
 	free(m);
 }
+
+/* ######################################### QUERIE 3 #################################### */
+
+DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product){
+	void* x;
+	int index = product[0]-'A';
+	x = (INFO)findInfo(getAvl(f->prod[index]),product,NULL);
+	if(x) d=updatePQ(x,d,promo,mes);
+	return d;
+}
+
+/* ######################################### QUERIE 4 #################################### */
+
+LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group, int filial){
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		group = found(getAvl(f->prod[i]),group,filial);
+	}
+	return group;
+}
+
+
+/*Função que calcula os valores provenientes de um porduto, dado um mês e uma Promoção.*/
+static DADOS updatePQ(INFO inf,DADOS d,int promo,int mes){
+	int i;
+	for(i=0;i<SIZE_FILIAIS;i++){
+		if(promo){
+			d->totalpriceF[i] = inf->P[mes-1][i]->totalprice;
+			d->totalquantF[i] = inf->P[mes-1][i]->totalquant;
+		}
+		else {
+			d->totalpriceF[i] = inf->N[mes-1][i]->totalprice;
+			d->totalquantF[i] = inf->N[mes-1][i]->totalquant;
+		}
+	}
+	return d;
+}
+
+
+/* ######################################### QUERIE 6 #################################### */
+
+DADOS totalM(FACTURACAO f,DADOS d,int inicio, int fim){
+	int i;
+	for(i=(inicio-1);i<fim;i++){
+		d->totalMP += f->total_mes[i]->totalFacturado;
+		d->totalVendas += f->total_mes[i]->totalVendas;
+		d->totalMQ += f->total_mes[i]->totalQuant;
+	}
+	return d;
+}
+
+static int checkInfo(INFO i, int filial){
+	int j;
+	for(j=0;j<SIZE_MONTH;j++)
+		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
+	return 0;
+}
+
+static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
+	void* w;
+	if(a){
+		w = (INFO)getInfo(a);	
+		list=found(getAvlLeft(a),list,filial);
+		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
+			addListaStrings(list,getListaSp(list),getAvlCode(a));
+			list=reallocListaStrings(list);
+		}
+		list=found(getAvlRight(a),list,filial);
+	}
+	return list;
+}
+
+/* ######################################### QUERIE 12 #################################### */
+
+int querie12Products(FACTURACAO f){
+	int i,sum=0,r;
+
+	for(i=0;i<SIZE_ABC;i++){
+		r=infoNULL(getAvl(f->prod[i]));			
+		sum+=r;
+	}
+	return sum;
+}
+
+
+
+
+
+

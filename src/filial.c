@@ -57,7 +57,21 @@ static INFO_CLIENT updateInfoC(INFO_CLIENT,SALES,int*);
 static INFO_PRODUCT updateInfoP(INFO_PRODUCT,SALES);
 static PRODUCT_INFO updatePi(PRODUCT_INFO,SALES);
 static PRODUCT_INFO updatePiQ(PRODUCT_INFO,SALES);
-static LISTA_STRINGS insereList (Avl a,LISTA_STRINGS ls);
+static LISTA_STRINGS dontBuy(Avl,LISTA_STRINGS);
+static double price(INFO_PRODUCT);
+static Heap highCost(INFO_CLIENT ic,Heap hp);
+static Heap highCost2(Avl a,Heap hp);
+static int quantityNclients(PRODUCT_INFO info,int* registo);
+static int pesquisa(Avl a, Heap hp);
+static int quantity(INFO_PRODUCT ip);
+static Heap addProdQuant(Avl a,Heap heap);
+static Heap findProd(INFO_CLIENT ic, int month,Heap heap);
+static DADOS_FILIAL addQ(DADOS_FILIAL df,INFO_CLIENT ic);
+static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client);
+static LISTA_STRINGS findInfoProduct(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client);
+static LISTA_STRINGS insereList(Avl a,LISTA_STRINGS ls);
+static LISTA_STRINGS findProduct(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP);
+
 
 /* Liberta a estrutura de um filial. */
 void freeFilial(FILIAL f){
@@ -179,266 +193,6 @@ Avl getProdInfo(FILIAL f,int index){
 
 
 /* STATICS */
-
-/*Função que percorre a AVL de clients, e verifica se o campo info, é NULL ou não, indicado se comprou ou não. Caso tenha comprado, é adicionado a lista.*/
-static LISTA_STRINGS dontBuy (Avl a,LISTA_STRINGS ls){
-	void* x;
-	char* clie;
-	if(a){
-		dontBuy(getAvlLeft(a),ls);
-		x = (INFO_CLIENT)getInfo(a);
-		clie=getAvlCode(a);
-		if(!x){
-			addListaStrings(ls,getListaSp(ls),clie);
-			ls=reallocListaStrings(ls);
-		}	
-		dontBuy(getAvlRight(a),ls);
-		free(clie);
-		freeNodo(a);
-	}
-	return ls;
-}
-
-LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls){
-	Avl nodo;
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		nodo=getAvl(f->Clients[i]);
-		ls=dontBuy(nodo,ls);
-	}
-	return ls;
-}
-
-/***********/
-
-static double price(INFO_PRODUCT ip){
-	return (ip->price[0]+ip->price[1]);
-}
-
-static Heap highCost2(Avl a,Heap hp){
-	double r;
-	void* x;
-	char* prod;
-	if(a){
-		highCost2(getAvlLeft(a),hp);
-		x= (INFO_PRODUCT)getInfo(a);
-		r=price(x);
-		prod=getAvlCode(a);
-		insertHeap(hp,r,0,prod);
-		highCost2(getAvlRight(a),hp);
-		free(prod);
-		freeNodo(a);
-	}
-	return hp;
-}
-
-static Heap highCost(INFO_CLIENT ic,Heap hp){
-	int i,j;
-	Avl nodo;
-	for(i=0;i<SIZE_MONTH;i++){
-		for(j=0;j<SIZE_ABC;j++){
-			nodo=getAvl(ic->info_mes[i]->Products[j]);
-			if(nodo)	
-				highCost2(nodo,hp);
-		}
-	}
-	return hp;
-}
-
-/*11*/
-
-Heap highCostProd(FILIAL f,Heap hp, char* client){
-	int index = client[0]-'A';
-	Avl nodo=getAvl(f->Clients[index]);
-	void* x=findInfo(nodo,client,NULL);
-	hp=highCost(x,hp);
-	freeNodo(nodo);
-	return hp;
-}
-
-/*************/
-
-static int  quantityNclients(PRODUCT_INFO info,int* registo){
-	*registo=info->registo;
-	return info->quant;
-}
-
-static int pesquisa(Avl a, Heap hp){
-	int r,resg; 
-	void* x;
-	char* aux;
-
-	if(a){
-		pesquisa(getAvlLeft(a),hp);
-		x = (PRODUCT_INFO)getInfo(a);
-		if(x){
-			aux=getAvlCode(a);
-			r=quantityNclients(x,&resg);
-			insertHeap(hp,r,resg,aux);
-			free(aux);
-		}
-		pesquisa(getAvlRight(a),hp);
-		freeNodo(a);
-	}
-	return 1;
-}
-
-/*10*/
-Heap querie10Fil(FILIAL f,Heap hp){
-	int i;
-	Avl nodo;
-	for(i=0;i<SIZE_ABC;i++){
-		nodo=getAvl(f->Products[i]);
-		pesquisa(nodo,hp);
-	}
-	return hp;
-}
-
-/*************/
-
-static int quantity(INFO_PRODUCT ip){
-	return (ip->quantity[0]+ip->quantity[1]);
-}
-
-static Heap addProdQuant(Avl a,Heap heap){
-	int r; 
-	void* x;
-	char* prod;
-	if(a){
-		addProdQuant(getAvlLeft(a),heap);
-		x = (INFO_PRODUCT)getInfo(a);
-		r=quantity(x);
-		prod=getAvlCode(a);
-		insertHeap(heap,r,0,prod);
-		addProdQuant(getAvlRight(a),heap);
-		free(prod);
-		freeNodo(a);
-	}
-	return heap;
-}
-
-static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
-	int i;
-	Avl nodo;
-	for(i=0;i<SIZE_ABC;i++){
-		nodo=getAvl(ic->info_mes[month-1]->Products[i]);
-		if(nodo)
-			addProdQuant(nodo,heap);
-	}
-	return heap;
-}
-
-/*9*/
-Heap moreBuy(FILIAL f, Heap hp, char* client,int month){
-	void* x;
-	int index=client[0]-'A';
-	x =(INFO_CLIENT)findInfo(getAvl(f->Clients[index]),client,NULL);
-	findProd(x,month,hp);		
-	return hp;
-}
-
-/*************/
-static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
-
-	if(ip->quantity[0]){
-		addListaStrings(gcN,getListaSp(gcN),client);
-		gcN=reallocListaStrings(gcN);
-	}
-	if(ip->quantity[1]){
-		addListaStrings(gcP,getListaSp(gcP),client);
-		gcP=reallocListaStrings(gcP);
-	}
-	return gcN;
-}
-
-static LISTA_STRINGS findInfoProduct(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
-	int i;
-	int index=product[0]-'A';
-	Avl nodo;
-	for(i=0;i<SIZE_MONTH;i++){
-		nodo=getAvl(ic->info_mes[i]->Products[index]);
-		if(nodo){
-			void* x=(INFO_PRODUCT)findInfo(nodo,product,NULL);
-			if(x) checkProd(x,gcN,gcP,client);
-			freeNodo(nodo);
-		}
-	}	
-	return gcN;
-}
-
-static LISTA_STRINGS findProduct(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
-	void* x;
-	char* prod;
-	if(a){
-		findProduct(getAvlLeft(a),product,gcN,gcP);
-		x = (INFO_CLIENT)getInfo(a);
-		prod=getAvlCode(a);
-		findInfoProduct(x,product,gcN,gcP,prod);
-		findProduct(getAvlRight(a),product,gcN,gcP);
-		free(prod);
-		freeNodo(a);
-	}
-	return gcN;
-}
-
-/*8*/
-LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		findProduct(getAvl(f->Clients[i]),product,gcN,gcP);
-	}
-	return gcN;
-}
-
-/*************/
-static LISTA_STRINGS insereList (Avl a,LISTA_STRINGS ls){
-	void* x;
-	char* clie;
-	if(a){
-		insereList(getAvlLeft(a),ls);
-		x = (INFO_CLIENT)getInfo(a);
-		clie=getAvlCode(a);
-		if(x){
-			addListaStrings(ls,getListaSp(ls),clie);
-			ls=reallocListaStrings(ls);
-		}	
-		insereList(getAvlRight(a),ls);
-		free(clie);
-		freeNodo(a);
-	}
-	return ls;
-}
-
-/*7*/
-LISTA_STRINGS checkClientsValeN(FILIAL f,LISTA_STRINGS ls){
-	int j;
-	Avl nodo;
-	for(j=0;j<SIZE_ABC;j++){
-		nodo=getAvl(f->Clients[j]);
-		insereList(nodo,ls);
-	}
-	return ls;
-}
-
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
-	int i;
-	for(i=0;i<SIZE_MONTH;i++)
-		df->quant[i] +=ic->info_mes[i]->quantity;
-	return df;
-}
-
-/*5*/
-DADOS_FILIAL valoresFilial(FILIAL f,DADOS_FILIAL df,char* client){
-	void* x;
-	int index = client[0]-'A';
-	Avl nodo=getAvl(f->Clients[index]);
-	x = (INFO_CLIENT)findInfo(nodo,client,NULL);
-	df=addQ(df,x);
-	freeNodo(nodo);
-	return df;
-}
-
-/*************/
 
 /* Inicializa a estrutura INFO_CLIENT. */
 static INFO_CLIENT initInfoClient(){
@@ -575,3 +329,267 @@ static PRODUCT_INFO updatePiQ(PRODUCT_INFO pi,SALES s){
 	pi->quant+=getSalesQuantity(s);
 	return pi;
 }
+
+/*Função que percorre a AVL de clients, e verifica se o campo info, é NULL ou não, indicado se comprou ou não. Caso tenha comprado, é adicionado a lista.*/
+static LISTA_STRINGS dontBuy(Avl a,LISTA_STRINGS ls){
+	void* x;
+	char* clie;
+	if(a){
+		dontBuy(getAvlLeft(a),ls);
+		x = (INFO_CLIENT)getInfo(a);
+		clie=getAvlCode(a);
+		if(!x){
+			addListaStrings(ls,getListaSp(ls),clie);
+			ls=reallocListaStrings(ls);
+		}	
+		dontBuy(getAvlRight(a),ls);
+		free(clie);
+		freeNodo(a);
+	}
+	return ls;
+}
+
+LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls){
+	Avl nodo;
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		nodo=getAvl(f->Clients[i]);
+		ls=dontBuy(nodo,ls);
+	}
+	return ls;
+}
+
+/***********/
+
+static double price(INFO_PRODUCT ip){
+	return (ip->price[0]+ip->price[1]);
+}
+
+static Heap highCost2(Avl a,Heap hp){
+	double r;
+	void* x;
+	char* prod;
+	if(a){
+		highCost2(getAvlLeft(a),hp);
+		x= (INFO_PRODUCT)getInfo(a);
+		r=price(x);
+		prod=getAvlCode(a);
+		insertHeap(hp,r,0,prod);
+		highCost2(getAvlRight(a),hp);
+		free(prod);
+		freeNodo(a);
+	}
+	return hp;
+}
+
+static Heap highCost(INFO_CLIENT ic,Heap hp){
+	int i,j;
+	Avl nodo;
+	for(i=0;i<SIZE_MONTH;i++){
+		for(j=0;j<SIZE_ABC;j++){
+			nodo=getAvl(ic->info_mes[i]->Products[j]);
+			if(nodo)	
+				highCost2(nodo,hp);
+		}
+	}
+	return hp;
+}
+
+/* ######################################### QUERIE 11 #################################### */
+
+Heap highCostProd(FILIAL f,Heap hp, char* client){
+	int index = client[0]-'A';
+	Avl nodo=getAvl(f->Clients[index]);
+	void* x=findInfo(nodo,client,NULL);
+	hp=highCost(x,hp);
+	freeNodo(nodo);
+	return hp;
+}
+
+/*************/
+
+static int  quantityNclients(PRODUCT_INFO info,int* registo){
+	*registo=info->registo;
+	return info->quant;
+}
+
+static int pesquisa(Avl a, Heap hp){
+	int r,resg; 
+	void* x;
+	char* aux;
+
+	if(a){
+		pesquisa(getAvlLeft(a),hp);
+		x = (PRODUCT_INFO)getInfo(a);
+		if(x){
+			aux=getAvlCode(a);
+			r=quantityNclients(x,&resg);
+			insertHeap(hp,r,resg,aux);
+			free(aux);
+		}
+		pesquisa(getAvlRight(a),hp);
+		freeNodo(a);
+	}
+	return 1;
+}
+
+/* ######################################### QUERIE 10 #################################### */
+
+Heap querie10Fil(FILIAL f,Heap hp){
+	int i;
+	Avl nodo;
+	for(i=0;i<SIZE_ABC;i++){
+		nodo=getAvl(f->Products[i]);
+		pesquisa(nodo,hp);
+	}
+	return hp;
+}
+
+/*************/
+
+static int quantity(INFO_PRODUCT ip){
+	return (ip->quantity[0]+ip->quantity[1]);
+}
+
+static Heap addProdQuant(Avl a,Heap heap){
+	int r; 
+	void* x;
+	char* prod;
+	if(a){
+		addProdQuant(getAvlLeft(a),heap);
+		x = (INFO_PRODUCT)getInfo(a);
+		r=quantity(x);
+		prod=getAvlCode(a);
+		insertHeap(heap,r,0,prod);
+		addProdQuant(getAvlRight(a),heap);
+		free(prod);
+		freeNodo(a);
+	}
+	return heap;
+}
+
+static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
+	int i;
+	Avl nodo;
+	for(i=0;i<SIZE_ABC;i++){
+		nodo=getAvl(ic->info_mes[month-1]->Products[i]);
+		if(nodo)
+			addProdQuant(nodo,heap);
+	}
+	return heap;
+}
+
+/* ######################################### QUERIE 9 #################################### */
+
+Heap moreBuy(FILIAL f, Heap hp, char* client,int month){
+	void* x;
+	int index=client[0]-'A';
+	x =(INFO_CLIENT)findInfo(getAvl(f->Clients[index]),client,NULL);
+	findProd(x,month,hp);		
+	return hp;
+}
+
+/*************/
+static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
+
+	if(ip->quantity[0]){
+		addListaStrings(gcN,getListaSp(gcN),client);
+		gcN=reallocListaStrings(gcN);
+	}
+	if(ip->quantity[1]){
+		addListaStrings(gcP,getListaSp(gcP),client);
+		gcP=reallocListaStrings(gcP);
+	}
+	return gcN;
+}
+
+static LISTA_STRINGS findInfoProduct(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
+	int i;
+	int index=product[0]-'A';
+	Avl nodo;
+	for(i=0;i<SIZE_MONTH;i++){
+		nodo=getAvl(ic->info_mes[i]->Products[index]);
+		if(nodo){
+			void* x=(INFO_PRODUCT)findInfo(nodo,product,NULL);
+			if(x) checkProd(x,gcN,gcP,client);
+			freeNodo(nodo);
+		}
+	}	
+	return gcN;
+}
+
+static LISTA_STRINGS findProduct(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
+	void* x;
+	char* prod;
+	if(a){
+		findProduct(getAvlLeft(a),product,gcN,gcP);
+		x = (INFO_CLIENT)getInfo(a);
+		prod=getAvlCode(a);
+		findInfoProduct(x,product,gcN,gcP,prod);
+		findProduct(getAvlRight(a),product,gcN,gcP);
+		free(prod);
+		freeNodo(a);
+	}
+	return gcN;
+}
+
+/* ######################################### QUERIE 8 #################################### */
+
+LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		findProduct(getAvl(f->Clients[i]),product,gcN,gcP);
+	}
+	return gcN;
+}
+
+/*************/
+static LISTA_STRINGS insereList (Avl a,LISTA_STRINGS ls){
+	void* x;
+	char* clie;
+	if(a){
+		insereList(getAvlLeft(a),ls);
+		x = (INFO_CLIENT)getInfo(a);
+		clie=getAvlCode(a);
+		if(x){
+			addListaStrings(ls,getListaSp(ls),clie);
+			ls=reallocListaStrings(ls);
+		}	
+		insereList(getAvlRight(a),ls);
+		free(clie);
+		freeNodo(a);
+	}
+	return ls;
+}
+
+/* ######################################### QUERIE 7 #################################### */
+
+LISTA_STRINGS checkClientsValeN(FILIAL f,LISTA_STRINGS ls){
+	int j;
+	Avl nodo;
+	for(j=0;j<SIZE_ABC;j++){
+		nodo=getAvl(f->Clients[j]);
+		insereList(nodo,ls);
+	}
+	return ls;
+}
+
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
+	int i;
+	for(i=0;i<SIZE_MONTH;i++)
+		df->quant[i] +=ic->info_mes[i]->quantity;
+	return df;
+}
+
+/* ######################################### QUERIE 5 #################################### */
+
+DADOS_FILIAL valoresFilial(FILIAL f,DADOS_FILIAL df,char* client){
+	void* x;
+	int index = client[0]-'A';
+	Avl nodo=getAvl(f->Clients[index]);
+	x = (INFO_CLIENT)findInfo(nodo,client,NULL);
+	df=addQ(df,x);
+	freeNodo(nodo);
+	return df;
+}
+

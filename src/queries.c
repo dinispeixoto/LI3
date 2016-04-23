@@ -1,12 +1,12 @@
 #include "headers/queries.h"
 
-
+/* Funções privadas ao módulo. */
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls);
 static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total);
 static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados);
 static int querie12Clients(FILIAL* f);
 
-/*QUERIE 2*/
+/* ######################################### QUERIE 2 #################################### */
 
 LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	
@@ -32,7 +32,6 @@ static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 	return ls;
 }
 
-
 /* ######################################### QUERIE 3 #################################### */
 
 
@@ -42,7 +41,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 	return d;
 }
 
-/* ######################################### QUERIE 4 ####################################### */
+/* ######################################### QUERIE 4 #################################### */
 
 LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	LISTA_STRINGS group = initListaStrings(1,SIZE_PRODUCT);
@@ -51,7 +50,7 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial){
 }
 	
 
-/*#################################QUERIE 5##################################### FUNCIONA*/
+/* ######################################### QUERIE 5 #################################### */
 
 DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df, char* client){
 	
@@ -59,7 +58,7 @@ DADOS_FILIAL querie5(FILIAL f,DADOS_FILIAL df, char* client){
 	return df;
 }
 
-/* ######################################### QUERIE 6 ####################################### */
+/* ######################################### QUERIE 6 #################################### */
 
 DADOS querie6(FACTURACAO f, int inicio, int fim){
 	DADOS d= initDADOS();
@@ -67,7 +66,8 @@ DADOS querie6(FACTURACAO f, int inicio, int fim){
 	return d;
 }
 
-/*#################################QUERIE 7######################################*/
+/* ######################################### QUERIE 7 #################################### */
+
 LISTA_STRINGS querie7 (FILIAL* f){
 	int i;
 
@@ -96,7 +96,7 @@ LISTA_STRINGS querie7 (FILIAL* f){
 	return aux2;
 }
 
-/*#################################QUERIE 8#####################################*/
+/* ######################################### QUERIE 8 #################################### */
 
 LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	LISTA_STRINGS gcN = initListaStrings(1,SIZE_CLIENT);
@@ -106,7 +106,7 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 	return gcN;
 }
 
-/*#################################QUERIE 9#####################################*/
+/* ######################################### QUERIE 9 #################################### */
 
 
 LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
@@ -130,7 +130,7 @@ static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total){
 	return group;
 }
 
-/*QUERIE 10*/
+/* ######################################### QUERIE 10 #################################### */
 
 LISTA_STRINGS querie10(FILIAL f, int N,int** dados){
 	LISTA_STRINGS gp;
@@ -159,7 +159,7 @@ static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados)
 	return 1 ;
 }
 
-/*QUERIE 11*/
+/* ######################################### QUERIE 10 #################################### */
 
 LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int i;
@@ -173,7 +173,7 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 	return gp;
 }
 
-/*QUERIE 12*/
+/* ######################################### QUERIE 12 #################################### */
 
 int querie12(FILIAL* f, FACTURACAO fact, int* sumClient){
 	int sumProduct;

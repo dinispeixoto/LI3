@@ -1140,7 +1140,7 @@ static int nProductsMostSold(CATALOG_PRODUCTS CatProducts,FILIAL* arrayFiliais){
 	char buff_quant[BUFFER_SIZE];
 	printf("\e[2J\e[H");
 
-	test = testMemory(CatProducts,"O Catálogo de produtos que um cliente mais comprou");
+	test = testMemory(CatProducts,"O Catálogo dos N produtos mais comprados");
 	if(test) return 0;
 
 	printTop(10);

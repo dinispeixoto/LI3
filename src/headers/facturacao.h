@@ -99,8 +99,6 @@ DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product);
 int querie12Products(FACTURACAO f);
 /* GETS E SETS */
 
-
-
 /** @brief Retorna um apontador para um array com a quantidade total facturada nas várias filiais.
  *
  *  @param d Dados.
