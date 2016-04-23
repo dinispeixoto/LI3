@@ -242,17 +242,6 @@ DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product){
 	return d;
 }
 
-/* ######################################### QUERIE 4 #################################### */
-
-LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group, int filial){
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		group = found(getAvl(f->prod[i]),group,filial);
-	}
-	return group;
-}
-
-
 /*Função que calcula os valores provenientes de um porduto, dado um mês e uma Promoção.*/
 static DADOS updatePQ(INFO inf,DADOS d,int promo,int mes){
 	int i;
@@ -269,6 +258,39 @@ static DADOS updatePQ(INFO inf,DADOS d,int promo,int mes){
 	return d;
 }
 
+/* ######################################### QUERIE 4 #################################### */
+
+LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group, int filial){
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		group = found(getAvl(f->prod[i]),group,filial);
+	}
+	return group;
+}
+
+/*Função que verifica se um produto comprou numa dada filial. */
+static int checkInfo(INFO i, int filial){
+	int j;
+	for(j=0;j<SIZE_MONTH;j++)
+		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
+	return 0;
+}
+
+/*Função que procura e insere numa Lista de Strings os produtos que nunca foram comprados numa dada filial ou em geral. */
+static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
+	void* w;
+	if(a){
+		w = (INFO)getInfo(a);	
+		list=found(getAvlLeft(a),list,filial);
+		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
+			addListaStrings(list,getListaSp(list),getAvlCode(a));
+			list=reallocListaStrings(list);
+		}
+		list=found(getAvlRight(a),list,filial);
+		freeNodo(a);
+	}
+	return list;
+}
 
 /* ######################################### QUERIE 6 #################################### */
 
@@ -282,35 +304,17 @@ DADOS totalM(FACTURACAO f,DADOS d,int inicio, int fim){
 	return d;
 }
 
-static int checkInfo(INFO i, int filial){
-	int j;
-	for(j=0;j<SIZE_MONTH;j++)
-		if((i->N[j][filial-1]->totalquant)>0 || (i->P[j][filial-1]->totalquant)>0 ) return 1;
-	return 0;
-}
 
-static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
-	void* w;
-	if(a){
-		w = (INFO)getInfo(a);	
-		list=found(getAvlLeft(a),list,filial);
-		if(w == NULL || (filial!=-1 && !checkInfo(w,filial))){
-			addListaStrings(list,getListaSp(list),getAvlCode(a));
-			list=reallocListaStrings(list);
-		}
-		list=found(getAvlRight(a),list,filial);
-	}
-	return list;
-}
 
 /* ######################################### QUERIE 12 #################################### */
-
 int querie12Products(FACTURACAO f){
 	int i,sum=0,r;
-
+	Avl nodo;
 	for(i=0;i<SIZE_ABC;i++){
-		r=infoNULL(getAvl(f->prod[i]));			
+		nodo=getAvl(f->prod[i]);
+		r=infoNULL(nodo);			
 		sum+=r;
+		freeNodo(nodo);
 	}
 	return sum;
 }

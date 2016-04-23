@@ -16,9 +16,9 @@
 #define SIZE_MONTH 12
 
 /**
- * @brief Tamanho do Código de um Cliente.
+ * @brief Tamanho do Código de um Produto.
  */
-#define SIZE_CLIENTS 6 
+#define SIZE_PRODUCT 7
 
 /**
  * @brief Numero de Filiais.
@@ -51,7 +51,7 @@ FACTURACAO initFact();
 
 /** @brief Inicia a estrutura dos dados, alocando espaço para a mesma.
  *
- *  @return Facturação.
+ *  @return Estrutura de dados.
  */
 
 DADOS initDADOS();
@@ -93,10 +93,6 @@ void freeFact(FACTURACAO f);
 void freeInfo(void* info);
 
 
-DADOS totalM(FACTURACAO f,DADOS d,int inicio, int fim);
-LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group,int filial);
-DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product);
-int querie12Products(FACTURACAO f);
 /* GETS E SETS */
 
 /** @brief Retorna um apontador para um array com a quantidade total facturada nas várias filiais.
@@ -154,24 +150,49 @@ double getTotalMP(DADOS d);
 
 int getTotalVendas(DADOS d);
 
-/** @brief Actualiza a quantidade total facturada.
+/** @brief Retorna a quantidade total de produtos vendidos.
  *
- *  @param d Estrutura com informação geral.
- *  @param total Facturação total.
+ *  @param f Facturação.
+ *  @param d Estrutura de dados.
+ *  @param inicio Mês inicial.
+ *	@param fim Mês final.
+ *
+ *  @return Quantidade total.
+ */
+
+DADOS totalM(FACTURACAO f,DADOS d,int inicio, int fim);
+
+/** @brief Constrói uma lista dos produtos, nunca comprados, de forma Total ou por Filial.
+ *
+ *  @param f Facturação.
+ *  @param ls Lista de Strings.
+ *  @param filial Nº da Filial.
+ *
+ *  @return Quantidade total.
+ */
+
+LISTA_STRINGS listaProducts (FACTURACAO f,LISTA_STRINGS group,int filial);
+
+/** @brief Recolhe os dados sobre um produto, num dado mês e promoção.
+ *
+ *  @param f Filial.
+ *  @param d Estrutura de dados.
+ *  @param promo Tipo de promoção.
+ *  @param mes Mês. 
+ *  @param product Produto.
  *
  *  @return Estrutura de dados.
  */
 
-DADOS updateTotalMP(DADOS d,double total);
+DADOS updatePriceQuantity(FACTURACAO f,DADOS d,int promo,int mes,char* product);
 
-/** @brief Actualiza a quantidade total de produtos vendidos.
+/** @brief Calcula o número de produtos nunca comprados.
  *
- *  @param d Estrutura com informação geral.
- *  @param total Quantidade total.
+ *  @param f Facturação.
  *
- *  @return Estrutura de dados.
+ *  @return Quantidade total.
  */
 
-DADOS updateTotalVendas(DADOS d,int total);
+int querie12Products(FACTURACAO f);
 
 #endif

@@ -43,6 +43,12 @@
  */
 #define PAGE_SIZE 20
 
+/**
+ * @brief Tamanho do Código de um Produto.
+ */
+#define SIZE_PRODUCT 7
+
+
 
 /** @brief Resposável por implementar o interpretador.
  *

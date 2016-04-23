@@ -28,6 +28,12 @@ typedef struct page *PAGE;
  */
 typedef struct string *STRING;
 
+/** @brief Apaga a estrutura Lista de Strings, libertando espaço da mesma.
+ *
+ *  @param ls Lista de Strings.
+ *
+ *  @return Lista de Strings.
+ */
 
 void freeListaStr(LISTA_STRINGS ls);
 
@@ -87,6 +93,13 @@ LISTA_STRINGS addListaStrings(LISTA_STRINGS ls,int posicao,char* elem);
 
 LISTA_STRINGS removeListaStrings(LISTA_STRINGS ls,char* elem);
 
+/** @brief Junta duas listas de Strings, removendo elementos iguais.
+ *
+ *  @param ls1 Lista de Strings.
+ *  @param ls2 Lista de Strings.
+ *
+ *  @return Lista de Strings.
+ */
 
 LISTA_STRINGS mergeList(LISTA_STRINGS ls1, LISTA_STRINGS ls2);
 

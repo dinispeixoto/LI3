@@ -32,9 +32,11 @@
  */
 #define SIZE_INFOP 2
 
-#define SIZE_PRODUCT 6
+/**
+ * @brief Tamanho do Código de um Produto.
+ */
+#define SIZE_PRODUCTS 7
 
-#define SIZE_ABC 26
 
 /**
  * @brief Declaração do tipo FILIAL, um tipo abstrato. 
@@ -79,23 +81,14 @@ DADOS_FILIAL initDadosFilial();
 
 void freeFilial(FILIAL f);
 
+/** @brief Copia os Produtos do Catálogo para a Filial.
+ *
+ *  @param f Filial.
+ *	@param c Catálogo de Produtos.
+ *  @return Void.
+ */
 
-LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls);
-
-Heap highCostProd(FILIAL f,Heap hp, char* client);
-
-Heap querie10Fil(FILIAL f,Heap hp);
-
-Heap moreBuy(FILIAL f, Heap hp, char* client,int month);
-
-LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP);
-
-LISTA_STRINGS checkClientsValeN (FILIAL f,LISTA_STRINGS ls);
-
-DADOS_FILIAL valoresFilial(FILIAL f,DADOS_FILIAL df,char* client);
-
-
-FILIAL copyP(FILIAL f,CATALOG_PRODUCTS cp); /* FALTA ESTA */
+FILIAL copyP(FILIAL f,CATALOG_PRODUCTS cp); 
 
 
 /** @brief Copia os Clientes do Catálogo para a Filial.
@@ -107,18 +100,6 @@ FILIAL copyP(FILIAL f,CATALOG_PRODUCTS cp); /* FALTA ESTA */
  */
 
 FILIAL copyCPO(FILIAL f,CATALOG_CLIENTS c);
-
-
-
-/** @brief Retorna a Avl presente num determinado indice da estrutura Filial.
- *
- *  @param f Filial.
- *  @param index Índice.
- *
- *  @return Avl que se encontra no índice.
- */
-
-Avl getClientIndexF(FILIAL f,int index);
 
 /** @brief Actualiza os dados relativos a uma dada Filial num dado mês.
  *
@@ -144,7 +125,81 @@ DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int month,int total);
 
 int getDadosFilialQuantity(DADOS_FILIAL df,int month);
 
-Avl getProdInfo(FILIAL f,int index);
+/** @brief Constrói uma lista de Strings, com os clientes que nunca compraram nada.
+ *
+ *  @param f Filial.
+ *  @param ls Lista de Strings.
+ *
+ *  @return .
+ */
+
+LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls);
+
+/** @brief Constrói uma Heap, ordenada por os produtos com maior facturação.
+ *
+ *  @param f Filial.
+ *  @param hp Heap.
+ *  @param client Cliente.
+ *	
+ *  @return Heap.
+ */
+
+Heap highCostProd(FILIAL f,Heap hp, char* client);
+
+/** @brief Constrói uma Heap, ordenada pelos produtos mais vendidos em quantidade.
+ *
+ *  @param f Filial.
+ *	@param hp Heap.
+ *
+ *  @return Heap.
+ */
+
+Heap querie10Fil(FILIAL f,Heap hp);
+
+/** @brief Constrói uma Heap, ordenada pelos produtos com maior gastos.
+ *	
+ *  @param f Filial.
+ *	@param hp Heap.
+ *	@param client Cliente.
+ *	@param month Mes.
+ *
+ *  @return Heap.
+ */
+
+Heap moreBuy(FILIAL f, Heap hp, char* client,int month);
+
+/** @brief Constrói duas Listas de Strings, tendo uma os produtos que um cliente comprou sem promoção e outra com promoção.
+ *	
+ *  @param f Filial.
+ *	@param product.
+ *	@param gcN Lista de Strings de promoção N.
+ *	@@param gcP Lista de Strings de promoção P.
+ *	
+ *  @return  Lista de Strings.
+ */
+
+LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP);
+
+/** @brief Constrói uma Lista de Strings, com os Clientes que compraram numa filial.
+ *
+ *  @param f Filial.
+ *	@param ls Lista de Strings.
+ *
+ *  @return  Lista de Strings.
+ */
+
+LISTA_STRINGS checkClientsValeN (FILIAL f,LISTA_STRINGS ls);
+
+/** @brief Recolhe os dados de uma filial, sobre um dado cliente.
+ *
+ *  @param f Filial.
+ *	@param df Dados sobre uma filial.
+ *	@param client CLiente.
+ *
+ *  @return Estrutura com a informação relativa á Filial.
+ */
+
+DADOS_FILIAL valoresFilial(FILIAL f,DADOS_FILIAL df,char* client);
 
 
 #endif

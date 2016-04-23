@@ -18,6 +18,7 @@ LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
 	return group;
 }
 
+/*Função faz uma travessia in-order as AVL's, do catalogo de produtos, contruindo uma LISTA_STRINGS ordenada. */
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 	char* prod;
 	if(a){
@@ -121,6 +122,7 @@ LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 	return group;
 }
 
+/*Função que converte uma Heap em uma LISTA_STRINGS ordenanda pelo valor facturado com o produto. */
 static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total){
 	while(0<total){
 		addListaStrings(group,getListaSp(group),extractMax(heap));

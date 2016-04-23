@@ -173,9 +173,6 @@ FILIAL copyP(FILIAL f,CATALOG_PRODUCTS p){
 
 
 /*GETS E SETS*/
-Avl getClientIndexF(FILIAL f,int index){
-	return getAvl(f->Clients[index]);
-}
 
 int getDadosFilialQuantity(DADOS_FILIAL df,int month){
 	return df->quant[month-1];
@@ -185,12 +182,6 @@ DADOS_FILIAL updateQuant_DadosFilial(DADOS_FILIAL df,int month,int total){
 	df->quant[month] += total;
 	return df;
 }
-
-
-Avl getProdInfo(FILIAL f,int index){
-	return getAvl(f->Products[index]);
-}
-
 
 /* STATICS */
 
@@ -330,6 +321,18 @@ static PRODUCT_INFO updatePiQ(PRODUCT_INFO pi,SALES s){
 	return pi;
 }
 
+/* ######################################### QUERIE 12 #################################### */
+
+LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls){
+	Avl nodo;
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		nodo=getAvl(f->Clients[i]);
+		ls=dontBuy(nodo,ls);
+	}
+	return ls;
+}
+
 /*Função que percorre a AVL de clients, e verifica se o campo info, é NULL ou não, indicado se comprou ou não. Caso tenha comprado, é adicionado a lista.*/
 static LISTA_STRINGS dontBuy(Avl a,LISTA_STRINGS ls){
 	void* x;
@@ -349,22 +352,23 @@ static LISTA_STRINGS dontBuy(Avl a,LISTA_STRINGS ls){
 	return ls;
 }
 
-LISTA_STRINGS dontBuyClient(FILIAL f, LISTA_STRINGS ls){
-	Avl nodo;
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		nodo=getAvl(f->Clients[i]);
-		ls=dontBuy(nodo,ls);
-	}
-	return ls;
+/* ######################################### QUERIE 11 #################################### */
+
+Heap highCostProd(FILIAL f,Heap hp, char* client){
+	int index = client[0]-'A';
+	Avl nodo=getAvl(f->Clients[index]);
+	void* x=findInfo(nodo,client,NULL);
+	hp=highCost(x,hp);
+	freeNodo(nodo);
+	return hp;
 }
 
-/***********/
-
+/*Função que calcula o quantia paga por produto, por um cliente.*/
 static double price(INFO_PRODUCT ip){
 	return (ip->price[0]+ip->price[1]);
 }
 
+/*Função que faz uma travessia in-order, adicionado cada produto a um Heap, com o respectivo preço, ordenando a Heap por quantia paga pelo produto.*/
 static Heap highCost2(Avl a,Heap hp){
 	double r;
 	void* x;
@@ -382,6 +386,8 @@ static Heap highCost2(Avl a,Heap hp){
 	return hp;
 }
 
+/*Função que percorre um array indexado por letras do abecedário, em cada posição de um array indexado por meses. 
+Em cada interação, vai construindo a Heap, ordenada por os produtos com maior quantia gasta.*/
 static Heap highCost(INFO_CLIENT ic,Heap hp){
 	int i,j;
 	Avl nodo;
@@ -395,24 +401,26 @@ static Heap highCost(INFO_CLIENT ic,Heap hp){
 	return hp;
 }
 
-/* ######################################### QUERIE 11 #################################### */
+/* ######################################### QUERIE 10 #################################### */
 
-Heap highCostProd(FILIAL f,Heap hp, char* client){
-	int index = client[0]-'A';
-	Avl nodo=getAvl(f->Clients[index]);
-	void* x=findInfo(nodo,client,NULL);
-	hp=highCost(x,hp);
-	freeNodo(nodo);
+Heap querie10Fil(FILIAL f,Heap hp){
+	int i;
+	Avl nodo;
+	for(i=0;i<SIZE_ABC;i++){
+		nodo=getAvl(f->Products[i]);
+		pesquisa(nodo,hp);
+	}
 	return hp;
 }
 
-/*************/
 
+/*Função que obtem a quantidade total e o nº de clientes que compraram um dado produto.*/
 static int  quantityNclients(PRODUCT_INFO info,int* registo){
 	*registo=info->registo;
 	return info->quant;
 }
 
+/*Função que faz uma travessia in-order, percorrendo todos os produtos, e adicionado cada um a uma Heap, ordenando a Heap por quantidade.*/
 static int pesquisa(Avl a, Heap hp){
 	int r,resg; 
 	void* x;
@@ -433,24 +441,22 @@ static int pesquisa(Avl a, Heap hp){
 	return 1;
 }
 
-/* ######################################### QUERIE 10 #################################### */
+/* ######################################### QUERIE 9 #################################### */
 
-Heap querie10Fil(FILIAL f,Heap hp){
-	int i;
-	Avl nodo;
-	for(i=0;i<SIZE_ABC;i++){
-		nodo=getAvl(f->Products[i]);
-		pesquisa(nodo,hp);
-	}
+Heap moreBuy(FILIAL f, Heap hp, char* client,int month){
+	void* x;
+	int index=client[0]-'A';
+	x =(INFO_CLIENT)findInfo(getAvl(f->Clients[index]),client,NULL);
+	findProd(x,month,hp);		
 	return hp;
 }
 
-/*************/
-
+/*Função que calcula a quantidade comprada de um produto, por um cliente.*/
 static int quantity(INFO_PRODUCT ip){
 	return (ip->quantity[0]+ip->quantity[1]);
 }
 
+/*Função que faz uma travessia in-order, percorrendo todos os produtos. Em cada produto, adiciona a quantidade e o produto respectivo na Heap.*/
 static Heap addProdQuant(Avl a,Heap heap){
 	int r; 
 	void* x;
@@ -468,6 +474,7 @@ static Heap addProdQuant(Avl a,Heap heap){
 	return heap;
 }
 
+/*Função que em todos os meses, recolhe o nodo da AVL dos produtos, comprados por um cliente.*/
 static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 	int i;
 	Avl nodo;
@@ -479,17 +486,17 @@ static Heap findProd(INFO_CLIENT ic, int month,Heap heap){
 	return heap;
 }
 
-/* ######################################### QUERIE 9 #################################### */
+/* ######################################### QUERIE 8 #################################### */
 
-Heap moreBuy(FILIAL f, Heap hp, char* client,int month){
-	void* x;
-	int index=client[0]-'A';
-	x =(INFO_CLIENT)findInfo(getAvl(f->Clients[index]),client,NULL);
-	findProd(x,month,hp);		
-	return hp;
+LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
+	int i;
+	for(i=0;i<SIZE_ABC;i++){
+		findProduct(getAvl(f->Clients[i]),product,gcN,gcP);
+	}
+	return gcN;
 }
 
-/*************/
+/*Função que adiciona um cliente a uma LISTA_STRINGS, verificando se pertence o cliente comprou um produto em Promoção(P) ou Normal(N).*/
 static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
 
 	if(ip->quantity[0]){
@@ -503,6 +510,8 @@ static LISTA_STRINGS checkProd(INFO_PRODUCT ip,LISTA_STRINGS gcN,LISTA_STRINGS g
 	return gcN;
 }
 
+/*Função que em todos os meses, procura por uma dado produto, na lista de produtos comprados por um cliente. Para cada produto encontrado, 
+exectua a função checkProd, para verifcar em que LISTA_STRINGS adicionar o cliente.*/
 static LISTA_STRINGS findInfoProduct(INFO_CLIENT ic,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP,char* client){
 	int i;
 	int index=product[0]-'A';
@@ -518,6 +527,7 @@ static LISTA_STRINGS findInfoProduct(INFO_CLIENT ic,char* product,LISTA_STRINGS 
 	return gcN;
 }
 
+/*Função que faz uma travessia in-order, precorrendo todos os clientes, e exectua a função findInfoProduct em cada um. */
 static LISTA_STRINGS findProduct(Avl a, char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
 	void* x;
 	char* prod;
@@ -533,17 +543,19 @@ static LISTA_STRINGS findProduct(Avl a, char* product,LISTA_STRINGS gcN,LISTA_ST
 	return gcN;
 }
 
-/* ######################################### QUERIE 8 #################################### */
+/* ######################################### QUERIE 7 #################################### */
 
-LISTA_STRINGS productNeP(FILIAL f,char* product,LISTA_STRINGS gcN,LISTA_STRINGS gcP){
-	int i;
-	for(i=0;i<SIZE_ABC;i++){
-		findProduct(getAvl(f->Clients[i]),product,gcN,gcP);
+LISTA_STRINGS checkClientsValeN(FILIAL f,LISTA_STRINGS ls){
+	int j;
+	Avl nodo;
+	for(j=0;j<SIZE_ABC;j++){
+		nodo=getAvl(f->Clients[j]);
+		insereList(nodo,ls);
 	}
-	return gcN;
+	return ls;
 }
 
-/*************/
+/*Fução que insere um cliente num LISTA_STRINGS, caso tenha comprado algo.*/
 static LISTA_STRINGS insereList (Avl a,LISTA_STRINGS ls){
 	void* x;
 	char* clie;
@@ -562,24 +574,6 @@ static LISTA_STRINGS insereList (Avl a,LISTA_STRINGS ls){
 	return ls;
 }
 
-/* ######################################### QUERIE 7 #################################### */
-
-LISTA_STRINGS checkClientsValeN(FILIAL f,LISTA_STRINGS ls){
-	int j;
-	Avl nodo;
-	for(j=0;j<SIZE_ABC;j++){
-		nodo=getAvl(f->Clients[j]);
-		insereList(nodo,ls);
-	}
-	return ls;
-}
-
-static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
-	int i;
-	for(i=0;i<SIZE_MONTH;i++)
-		df->quant[i] +=ic->info_mes[i]->quantity;
-	return df;
-}
 
 /* ######################################### QUERIE 5 #################################### */
 
@@ -590,6 +584,15 @@ DADOS_FILIAL valoresFilial(FILIAL f,DADOS_FILIAL df,char* client){
 	x = (INFO_CLIENT)findInfo(nodo,client,NULL);
 	df=addQ(df,x);
 	freeNodo(nodo);
+	return df;
+}
+
+/*Função que recolhe os dados numa certa filial, neste caso sobre a quantidade que cada cliente comprou por mês,
+passando para a estrutura DADOS_FILIAL, para que posteriormente possam ser apresentados.*/
+static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic){
+	int i;
+	for(i=0;i<SIZE_MONTH;i++)
+		df->quant[i] +=ic->info_mes[i]->quantity;
 	return df;
 }
 

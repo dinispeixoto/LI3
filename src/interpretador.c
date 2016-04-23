@@ -47,10 +47,10 @@ static int infoClientMonth(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int searchPageProducts(LISTA_STRINGS,int*);
 static void printPageMostSold(PAGE,int,int,int);
 /* QUERIE 10 */
-static void printMostSold(PAGE page_list_1,PAGE page_list_2,PAGE page_list_3,int** dados1,int** dados2,int** dados3,int page,int totalPages,int totalElements1,int totalElements2,int totalElements3,int quant);
+static void printMostSold(PAGE,PAGE,PAGE,int**,int**,int**,int,int,int,int,int,int);
 static int runningMostSold(CATALOG_PRODUCTS,FILIAL*);
 static int nProductsMostSold(CATALOG_PRODUCTS,FILIAL*); 
-static int searchPageMostSold(int *actualPage,LISTA_STRINGS group1,LISTA_STRINGS group2,LISTA_STRINGS group3,int totalPages,int **dados1,int **dados2,int **dados3,int quant);
+static int searchPageMostSold(int*,LISTA_STRINGS,LISTA_STRINGS,LISTA_STRINGS,int,int**,int**,int**,int);
 /* QUERIE 11 */
 static int runningThreeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
 static int threeMostPurchased(CATALOG_CLIENTS,CATALOG_PRODUCTS,FILIAL*);
@@ -343,6 +343,7 @@ static int searchPage(int *actualPage,LISTA_STRINGS group,int totalPages){
 
 static void printCatalogProds(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
+	printf("	Total de elementos: %6d					\n\n",totalElements);
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i + (PAGE_SIZE*(page-1));
@@ -442,6 +443,8 @@ static int productMonth(CATALOG_PRODUCTS CatProducts,FACTURACAO fact){
 	printf("________________________________________________________________________________\n");
 	printf("	>> ");
 
+	free(dataN);
+	free(dataP);
 	while(getchar()!='\n');
 	c = getchar();
 	if(c!='0') return 1;
@@ -583,7 +586,7 @@ static void printPageNSold(PAGE page,int actualPage,int totalPages,int totalElem
 	int i,index;
 	printf("\e[2J\e[H");
 	printTop(4);
-	printf("							  0.Voltar\n");
+	printf("	Total de elemetos: %6d				0.Voltar\n",totalElements);
 	printf("\n	Página %d de %d.\n",actualPage,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i+(PAGE_SIZE*(actualPage-1));
@@ -845,6 +848,7 @@ static int searchPageListClients(CATALOG_PRODUCTS CatProducts,int *actualPage,LI
 
 static void printListClients(PAGE page_list,int page,int totalPages,int totalElements){
 	int i,index;
+	printf("	Total de elementos: %6d					\n\n",totalElements);
 	printf("	Página %d de %d.\n",page,totalPages);
 	for(i=0;i<PAGE_SIZE;i++){
 		index = i + (PAGE_SIZE*(page-1));
