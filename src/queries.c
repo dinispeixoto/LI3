@@ -1,7 +1,23 @@
 #include "headers/queries.h"
 
 
-/* ######################################### QUERIE 2 #################################### */
+static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls);
+static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total);
+static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados);
+static int querie12Clients(FILIAL* f);
+
+/*QUERIE 2*/
+
+LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
+	
+	int index = letter - 'A';
+	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
+	MY_AVL a = getP(Catalog,index);
+	Avl tree = getAvl(a);
+	travessia(tree,group);
+	return group;
+}
+
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 	char* prod;
 	if(a){
@@ -16,16 +32,6 @@ static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 	return ls;
 }
 
-
-LISTA_STRINGS querie2(CATALOG_PRODUCTS Catalog,char letter){
-	
-	int index = letter - 'A';
-	LISTA_STRINGS group = initListaStrings(totalElements(getP(Catalog,index)),SIZE_PRODUCT);
-	MY_AVL a = getP(Catalog,index);
-	Avl tree = getAvl(a);
-	travessia(tree,group);
-	return group;
-}
 
 /* ######################################### QUERIE 3 #################################### */
 
@@ -101,7 +107,7 @@ LISTA_STRINGS querie8(FILIAL f,char* product,LISTA_STRINGS* P){
 }
 
 /*#################################QUERIE 9#####################################*/
-static LISTA_STRINGS converte (Heap,LISTA_STRINGS,int);
+
 
 LISTA_STRINGS querie9(FILIAL* f, char* client,int month){
 	int i;
@@ -124,7 +130,19 @@ static LISTA_STRINGS converte(Heap heap, LISTA_STRINGS group,int total){
 	return group;
 }
 
-/*#################################QUERIE 10#####################################*/
+/*QUERIE 10*/
+
+LISTA_STRINGS querie10(FILIAL f, int N,int** dados){
+	LISTA_STRINGS gp;
+	Heap hp=initHeap(1);
+	hp=querie10Fil(f,hp);
+	gp = initListaStrings(1,SIZE_PRODUCT);
+	converteTransfer(hp,gp,N,dados);
+	return gp;
+}
+
+/*Função que converte uma Heap em uma LISTA_STRINGS, no entanto, também preenche uma matriz de dados, ou seja, para cada 
+produto que provém da heap, é passado para a matriz os valores (Quantidade e Nº Clientes) respondentes.*/
 static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados){
 	int a=0,limite=getHeapUsed(heap);
 	double quant;
@@ -141,16 +159,7 @@ static int converteTransfer(Heap heap,LISTA_STRINGS group,int total,int** dados)
 	return 1 ;
 }
 
-LISTA_STRINGS querie10(FILIAL f, int N,int** dados){
-	LISTA_STRINGS gp;
-	Heap hp=initHeap(1);
-	hp=querie10Fil(f,hp);
-	gp = initListaStrings(1,SIZE_PRODUCT);
-	converteTransfer(hp,gp,N,dados);
-	return gp;
-}
-
-/*#################################QUERIE 11#####################################*/
+/*QUERIE 11*/
 
 LISTA_STRINGS querie11(FILIAL* f,char* client){
 	int i;
@@ -164,11 +173,19 @@ LISTA_STRINGS querie11(FILIAL* f,char* client){
 	return gp;
 }
 
-/*#################################QUERIE 12#####################################*/
+/*QUERIE 12*/
+
+int querie12(FILIAL* f, FACTURACAO fact, int* sumClient){
+	int sumProduct;
+	*sumClient=querie12Clients(f);
+	sumProduct=querie12Products(fact);
+	return sumProduct;
+}
+
 /*Função que cria 3 LISTA_STRINGS, uma para cada filial, controi listas com os clients que nunca compraram em cada filial, e no fim, 
 faz a junção das listas, removendo os clients iguais.*/
 static int querie12Clients(FILIAL* f){
-	int i,sum=0,r;
+	int i,sum=0;
 
 	LISTA_STRINGS ls1=initListaStrings(1,SIZE_CLIENT);
 	LISTA_STRINGS ls2=initListaStrings(1,SIZE_CLIENT);
@@ -184,7 +201,6 @@ static int querie12Clients(FILIAL* f){
 				case 2: dontBuyClient(f[2],ls3);
 						break;
 			}
-			r=0;
 		}	
 	LISTA_STRINGS aux1,aux2;
 	aux1=mergeList(ls1,ls2);
@@ -196,11 +212,4 @@ static int querie12Clients(FILIAL* f){
 	sum=getListaSp(aux2);
 	freeListaStr(aux2);
 	return sum;
-}
-
-int querie12(FILIAL* f, FACTURACAO fact, int* sumClient){
-	int sumProduct;
-	*sumClient=querie12Clients(f);
-	sumProduct=querie12Products(fact);
-	return sumProduct;
 }
