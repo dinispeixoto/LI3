@@ -1,12 +1,15 @@
 #include "headers/CatProducts.h"
 
+/* Estrutura com um catálogo de produtos. */
 struct catp {
-	MY_AVL CatProducts[SIZE_ABC];
+	MY_AVL CatProducts[SIZE_ABC];					/* Array de 26 MY_AVL's cada indice deste array corresponde a uma letra do abecedário. */
 };
 
+/* Estrutura de um produto. */
 struct product {
-	char* string;
+	char* string;									/* String com o código do produto correspondente. */
 };
+
 
 /* Inicializa o Catálogo de Produtos. */
 CATALOG_PRODUCTS initProducts(){
@@ -17,15 +20,29 @@ CATALOG_PRODUCTS initProducts(){
 	return Catalog;
 }
 
+/* Inicializa a estrutura de um produto. */
 PRODUCT initProd(){
 	PRODUCT prod = malloc(sizeof(struct product));
 	prod->string = NULL;
 	return prod;
 }
 
+/* Liberta a estrutura de um produto. */
 void freeProduct(PRODUCT prod){
 	free(prod->string);
 	free(prod);
+}
+
+/* Limpa o catálogo de produtos. */
+void removeCatProds(CATALOG_PRODUCTS Catalog){
+	int i;
+	if(Catalog){
+		for(i=0;i<SIZE_ABC;i++) {
+			removeMyAvl(Catalog->CatProducts[i],NULL);
+			Catalog->CatProducts[i] = NULL;
+		}
+		free(Catalog);
+	}
 }
 
 /* Insere um produto no respectivo catálogo. */
@@ -59,18 +76,6 @@ int totalProducts(CATALOG_PRODUCTS Catalog){
 	for(letter = 'A'; letter <= 'Z';letter++)
 		total+=totalProductsLetter(Catalog,letter);
 	return total;
-}
-
-/* Limpa o catálogo de produtos. */
-void removeCatProds(CATALOG_PRODUCTS Catalog){
-	int i;
-	if(Catalog){
-		for(i=0;i<SIZE_ABC;i++) {
-			removeMyAvl(Catalog->CatProducts[i],NULL);
-			Catalog->CatProducts[i] = NULL;
-		}
-		free(Catalog);
-	}
 }
 
 /* Testa se um produto tem a estrutura correta.*/

@@ -29,6 +29,8 @@ typedef struct page *PAGE;
 typedef struct string *STRING;
 
 
+void freeListaStr(LISTA_STRINGS ls);
+
 /** @brief Inicia a estrutura Lista de Strings, alocando espaço para a mesma.
  *
  *  @param size Tamanho da Lista.
@@ -84,6 +86,9 @@ LISTA_STRINGS addListaStrings(LISTA_STRINGS ls,int posicao,char* elem);
  */
 
 LISTA_STRINGS removeListaStrings(LISTA_STRINGS ls,char* elem);
+
+
+LISTA_STRINGS mergeList(LISTA_STRINGS ls1, LISTA_STRINGS ls2);
 
 /** @brief Retorna o tamanho de uma Lista de Strings.
  *

@@ -9,7 +9,7 @@
 #include "headers/filial.h"
 
 
-/* Main -> Gerar estruturas que vão armazenar os dados em memória */
+/* Main -> Gerar estruturas que vão armazenar os dados em memória, e tem um ciclo que mantém o interpretador operacional. */
 int main(){	
 
 	int running =1,i;

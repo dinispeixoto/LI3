@@ -4,38 +4,42 @@
 #define LEFT -2
 #define RIGHT 2
 
+/* Estrutura de um nodo da Avl. */
 struct avl {
-	STR code;
-	int height;
-	void* info;
-	struct avl *left, *right;
+	STR code; 								/* String com informação. */
+	int height;								/* Altura, auxiliar ao algoritmo. */
+	void* info;								/* Apontador para uma estrutura, se necessário. */
+	struct avl *left, *right;				/* Apontadores para outras Avl's (esquerda e direita). */
 };
 
+/* Estrutura MY_AVL com uma Avl e um contador de elementos da mesma. */
 struct myAvl {
-	int total;
-	Avl avl;
+	int total;								/* Total de elementos na estrutura Avl. */
+	Avl avl;								/* Estrutura Avl que lhe corresponde. */
 };
 
 
-/* Estes prototypes não são para estar no .h porque são auxiliares */
+/* Funções privadas ao módulo. */
 static Avl rotateRight(Avl);
 static Avl rotateLeft(Avl);
 static int maior (int a, int b);
 static Avl actualizarAltura(Avl,Avl);
 static Avl insertINFO(Avl,STR,void*);
 
-
+/* Função auxiliar que determina o maior de dois dados inteiros. */
 static int maior(int a, int b){
 	if(a>b)return a;
 	else return b;
 }
 
+/* Função auxiliar responsável por actualizar a altura de uma Avl. */
 static Avl actualizarAltura(Avl a, Avl b){
 	a->height = maior(heightAvl(a->left), heightAvl(a->right))+1;
 	b->height = maior(heightAvl(b->left), heightAvl(b->right))+1;
 	return b;
 }
 
+/* Função auxiliar ao algoritmo que faz a rotação à direita de parte da Avl. */
 static Avl rotateRight(Avl a) {
 	Avl aux;
 	aux = a->left;
@@ -45,6 +49,7 @@ static Avl rotateRight(Avl a) {
 	return aux;
 }
 
+/* Função auxiliar ao algoritmo que faz a rotação à esquerda de parte da Avl. */
 static Avl rotateLeft(Avl a) {
 	
 	Avl aux;
@@ -55,6 +60,21 @@ static Avl rotateLeft(Avl a) {
 	return aux;
 }
 
+/* Função auxiliar ao algoritmo que faz a inserção de uma informação a um nodo. */
+static Avl insertINFO(Avl a,STR line,void* i){
+	Avl aux=a;
+	int cp;
+	while(a){
+		if((cp=strcmp(a->code,line)) > 0) a=a->left;
+		else if(cp<0) a=a->right;
+			else {a->info=i;break;}
+	}
+
+	a=aux;
+	return a;
+}
+
+/* Função de inicialização de uma estrutura MY_AVL. */
 MY_AVL initMyAvl(){
 	MY_AVL a = malloc(sizeof(struct myAvl));
 	a-> avl = initAvl();
@@ -62,16 +82,18 @@ MY_AVL initMyAvl(){
 	return a;
 }
 
+/* Função de inicialização de uma estrutura Avl. */
 Avl initAvl(){
 	return NULL;
 }
 
+/* Função que retorna a altura de uma Avl. */
 int heightAvl(Avl a){	
 	if(a==NULL) return 0;
 	else return a->height;
 }
 
-/* Inserir numa Avl */
+/* Inserir numa Avl. */
 Avl insert(Avl estrutura, char* line,void* info) {
 	
 	int ls,rs,bal,HL,HR,cp;
@@ -124,9 +146,9 @@ Avl insert(Avl estrutura, char* line,void* info) {
 
 	}
 	return estrutura;
-
 }
 
+/* Inserir numa MY_AVL. */
 MY_AVL insertMyAvl(MY_AVL a,char* line,void* info,int aux){
 
 	if(a == NULL) a = initMyAvl();
@@ -136,24 +158,13 @@ MY_AVL insertMyAvl(MY_AVL a,char* line,void* info,int aux){
 	return a;
 }
 
-static Avl insertINFO(Avl a,STR line,void* i){
-	Avl aux=a;
-	int cp;
-	while(a){
-		if((cp=strcmp(a->code,line)) > 0) a=a->left;
-		else if(cp<0) a=a->right;
-			else {a->info=i;break;}
-	}
-
-	a=aux;
-	return a;
-}
-
+/* Verificar se uma determinada string existe na MY_AVL. */
 int existMyAvl(MY_AVL estrutura,char* line){
 	int r = existAvl(estrutura->avl,line);
 	return r;
 }
 
+/* Verificar se uma determinada string existe na Avl. */
 int existAvl(Avl estrutura, char* line){
 	int r=0;
 	int s=strcmp(estrutura->code,line);
@@ -165,17 +176,20 @@ int existAvl(Avl estrutura, char* line){
 	return r;
 }
 
+/* Função que retorna o número de elementos de uma MY_AVL. */
 int totalElements(MY_AVL estrutura){
 	if(estrutura) return estrutura->total;
 	else return 0;
 }
 
+/* Função que liberta uma estrutura MY_AVL. */
 void removeMyAvl(MY_AVL estrutura,Func f){
 	if(estrutura)
 		removeAvl(estrutura->avl,f);
 		free(estrutura);
 }
 
+/* Função que liberta uma estrutura Avl. */
 void removeAvl(Avl estrutura,Func freeInfo){
 	if(estrutura != NULL){
 		removeAvl(estrutura->right,freeInfo);
@@ -187,6 +201,13 @@ void removeAvl(Avl estrutura,Func freeInfo){
 	}
 }
 
+/* Função que liberta a memória de um Nodo da Avl. */
+void freeNodo(Avl a){
+	free(a->code);
+	free(a);
+}
+
+/* Função que faz a procura de uma estrutura info. */
 void* findInfo (Avl a,STR line,int *x){
 	int cp=0;
 	while(a){
@@ -199,6 +220,7 @@ void* findInfo (Avl a,STR line,int *x){
 		else return NULL;
 }
 
+/* Função que faz um clone de uma Avl. */
 Avl cloneAvl (Avl estrutura){
 	Avl aux;
 	if(estrutura){
@@ -215,6 +237,7 @@ Avl cloneAvl (Avl estrutura){
 	return aux;
 }
 
+/* Função que faz um clone de um MY_AVL. */
 MY_AVL cloneMyAvl (MY_AVL estrutura){
 	MY_AVL aux = malloc (sizeof(struct myAvl));
 	if(estrutura){
@@ -225,11 +248,7 @@ MY_AVL cloneMyAvl (MY_AVL estrutura){
 	return aux;
 }
 
-void freeNodo(Avl a){
-	free(a->code);
-	free(a);
-}
-
+/* Função que calcula o número de nodos sem Info. */
 int infoNULL(Avl a){
 	int r=0;
 	if(a){
@@ -245,6 +264,7 @@ int infoNULL(Avl a){
 
 Avl getAvl(MY_AVL estrutura){
 	Avl aux;
+
 	if(estrutura && estrutura->avl){
 		aux = malloc (sizeof(struct avl));
 		aux->code = malloc((strlen(estrutura->avl->code)+1)*sizeof(char));

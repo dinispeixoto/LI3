@@ -1,23 +1,40 @@
 #include "headers/listaStrings.h"
 
+/* Estrutura de uma Lista de Strings. */
 struct lista{
-	int sp;
-	int size;
-	int sizeElement;
-	STRING* elements;
+	int sp;						/* Número de elementos da lista. */
+	int size;					/* Tamanho alocado para a lista. */
+	int sizeElement;			/* Tamanho de cada string da lista. */
+	STRING* elements;			/* Lista de elementos. */
 };
 
-struct page{
-	int sp;
-	int pageSize;
-	int sizeElement;
-	STRING* elements;
+/* Estrutura de uma Página. */
+struct page{	
+	int sp;						/* Número de elementos da página. */
+	int pageSize;				/* Tamanho máximo de elementos numa página.*/
+	int sizeElement;			/* Tamanho de cada string contida na página. */
+	STRING* elements;			/* Lista de elementos da página. */
 };
 
+/* Estrutura de uma String. */
 struct string{
-	char* string;
+	char* string;				/* String. */
 };
 
+/*Liberta espaço de uma estrutura LISTA_STRINGS.*/
+void freeListaStr(LISTA_STRINGS ls){
+	int i;
+
+	for(i=0;i<ls->sp;i++){
+		free(ls->elements[i]->string);
+		free(ls->elements[i]);
+	}
+	free(ls->elements);
+	free(ls);
+	ls=NULL;
+}
+
+/* Inicializar uma Lista de Strings. */
 LISTA_STRINGS initListaStrings(int size,int sizeElement){
 	int i;
 	LISTA_STRINGS lista = malloc(sizeof(struct lista));	
@@ -32,6 +49,7 @@ LISTA_STRINGS initListaStrings(int size,int sizeElement){
 	return lista;
 }
 
+/* Inicializar uma Página. */
 PAGE initPage(int page_size,int sizeElement){
 	int i;
 	PAGE page = malloc(sizeof(struct page));	
@@ -46,6 +64,7 @@ PAGE initPage(int page_size,int sizeElement){
 	return page;
 }
 
+/* Actualizar uma página com parte de informação da Lista de Strings. */
 PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size){
 	int i,j = begin;
 	PAGE page = initPage(page_size,sizeElement);
@@ -56,7 +75,7 @@ PAGE updatePage(LISTA_STRINGS lista,int begin,int sizeElement,int page_size){
 	return page;
 }
 
-
+/* Re-alocar memória para a Lista de Strings. */
 LISTA_STRINGS reallocListaStrings(LISTA_STRINGS lista){	
 	int i;
 	if (lista->sp > (lista->size*3)/4) {
@@ -70,12 +89,14 @@ LISTA_STRINGS reallocListaStrings(LISTA_STRINGS lista){
 	return lista;
 }
 
+/* Adicionar um elemento à Lista de Strings. */
 LISTA_STRINGS addListaStrings(LISTA_STRINGS ls,int posicao, char* elem){
 	strcpy(ls->elements[posicao]->string,elem);
 	ls->sp++;
 	return ls;
 }
 
+/* Remover um elemento da Lista de Strings. */
 LISTA_STRINGS removeListaStrings(LISTA_STRINGS ls,char* elem){
 	int i;
 	for(i=0;i<ls->sp;i++){
@@ -88,6 +109,59 @@ LISTA_STRINGS removeListaStrings(LISTA_STRINGS ls,char* elem){
 	return ls;
 }
 
+/*Função que junta duas LISTA_STRINGS, removendo elementos iguais.*/
+LISTA_STRINGS mergeList(LISTA_STRINGS ls1, LISTA_STRINGS ls2){
+	int i=0,j=0,cmp;
+	int tam=ls1->sp+ls2->sp;
+	LISTA_STRINGS ls=initListaStrings(1,ls1->sizeElement);
+	while(ls->sp<tam){
+		if(i<ls1->sp && j<ls2->sp){
+			cmp=strcmp(ls1->elements[i]->string,ls2->elements[j]->string);
+			if(cmp==0){
+				strcpy(ls->elements[ls->sp]->string,ls1->elements[i]->string);
+				ls->sp++;
+				reallocListaStrings(ls);
+				i++;
+				j++;
+				tam--;
+			}
+			else if(cmp<0){
+				strcpy(ls->elements[ls->sp]->string,ls1->elements[i]->string);
+				ls->sp++;
+				reallocListaStrings(ls);
+				i++;
+			}
+			else {
+				strcpy(ls->elements[ls->sp]->string,ls2->elements[j]->string);
+				ls->sp++;
+				reallocListaStrings(ls);
+				j++;
+			}
+		}	
+		else{ 
+			if(i==ls1->sp){
+				while(ls->sp<tam){
+					strcpy(ls->elements[ls->sp]->string,ls2->elements[j]->string);
+					ls->sp++;
+					reallocListaStrings(ls);
+					j++;
+				}
+			}
+			else {
+				while(ls->sp<tam){
+					strcpy(ls->elements[ls->sp]->string,ls1->elements[i]->string);
+					ls->sp++;
+					reallocListaStrings(ls);
+					i++;
+				}
+			}
+		}
+	}
+	return ls;
+}
+
+
+/* GETS E SETS */
 int getListaSize(LISTA_STRINGS lista){
 	return lista->size;
 }
