@@ -9,6 +9,8 @@ static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial);
 static DADOS_FILIAL addQ (DADOS_FILIAL df,INFO_CLIENT ic);
 
 /* ######################################### QUERIE 2 #################################### */
+
+/*Função que faz uma travessia na AVL do catalogo dos produtos, e vai adicionando produtos para a estrutura LISTA_STRINGS*/
 static LISTA_STRINGS travessia (Avl a,LISTA_STRINGS ls){
 	char* prod;
 	if(a){
@@ -51,6 +53,7 @@ DADOS querie3(FACTURACAO f,int mes, char* product,int promo){
 
 }
 
+/*Função que calcula os valores porvenientes de um porduto,de um mes e da Promoção.*/
 static DADOS updatePriceQuantity(INFO f,DADOS d,int promo,int mes){
 	int i;
 	for(i=0;i<SIZE_FILIAIS;i++){
@@ -72,6 +75,7 @@ LISTA_STRINGS querie4(FACTURACAO f,int filial){
 	return group;
 }
 
+/*Função que verifica se o valor no nodo é NULL ou não- */
 static int checkInfo(INFO i, int filial){
 	int j;
 	for(j=0;j<SIZE_MONTH;j++)
@@ -79,6 +83,7 @@ static int checkInfo(INFO i, int filial){
 	return 0;
 }
 
+/**/
 static LISTA_STRINGS found(Avl a,LISTA_STRINGS list,int filial){
 	void* w;
 	char* prod;
